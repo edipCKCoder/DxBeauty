@@ -1,20 +1,14 @@
-﻿using DevExpress.XtraEditors;
+﻿using DXBeauty.Data;
 using DXBeauty.Entities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Configuration;
 
 namespace DXBeauty.UI
 {
     public partial class CustomerRegisterControl : DevExpress.XtraEditors.XtraUserControl
     {
+
+        public event Action <Customer> CustomerSaved;
 
         public CustomerRegisterControl()
         {
@@ -31,10 +25,11 @@ namespace DXBeauty.UI
                 Phone = phoneBox.Text,
                 Email = emailBox.Text,
                 Address = addressBox.Text,
-                BirthDate = birthdayBox.DateTime,
+                Birthday = birthdayBox.DateTime,
             };
 
-            this.ParentForm.Close();
+            CustomerSaved?.Invoke(customer);
+
         }
     }
 }

@@ -13,7 +13,8 @@ namespace DXBeauty.Data
 
         public List<Customer> GetAll()
         {
-            var sql = "SELECT * FROM customers ORDER BY customer_id DESC";
+            var sql = "SELECT customer_id AS CustomerId, first_name AS FirstName, last_name AS LastName, phone, email, address, birthday, created_at AS CreatedDate " +
+                " FROM customers ORDER BY customer_id DESC";
             return Query<Customer>(sql).ToList();
         }
 

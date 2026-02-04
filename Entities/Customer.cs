@@ -15,7 +15,7 @@ namespace DXBeauty.Entities
         private string _phone;
         private string _email;
         private string _address;
-        private DateTime _birthDate;
+        private DateTime _birthDay;
         private DateTime _createdDate;
 
         public int CustomerId
@@ -67,10 +67,10 @@ namespace DXBeauty.Entities
             set => _address = value?.Trim();
         }
 
-        public DateTime BirthDate
+        public DateTime Birthday
         {
-            get => _birthDate;
-            set => _birthDate = value;
+            get => _birthDay;
+            set => _birthDay = value;
         }
         
         public DateTime CreatedDate
