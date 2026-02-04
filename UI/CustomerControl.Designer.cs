@@ -31,9 +31,7 @@
             groupControl1 = new DevExpress.XtraEditors.GroupControl();
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
-            simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
-            layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -47,6 +45,8 @@
             layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            NewRegister = new DevExpress.XtraEditors.SimpleButton();
+            layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)groupControl1).BeginInit();
             groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
@@ -54,7 +54,6 @@
             ((System.ComponentModel.ISupportInitialize)layoutControl3).BeginInit();
             layoutControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControl2).BeginInit();
             layoutControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
@@ -67,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem7).BeginInit();
             SuspendLayout();
             // 
             // groupControl1
@@ -96,7 +96,7 @@
             // 
             // layoutControl3
             // 
-            layoutControl3.Controls.Add(simpleButton1);
+            layoutControl3.Controls.Add(NewRegister);
             layoutControl3.Location = new System.Drawing.Point(303, 531);
             layoutControl3.Name = "layoutControl3";
             layoutControl3.Root = layoutControlGroup2;
@@ -104,32 +104,14 @@
             layoutControl3.TabIndex = 5;
             layoutControl3.Text = "layoutControl3";
             // 
-            // simpleButton1
-            // 
-            simpleButton1.Location = new System.Drawing.Point(12, 12);
-            simpleButton1.Name = "simpleButton1";
-            simpleButton1.Size = new System.Drawing.Size(263, 22);
-            simpleButton1.StyleController = layoutControl3;
-            simpleButton1.TabIndex = 4;
-            simpleButton1.Text = "New Register";
-            simpleButton1.Click += simpleButton1_Click;
-            // 
             // layoutControlGroup2
             // 
             layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             layoutControlGroup2.GroupBordersVisible = false;
-            layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem4 });
+            layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem7 });
             layoutControlGroup2.Name = "layoutControlGroup2";
             layoutControlGroup2.Size = new System.Drawing.Size(287, 46);
             layoutControlGroup2.TextVisible = false;
-            // 
-            // layoutControlItem4
-            // 
-            layoutControlItem4.Control = simpleButton1;
-            layoutControlItem4.Location = new System.Drawing.Point(0, 0);
-            layoutControlItem4.Name = "layoutControlItem4";
-            layoutControlItem4.Size = new System.Drawing.Size(267, 26);
-            layoutControlItem4.TextVisible = false;
             // 
             // layoutControl2
             // 
@@ -237,6 +219,24 @@
             layoutControlItem5.Size = new System.Drawing.Size(292, 40);
             layoutControlItem5.TextVisible = false;
             // 
+            // NewRegister
+            // 
+            NewRegister.Location = new System.Drawing.Point(12, 12);
+            NewRegister.Name = "NewRegister";
+            NewRegister.Size = new System.Drawing.Size(263, 22);
+            NewRegister.StyleController = layoutControl3;
+            NewRegister.TabIndex = 4;
+            NewRegister.Text = "New Register";
+            NewRegister.Click += NewRegister_Click;
+            // 
+            // layoutControlItem7
+            // 
+            layoutControlItem7.Control = NewRegister;
+            layoutControlItem7.Location = new System.Drawing.Point(0, 0);
+            layoutControlItem7.Name = "layoutControlItem7";
+            layoutControlItem7.Size = new System.Drawing.Size(267, 26);
+            layoutControlItem7.TextVisible = false;
+            // 
             // CustomerControl
             // 
             Appearance.BackColor = System.Drawing.SystemColors.Control;
@@ -253,7 +253,6 @@
             ((System.ComponentModel.ISupportInitialize)layoutControl3).EndInit();
             layoutControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControl2).EndInit();
             layoutControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).EndInit();
@@ -266,6 +265,7 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem7).EndInit();
             ResumeLayout(false);
         }
 
@@ -279,7 +279,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.SplitterItem splitterItem1;
         private DevExpress.XtraLayout.LayoutControl layoutControl3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton CustomerRegister;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControl layoutControl2;
@@ -290,5 +290,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraEditors.SimpleButton NewRegister;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
     }
 }

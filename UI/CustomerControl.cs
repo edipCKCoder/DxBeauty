@@ -13,23 +13,24 @@ namespace DXBeauty.UI
 {
     public partial class CustomerControl : DevExpress.XtraEditors.XtraUserControl
     {
+
+
         public CustomerControl()
         {
             InitializeComponent();
+
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private void NewRegister_Click(object sender, EventArgs e)
         {
+            XtraForm popup = new XtraForm();
             CustomerRegisterControl registerControl = new UI.CustomerRegisterControl();
             registerControl.Dock = DockStyle.Fill;
             registerControl.Show();
-
-            XtraForm popup = new XtraForm();
             popup.StartPosition = FormStartPosition.CenterScreen;
-
-
             popup.Controls.Add(registerControl);
             popup.ShowDialog();
         }
+
     }
 }
