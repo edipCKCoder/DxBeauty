@@ -10,8 +10,9 @@ namespace DXBeauty.Entities
     {
         private int _serviceId;
         private string _name;
-        private decimal _price;
-        private int _durationMinutes;
+        private string _description;
+        private bool _isActive;
+
 
         public int ServiceId
         {
@@ -30,27 +31,23 @@ namespace DXBeauty.Entities
             }
         }
 
-        public decimal Price
+        public string Description
         {
-            get => _price;
+            get => _description;
             set
             {
-                if (value < 0)
-                    throw new ArgumentException("Fiyat negatif olamaz.");
-                _price = value;
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Hizmet açıklaması boş olamaz.");
+                _description = value.Trim();
             }
         }
-
-        public int DurationMinutes
+    
+        public bool IsActive
         {
-            get => _durationMinutes;
-            set
-            {
-                if (value <= 0)
-                    throw new ArgumentException("Süre sıfırdan büyük olmalı.");
-                _durationMinutes = value;
-            }
+            get => _isActive;
+            set => _isActive = value;
         }
+        
     }
 
 }

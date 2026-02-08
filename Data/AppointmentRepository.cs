@@ -20,27 +20,27 @@ namespace DXBeauty.Data
         public void Insert(Appointment a)
         {
             var sql = @"INSERT INTO appointments 
-                       (customer_id, service_id, appointment_date, duration_minutes, status)
-                       VALUES (@CustomerId, @ServiceId, @AppointmentDate, @DurationMinutes, @Status)";
+                       (customer_service_id, appointment_date, duration_minutes, status, notes,created_at)
+                       VALUES (@CustomerServiceId, @AppointmentDate, @DurationMinutes, @Status, @Notes,@CreatedAt)";
             Execute(sql, a);
         }
 
         public void Update(Appointment a)
         {
             var sql = @"UPDATE appointments SET
-                        customer_id = @CustomerId,
-                        service_id = @ServiceId,
+                        customer_service_id = @CustomerServiceId,
                         appointment_date = @AppointmentDate,
                         duration_minutes = @DurationMinutes,
-                        status = @Status
+                        status = @Status,
+                        notes = @Notes
                         WHERE appointment_id = @AppointmentId";
             Execute(sql, a);
         }
 
         public void Delete(int id)
         {
-            var sql = "DELETE FROM appointments WHERE appointment_id = @Id";
-            Execute(sql, new { Id = id });
+            var sql = "DELETE FROM appointments WHERE appointment_id = @AppointmentId";
+            Execute(sql, new { AppointmentId = id });
         }
     }
 }

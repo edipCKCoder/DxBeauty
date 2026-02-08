@@ -39,5 +39,12 @@ namespace DXBeauty.Data
                 return conn.Execute(sql, parameters);
             }
         }
+
+        protected T QueryFirstOrDefault<T>(string sql, object param = null)
+        {
+            using var conn = GetConnection();
+            return conn.QueryFirstOrDefault<T>(sql, param);
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using DXBeauty.Data;
+using DXBeauty.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,12 +26,18 @@ namespace DXBeauty.UI
             repo = new CustomerRepository(connectionString);
 
         }
+        private void CustomerControl_Load(object sender, EventArgs e)
+        {
+
+            var customers = repo.GetAll().ToList();
+            customerGridControl.DataSource = customers;
+        }
 
         private void NewRegister_Click(object sender, EventArgs e)
         {
             using (var popup = new XtraForm())
             {
-             
+
                 var registerControl = new CustomerRegisterControl
                 {
                     Dock = DockStyle.Fill
@@ -38,9 +45,9 @@ namespace DXBeauty.UI
 
 
                 registerControl.CustomerSaved += (customer) =>
-                {     
+                {
                     repo.Insert(customer);
-                    CustomerGridControl.DataSource = repo.GetAll().ToList();
+                    customerGridControl.DataSource = repo.GetAll().ToList();
                     popup.Close();
                 };
 
@@ -48,15 +55,55 @@ namespace DXBeauty.UI
                 popup.Controls.Add(registerControl);
                 popup.ShowDialog();
             }
-            
+
         }
 
-        private void CustomerControl_Load(object sender, EventArgs e)
+        private void deleteButton_Click(object sender, EventArgs e)
         {
-            
-            var customers = repo.GetAll().ToList();
-            CustomerGridControl.DataSource = customers;
+            var customer = customersGridView.GetFocusedRow() as Customer;
+
+            if (customer == null)
+            {
+                return;
+            }
+            var result = XtraMessageBox.Show(
+                $"'{customer.FirstName} {customer.LastName}' silinsin mi?",
+                "Onay",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result != DialogResult.Yes)
+                return;
+
+            var repo = new CustomerRepository(connectionString);
+            repo.Delete(customer.CustomerId);
+
+            customerGridControl.DataSource = repo.GetAll().ToList();
+
         }
 
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            var customer = customersGridView.GetFocusedRow() as Customer;
+            if (customer == null) return;
+
+            var popup = new XtraForm();
+            var registerControl = new CustomerRegisterControl();
+            registerControl.Dock = DockStyle.Fill;
+
+            registerControl.LoadCustomer(customer);
+
+            registerControl.CustomerSaved += (updatedCustomer) =>
+            {
+                var repo = new CustomerRepository(connectionString);
+                repo.Update(updatedCustomer);
+
+                customerGridControl.DataSource = repo.GetAll().ToList(); // grid refresh
+                popup.Close();
+            };
+
+            popup.Controls.Add(registerControl);
+            popup.ShowDialog();
+        }
     }
 }

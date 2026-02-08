@@ -1,31 +1,39 @@
-﻿using DevExpress.XtraEditors;
+﻿using DXBeauty.Data;
+using DXBeauty.Entities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Configuration;
+
 
 namespace DXBeauty.UI
 {
     public partial class CreateServiceControl : DevExpress.XtraEditors.XtraUserControl
     {
+
+        public event Action<Service> ServiceSaved;
+        private readonly ServiceRepository repo;
+        private readonly string connectionString;
+
         public CreateServiceControl()
         {
             InitializeComponent();
+            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            repo = new ServiceRepository(connectionString);
         }
 
-        private void CreateService_Click(object sender, EventArgs e)
+
+        private void createServiceButton_Click(object sender, EventArgs e)
         {
+            var service = new Service
+            {
+                Name = serviceName.Text,
+                Description = serviceDescription.Text,
+                IsActive = isActive.Checked,
+            };
 
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
+            // DB insert burada olabilir
+            repo.Insert(service);
+            ServiceSaved?.Invoke(service);
+            this.ParentForm.Close();
         }
     }
 }

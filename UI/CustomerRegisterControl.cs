@@ -9,6 +9,9 @@ namespace DXBeauty.UI
     {
 
         public event Action <Customer> CustomerSaved;
+        public Customer EditingCustomer { get; private set; }
+        public bool IsEditMode => EditingCustomer != null;
+
 
         public CustomerRegisterControl()
         {
@@ -17,6 +20,42 @@ namespace DXBeauty.UI
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
+        {
+            if (IsEditMode)
+            {
+                UpdateCustomer();
+            }
+            else
+            {
+                InsertCustomer();
+            }           
+        }
+
+        public void LoadCustomer(Customer customer)
+        {
+            EditingCustomer = customer;
+
+            nameBox.Text = customer.FirstName;
+            surnameBox.Text = customer.LastName;
+            phoneBox.Text = customer.Phone;
+            emailBox.Text = customer.Email;
+            addressBox.Text = customer.Address;
+            birthdayBox.DateTime = customer.Birthday.HasValue ? customer.Birthday.Value : DateTime.MinValue;
+        }
+
+        private void UpdateCustomer()
+        {
+            EditingCustomer.FirstName = nameBox.Text;
+            EditingCustomer.LastName = surnameBox.Text;
+            EditingCustomer.Phone = phoneBox.Text;
+            EditingCustomer.Email = emailBox.Text;
+            EditingCustomer.Address = addressBox.Text;
+            EditingCustomer.Birthday = birthdayBox.DateTime;
+
+            CustomerSaved?.Invoke(EditingCustomer);
+        }
+
+        private void InsertCustomer()
         {
             Customer customer = new Customer
             {
@@ -29,7 +68,6 @@ namespace DXBeauty.UI
             };
 
             CustomerSaved?.Invoke(customer);
-
         }
     }
 }

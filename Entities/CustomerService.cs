@@ -10,10 +10,11 @@ namespace DXBeauty.Entities
     {
         private int _customerServiceId;
         private int _customerId;
-        private int _serviceId;
-        private int? _appointmentId;
-        private DateTime _serviceDate;
-        private string _notes;
+        private int _servicePackageId;
+        private DateTime _startDate;
+        private int _remainingSessions;
+        private decimal _totalPrice;
+        private string _status; // active, completed, cancelled
 
         public int CustomerServiceId
         {
@@ -27,29 +28,36 @@ namespace DXBeauty.Entities
             set => _customerId = value;
         }
 
-        public int ServiceId
+        public int ServicePackageId
         {
-            get => _serviceId;
-            set => _serviceId = value;
+            get => _servicePackageId;
+            set => _servicePackageId = value;
         }
 
-        public int? AppointmentId
+        public DateTime StartDate
         {
-            get => _appointmentId;
-            set => _appointmentId = value;
+            get => _startDate;
+            set => _startDate = value == default ? DateTime.Now : value;
         }
 
-        public DateTime ServiceDate
+        public int RemainingSessions
         {
-            get => _serviceDate;
-            set => _serviceDate = value == default ? DateTime.Now : value;
+            get => _remainingSessions;
+            set => _remainingSessions = value;
         }
 
-        public string Notes
+        public decimal TotalPrice
         {
-            get => _notes;
-            set => _notes = value?.Trim();
+            get => _totalPrice;
+            set => _totalPrice = value;
         }
+
+        public string Status
+        {
+            get => _status;
+            set => _status = value?.Trim();
+        }
+      
     }
 
 }

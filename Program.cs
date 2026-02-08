@@ -12,6 +12,7 @@ namespace DXBeauty {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
 
             DevExpress.Skins.SkinManager.EnableFormSkins();
 DevExpress.UserSkins.BonusSkins.Register();

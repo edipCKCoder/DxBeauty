@@ -10,10 +10,12 @@ namespace DXBeauty.Entities
     {
         private int _paymentId;
         private int _customerId;
+        private int? _customerServiceId;
         private int? _appointmentId;
         private decimal _amount;
-        private DateTime _paymentDate;
         private string _paymentMethod;
+        private DateTime _paymentDate;
+        
 
         public int PaymentId
         {
@@ -25,6 +27,12 @@ namespace DXBeauty.Entities
         {
             get => _customerId;
             set => _customerId = value;
+        }
+
+        public int? CustomerServiceId
+        {
+            get => _customerServiceId;
+            set => _customerServiceId = value;
         }
 
         public int? AppointmentId
@@ -43,17 +51,16 @@ namespace DXBeauty.Entities
                 _amount = value;
             }
         }
+        public string PaymentMethod
+        {
+            get => _paymentMethod;
+            set => _paymentMethod = value ?? "Nakit";
+        }
 
         public DateTime PaymentDate
         {
             get => _paymentDate;
             set => _paymentDate = value == default ? DateTime.Now : value;
-        }
-
-        public string PaymentMethod
-        {
-            get => _paymentMethod;
-            set => _paymentMethod = value ?? "Nakit";
         }
     }
 

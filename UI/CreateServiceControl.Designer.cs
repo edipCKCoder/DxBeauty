@@ -30,190 +30,147 @@
         {
             groupControl1 = new DevExpress.XtraEditors.GroupControl();
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            textEdit3 = new DevExpress.XtraEditors.TextEdit();
+            serviceName = new DevExpress.XtraEditors.TextEdit();
+            createServiceButton = new DevExpress.XtraEditors.SimpleButton();
+            serviceDescription = new DevExpress.XtraEditors.TextEdit();
+            isActive = new DevExpress.XtraEditors.CheckEdit();
             Root = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            radioButton1 = new System.Windows.Forms.RadioButton();
+            layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            radioButton2 = new System.Windows.Forms.RadioButton();
-            layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)groupControl1).BeginInit();
             groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)textEdit1.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textEdit2.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textEdit3.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)serviceName.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)serviceDescription.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)isActive.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem5).BeginInit();
             SuspendLayout();
             // 
             // groupControl1
             // 
+            groupControl1.AutoSize = true;
+            groupControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             groupControl1.Controls.Add(layoutControl1);
             groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             groupControl1.Location = new System.Drawing.Point(0, 0);
+            groupControl1.MaximumSize = new System.Drawing.Size(0, 250);
+            groupControl1.MinimumSize = new System.Drawing.Size(0, 150);
             groupControl1.Name = "groupControl1";
-            groupControl1.Size = new System.Drawing.Size(596, 451);
+            groupControl1.Size = new System.Drawing.Size(902, 250);
             groupControl1.TabIndex = 0;
-            groupControl1.Text = "groupControl1";
+            groupControl1.Text = "Service informations";
             // 
             // layoutControl1
             // 
-            layoutControl1.Controls.Add(radioButton2);
-            layoutControl1.Controls.Add(radioButton1);
-            layoutControl1.Controls.Add(textEdit1);
-            layoutControl1.Controls.Add(textEdit2);
-            layoutControl1.Controls.Add(textEdit3);
+            layoutControl1.Controls.Add(serviceName);
+            layoutControl1.Controls.Add(createServiceButton);
+            layoutControl1.Controls.Add(serviceDescription);
+            layoutControl1.Controls.Add(isActive);
             layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             layoutControl1.Location = new System.Drawing.Point(2, 23);
             layoutControl1.Name = "layoutControl1";
-            layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(890, 157, 650, 400);
+            layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1012, 157, 650, 400);
             layoutControl1.Root = Root;
-            layoutControl1.Size = new System.Drawing.Size(592, 426);
+            layoutControl1.Size = new System.Drawing.Size(898, 225);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
             // 
-            // textEdit1
+            // serviceName
             // 
-            textEdit1.Location = new System.Drawing.Point(12, 28);
-            textEdit1.MaximumSize = new System.Drawing.Size(300, 0);
-            textEdit1.MinimumSize = new System.Drawing.Size(150, 0);
-            textEdit1.Name = "textEdit1";
-            textEdit1.Size = new System.Drawing.Size(150, 20);
-            textEdit1.StyleController = layoutControl1;
-            textEdit1.TabIndex = 0;
+            serviceName.Location = new System.Drawing.Point(2, 18);
+            serviceName.Name = "serviceName";
+            serviceName.Size = new System.Drawing.Size(894, 20);
+            serviceName.StyleController = layoutControl1;
+            serviceName.TabIndex = 0;
             // 
-            // textEdit2
+            // createServiceButton
             // 
-            textEdit2.Location = new System.Drawing.Point(12, 68);
-            textEdit2.MaximumSize = new System.Drawing.Size(250, 0);
-            textEdit2.MinimumSize = new System.Drawing.Size(250, 0);
-            textEdit2.Name = "textEdit2";
-            textEdit2.Size = new System.Drawing.Size(250, 20);
-            textEdit2.StyleController = layoutControl1;
-            textEdit2.TabIndex = 2;
+            createServiceButton.Location = new System.Drawing.Point(2, 125);
+            createServiceButton.Margin = new System.Windows.Forms.Padding(0);
+            createServiceButton.Name = "createServiceButton";
+            createServiceButton.Size = new System.Drawing.Size(894, 22);
+            createServiceButton.StyleController = layoutControl1;
+            createServiceButton.TabIndex = 4;
+            createServiceButton.Text = "Save";
+            createServiceButton.Click += createServiceButton_Click;
             // 
-            // textEdit3
+            // serviceDescription
             // 
-            textEdit3.Location = new System.Drawing.Point(12, 108);
-            textEdit3.Name = "textEdit3";
-            textEdit3.Size = new System.Drawing.Size(568, 20);
-            textEdit3.StyleController = layoutControl1;
-            textEdit3.TabIndex = 3;
+            serviceDescription.Location = new System.Drawing.Point(2, 58);
+            serviceDescription.MaximumSize = new System.Drawing.Size(0, 30);
+            serviceDescription.MinimumSize = new System.Drawing.Size(0, 30);
+            serviceDescription.Name = "serviceDescription";
+            serviceDescription.Size = new System.Drawing.Size(894, 30);
+            serviceDescription.StyleController = layoutControl1;
+            serviceDescription.TabIndex = 2;
+            // 
+            // isActive
+            // 
+            isActive.Location = new System.Drawing.Point(36, 101);
+            isActive.Name = "isActive";
+            isActive.Properties.Caption = "";
+            isActive.Size = new System.Drawing.Size(860, 20);
+            isActive.StyleController = layoutControl1;
+            isActive.TabIndex = 3;
             // 
             // Root
             // 
-            Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.False;
             Root.GroupBordersVisible = false;
-            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, layoutControlGroup1, layoutControlItem3 });
+            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem3, layoutControlItem2, layoutControlItem4 });
             Root.Name = "Root";
-            Root.Size = new System.Drawing.Size(592, 426);
-            Root.TextVisible = false;
+            Root.Size = new System.Drawing.Size(898, 225);
             // 
             // layoutControlItem1
             // 
-            layoutControlItem1.ContentVertAlignment = DevExpress.Utils.VertAlignment.Top;
-            layoutControlItem1.Control = textEdit1;
+            layoutControlItem1.Control = serviceName;
             layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            layoutControlItem1.MaxSize = new System.Drawing.Size(97, 40);
-            layoutControlItem1.MinSize = new System.Drawing.Size(97, 40);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(572, 40);
-            layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            layoutControlItem1.Text = "Service Code";
+            layoutControlItem1.Size = new System.Drawing.Size(898, 40);
+            layoutControlItem1.Text = "Service Name";
             layoutControlItem1.TextLocation = DevExpress.Utils.Locations.Top;
-            layoutControlItem1.TextSize = new System.Drawing.Size(96, 13);
-            // 
-            // layoutControlItem2
-            // 
-            layoutControlItem2.Control = textEdit2;
-            layoutControlItem2.Location = new System.Drawing.Point(0, 40);
-            layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new System.Drawing.Size(572, 40);
-            layoutControlItem2.Text = "Service Name";
-            layoutControlItem2.TextLocation = DevExpress.Utils.Locations.Top;
-            layoutControlItem2.TextSize = new System.Drawing.Size(96, 13);
-            // 
-            // layoutControlGroup1
-            // 
-            layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { emptySpaceItem1, emptySpaceItem2, layoutControlItem4, layoutControlItem5 });
-            layoutControlGroup1.Location = new System.Drawing.Point(0, 120);
-            layoutControlGroup1.Name = "layoutControlGroup1";
-            layoutControlGroup1.Size = new System.Drawing.Size(572, 286);
-            layoutControlGroup1.Text = "Pricing Policy";
+            layoutControlItem1.TextSize = new System.Drawing.Size(91, 13);
             // 
             // layoutControlItem3
             // 
-            layoutControlItem3.Control = textEdit3;
-            layoutControlItem3.Location = new System.Drawing.Point(0, 80);
+            layoutControlItem3.Control = createServiceButton;
+            layoutControlItem3.Location = new System.Drawing.Point(0, 123);
             layoutControlItem3.Name = "layoutControlItem3";
-            layoutControlItem3.Size = new System.Drawing.Size(572, 40);
-            layoutControlItem3.Text = "Services Description";
-            layoutControlItem3.TextLocation = DevExpress.Utils.Locations.Top;
-            layoutControlItem3.TextSize = new System.Drawing.Size(96, 13);
+            layoutControlItem3.Size = new System.Drawing.Size(898, 102);
+            layoutControlItem3.TextVisible = false;
             // 
-            // emptySpaceItem1
+            // layoutControlItem2
             // 
-            emptySpaceItem1.Location = new System.Drawing.Point(411, 0);
-            emptySpaceItem1.Name = "emptySpaceItem1";
-            emptySpaceItem1.Size = new System.Drawing.Size(137, 241);
-            // 
-            // emptySpaceItem2
-            // 
-            emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
-            emptySpaceItem2.Name = "emptySpaceItem2";
-            emptySpaceItem2.Size = new System.Drawing.Size(137, 241);
-            // 
-            // radioButton1
-            // 
-            radioButton1.Location = new System.Drawing.Point(161, 165);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new System.Drawing.Size(133, 25);
-            radioButton1.TabIndex = 4;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "radioButton1";
-            radioButton1.UseVisualStyleBackColor = true;
+            layoutControlItem2.Control = serviceDescription;
+            layoutControlItem2.Location = new System.Drawing.Point(0, 40);
+            layoutControlItem2.MaxSize = new System.Drawing.Size(0, 59);
+            layoutControlItem2.MinSize = new System.Drawing.Size(97, 59);
+            layoutControlItem2.Name = "layoutControlItem2";
+            layoutControlItem2.Size = new System.Drawing.Size(898, 59);
+            layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            layoutControlItem2.Text = "Service Description";
+            layoutControlItem2.TextLocation = DevExpress.Utils.Locations.Top;
+            layoutControlItem2.TextSize = new System.Drawing.Size(91, 13);
             // 
             // layoutControlItem4
             // 
-            layoutControlItem4.Control = radioButton1;
-            layoutControlItem4.Location = new System.Drawing.Point(137, 0);
+            layoutControlItem4.Control = isActive;
+            layoutControlItem4.Location = new System.Drawing.Point(0, 99);
             layoutControlItem4.Name = "layoutControlItem4";
-            layoutControlItem4.Size = new System.Drawing.Size(137, 241);
-            layoutControlItem4.TextVisible = false;
-            // 
-            // radioButton2
-            // 
-            radioButton2.Location = new System.Drawing.Point(298, 165);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new System.Drawing.Size(133, 25);
-            radioButton2.TabIndex = 5;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "radioButton2";
-            radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // layoutControlItem5
-            // 
-            layoutControlItem5.Control = radioButton2;
-            layoutControlItem5.Location = new System.Drawing.Point(274, 0);
-            layoutControlItem5.Name = "layoutControlItem5";
-            layoutControlItem5.Size = new System.Drawing.Size(137, 241);
-            layoutControlItem5.TextVisible = false;
+            layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 2, 2, 2);
+            layoutControlItem4.Size = new System.Drawing.Size(898, 24);
+            layoutControlItem4.Text = "Aktif";
+            layoutControlItem4.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize;
+            layoutControlItem4.TextLocation = DevExpress.Utils.Locations.Left;
+            layoutControlItem4.TextSize = new System.Drawing.Size(30, 13);
+            layoutControlItem4.TextToControlDistance = 1;
             // 
             // CreateServiceControl
             // 
@@ -221,43 +178,35 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             Controls.Add(groupControl1);
             Name = "CreateServiceControl";
-            Size = new System.Drawing.Size(596, 451);
+            Size = new System.Drawing.Size(902, 546);
             ((System.ComponentModel.ISupportInitialize)groupControl1).EndInit();
             groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
             layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)textEdit1.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textEdit2.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textEdit3.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)serviceName.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)serviceDescription.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)isActive.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)Root).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem5).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
+        private DevExpress.XtraEditors.TextEdit serviceName;
+        private DevExpress.XtraEditors.SimpleButton createServiceButton;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraEditors.TextEdit serviceDescription;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraEditors.CheckEdit isActive;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
     }
 }

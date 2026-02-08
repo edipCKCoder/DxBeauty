@@ -9,11 +9,12 @@ namespace DXBeauty.Entities
     public class Appointment
     {
         private int _appointmentId;
-        private int _customerId;
-        private int _serviceId;
+        private int _customerServiceId;
         private DateTime _appointmentDate;
         private int _durationMinutes;
-        private string _status;
+        private string _status;  // scheduled, completed, cancelled
+        private string _notes;
+        private DateTime _createdAt;
 
         public int AppointmentId
         {
@@ -21,16 +22,10 @@ namespace DXBeauty.Entities
             private set => _appointmentId = value;
         }
 
-        public int CustomerId
+        public int CustomerServiceId
         {
-            get => _customerId;
-            set => _customerId = value;
-        }
-
-        public int ServiceId
-        {
-            get => _serviceId;
-            set => _serviceId = value;
+            get => _customerServiceId;
+            set => _customerServiceId = value;
         }
 
         public DateTime AppointmentDate
@@ -55,6 +50,18 @@ namespace DXBeauty.Entities
             get => _status;
             set => _status = value ?? "scheduled";
         }
+        public string Notes
+        {
+            get => _notes;
+            set => _notes = value;
+        }
+
+        public DateTime CreatedAt
+        {
+            get => _createdAt;
+            private set => _createdAt = DateTime.Now;
+        }
+
     }
 
 }
