@@ -45,6 +45,8 @@
             ReminderMessage = new DevExpress.XtraNavBar.NavBarItem();
             ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
+            skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             popupControlContainer2 = new DevExpress.XtraBars.PopupControlContainer(components);
@@ -53,6 +55,7 @@
             someLabelControl2 = new DevExpress.XtraEditors.LabelControl();
             someLabelControl1 = new DevExpress.XtraEditors.LabelControl();
             navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
+            skinPaletteRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinPaletteRibbonGalleryBarItem();
             ((System.ComponentModel.ISupportInitialize)splitContainerControl).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainerControl.Panel1).BeginInit();
             splitContainerControl.Panel1.SuspendLayout();
@@ -70,7 +73,7 @@
             // splitContainerControl
             // 
             splitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            splitContainerControl.Location = new System.Drawing.Point(0, 158);
+            splitContainerControl.Location = new System.Drawing.Point(0, 162);
             splitContainerControl.Name = "splitContainerControl";
             splitContainerControl.Padding = new System.Windows.Forms.Padding(6);
             // 
@@ -82,8 +85,8 @@
             // splitContainerControl.Panel2
             // 
             splitContainerControl.Panel2.Text = "Panel2";
-            splitContainerControl.Size = new System.Drawing.Size(1100, 518);
-            splitContainerControl.SplitterPosition = 175;
+            splitContainerControl.Size = new System.Drawing.Size(1104, 516);
+            splitContainerControl.SplitterPosition = 171;
             splitContainerControl.TabIndex = 0;
             splitContainerControl.Text = "splitContainerControl1";
             // 
@@ -95,9 +98,9 @@
             navBarControl.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] { scheduler, registerCustomer, customerHistory, getPayment, createService, ReminderMessage });
             navBarControl.Location = new System.Drawing.Point(0, 0);
             navBarControl.Name = "navBarControl";
-            navBarControl.OptionsNavPane.ExpandedWidth = 175;
+            navBarControl.OptionsNavPane.ExpandedWidth = 171;
             navBarControl.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            navBarControl.Size = new System.Drawing.Size(175, 506);
+            navBarControl.Size = new System.Drawing.Size(171, 504);
             navBarControl.StoreDefaultPaintStyleName = true;
             navBarControl.TabIndex = 1;
             navBarControl.Text = "navBarControl1";
@@ -199,21 +202,34 @@
             // 
             // ribbonStatusBar
             // 
-            ribbonStatusBar.Location = new System.Drawing.Point(0, 676);
+            ribbonStatusBar.Location = new System.Drawing.Point(0, 678);
             ribbonStatusBar.Name = "ribbonStatusBar";
             ribbonStatusBar.Ribbon = ribbonControl1;
-            ribbonStatusBar.Size = new System.Drawing.Size(1100, 24);
+            ribbonStatusBar.Size = new System.Drawing.Size(1104, 24);
             // 
             // ribbonControl1
             // 
+            ribbonControl1.CaptionBarItemLinks.Add(skinDropDownButtonItem1);
+            ribbonControl1.CaptionBarItemLinks.Add(skinPaletteRibbonGalleryBarItem1);
             ribbonControl1.ExpandCollapseItem.Id = 0;
-            ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbonControl1.ExpandCollapseItem });
+            ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinDropDownButtonItem1, skinRibbonGalleryBarItem1, ribbonControl1.ExpandCollapseItem, skinPaletteRibbonGalleryBarItem1 });
             ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            ribbonControl1.MaxItemId = 1;
+            ribbonControl1.MaxItemId = 4;
             ribbonControl1.Name = "ribbonControl1";
             ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1 });
-            ribbonControl1.Size = new System.Drawing.Size(1100, 158);
+            ribbonControl1.Size = new System.Drawing.Size(1104, 162);
             ribbonControl1.StatusBar = ribbonStatusBar;
+            // 
+            // skinDropDownButtonItem1
+            // 
+            skinDropDownButtonItem1.Id = 1;
+            skinDropDownButtonItem1.Name = "skinDropDownButtonItem1";
+            // 
+            // skinRibbonGalleryBarItem1
+            // 
+            skinRibbonGalleryBarItem1.Caption = "skinRibbonGalleryBarItem1";
+            skinRibbonGalleryBarItem1.Id = 2;
+            skinRibbonGalleryBarItem1.Name = "skinRibbonGalleryBarItem1";
             // 
             // ribbonPage1
             // 
@@ -266,7 +282,7 @@
             // 
             someLabelControl2.Location = new System.Drawing.Point(3, 57);
             someLabelControl2.Name = "someLabelControl2";
-            someLabelControl2.Size = new System.Drawing.Size(49, 13);
+            someLabelControl2.Size = new System.Drawing.Size(52, 13);
             someLabelControl2.TabIndex = 0;
             someLabelControl2.Text = "Some Info";
             // 
@@ -274,7 +290,7 @@
             // 
             someLabelControl1.Location = new System.Drawing.Point(3, 3);
             someLabelControl1.Name = "someLabelControl1";
-            someLabelControl1.Size = new System.Drawing.Size(49, 13);
+            someLabelControl1.Size = new System.Drawing.Size(52, 13);
             someLabelControl1.TabIndex = 0;
             someLabelControl1.Text = "Some Info";
             // 
@@ -285,16 +301,24 @@
             navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] { new DevExpress.XtraNavBar.NavBarItemLink(scheduler) });
             navBarGroup1.Name = "navBarGroup1";
             // 
+            // skinPaletteRibbonGalleryBarItem1
+            // 
+            skinPaletteRibbonGalleryBarItem1.Caption = "skinPaletteRibbonGalleryBarItem1";
+            skinPaletteRibbonGalleryBarItem1.Id = 3;
+            skinPaletteRibbonGalleryBarItem1.Name = "skinPaletteRibbonGalleryBarItem1";
+            // 
             // MainForm
             // 
+            Appearance.Options.UseFont = true;
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1100, 700);
+            ClientSize = new System.Drawing.Size(1104, 702);
             Controls.Add(splitContainerControl);
             Controls.Add(popupControlContainer1);
             Controls.Add(popupControlContainer2);
             Controls.Add(ribbonStatusBar);
             Controls.Add(ribbonControl1);
+            Font = new System.Drawing.Font("Segoe UI", 8.25F);
             Name = "MainForm";
             Ribbon = ribbonControl1;
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -343,5 +367,8 @@
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
+        private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
+        private DevExpress.XtraBars.SkinPaletteRibbonGalleryBarItem skinPaletteRibbonGalleryBarItem1;
     }
 }

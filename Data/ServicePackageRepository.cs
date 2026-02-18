@@ -14,7 +14,6 @@ namespace DXBeauty.Data
             var sql = @"SELECT * 
                         FROM service_packages
                         WHERE service_id = @ServiceId
-                          AND is_active = true
                         ORDER BY name";
 
             return Query<ServicePackage>(sql, new { ServiceId = serviceId }).ToList();

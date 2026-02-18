@@ -13,6 +13,8 @@ namespace DXBeauty.Entities
         private string _description;
         private bool _isActive;
 
+        // HTML Template doğrudan bu ismi görecektir
+        private string _severity;
 
         public int ServiceId
         {
@@ -43,9 +45,15 @@ namespace DXBeauty.Entities
         }
     
         public bool IsActive
-        {
+        { 
             get => _isActive;
             set => _isActive = value;
+        }
+
+        public string Severity
+        {
+            get => _severity = IsActive ? "apply_img" : "cancel_img";
+            set => _severity = value;
         }
         
     }

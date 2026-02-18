@@ -33,7 +33,7 @@ namespace DXBeauty.UI
             // DB insert burada olabilir
             repo.Insert(service);
             ServiceSaved?.Invoke(service);
-            this.ParentForm.Close();
+            
         }
     }
 }

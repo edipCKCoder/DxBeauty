@@ -19,43 +19,43 @@ namespace DXBeauty.Entities
         public int ServicePackageId
         {
             get => _servicePackageId;
-            private set => _servicePackageId = value;
+             set => _servicePackageId = value;
         }
 
         public int ServiceId
         {
             get => _serviceId;
-            private set => _serviceId = value;
+             set => _serviceId = value;
         }
 
         public string Name
         {
             get => _name;
-            private set => _name = value;
+            set => _name = value;
         }
 
         public int SessionCount
         {
             get => _sessionCount;
-            private set => _sessionCount = value;
+             set => _sessionCount = value;
         }
 
         public decimal TotalPrice
         {
             get => _totalPrice;
-            private set => _totalPrice = value;
+             set => _totalPrice = value;
         }
 
         public bool IsInstallmentAllowed
         {
             get => _isInstallmentAllowed;
-            private set => _isInstallmentAllowed = value;
+             set => _isInstallmentAllowed = value;
         }
 
         public bool IsActive
         {
             get => _isActive;
-            private set => _isActive = value;
+             set => _isActive = value;
         }
     }
 }
