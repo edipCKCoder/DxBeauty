@@ -30,117 +30,63 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServicesControl));
-            layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            gridControl1 = new DevExpress.XtraGrid.GridControl();
-            layoutView1 = new DevExpress.XtraGrid.Views.Layout.LayoutView();
-            descriptionColumn = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
-            layoutViewField_descriptionColumn = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             IsActiveColumn = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             repositoryItemToggleSwitch1 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             layoutViewField_IsActiveColumn = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             nameColumn = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             layoutViewField_nameColumn = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
-            simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            addPackageButton = new DevExpress.XtraEditors.SimpleButton();
+            layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            createServiceButton = new DevExpress.XtraEditors.SimpleButton();
+            addPackageButton = new DevExpress.XtraEditors.SimpleButton();
+            gridControl1 = new DevExpress.XtraGrid.GridControl();
+            layoutView1 = new DevExpress.XtraGrid.Views.Layout.LayoutView();
+            descriptionColumn = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
+            layoutViewField_descriptionColumn = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            layoutViewColumn1 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            repositoryItemCalcEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
+            layoutViewField_layoutViewColumn1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
             Root = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
-            emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            splitterItem1 = new DevExpress.XtraLayout.SplitterItem();
-            simpleSeparator2 = new DevExpress.XtraLayout.SimpleSeparator();
+            splitterItem2 = new DevExpress.XtraLayout.SplitterItem();
             svgImageCollection1 = new DevExpress.Utils.SvgImageCollection(components);
+            ((System.ComponentModel.ISupportInitialize)repositoryItemToggleSwitch1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutViewField_IsActiveColumn).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutViewField_nameColumn).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridControl1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemMemoEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewField_descriptionColumn).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemToggleSwitch1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutViewField_IsActiveColumn).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutViewField_nameColumn).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemCalcEdit1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewCard1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)simpleSeparator1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)splitterItem1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)simpleSeparator2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitterItem2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)svgImageCollection1).BeginInit();
             SuspendLayout();
             // 
-            // layoutControl1
-            // 
-            layoutControl1.Controls.Add(gridControl1);
-            layoutControl1.Controls.Add(simpleButton1);
-            layoutControl1.Controls.Add(addPackageButton);
-            layoutControl1.Controls.Add(flowLayoutPanel1);
-            layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            layoutControl1.Location = new System.Drawing.Point(0, 0);
-            layoutControl1.Name = "layoutControl1";
-            layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(804, 0, 650, 400);
-            layoutControl1.Root = Root;
-            layoutControl1.Size = new System.Drawing.Size(892, 522);
-            layoutControl1.TabIndex = 0;
-            layoutControl1.Text = "layoutControl1";
-            // 
-            // gridControl1
-            // 
-            gridControl1.Location = new System.Drawing.Point(24, 49);
-            gridControl1.MainView = layoutView1;
-            gridControl1.Name = "gridControl1";
-            gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemToggleSwitch1, repositoryItemMemoEdit1 });
-            gridControl1.Size = new System.Drawing.Size(437, 350);
-            gridControl1.TabIndex = 4;
-            gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { layoutView1 });
-            // 
-            // layoutView1
-            // 
-            layoutView1.CardMinSize = new System.Drawing.Size(228, 132);
-            layoutView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] { descriptionColumn, IsActiveColumn, nameColumn });
-            layoutView1.GridControl = gridControl1;
-            layoutView1.Name = "layoutView1";
-            layoutView1.OptionsItemText.TextToControlDistance = 6;
-            layoutView1.OptionsView.ShowViewCaption = true;
-            layoutView1.TemplateCard = layoutViewCard1;
-            layoutView1.CardClick += layoutView1_CardClick;
-            // 
-            // descriptionColumn
-            // 
-            descriptionColumn.ColumnEdit = repositoryItemMemoEdit1;
-            descriptionColumn.FieldName = "Description";
-            descriptionColumn.LayoutViewField = layoutViewField_descriptionColumn;
-            descriptionColumn.Name = "descriptionColumn";
-            // 
-            // repositoryItemMemoEdit1
-            // 
-            repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
-            // 
-            // layoutViewField_descriptionColumn
-            // 
-            layoutViewField_descriptionColumn.EditorPreferredWidth = 128;
-            layoutViewField_descriptionColumn.Location = new System.Drawing.Point(0, 24);
-            layoutViewField_descriptionColumn.Name = "layoutViewField_descriptionColumn";
-            layoutViewField_descriptionColumn.Size = new System.Drawing.Size(210, 48);
-            layoutViewField_descriptionColumn.TextSize = new System.Drawing.Size(70, 13);
-            // 
             // IsActiveColumn
             // 
+            IsActiveColumn.Caption = "Etkinleştir / Devre Dışı Bırak:";
             IsActiveColumn.ColumnEdit = repositoryItemToggleSwitch1;
+            IsActiveColumn.CustomizationCaption = "Etkinleştir / Devre Dışı Bırak:";
             IsActiveColumn.FieldName = "IsActive";
             IsActiveColumn.LayoutViewField = layoutViewField_IsActiveColumn;
             IsActiveColumn.Name = "IsActiveColumn";
@@ -156,78 +102,187 @@
             // 
             layoutViewField_IsActiveColumn.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
             layoutViewField_IsActiveColumn.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
-            layoutViewField_IsActiveColumn.EditorPreferredWidth = 204;
-            layoutViewField_IsActiveColumn.Location = new System.Drawing.Point(0, 72);
-            layoutViewField_IsActiveColumn.MaxSize = new System.Drawing.Size(0, 22);
-            layoutViewField_IsActiveColumn.MinSize = new System.Drawing.Size(99, 22);
+            layoutViewField_IsActiveColumn.EditorPreferredWidth = 107;
+            layoutViewField_IsActiveColumn.Location = new System.Drawing.Point(0, 81);
+            layoutViewField_IsActiveColumn.MaxSize = new System.Drawing.Size(0, 35);
+            layoutViewField_IsActiveColumn.MinSize = new System.Drawing.Size(99, 35);
             layoutViewField_IsActiveColumn.Name = "layoutViewField_IsActiveColumn";
-            layoutViewField_IsActiveColumn.Size = new System.Drawing.Size(210, 22);
+            layoutViewField_IsActiveColumn.Size = new System.Drawing.Size(261, 35);
             layoutViewField_IsActiveColumn.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            layoutViewField_IsActiveColumn.TextVisible = false;
+            layoutViewField_IsActiveColumn.TextSize = new System.Drawing.Size(147, 13);
             // 
             // nameColumn
             // 
-            nameColumn.Caption = "Service Name";
-            nameColumn.CustomizationCaption = "Service Name";
+            nameColumn.Caption = "Hizmet Adı";
+            nameColumn.CustomizationCaption = "Hizmet Adı";
             nameColumn.FieldName = "Name";
             nameColumn.LayoutViewField = layoutViewField_nameColumn;
             nameColumn.Name = "nameColumn";
             // 
             // layoutViewField_nameColumn
             // 
-            layoutViewField_nameColumn.EditorPreferredWidth = 128;
+            layoutViewField_nameColumn.EditorPreferredWidth = 197;
             layoutViewField_nameColumn.Location = new System.Drawing.Point(0, 0);
             layoutViewField_nameColumn.Name = "layoutViewField_nameColumn";
-            layoutViewField_nameColumn.Size = new System.Drawing.Size(210, 24);
-            layoutViewField_nameColumn.TextSize = new System.Drawing.Size(70, 13);
+            layoutViewField_nameColumn.Size = new System.Drawing.Size(261, 26);
+            layoutViewField_nameColumn.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            layoutViewField_nameColumn.TextSize = new System.Drawing.Size(58, 13);
+            layoutViewField_nameColumn.TextToControlDistance = 2;
             // 
-            // layoutViewCard1
+            // layoutControl1
             // 
-            layoutViewCard1.CustomizationFormText = "TemplateCard";
-            layoutViewCard1.HeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
-            layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutViewField_descriptionColumn, layoutViewField_IsActiveColumn, layoutViewField_nameColumn });
-            layoutViewCard1.Name = "layoutViewCard1";
-            layoutViewCard1.OptionsItemText.TextToControlDistance = 6;
-            layoutViewCard1.Text = "TemplateCard";
-            // 
-            // simpleButton1
-            // 
-            simpleButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            simpleButton1.Location = new System.Drawing.Point(24, 458);
-            simpleButton1.MinimumSize = new System.Drawing.Size(0, 30);
-            simpleButton1.Name = "simpleButton1";
-            simpleButton1.Size = new System.Drawing.Size(188, 30);
-            simpleButton1.StyleController = layoutControl1;
-            simpleButton1.TabIndex = 2;
-            simpleButton1.Text = "Create Service";
-            simpleButton1.Click += CreateService_Click;
-            // 
-            // addPackageButton
-            // 
-            addPackageButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            addPackageButton.Location = new System.Drawing.Point(216, 458);
-            addPackageButton.MinimumSize = new System.Drawing.Size(0, 30);
-            addPackageButton.Name = "addPackageButton";
-            addPackageButton.Size = new System.Drawing.Size(245, 30);
-            addPackageButton.StyleController = layoutControl1;
-            addPackageButton.TabIndex = 3;
-            addPackageButton.Text = "Add Package";
-            addPackageButton.Click += addPackageButton_Click;
+            layoutControl1.Controls.Add(flowLayoutPanel1);
+            layoutControl1.Controls.Add(createServiceButton);
+            layoutControl1.Controls.Add(addPackageButton);
+            layoutControl1.Controls.Add(gridControl1);
+            layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            layoutControl1.Location = new System.Drawing.Point(0, 0);
+            layoutControl1.Name = "layoutControl1";
+            layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1179, 131, 650, 400);
+            layoutControl1.Root = Root;
+            layoutControl1.Size = new System.Drawing.Size(892, 522);
+            layoutControl1.TabIndex = 0;
+            layoutControl1.Text = "layoutControl1";
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Location = new System.Drawing.Point(490, 49);
+            flowLayoutPanel1.Location = new System.Drawing.Point(364, 39);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new System.Drawing.Size(378, 439);
-            flowLayoutPanel1.TabIndex = 5;
+            flowLayoutPanel1.Size = new System.Drawing.Size(504, 459);
+            flowLayoutPanel1.TabIndex = 1;
+            // 
+            // createServiceButton
+            // 
+            createServiceButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            createServiceButton.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
+            createServiceButton.ImageOptions.SvgImage = Properties.Resources.AddTo;
+            createServiceButton.Location = new System.Drawing.Point(32, 353);
+            createServiceButton.MaximumSize = new System.Drawing.Size(135, 56);
+            createServiceButton.MinimumSize = new System.Drawing.Size(100, 45);
+            createServiceButton.Name = "createServiceButton";
+            createServiceButton.Size = new System.Drawing.Size(135, 56);
+            createServiceButton.StyleController = layoutControl1;
+            createServiceButton.TabIndex = 2;
+            createServiceButton.Text = "Hizmet Oluştur";
+            createServiceButton.Click += CreateService_Click;
+            // 
+            // addPackageButton
+            // 
+            addPackageButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            addPackageButton.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
+            addPackageButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleRight;
+            addPackageButton.ImageOptions.SvgImage = Properties.Resources.AddTo1;
+            addPackageButton.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
+            addPackageButton.Location = new System.Drawing.Point(184, 353);
+            addPackageButton.MaximumSize = new System.Drawing.Size(135, 56);
+            addPackageButton.MinimumSize = new System.Drawing.Size(100, 45);
+            addPackageButton.Name = "addPackageButton";
+            addPackageButton.Size = new System.Drawing.Size(135, 56);
+            addPackageButton.StyleController = layoutControl1;
+            addPackageButton.TabIndex = 4;
+            addPackageButton.Text = "Satış Paketi Ekle";
+            addPackageButton.Click += addPackageButton_Click;
+            // 
+            // gridControl1
+            // 
+            gridControl1.Location = new System.Drawing.Point(24, 39);
+            gridControl1.MainView = layoutView1;
+            gridControl1.Name = "gridControl1";
+            gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemToggleSwitch1, repositoryItemMemoEdit1, repositoryItemCalcEdit1 });
+            gridControl1.Size = new System.Drawing.Size(300, 220);
+            gridControl1.TabIndex = 0;
+            gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { layoutView1 });
+            // 
+            // layoutView1
+            // 
+            layoutView1.CardMinSize = new System.Drawing.Size(281, 161);
+            layoutView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] { descriptionColumn, IsActiveColumn, nameColumn, layoutViewColumn1 });
+            layoutView1.GridControl = gridControl1;
+            layoutView1.Name = "layoutView1";
+            layoutView1.OptionsBehavior.AutoFocusCardOnScrolling = true;
+            layoutView1.OptionsBehavior.AutoFocusNewCard = true;
+            layoutView1.OptionsItemText.AlignMode = DevExpress.XtraGrid.Views.Layout.FieldTextAlignMode.AutoSize;
+            layoutView1.OptionsItemText.TextToControlDistance = 3;
+            layoutView1.PaintStyleName = "Skin";
+            layoutView1.TemplateCard = layoutViewCard1;
+            layoutView1.CardClick += layoutView1_CardClick_1;
+            layoutView1.HiddenEditor += layoutView1_HiddenEditor;
+            layoutView1.FocusedRowChanged += layoutView1_FocusedRowChanged;
+            layoutView1.ValidateRow += layoutView1_ValidateRow;
+            layoutView1.RowUpdated += layoutView1_RowUpdated;
+            // 
+            // descriptionColumn
+            // 
+            descriptionColumn.Caption = "Hizmet Açıklaması";
+            descriptionColumn.ColumnEdit = repositoryItemMemoEdit1;
+            descriptionColumn.CustomizationCaption = "Hizmet Açıklaması";
+            descriptionColumn.FieldName = "Description";
+            descriptionColumn.LayoutViewField = layoutViewField_descriptionColumn;
+            descriptionColumn.Name = "descriptionColumn";
+            // 
+            // repositoryItemMemoEdit1
+            // 
+            repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
+            // 
+            // layoutViewField_descriptionColumn
+            // 
+            layoutViewField_descriptionColumn.EditorPreferredWidth = 161;
+            layoutViewField_descriptionColumn.Location = new System.Drawing.Point(0, 26);
+            layoutViewField_descriptionColumn.Name = "layoutViewField_descriptionColumn";
+            layoutViewField_descriptionColumn.Size = new System.Drawing.Size(261, 29);
+            layoutViewField_descriptionColumn.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            layoutViewField_descriptionColumn.TextSize = new System.Drawing.Size(94, 13);
+            layoutViewField_descriptionColumn.TextToControlDistance = 2;
+            // 
+            // layoutViewColumn1
+            // 
+            layoutViewColumn1.AppearanceCell.Options.UseTextOptions = true;
+            layoutViewColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            layoutViewColumn1.Caption = "Varsayılan Fiyat";
+            layoutViewColumn1.ColumnEdit = repositoryItemCalcEdit1;
+            layoutViewColumn1.CustomizationCaption = "Varsayılan Fiyat";
+            layoutViewColumn1.FieldName = "DefaultPrice";
+            layoutViewColumn1.LayoutViewField = layoutViewField_layoutViewColumn1;
+            layoutViewColumn1.Name = "layoutViewColumn1";
+            // 
+            // repositoryItemCalcEdit1
+            // 
+            repositoryItemCalcEdit1.AutoHeight = false;
+            repositoryItemCalcEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            repositoryItemCalcEdit1.MaskSettings.Set("mask", "c");
+            repositoryItemCalcEdit1.Name = "repositoryItemCalcEdit1";
+            repositoryItemCalcEdit1.Precision = 2;
+            repositoryItemCalcEdit1.UseMaskAsDisplayFormat = true;
+            // 
+            // layoutViewField_layoutViewColumn1
+            // 
+            layoutViewField_layoutViewColumn1.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
+            layoutViewField_layoutViewColumn1.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
+            layoutViewField_layoutViewColumn1.EditorPreferredWidth = 173;
+            layoutViewField_layoutViewColumn1.Location = new System.Drawing.Point(0, 55);
+            layoutViewField_layoutViewColumn1.Name = "layoutViewField_layoutViewColumn1";
+            layoutViewField_layoutViewColumn1.Size = new System.Drawing.Size(261, 26);
+            layoutViewField_layoutViewColumn1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            layoutViewField_layoutViewColumn1.TextSize = new System.Drawing.Size(82, 13);
+            layoutViewField_layoutViewColumn1.TextToControlDistance = 2;
+            // 
+            // layoutViewCard1
+            // 
+            layoutViewCard1.CustomizationFormText = "TemplateCard";
+            layoutViewCard1.GroupStyle = DevExpress.Utils.GroupStyle.Card;
+            layoutViewCard1.HeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
+            layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutViewField_descriptionColumn, layoutViewField_IsActiveColumn, layoutViewField_nameColumn, layoutViewField_layoutViewColumn1 });
+            layoutViewCard1.Name = "layoutViewCard1";
+            layoutViewCard1.OptionsItemText.TextToControlDistance = 3;
+            layoutViewCard1.Text = "TemplateCard";
             // 
             // Root
             // 
             Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             Root.GroupBordersVisible = false;
-            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlGroup1, layoutControlGroup2, splitterItem1, simpleSeparator2 });
+            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlGroup1, layoutControlGroup2, splitterItem2 });
             Root.Name = "Root";
             Root.Size = new System.Drawing.Size(892, 522);
             Root.TextVisible = false;
@@ -235,53 +290,54 @@
             // layoutControlGroup1
             // 
             layoutControlGroup1.GroupStyle = DevExpress.Utils.GroupStyle.Light;
-            layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem2, layoutControlItem3, emptySpaceItem1, simpleSeparator1, emptySpaceItem2, layoutControlItem1 });
+            layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, layoutControlItem3, simpleSeparator1 });
             layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             layoutControlGroup1.Name = "layoutControlGroup1";
-            layoutControlGroup1.Size = new System.Drawing.Size(465, 492);
-            layoutControlGroup1.Text = "Services";
-            // 
-            // layoutControlItem2
-            // 
-            layoutControlItem2.Control = simpleButton1;
-            layoutControlItem2.Location = new System.Drawing.Point(0, 409);
-            layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new System.Drawing.Size(192, 34);
-            layoutControlItem2.TextVisible = false;
-            // 
-            // layoutControlItem3
-            // 
-            layoutControlItem3.Control = addPackageButton;
-            layoutControlItem3.Location = new System.Drawing.Point(192, 409);
-            layoutControlItem3.Name = "layoutControlItem3";
-            layoutControlItem3.Size = new System.Drawing.Size(249, 34);
-            layoutControlItem3.TextVisible = false;
-            // 
-            // emptySpaceItem1
-            // 
-            emptySpaceItem1.Location = new System.Drawing.Point(0, 354);
-            emptySpaceItem1.Name = "emptySpaceItem1";
-            emptySpaceItem1.Size = new System.Drawing.Size(441, 10);
-            // 
-            // simpleSeparator1
-            // 
-            simpleSeparator1.Location = new System.Drawing.Point(0, 364);
-            simpleSeparator1.Name = "simpleSeparator1";
-            simpleSeparator1.Size = new System.Drawing.Size(441, 1);
-            // 
-            // emptySpaceItem2
-            // 
-            emptySpaceItem2.Location = new System.Drawing.Point(0, 365);
-            emptySpaceItem2.Name = "emptySpaceItem2";
-            emptySpaceItem2.Size = new System.Drawing.Size(441, 44);
+            layoutControlGroup1.Size = new System.Drawing.Size(328, 502);
+            layoutControlGroup1.Text = "Hizmetler";
             // 
             // layoutControlItem1
             // 
             layoutControlItem1.Control = gridControl1;
             layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            layoutControlItem1.MaxSize = new System.Drawing.Size(0, 600);
+            layoutControlItem1.MinSize = new System.Drawing.Size(104, 15);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(441, 354);
+            layoutControlItem1.Size = new System.Drawing.Size(304, 224);
+            layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             layoutControlItem1.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            layoutControlItem2.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
+            layoutControlItem2.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
+            layoutControlItem2.Control = createServiceButton;
+            layoutControlItem2.Location = new System.Drawing.Point(0, 225);
+            layoutControlItem2.MaxSize = new System.Drawing.Size(500, 300);
+            layoutControlItem2.MinSize = new System.Drawing.Size(100, 35);
+            layoutControlItem2.Name = "layoutControlItem2";
+            layoutControlItem2.Size = new System.Drawing.Size(155, 238);
+            layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            layoutControlItem2.TextVisible = false;
+            // 
+            // layoutControlItem3
+            // 
+            layoutControlItem3.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
+            layoutControlItem3.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
+            layoutControlItem3.Control = addPackageButton;
+            layoutControlItem3.Location = new System.Drawing.Point(155, 225);
+            layoutControlItem3.MinSize = new System.Drawing.Size(100, 22);
+            layoutControlItem3.Name = "layoutControlItem3";
+            layoutControlItem3.OptionsPrint.AppearanceItem.Options.UseBorderColor = true;
+            layoutControlItem3.Size = new System.Drawing.Size(149, 238);
+            layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            layoutControlItem3.TextVisible = false;
+            // 
+            // simpleSeparator1
+            // 
+            simpleSeparator1.Location = new System.Drawing.Point(0, 224);
+            simpleSeparator1.Name = "simpleSeparator1";
+            simpleSeparator1.Size = new System.Drawing.Size(304, 1);
             // 
             // layoutControlGroup2
             // 
@@ -289,10 +345,10 @@
             layoutControlGroup2.AppearanceGroup.Options.UseBackColor = true;
             layoutControlGroup2.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem4 });
-            layoutControlGroup2.Location = new System.Drawing.Point(466, 0);
+            layoutControlGroup2.Location = new System.Drawing.Point(340, 0);
             layoutControlGroup2.Name = "layoutControlGroup2";
-            layoutControlGroup2.Size = new System.Drawing.Size(406, 492);
-            layoutControlGroup2.Text = "Packages";
+            layoutControlGroup2.Size = new System.Drawing.Size(532, 502);
+            layoutControlGroup2.Text = "Satış Paketleri";
             // 
             // layoutControlItem4
             // 
@@ -301,20 +357,14 @@
             layoutControlItem4.Name = "layoutControlItem4";
             layoutControlItem4.OptionsPrint.AppearanceItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             layoutControlItem4.OptionsPrint.AppearanceItem.Options.UseBackColor = true;
-            layoutControlItem4.Size = new System.Drawing.Size(382, 443);
+            layoutControlItem4.Size = new System.Drawing.Size(508, 463);
             layoutControlItem4.TextVisible = false;
             // 
-            // splitterItem1
+            // splitterItem2
             // 
-            splitterItem1.Location = new System.Drawing.Point(0, 492);
-            splitterItem1.Name = "splitterItem1";
-            splitterItem1.Size = new System.Drawing.Size(872, 10);
-            // 
-            // simpleSeparator2
-            // 
-            simpleSeparator2.Location = new System.Drawing.Point(465, 0);
-            simpleSeparator2.Name = "simpleSeparator2";
-            simpleSeparator2.Size = new System.Drawing.Size(1, 492);
+            splitterItem2.Location = new System.Drawing.Point(328, 0);
+            splitterItem2.Name = "splitterItem2";
+            splitterItem2.Size = new System.Drawing.Size(12, 502);
             // 
             // svgImageCollection1
             // 
@@ -322,6 +372,8 @@
             svgImageCollection1.Add("cancel1_img", "image://svgimages/icon builder/actions_removecircled.svg");
             svgImageCollection1.Add("apply_img", (DevExpress.Utils.Svg.SvgImage)resources.GetObject("svgImageCollection1.apply_img"));
             svgImageCollection1.Add("cancel_img", (DevExpress.Utils.Svg.SvgImage)resources.GetObject("svgImageCollection1.cancel_img"));
+            svgImageCollection1.Add("Save.svg", (DevExpress.Utils.Svg.SvgImage)resources.GetObject("svgImageCollection1.Save.svg"));
+            svgImageCollection1.Add("Edit.svg", (DevExpress.Utils.Svg.SvgImage)resources.GetObject("svgImageCollection1.Edit.svg"));
             // 
             // ServicesControl
             // 
@@ -329,28 +381,27 @@
             Name = "ServicesControl";
             Size = new System.Drawing.Size(892, 522);
             Load += ServicesControl_Load;
+            ((System.ComponentModel.ISupportInitialize)repositoryItemToggleSwitch1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutViewField_IsActiveColumn).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutViewField_nameColumn).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
             layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridControl1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemMemoEdit1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewField_descriptionColumn).EndInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemToggleSwitch1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutViewField_IsActiveColumn).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutViewField_nameColumn).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemCalcEdit1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewCard1).EndInit();
             ((System.ComponentModel.ISupportInitialize)Root).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)simpleSeparator1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)splitterItem1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)simpleSeparator2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)splitterItem2).EndInit();
             ((System.ComponentModel.ISupportInitialize)svgImageCollection1).EndInit();
             ResumeLayout(false);
 
@@ -358,13 +409,8 @@
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton createServiceButton;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraEditors.SimpleButton addPackageButton;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator1;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
 
         #endregion
 
@@ -381,11 +427,16 @@
         private DevExpress.XtraGrid.Columns.LayoutViewColumn nameColumn;
         private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch1;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
-        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_descriptionColumn;
+        private DevExpress.XtraLayout.SplitterItem splitterItem2;
+        private DevExpress.XtraEditors.SimpleButton addPackageButton;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator1;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn layoutViewColumn1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit repositoryItemCalcEdit1;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_IsActiveColumn;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_nameColumn;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_descriptionColumn;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
-        private DevExpress.XtraLayout.SplitterItem splitterItem1;
-        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator2;
     }
 }

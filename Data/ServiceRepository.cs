@@ -13,12 +13,7 @@ namespace DXBeauty.Data
 
         public List<Service> GetAll()
         {
-            var sql = "SELECT" +
-                " service_id," +
-                " name, " +
-                " description," +
-                " is_active AS " +
-                " IsActive FROM services;";
+            var sql = "SELECT * FROM services;";
             return Query<Service>(sql).ToList();
         }
 
@@ -30,8 +25,8 @@ namespace DXBeauty.Data
 
         public void Insert(Service service)
         {
-            var sql = @"INSERT INTO services (name, description, is_active )
-                        VALUES (@Name, @Description, @IsActive)";
+            var sql = @"INSERT INTO services (name, description, is_active, default_price )
+                        VALUES (@Name, @Description, @IsActive , @DefaultPrice)";
             Execute(sql, service);
         }
 
@@ -40,7 +35,8 @@ namespace DXBeauty.Data
             var sql = @"UPDATE services 
                         SET name = @Name, 
                             description = @Description, 
-                            isActive = @IsActive
+                            is_active = @IsActive,
+                            default_price = @DefaultPrice
                         WHERE service_id = @ServiceId";
             Execute(sql, service);
         }

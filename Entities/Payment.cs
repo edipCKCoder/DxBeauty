@@ -15,7 +15,8 @@ namespace DXBeauty.Entities
         private decimal _amount;
         private string _paymentMethod;
         private DateTime _paymentDate;
-        
+        private int _installmentId;
+
 
         public int PaymentId
         {
@@ -61,6 +62,12 @@ namespace DXBeauty.Entities
         {
             get => _paymentDate;
             set => _paymentDate = value == default ? DateTime.Now : value;
+        }
+
+        public int InstallmentId
+        {
+            get => _installmentId;
+            set => _installmentId = value;
         }
     }
 

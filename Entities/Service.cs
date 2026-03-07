@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DXBeauty.Entities
 {
@@ -12,9 +13,9 @@ namespace DXBeauty.Entities
         private string _name;
         private string _description;
         private bool _isActive;
-
-        // HTML Template doğrudan bu ismi görecektir
+        private decimal _defaultPrice;
         private string _severity;
+        
 
         public int ServiceId
         {
@@ -27,9 +28,15 @@ namespace DXBeauty.Entities
             get => _name;
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Hizmet adı boş olamaz.");
-                _name = value.Trim();
+                try
+                {
+                    _name = value.Trim();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+           
             }
         }
 
@@ -43,7 +50,13 @@ namespace DXBeauty.Entities
                 _description = value.Trim();
             }
         }
-    
+        
+        public decimal DefaultPrice
+        {
+            get => _defaultPrice;
+            set => _defaultPrice = value;
+        }
+        
         public bool IsActive
         { 
             get => _isActive;

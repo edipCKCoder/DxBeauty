@@ -37,7 +37,7 @@ namespace DXBeauty.UI
 
             nameBox.Text = customer.FirstName;
             surnameBox.Text = customer.LastName;
-            phoneBox.Text = customer.Phone;
+            phoneBox.Text = customer.PhoneNumber;
             emailBox.Text = customer.Email;
             addressBox.Text = customer.Address;
             birthdayBox.DateTime = customer.Birthday.HasValue ? customer.Birthday.Value : DateTime.MinValue;
@@ -47,7 +47,7 @@ namespace DXBeauty.UI
         {
             EditingCustomer.FirstName = nameBox.Text;
             EditingCustomer.LastName = surnameBox.Text;
-            EditingCustomer.Phone = phoneBox.Text;
+            EditingCustomer.PhoneNumber = phoneBox.Text;
             EditingCustomer.Email = emailBox.Text;
             EditingCustomer.Address = addressBox.Text;
             EditingCustomer.Birthday = birthdayBox.DateTime;
@@ -61,7 +61,7 @@ namespace DXBeauty.UI
             {
                 FirstName = nameBox.Text,
                 LastName = surnameBox.Text,
-                Phone = phoneBox.Text,
+                PhoneNumber = phoneBox.Text,
                 Email = emailBox.Text,
                 Address = addressBox.Text,
                 Birthday = birthdayBox.DateTime,

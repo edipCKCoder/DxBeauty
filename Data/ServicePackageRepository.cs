@@ -9,6 +9,15 @@ namespace DXBeauty.Data
         public ServicePackageRepository(string connectionString)
             : base(connectionString) { }
 
+
+        public  List<ServicePackage> GetAll()
+        {
+            var sql = @"SELECT * 
+                        FROM service_packages
+                        ORDER BY name";
+
+            return Query<ServicePackage>(sql).ToList();
+        }
         public List<ServicePackage> GetByService(int serviceId)
         {
             var sql = @"SELECT * 

@@ -24,11 +24,11 @@ namespace DXBeauty
         public MainForm()
         {
             InitializeComponent();
-            
+
         }
         private void NavBarItemScheduler_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            ShowControlInPanel(new UI.SchedulerControl());
+            ShowControlInPanel(new UI.AppScheduler());
         }
 
         private void RegisterCustomer_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -53,6 +53,10 @@ namespace DXBeauty
         {
             ShowControlInPanel(new UI.ReminderMessageControl());
         }
+        private void CustomerPackages_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            ShowControlInPanel(new UI.CustomerPackagesControl());
+        }
 
 
         private void ShowControlInPanel(XtraUserControl control)
@@ -65,6 +69,10 @@ namespace DXBeauty
             splitContainerControl.Panel2.Controls.Add(control);
         }
 
-
+        private void btnRibbonPayment_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            // Ribbon menüden tıklandığında Tahsilat UserControl'ünü ana panele yükle
+            ShowControlInPanel(new UI.GetPaymentsControl());
+        }
     }
 }

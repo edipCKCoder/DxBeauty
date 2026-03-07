@@ -14,6 +14,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
+using DevExpress.Skins;
+using DevExpress.LookAndFeel;
 
 namespace DXBeauty.UI
 {
@@ -21,8 +24,10 @@ namespace DXBeauty.UI
     {
         ServicePackage _servicePackage = new ServicePackage();
         ServicePackageRepository servicePackageRepository;
-        bool editMode = true;
+        bool packageEditMode = true;
         private readonly string connectionString;
+        private Skin currentSkin;
+
         public PackageCardControl()
         {
             InitializeComponent();
@@ -31,85 +36,85 @@ namespace DXBeauty.UI
         public PackageCardControl(ServicePackage servicePackage)
         {
             InitializeComponent();
+
+            packageServiceEditButton.ImageOptions.SvgImage = svgImageCollection1[0];
+
             _servicePackage = servicePackage;
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             servicePackageRepository = new ServicePackageRepository(connectionString);
 
 
             Root.Text = _servicePackage.Name;
+
             sessionCountEdit.Text = _servicePackage.SessionCount.ToString();
             totalPriceEdit.Text = _servicePackage.TotalPrice.ToString();
             installmentAllowedEdit.Checked = _servicePackage.IsInstallmentAllowed;
             isActiveEdit.Checked = _servicePackage.IsActive;
 
-            packageServiceEditButton.ImageOptions.SvgImage = svgImageCollection1[0];
-
-            ChangedBorderColor(isActiveEdit.Checked);
-
+            foreach (LayoutControlItem item in Root.Items)
+            {
+                if (item.Control.Name.ToString() == "packageServiceEditButton")
+                {
+                    item.Enabled = true;
+                }
+                else
+                {
+                    item.Enabled = false;
+                }
+            }
         }
 
         private void packageServiceEditButton_Click(object sender, EventArgs e)
         {
-
-            //edit modeu aktif hale getir
-            if (editMode)
+            
+            if(packageEditMode == true)
             {
                 packageServiceEditButton.ImageOptions.SvgImage = svgImageCollection1[1];
-                packageServiceEditButton.Text = "Save";
-                sessionCountEdit.Enabled = true;
-                totalPriceEdit.Enabled = true;
-                installmentAllowedEdit.Enabled = true;
-                isActiveEdit.ReadOnly = false;
-                isActiveEdit.Enabled = true;
-                editMode = false;
+                packageServiceEditButton.Text = "Değişikleri Kaydet";
+                    foreach (LayoutControlItem item in Root.Items)
+                    {
+                        if(item.Control.Name.ToString() == "packageServiceEditButton") 
+                        {
+                            item.Enabled = true;
+                        }
+                        else
+                        {
+                            item.Enabled = true;
+                        }
+                    }
+
+
+                packageEditMode = false;
             }
-            //edit modeu pasif hale getir
-            else
+            else if (packageEditMode == false)
             {
                 packageServiceEditButton.ImageOptions.SvgImage = svgImageCollection1[0];
-                packageServiceEditButton.Text = "Edit";
-                sessionCountEdit.Enabled = false;
-                totalPriceEdit.Enabled = false;
-                installmentAllowedEdit.Enabled = false;
-                isActiveEdit.ReadOnly = true;
-                editMode = true;
+                packageServiceEditButton.Text = "Düzenle";
 
-                //değişiklikleri kaydet
+                foreach (LayoutControlItem item in Root.Items)
+                    {
+                        if (item.Control.Name.ToString() == "packageServiceEditButton")
+                        {
+                            item.Enabled = true;
+                        }
+                        else
+                        {
+                            item.Enabled = false;
+                        }
+                    }
 
                 _servicePackage.SessionCount = Convert.ToInt32(sessionCountEdit.Text);
-                _servicePackage.TotalPrice = Convert.ToDecimal(totalPriceEdit.Text);
+                _servicePackage.TotalPrice = decimal.Parse(totalPriceEdit.Text, NumberStyles.Currency, new CultureInfo("tr-TR"));
                 _servicePackage.IsInstallmentAllowed = installmentAllowedEdit.Checked;
                 _servicePackage.IsActive = isActiveEdit.Checked;
-                
-                ChangedBorderColor(isActiveEdit.Checked);
                 servicePackageRepository.Update(_servicePackage);
 
+                packageEditMode = true;
             }
+
+
+            
         }
-
-        void ChangedBorderColor(bool isActive)
-        {
-            if (isActive)
-            {
-                isActiveEdit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-                isActiveEdit.Properties.Appearance.Options.UseBorderColor = true;
-                isActiveEdit.Properties.Appearance.BorderColor = DXSkinColors.FillColors.Success;
-                isActiveEdit.ReadOnly = true;
-                isActiveEdit.Enabled = true;
-                Root.AppearanceGroup.BorderColor = DXSkinColors.FillColors.Success;
-            }
-            else
-            {
-                isActiveEdit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-                isActiveEdit.Properties.Appearance.Options.UseBorderColor = true;
-                isActiveEdit.Properties.Appearance.BorderColor = DXSkinColors.FillColors.Warning;
-                isActiveEdit.ReadOnly = true;
-                isActiveEdit.Enabled = true;
-                Root.AppearanceGroup.BorderColor = DXSkinColors.FillColors.Warning;
-            }
-
-        }
-
      
     }
 }

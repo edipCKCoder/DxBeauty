@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.DataAccess.Native.Json;
+using DevExpress.XtraEditors;
 using DXBeauty.Data;
 using DXBeauty.Entities;
 using System;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,11 +31,16 @@ namespace DXBeauty.UI
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             repo = new ServicePackageRepository(connectionString);
             _SelectedService = service;
+            Root.Text = _SelectedService.Name;
         }
 
+    
 
         private void savePackageButton_Click(object sender, EventArgs e)
         {
+            string newPrice = totalPrice.Text;
+            decimal validPrice = 0;
+
             // 1. İsim Boş mu?
             if (string.IsNullOrWhiteSpace(packageName.Text))
             {
@@ -42,18 +49,21 @@ namespace DXBeauty.UI
             }
 
             // 2. Sayısal Değerlerin Kontrolü
-            if (sessionCount.Value <= 0)
+            if (sessionCount.Value < 0)
             {
                 MessageBox.Show("Seans sayısı 0'dan büyük olmalıdır.");
                 return;
             }
 
-            // 3. Fiyat Kontrolü (TryParse ile)
-            if (!decimal.TryParse(totalPrice.Text, out decimal validPrice) || validPrice < 0)
+            try
             {
-                MessageBox.Show("Geçerli bir toplam fiyat giriniz.");
-                return;
+                validPrice = decimal.Parse(newPrice, NumberStyles.Currency, new CultureInfo("tr-TR"));
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Gecersiz fiyat girdiniz.");
+                return;
+            }   
 
             // Tüm kontroller geçildiyse nesneyi oluştur
             var servicePackage = new ServicePackage

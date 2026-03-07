@@ -16,6 +16,7 @@ namespace DXBeauty.UI
         public CreateServiceControl()
         {
             InitializeComponent();
+
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             repo = new ServiceRepository(connectionString);
         }
@@ -27,6 +28,7 @@ namespace DXBeauty.UI
             {
                 Name = serviceName.Text,
                 Description = serviceDescription.Text,
+                DefaultPrice = calcDefaultPrice.Value,
                 IsActive = isActive.Checked,
             };
 

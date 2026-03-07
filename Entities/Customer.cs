@@ -12,11 +12,15 @@ namespace DXBeauty.Entities
         private int _customerId;
         private string _firstName;
         private string _lastName;
-        private string _phone;
+        private string _phoneNumber;
         private string _email;
         private string _address;
         private DateTime? _birthDay;
         private DateTime _createdDate;
+
+        // Hesaplanmış özellik (read-only)
+        public string FullName => $"{FirstName} {LastName}";
+
 
         public int CustomerId
         {
@@ -41,17 +45,16 @@ namespace DXBeauty.Entities
             set => _lastName = value?.Trim();
         }
 
-        // Hesaplanmış özellik (read-only)
-        public string FullName => $"{FirstName} {LastName}";
+        
 
-        public string Phone
+        public string PhoneNumber
         {
-            get => _phone;
+            get => _phoneNumber;
             set
             {
                 if (value?.Length < 10)
                     throw new ArgumentException("Telefon numarası eksik.");
-                _phone = value;
+                _phoneNumber = value;
             }
         }
 

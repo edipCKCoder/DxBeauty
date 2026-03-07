@@ -9,12 +9,15 @@ namespace DXBeauty.Data
 {
     public class CustomerRepository : DapperRepository
     {
-        public CustomerRepository(string connectionString) : base(connectionString) { }
+        private readonly string _connectionString;
+        public CustomerRepository(string connectionString) : base(connectionString) 
+        {
+            _connectionString = connectionString;
+        }
 
         public List<Customer> GetAll()
         {
-            var sql = "SELECT customer_id AS CustomerId, first_name AS FirstName, last_name AS LastName, phone, email, address, birthday, created_at AS CreatedDate " +
-                " FROM customers ORDER BY customer_id DESC";
+            var sql = "SELECT * FROM customers ORDER BY customer_id DESC";
             return Query<Customer>(sql).ToList();
         }
 
