@@ -29,8 +29,8 @@ namespace DXBeauty.Data
 
         public void Insert(Customer customer)
         {
-            var sql = @"INSERT INTO customers (first_name, last_name, phone, email, address,birthday)
-                        VALUES (@FirstName, @LastName, @Phone, @Email, @Address, @Birthday)";
+            var sql = @"INSERT INTO customers (first_name, last_name, phone_number, email, address,birthday)
+                        VALUES (@FirstName, @LastName, @PhoneNumber, @Email, @Address, @Birthday)";
             Execute(sql, customer);
         }
 
@@ -39,7 +39,7 @@ namespace DXBeauty.Data
             var sql = @"UPDATE customers SET 
                         first_name = @FirstName, 
                         last_name = @LastName, 
-                        phone = @Phone, 
+                        phone_number = @PhoneNumber, 
                         email = @Email,
                         address = @Address,
                         birthday = @Birthday

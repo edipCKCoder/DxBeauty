@@ -14,7 +14,7 @@ namespace DXBeauty.Dtos
         public decimal Amount { get; set; } // Tutar
 
         // Arka planda tutacağımız (Kullanıcının görmeyeceği) gizli ID'ler
-        public int? InstallmentId { get; set; }
+        public int? PaymentPlanId { get; set; }
         public int? CustomerServiceId { get; set; }
         public int? AppointmentId { get; set; }
     }

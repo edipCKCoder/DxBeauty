@@ -12,6 +12,7 @@ using DevExpress.XtraScheduler.Localization;
 using DevExpress.XtraScheduler.Native;
 using DevExpress.XtraScheduler.UI;
 using DXBeauty.Data;
+using DXBeauty.Dtos;
 using DXBeauty.Entities;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,7 @@ namespace DXBeauty.UI
         readonly MyAppointmentFormController controller;
         IDXMenuManager menuManager;
         private string connectionString;
+        private CustomerServiceRepository _customerServiceRepository;
         private DevExpress.XtraScheduler.Appointment _sourceAppointment;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -56,6 +58,8 @@ namespace DXBeauty.UI
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             this.openRecurrenceForm = openRecurrenceForm;
             this.controller = (MyAppointmentFormController)CreateController(control, apt);
+            _customerServiceRepository = new CustomerServiceRepository(connectionString);
+
             //
             // Required for Windows Form Designer support
             //
@@ -71,7 +75,7 @@ namespace DXBeauty.UI
             this.edtLabel.Storage = this.storage;
             this.edtResource.SchedulerControl = control;
             this.edtResource.Storage = this.storage;
-            // this.edtResources.SchedulerControl = control;
+
 
             SubscribeControllerEvents(Controller);
             SubscribeEditorsEvents();
@@ -108,11 +112,7 @@ namespace DXBeauty.UI
         public virtual void LoadFormData(Appointment appointment)
         {
 
-            
-
             if (Controller == null) return;
-
-            
 
             var myController = (MyAppointmentFormController)Controller;
 
@@ -123,48 +123,6 @@ namespace DXBeauty.UI
             {
                 slueCustomer.EditValue = myController.CustomerId.Value;
             }
-
-            // --- 2. RADYO BUTONLARI VE PAKET/HİZMET SEÇİMİ ---
-            if (myController.CustomerServiceId != null)
-            {
-                CurrentPackageradioButton.Checked = true;
-
-                if (myController.CustomerId != null)
-                {
-                    var repo = new CustomerServiceRepository(connectionString);
-                    var activeServices = repo.GetByCustomer(myController.CustomerId.Value);
-
-                    lueCustomerService.Properties.DisplayMember = "Name";
-                    lueCustomerService.Properties.ValueMember = "CustomerServiceId";
-                    lueCustomerService.Properties.DataSource = activeServices;
-                    SetupPackageLookupColumns();
-
-                    lueCustomerService.EditValue = myController.CustomerServiceId.Value;
-                }
-            }
-            else if (myController.ServiceId != null)
-            {
-                oneSeansRadioButton.Checked = true;
-
-                var repo = new ServiceRepository(connectionString);
-                var allServices = repo.GetAll();
-
-                lueCustomerService.Properties.DisplayMember = "Name";
-                lueCustomerService.Properties.ValueMember = "ServiceId";
-                lueCustomerService.Properties.DataSource = allServices;
-                lueCustomerService.Properties.Columns.Clear();
-
-                lueCustomerService.EditValue = myController.ServiceId.Value;
-            }
-
-            // --- 3. GÜVENLİK KİLİDİ (YENİ EKLENEN KISIM) ---
-            // IsNewAppointment true ise butonlar aktif (Enabled = true) olur,
-            // Eski randevu ise (IsNewAppointment false) butonlar kilitlenir (Enabled = false) olur.
-            CurrentPackageradioButton.Enabled = IsNewAppointment;
-            oneSeansRadioButton.Enabled = IsNewAppointment;
-
-            // Opsiyonel: Müşterinin değiştirilmesini de engellemek istersen:
-             slueCustomer.Enabled = IsNewAppointment;
 
         }
         public virtual bool SaveFormData(Appointment appointment)
@@ -182,32 +140,14 @@ namespace DXBeauty.UI
                 myController.CustomerId = null;
             }
 
-            // Hizmet/Paket LookUpEdit'i boş mu?
-            if (lueCustomerService.EditValue == null || lueCustomerService.EditValue == DBNull.Value)
+            // --- EKSİK OLAN: Paket ID (CS_ID) Kaydetme ---
+            if (lueCustomerPackages.EditValue != null && lueCustomerPackages.EditValue != DBNull.Value)
             {
-                myController.CustomerServiceId = null;
-                myController.ServiceId = null;
+                myController.CustomerServiceId = Convert.ToInt32(lueCustomerPackages.EditValue);
             }
             else
             {
-                // Dinamik olarak seçili satırı alıyoruz, çünkü bu nesne bazen 'CustomerService' bazen 'Service' sınıfıdır.
-                var seciliSatir = lueCustomerService.GetSelectedDataRow() as dynamic;
-
-                if (seciliSatir != null)
-                {
-                    if (CurrentPackageradioButton.Checked)
-                    {
-                        // Mevcut Paket seçiliyse
-                        myController.CustomerServiceId = seciliSatir.CustomerServiceId; // Senin DB tablonun paket ID kolonu
-                        myController.ServiceId = null;
-                    }
-                    else if (oneSeansRadioButton.Checked)
-                    {
-                        // Tek Seans seçiliyse
-                        myController.ServiceId = seciliSatir.ServiceId; // Senin DB tablonun servis ID kolonu
-                        myController.CustomerServiceId = null;
-                    }
-                }
+                myController.CustomerServiceId = null;
             }
             return true;
         }
@@ -248,12 +188,12 @@ namespace DXBeauty.UI
 
             BindProperties(this.edtResource, "ResourceId", "ResourceId");
             BindProperties(this.slueCustomer, "EditValue", "CustomerId");
-           
+            BindProperties(this.lueCustomerPackages, "EditValue", "CustomerServiceId");
 
             BindProperties(this.edtResource, "Enabled", "CanEditResource");
             BindToBoolPropertyAndInvert(this.edtResource, "Visible", "ResourceSharing");
 
-            
+
             BindProperties(this.lblResource, "Enabled", "CanEditResource");
 
             BindProperties(this.edtLabel, "Label", "Label");
@@ -270,7 +210,7 @@ namespace DXBeauty.UI
             BindToBoolPropertyAndInvert(this.btnRecurrence, "Enabled", "ReadOnly");
             BindProperties(this.btnDelete, "Enabled", "CanDeleteAppointment");
             BindProperties(this.btnRecurrence, "Visible", "ShouldShowRecurrenceButton");
-          
+
         }
         protected virtual void BindControllerToIcon()
         {
@@ -308,7 +248,7 @@ namespace DXBeauty.UI
         {
             target.DataBindings.Add(new BoolInvertBinding(targetProperty, Controller, sourceProperty));
         }
-        protected override void OnLoad(EventArgs e)
+        protected override async void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             if (Controller == null)
@@ -339,6 +279,8 @@ namespace DXBeauty.UI
 
                 // Arama kısmında hangi kolonlar görünsün?
                 SetupCustomerSearchLookupColumns();
+                // Doğrudan cast (null değilse)
+             
             }
             catch (Exception ex)
             {
@@ -348,6 +290,17 @@ namespace DXBeauty.UI
             SubscribeControlsEvents();
             LoadFormData(Controller.EditedAppointmentCopy);
 
+        }
+
+        private async void LoadCustomerPackages(int customerId)
+        {
+            var packages = await _customerServiceRepository.GetCustomerActivePackagesAsync(customerId);
+
+            lueCustomerPackages.Properties.DataSource = packages;
+            lueCustomerPackages.Properties.DisplayMember = "DisplayText"; // Bizim o havalı yazımız
+            lueCustomerPackages.Properties.ValueMember = "CustomerServiceId";
+
+            // Opsiyonel: "Paket Dışı / Tek Seans" seçeneği de eklenebilir.
         }
         protected virtual AppointmentFormController CreateController(SchedulerControl control, Appointment apt)
         {
@@ -482,27 +435,7 @@ namespace DXBeauty.UI
         {
 
 
-            if (oneSeansRadioButton.Checked == false && CurrentPackageradioButton.Checked == false)
-            {
-                XtraMessageBox.Show(
-                    "Lütfen Randevu tipini seçiniz.",
-                    "Eksik Bilgi",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (lueCustomerService.EditValue == null || lueCustomerService.EditValue == DBNull.Value)
-            {
-                XtraMessageBox.Show(
-                    "Lütfen bir Önce Müşteri sonra Hizmet/Paket seçiniz.",
-                    "Eksik Bilgi",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return;
-            }
-
-            if(slueCustomer.EditValue == null || slueCustomer.EditValue == DBNull.Value)
+            if (slueCustomer.EditValue == null || slueCustomer.EditValue == DBNull.Value)
             {
                 XtraMessageBox.Show(
                     "Lütfen bir Müşteri seçiniz.",
@@ -512,10 +445,49 @@ namespace DXBeauty.UI
                 return;
             }
 
-            if(tbSubject.Text == "" || tbSubject.Text == null)
+            // Eğer veznedar bir paket seçtiyse kontrol et
+            if (lueCustomerPackages.EditValue != null)
+            {
+                var selectedPackage = lueCustomerPackages.GetSelectedDataRow() as CustomerServiceLookupDto;
+
+                // 1. Randevu YENİ Mİ (Insert), yoksa VAR OLAN bir randevu mu (Update)?
+                bool isNewAppointment = Controller.IsNewAppointment;
+
+                // 2. Eğer var olan bir randevuyu düzenliyorsak, "Paketi değiştirmiş mi?" diye bakmalıyız.
+                // (Not: CustomFields içindeki isimlendirmeyi kendi Mapping'ine göre yaz. Örn: "CustomerServiceId")
+                int originalPackageId = 0;
+                if (!isNewAppointment && Controller.EditedAppointmentCopy.CustomFields["CS_ID"] != null)
+                {
+                    originalPackageId = Convert.ToInt32(Controller.EditedAppointmentCopy.CustomFields["CS_ID"]);
+                }
+
+                int selectedPackageId = Convert.ToInt32(lueCustomerPackages.EditValue);
+
+                // Randevunun paketi değiştirilmiş mi? (Örn: Cilt bakımından Lazer paketine mi çekmiş?)
+                bool isPackageChanged = (!isNewAppointment && originalPackageId != selectedPackageId);
+
+                // İŞTE SİHİRLİ DOKUNUŞ: 
+                // Sadece randevu YENİYSE veya DÜZENLEME ANINDA PAKETİ DEĞİŞTİRDİYSE boşta seans kontrolüne sok!
+                // Aynı paketteki eski randevuyu (Açıklama, Saat vs.) değiştiriyorsa bu bloğu ES GEÇ!
+
+                // EĞER BOŞTA SEANS YOKSA KAYDETMEYİ REDDET!
+                if (selectedPackage != null && (isNewAppointment || isPackageChanged) && selectedPackage.AvailableSessions <= 0)
+                {
+                    XtraMessageBox.Show(
+                        $"Uyarı: {selectedPackage.PackageName} için müşterinin {selectedPackage.RemainingSessions} hakkı bulunuyor, ancak bu hakların tamamı zaten takvimde başka günlere planlanmış durumda!\n\nLütfen yeni bir randevu açmak yerine, müşterinin planlanmış randevularından birini düzenleyin veya iptal edin.",
+                        "Seans Limiti Dolu",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return; // İşlemi anında kes! Veritabanına gitme.
+                }
+            }
+
+
+            if (tbSubject.Text == "" || tbSubject.Text == null)
             {
                 XtraMessageBox.Show(
-                    "Lütfen Eksik Randevu Bilgilerini G",
+                    "Lütfen Eksik Randevu Bilgilerini konu Giriniz.",
                     "Eksik Bilgi",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -548,8 +520,6 @@ namespace DXBeauty.UI
                 return; // Formun kapanmasını ve kaydetmeyi engelle
             }
 
-           
-
             if (!ValidateDateAndTime())
                 return;
             if (!SaveFormData(Controller.EditedAppointmentCopy))
@@ -569,6 +539,7 @@ namespace DXBeauty.UI
                 ShowMessageBox(SchedulerLocalizer.GetString(SchedulerStringId.Msg_InvalidAppointmentTime), Controller.GetMessageBoxCaption(SchedulerStringId.Msg_InvalidAppointmentTime), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
             if (IsAppointmentChanged(Controller.EditedAppointmentCopy) || Controller.IsAppointmentChanged() || Controller.IsNewAppointment)
                 Controller.ApplyChanges();
 
@@ -610,28 +581,7 @@ namespace DXBeauty.UI
             if (!Controller.ShouldShowRecurrenceButton)
                 return;
             // --- YENİ EKLENEN GÜVENLİK KONTROLÜ ---
-            if (oneSeansRadioButton.Checked)
-            {
-                XtraMessageBox.Show(
-                    "Tek seanslık işlemler için tekrarlayan (yineleyen) randevu oluşturamazsınız. Yinelenen bir randevu oluşturmak için lütfen 'Paket' seçimi yapınız.",
-                    "Geçersiz İşlem",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
 
-                return; // İşlemi burada kes! Recurrence formunun açılmasını engeller.
-            }
-            // ----------------------------------------
-            if (oneSeansRadioButton.Checked == false && CurrentPackageradioButton.Checked == false)
-            {
-                XtraMessageBox.Show(
-                    "Yinelenen bir randevu oluşturmak için lütfen Randevu tipini(Paket olarak) seçiniz.",
-                    "Geçersiz İşlem",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-
-                return; // İşlemi burada kes! Recurrence formunun açılmasını engeller.
-            }
-            // ----------------------------------------
             Appointment patternCopy = Controller.PrepareToRecurrenceEdit();
 
             DialogResult result;
@@ -693,110 +643,6 @@ namespace DXBeauty.UI
         }
 
 
-
-        private void slueCustomer_EditValueChanged(object sender, EventArgs e)
-        {
-
-            try
-            {
-
-                if (slueCustomer.EditValue == null || slueCustomer.EditValue == DBNull.Value) return;
-
-                if (CurrentPackageradioButton.Checked)
-                {
-                    int selectedCustomerId = Convert.ToInt32(slueCustomer.EditValue);
-
-
-                    // 1. Paketleri getir
-                    var repo = new CustomerServiceRepository(connectionString);
-                    var activeServices = repo.GetByCustomer(selectedCustomerId);
-
-                    // 2. Paket LookUpEdit ayarları
-                    lueCustomerService.Properties.DisplayMember = "Name";
-                    lueCustomerService.Properties.ValueMember = "CustomerServiceId";
-                    lueCustomerService.Properties.DataSource = activeServices;
-                    
-                    
-                    SetupPackageLookupColumns();
-                }
-                else if (oneSeansRadioButton.Checked)
-                {
-                    lueCustomerService.Properties.Columns.Clear();
-                    var repo = new ServiceRepository(connectionString);
-                    var allServices = repo.GetAll();
-
-                    // 2. Paket LookUpEdit ayarları
-                    lueCustomerService.Properties.DisplayMember = "Name";
-                    lueCustomerService.Properties.ValueMember = "ServiceId";
-                    lueCustomerService.Properties.DataSource = allServices;
-                  
-                    
-                }
-
-            }
-            finally
-            {
-
-            }
-        }
-
-        private void lueCustomerService_EditValueChanged(object sender, EventArgs e)
-        {
-            // 1. Güvenlik Kontrolleri
-
-            try
-            {
-                if (lueCustomerService.EditValue == null || lueCustomerService.EditValue == DBNull.Value) return;
-                // 2. Müşteri Adını Al (SearchLookUpEdit'in görünen metni)
-                string customerName = slueCustomer.Text;
-
-                // 3. Seçilen Paketin Detaylarını Al 
-                // GetSelectedDataRow() kullanarak tüm satır nesnesine erişebiliriz
-                var selectedPackage = lueCustomerService.GetSelectedDataRow() as dynamic;
-
-                if (selectedPackage != null)
-                {
-                    string packageName = selectedPackage.Name; // Veritabanındaki kolon adın
-                    int remaining = selectedPackage.RemainingSessions; // Kalan seans sayın
-
-                    // 4. Formatı Oluştur: "Müşteri Adı" - Lazer Epilasyon - (Kalan: 5)
-                    string autoSubject = $"\"{customerName}\" - {packageName} - (Kalan: {remaining})";
-
-                    // 5. Formdaki Subject (Konu) kutusuna yazdır
-                    // Genelde DevExpress formunda adı 'edtSubject' olur
-                    tbSubject.Text = autoSubject;
-
-                    // 6. Controller'a da bildir (Kaydederken sorun çıkmaması için)
-                    Controller.Subject = autoSubject;
-                }
-            }
-            catch (Exception ex)
-            {
-                // Hata durumunda sessizce devam et veya logla
-                Debug.WriteLine("Subject oluşturulurken hata: " + ex.Message);
-            }
-        }
-
-        private void SetupPackageLookupColumns()
-        {
-            // 3. Kolonları temizle ve yeniden oluştur (Görsellik için)
-            lueCustomerService.Properties.Columns.Clear();
-            lueCustomerService.Properties.PopulateColumns();
-
-            if (lueCustomerService.Properties.Columns["CustomerServiceId"] != null)
-                lueCustomerService.Properties.Columns["CustomerServiceId"].Visible = false;
-
-            if (lueCustomerService.Properties.Columns["CustomerId"] != null)
-                lueCustomerService.Properties.Columns["CustomerId"].Visible = false;
-
-            if (lueCustomerService.Properties.Columns["ServicePackageId"] != null)
-                lueCustomerService.Properties.Columns["ServicePackageId"].Visible = false;
-            if (lueCustomerService.Properties.Columns["StartDate"] != null)
-                lueCustomerService.Properties.Columns["StartDate"].Visible = false;
-            if (lueCustomerService.Properties.Columns["TotalPrice"] != null)
-                lueCustomerService.Properties.Columns["TotalPrice"].Visible = false;
-        }
-
         private void SetupCustomerSearchLookupColumns()
         {
             slueCustomer.Properties.PopulateViewColumns();
@@ -813,42 +659,15 @@ namespace DXBeauty.UI
             view.Columns["FullName"].Visible = true;
             view.Columns["PhoneNumber"].Visible = true;
         }
-       
 
-        private void CurrentPackageradioButton_Click(object sender, EventArgs e)
+        private void slueCustomer_EditValueChanged(object sender, EventArgs e)
         {
-            if (slueCustomer.EditValue == null || slueCustomer.EditValue == DBNull.Value) return;
-            int selectedCustomerId = Convert.ToInt32(slueCustomer.EditValue);
-
-
-            // 1. Paketleri getir
-            var repo = new CustomerServiceRepository(connectionString);
-            var activeServices = repo.GetByCustomer(selectedCustomerId);
-
-            // 2. Paket LookUpEdit ayarları
-            lueCustomerService.Properties.DisplayMember = "Name";
-            lueCustomerService.Properties.ValueMember = "CustomerServiceId";
-            lueCustomerService.Properties.DataSource = activeServices;
-           
-            
-
-            SetupPackageLookupColumns();
+            if (slueCustomer.EditValue != null && slueCustomer.EditValue != DBNull.Value)
+            {
+                int customerId = Convert.ToInt32(slueCustomer.EditValue);
+                // İşlemlerine devam et...
+                LoadCustomerPackages(customerId);
+            }
         }
-
-        private void oneSeansRadioButton_Click(object sender, EventArgs e)
-        {
-
-            lueCustomerService.Properties.Columns.Clear();
-            var repo = new ServiceRepository(connectionString);
-            var allServices = repo.GetAll();
-
-            // 2. Paket LookUpEdit ayarları
-            lueCustomerService.Properties.DisplayMember = "Name";
-            lueCustomerService.Properties.ValueMember = "ServiceId";
-            lueCustomerService.Properties.DataSource = allServices;
-            
-            
-        }
-      
     }
 }

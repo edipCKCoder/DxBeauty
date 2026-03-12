@@ -39,7 +39,7 @@
             layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             customerGridControl = new DevExpress.XtraGrid.GridControl();
-            customersGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            gridViewMusteriler = new DevExpress.XtraGrid.Views.Grid.GridView();
             deleteButton = new DevExpress.XtraEditors.SimpleButton();
             Root = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -60,7 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)customerGridControl).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)customersGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridViewMusteriler).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitterItem1).BeginInit();
@@ -86,18 +86,18 @@
             layoutControl1.Controls.Add(customerGridControl);
             layoutControl1.Controls.Add(deleteButton);
             layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            layoutControl1.Location = new System.Drawing.Point(2, 23);
+            layoutControl1.Location = new System.Drawing.Point(2, 22);
             layoutControl1.Name = "layoutControl1";
             layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1192, 320, 650, 400);
             layoutControl1.Root = Root;
-            layoutControl1.Size = new System.Drawing.Size(894, 589);
+            layoutControl1.Size = new System.Drawing.Size(894, 590);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
             // 
             // layoutControl3
             // 
             layoutControl3.Controls.Add(NewRegister);
-            layoutControl3.Location = new System.Drawing.Point(303, 531);
+            layoutControl3.Location = new System.Drawing.Point(303, 532);
             layoutControl3.Name = "layoutControl3";
             layoutControl3.Root = layoutControlGroup2;
             layoutControl3.Size = new System.Drawing.Size(287, 46);
@@ -134,7 +134,7 @@
             // layoutControl2
             // 
             layoutControl2.Controls.Add(editButton);
-            layoutControl2.Location = new System.Drawing.Point(12, 531);
+            layoutControl2.Location = new System.Drawing.Point(12, 532);
             layoutControl2.Name = "layoutControl2";
             layoutControl2.Root = layoutControlGroup1;
             layoutControl2.Size = new System.Drawing.Size(287, 46);
@@ -171,21 +171,22 @@
             // customerGridControl
             // 
             customerGridControl.Location = new System.Drawing.Point(12, 12);
-            customerGridControl.MainView = customersGridView;
+            customerGridControl.MainView = gridViewMusteriler;
             customerGridControl.Name = "customerGridControl";
-            customerGridControl.Size = new System.Drawing.Size(870, 515);
+            customerGridControl.Size = new System.Drawing.Size(870, 516);
             customerGridControl.TabIndex = 0;
-            customerGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { customersGridView });
-            customerGridControl.Load += CustomerControl_Load;
+            customerGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewMusteriler });
+            customerGridControl.Load += CustomerControl_LoadAsync;
             // 
-            // customersGridView
+            // gridViewMusteriler
             // 
-            customersGridView.GridControl = customerGridControl;
-            customersGridView.Name = "customersGridView";
+            gridViewMusteriler.GridControl = customerGridControl;
+            gridViewMusteriler.Name = "gridViewMusteriler";
+            gridViewMusteriler.PopupMenuShowing += gridViewMusteriler_PopupMenuShowing;
             // 
             // deleteButton
             // 
-            deleteButton.Location = new System.Drawing.Point(594, 541);
+            deleteButton.Location = new System.Drawing.Point(594, 544);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new System.Drawing.Size(288, 22);
             deleteButton.StyleController = layoutControl1;
@@ -199,7 +200,7 @@
             Root.GroupBordersVisible = false;
             Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, splitterItem1, layoutControlItem2, layoutControlItem3, layoutControlItem5 });
             Root.Name = "Root";
-            Root.Size = new System.Drawing.Size(894, 589);
+            Root.Size = new System.Drawing.Size(894, 590);
             Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -207,19 +208,19 @@
             layoutControlItem1.Control = customerGridControl;
             layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(874, 519);
+            layoutControlItem1.Size = new System.Drawing.Size(874, 520);
             layoutControlItem1.TextVisible = false;
             // 
             // splitterItem1
             // 
-            splitterItem1.Location = new System.Drawing.Point(582, 519);
+            splitterItem1.Location = new System.Drawing.Point(582, 520);
             splitterItem1.Name = "splitterItem1";
-            splitterItem1.Size = new System.Drawing.Size(292, 10);
+            splitterItem1.Size = new System.Drawing.Size(292, 12);
             // 
             // layoutControlItem2
             // 
             layoutControlItem2.Control = layoutControl2;
-            layoutControlItem2.Location = new System.Drawing.Point(0, 519);
+            layoutControlItem2.Location = new System.Drawing.Point(0, 520);
             layoutControlItem2.Name = "layoutControlItem2";
             layoutControlItem2.Size = new System.Drawing.Size(291, 50);
             layoutControlItem2.TextVisible = false;
@@ -227,7 +228,7 @@
             // layoutControlItem3
             // 
             layoutControlItem3.Control = layoutControl3;
-            layoutControlItem3.Location = new System.Drawing.Point(291, 519);
+            layoutControlItem3.Location = new System.Drawing.Point(291, 520);
             layoutControlItem3.Name = "layoutControlItem3";
             layoutControlItem3.Size = new System.Drawing.Size(291, 50);
             layoutControlItem3.TextVisible = false;
@@ -235,9 +236,9 @@
             // layoutControlItem5
             // 
             layoutControlItem5.Control = deleteButton;
-            layoutControlItem5.Location = new System.Drawing.Point(582, 529);
+            layoutControlItem5.Location = new System.Drawing.Point(582, 532);
             layoutControlItem5.Name = "layoutControlItem5";
-            layoutControlItem5.Size = new System.Drawing.Size(292, 40);
+            layoutControlItem5.Size = new System.Drawing.Size(292, 38);
             layoutControlItem5.TextVisible = false;
             // 
             // CustomerControl
@@ -262,7 +263,7 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem6).EndInit();
             ((System.ComponentModel.ISupportInitialize)customerGridControl).EndInit();
-            ((System.ComponentModel.ISupportInitialize)customersGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridViewMusteriler).EndInit();
             ((System.ComponentModel.ISupportInitialize)Root).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)splitterItem1).EndInit();
@@ -277,7 +278,7 @@
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraGrid.GridControl customerGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView customersGridView;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewMusteriler;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.SplitterItem splitterItem1;

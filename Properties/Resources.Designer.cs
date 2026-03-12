@@ -61,6 +61,16 @@ namespace DXBeauty.Properties {
         }
         
         /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage accounting {
+            get {
+                object obj = ResourceManager.GetObject("accounting", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
         internal static System.Drawing.Bitmap additem_16x16 {
@@ -206,6 +216,16 @@ namespace DXBeauty.Properties {
         internal static DevExpress.Utils.Svg.SvgImage del {
             get {
                 object obj = ResourceManager.GetObject("del", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage Delete {
+            get {
+                object obj = ResourceManager.GetObject("Delete", resourceCulture);
                 return ((DevExpress.Utils.Svg.SvgImage)(obj));
             }
         }
@@ -363,9 +383,29 @@ namespace DXBeauty.Properties {
         /// <summary>
         ///   DevExpress.Utils.Svg.SvgImage türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage Save {
+            get {
+                object obj = ResourceManager.GetObject("Save", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static DevExpress.Utils.Svg.SvgImage SendFill {
             get {
                 object obj = ResourceManager.GetObject("SendFill", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage SubscriptionAdd {
+            get {
+                object obj = ResourceManager.GetObject("SubscriptionAdd", resourceCulture);
                 return ((DevExpress.Utils.Svg.SvgImage)(obj));
             }
         }
@@ -387,6 +427,16 @@ namespace DXBeauty.Properties {
             get {
                 object obj = ResourceManager.GetObject("switchtimescalesto_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage treemap {
+            get {
+                object obj = ResourceManager.GetObject("treemap", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
             }
         }
     }

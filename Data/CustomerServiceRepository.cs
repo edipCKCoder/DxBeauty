@@ -1,15 +1,53 @@
-﻿using DXBeauty.Entities;
+﻿using Dapper;
+using DXBeauty.Dtos;
+using DXBeauty.Entities;
+using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using Dapper;
+using System.Threading.Tasks;
 
 namespace DXBeauty.Data
 {
     public class CustomerServiceRepository : DapperRepository
     {
+        private readonly string _connectionString;
+
         public CustomerServiceRepository(string connectionString)
-            : base(connectionString) { }
+            : base(connectionString) 
+        {
+            _connectionString = connectionString;
+        }
+
+
+
+        public async Task<IEnumerable<CustomerServiceLookupDto>> GetCustomerActivePackagesAsync(int customerId)
+        {
+            // Efsanevi Blokaj Sorgumuz: (Kalan Seans - Takvimdeki Planlanmış Randevular)
+            string sql = @"
+        SELECT 
+            cs.customer_service_id AS CustomerServiceId,
+            sp.name AS PackageName,
+            cs.remaining_sessions AS RemainingSessions,
+            
+            -- İşte Boşta olan seansı anında hesaplayan o matematik:
+            (cs.remaining_sessions - (
+                SELECT COUNT(*) 
+                FROM appointments a 
+                WHERE a.customer_service_id = cs.customer_service_id 
+                  AND a.status IN (0, 1) -- 0: None(Bekliyor), 1: Planned(Planlandı)
+            )) AS AvailableSessions
+
+        FROM customer_services cs
+        INNER JOIN service_packages sp ON cs.service_package_id = sp.service_package_id
+        WHERE cs.customer_id = @CustomerId 
+          AND cs.remaining_sessions > 0;  --Sadece seansı bitmemiş paketleri getir";
+
+        using (var connection = new NpgsqlConnection(_connectionString))
+            {
+                return await connection.QueryAsync<CustomerServiceLookupDto>(sql, new { CustomerId = customerId });
+            }
+        }
 
 
         public List<CustomerService> GetAll() 

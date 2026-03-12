@@ -14,6 +14,8 @@ namespace DXBeauty.Entities
         private string _messageText;
         private string _status;
         private DateTime? _sentAt;
+        private int _messageType;
+        public bool _isDelivered; // 1: Randevu Hatırlatma, 2: Paket Bilgilendirme, 3: Genel Duyuru
 
         public int MessageId
         {
@@ -43,7 +45,6 @@ namespace DXBeauty.Entities
                 _messageText = value;
             }
         }
-
         public string Status
         {
             get => _status;
@@ -55,6 +56,22 @@ namespace DXBeauty.Entities
             get => _sentAt;
             set => _sentAt = value;
         }
+
+        public int MessageType
+        {
+            get => _messageType;
+            set
+            {
+                _messageType = value;
+            }
+        }
+
+            public bool IsDelivered
+            {
+                get => _isDelivered;
+                set => _isDelivered = value;
+        }
+
     }
 
 }

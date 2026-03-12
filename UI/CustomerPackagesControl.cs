@@ -1,5 +1,6 @@
 ﻿using DevExpress.Utils;
 using DevExpress.Utils.DragDrop;
+using DevExpress.Utils.Extensions;
 using DevExpress.XtraCharts;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Tile;
@@ -16,6 +17,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DXBeauty.Enums;
+
 using static DXBeauty.Entities.CustomerService;
 namespace DXBeauty.UI
 {
@@ -97,69 +100,26 @@ namespace DXBeauty.UI
                 foreach (var item in currentlyCustomerServices)
                 {
                     // Eğer müşteri bu paketi önceden aldıysa ve statüsü Active ise uyar
-                    if (item.ServicePackageId == droppedPackage.ServicePackageId && item.Status == CustomerService.StatusType.Active)
+                    if (item.ServicePackageId == droppedPackage.ServicePackageId)
                     {
                         XtraMessageBox.Show("Bu müşterinin zaten devam eden aynı paketi var!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                 }
 
-                // 2. YENİ MÜŞTERİ PAKETİ NESNESİ
-                var newCustomerService = new CustomerService
-                {
-                    CustomerId = customerId,
-                    ServicePackageId = droppedPackage.ServicePackageId,
-                    StartDate = DateTime.Now,
-                    RemainingSessions = droppedPackage.SessionCount,
-                    Name = droppedPackage.Name,
-                    TotalPrice = droppedPackage.TotalPrice, // Yorumdan çıkarıldı!
-                    RemainingDebt = droppedPackage.TotalPrice, // Borç olarak kaydedildi!
-                    Status = CustomerService.StatusType.Active
-                };
-
-
-                // 3. TAKSİT SAYISINI BELİRLEME
-                int installmentCount = 1; // Varsayılan peşin (1 taksit)
-
-                if (droppedPackage.IsInstallmentAllowed)
-                {
-                    // DevExpress InputBox ile kullanıcıya soruyoruz
-                    string input = XtraInputBox.Show("Bu paket taksitlendirilebilir. Lütfen taksit sayısını giriniz (Peşin için 1 yazın):", "Taksit Sayısı", "1");
-
-                    if (!int.TryParse(input, out installmentCount) || installmentCount <= 0)
-                    {
-                        XtraMessageBox.Show("Geçersiz taksit sayısı girdiniz. İşlem iptal edildi.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                }
-
-                // 4. VERİTABANINA KAYDET VE YENİ ID'Yİ AL
-                int newCustomerServiceId = _customerServiceRepository.Insert(newCustomerService);
                 // 5. TAKSİTLERİ (BORÇ PLANI) OLUŞTUR VE KAYDET
-                if (newCustomerServiceId > 0 && newCustomerService.TotalPrice > 0)
-                {
-                    var installments = new List<Installment>();
-                    decimal amountPerInstallment = newCustomerService.TotalPrice / installmentCount;
-
-                    for (int i = 1; i <= installmentCount; i++)
-                    {
-                        installments.Add(new Installment
-                        {
-                            CustomerServiceId = newCustomerServiceId,
-                            InstallmentNumber = i,
-                            Amount = amountPerInstallment,
-                            DueDate = DateTime.Now.AddMonths(i - 1) // İlk taksit hemen (bugün), diğerleri 1'er ay sonraya!
-                        });
-                    }
-
-                    var installmentRepo = new InstallmentRepository(_connectionString);
-                    installmentRepo.InsertInstallments(installments);
-                }
+                XtraForm popup = new XtraForm();
+                PaymentPlanWizardControl paymentPlanWizardControl = new PaymentPlanWizardControl(customerId, droppedPackage);
+                
+                popup.ClientSize = paymentPlanWizardControl.Size;
+                paymentPlanWizardControl.Dock = DockStyle.Fill;
+                popup.AddControl(paymentPlanWizardControl);
+                popup.StartPosition = FormStartPosition.CenterScreen;
+                popup.ShowDialog();
 
                 // 6. EKRANI YENİLE VE BAŞARI MESAJI VER
                 LoadCustomerServices(customerId);
-                XtraMessageBox.Show($"Paket müşteriye başarıyla tanımlandı!\nToplam: {newCustomerService.TotalPrice} TL\nTaksit Sayısı: {installmentCount}", "Satış Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //XtraMessageBox.Show($"Paket müşteriye başarıyla tanımlandı!\nToplam: {newCustomerService.TotalPrice} TL\nTaksit Sayısı: {installmentCount}", "Satış Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             e.Handled = true; // CRITICAL
@@ -260,29 +220,20 @@ namespace DXBeauty.UI
         private void tileView2_ItemCustomize(object sender, TileViewItemCustomizeEventArgs e)
         {
             TileView view = sender as TileView;
-            StatusType statusType = (StatusType)view.GetRowCellValue(e.RowHandle, layoutViewColumn10);
+            CastumerPackageStatusType statusType = (CastumerPackageStatusType)view.GetRowCellValue(e.RowHandle, layoutViewColumn10);
 
             var isActiveElement = e.Item.Elements[3];
 
             switch (statusType)
             {
-                case StatusType.None:
-                    isActiveElement.Text = "None";
+                case CastumerPackageStatusType.NoPayment:
+                    isActiveElement.Text = "Hiç Ödeme Yok";
                     break;
-                case StatusType.Active:
-                    isActiveElement.Text = "Active";
+                case CastumerPackageStatusType.PartialPayment:
+                    isActiveElement.Text = "Kısmi Ödeme Var";
                     break;
-                case StatusType.Suspended:
-                    isActiveElement.Text = "Suspended";
-                    break;
-                case StatusType.Continued:
-                    isActiveElement.Text = "Continued";
-                    break;
-                case StatusType.Completed:
-                    isActiveElement.Text = "Completed";
-                    break;
-                case StatusType.Cancelled:
-                    isActiveElement.Text = "Cancelled";
+                case CastumerPackageStatusType.NoDebt:
+                    isActiveElement.Text = "Tümü Ödendi";
                     break;
                 default:
                     break;

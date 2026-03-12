@@ -48,15 +48,13 @@
             cbReminder = new DevExpress.XtraScheduler.UI.DurationEdit();
             edtLabel = new DevExpress.XtraScheduler.UI.AppointmentLabelEdit();
             edtResource = new DevExpress.XtraScheduler.UI.AppointmentResourceEdit();
-            oneSeansRadioButton = new System.Windows.Forms.RadioButton();
-            CurrentPackageradioButton = new System.Windows.Forms.RadioButton();
-            lueCustomerService = new DevExpress.XtraEditors.LookUpEdit();
             edtStartTime = new DevExpress.XtraEditors.TimeEdit();
             edtEndTime = new DevExpress.XtraEditors.TimeEdit();
             edtShowTimeAs = new DevExpress.XtraScheduler.UI.AppointmentStatusEdit();
             slueCustomer = new DevExpress.XtraEditors.SearchLookUpEdit();
             searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            lueCustomerPackages = new DevExpress.XtraEditors.LookUpEdit();
             labelControl2 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)tbSubject.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chkAllDay.Properties).BeginInit();
@@ -72,12 +70,12 @@
             ((System.ComponentModel.ISupportInitialize)cbReminder.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)edtLabel.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)edtResource.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)lueCustomerService.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)edtStartTime.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)edtEndTime.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)edtShowTimeAs.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)slueCustomer.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)searchLookUpEdit1View).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lueCustomerPackages.Properties).BeginInit();
             SuspendLayout();
             // 
             // lblSubject
@@ -232,30 +230,6 @@
             edtResource.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton((DevExpress.XtraEditors.Controls.ButtonPredefines)resources.GetObject("edtResource.Properties.Buttons")) });
             edtResource.Properties.NullText = resources.GetString("edtResource.Properties.NullText");
             // 
-            // oneSeansRadioButton
-            // 
-            resources.ApplyResources(oneSeansRadioButton, "oneSeansRadioButton");
-            oneSeansRadioButton.Name = "oneSeansRadioButton";
-            oneSeansRadioButton.TabStop = true;
-            oneSeansRadioButton.UseVisualStyleBackColor = true;
-            oneSeansRadioButton.Click += oneSeansRadioButton_Click;
-            // 
-            // CurrentPackageradioButton
-            // 
-            resources.ApplyResources(CurrentPackageradioButton, "CurrentPackageradioButton");
-            CurrentPackageradioButton.Name = "CurrentPackageradioButton";
-            CurrentPackageradioButton.TabStop = true;
-            CurrentPackageradioButton.UseVisualStyleBackColor = true;
-            CurrentPackageradioButton.Click += CurrentPackageradioButton_Click;
-            // 
-            // lueCustomerService
-            // 
-            resources.ApplyResources(lueCustomerService, "lueCustomerService");
-            lueCustomerService.Name = "lueCustomerService";
-            lueCustomerService.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton((DevExpress.XtraEditors.Controls.ButtonPredefines)resources.GetObject("lueCustomerService.Properties.Buttons")) });
-            lueCustomerService.Properties.NullText = resources.GetString("lueCustomerService.Properties.NullText");
-            lueCustomerService.EditValueChanged += lueCustomerService_EditValueChanged;
-            // 
             // edtStartTime
             // 
             resources.ApplyResources(edtStartTime, "edtStartTime");
@@ -299,6 +273,12 @@
             resources.ApplyResources(labelControl1, "labelControl1");
             labelControl1.Name = "labelControl1";
             // 
+            // lueCustomerPackages
+            // 
+            resources.ApplyResources(lueCustomerPackages, "lueCustomerPackages");
+            lueCustomerPackages.Name = "lueCustomerPackages";
+            lueCustomerPackages.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton((DevExpress.XtraEditors.Controls.ButtonPredefines)resources.GetObject("lueCustomerPackages.Properties.Buttons")) });
+            // 
             // labelControl2
             // 
             resources.ApplyResources(labelControl2, "labelControl2");
@@ -313,10 +293,8 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             CancelButton = btnCancel;
             Controls.Add(labelControl2);
-            Controls.Add(oneSeansRadioButton);
+            Controls.Add(lueCustomerPackages);
             Controls.Add(edtResource);
-            Controls.Add(lueCustomerService);
-            Controls.Add(CurrentPackageradioButton);
             Controls.Add(labelControl1);
             Controls.Add(slueCustomer);
             Controls.Add(lblResource);
@@ -355,12 +333,12 @@
             ((System.ComponentModel.ISupportInitialize)cbReminder.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)edtLabel.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)edtResource.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)lueCustomerService.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)edtStartTime.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)edtEndTime.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)edtShowTimeAs.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)slueCustomer.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)searchLookUpEdit1View).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lueCustomerPackages.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
 
@@ -395,10 +373,8 @@
         protected DevExpress.XtraEditors.PanelControl panel1;
         private DevExpress.XtraEditors.SearchLookUpEdit slueCustomer;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
-        private DevExpress.XtraEditors.LookUpEdit lueCustomerService;
         protected DevExpress.XtraEditors.LabelControl labelControl1;
-        private System.Windows.Forms.RadioButton oneSeansRadioButton;
-        private System.Windows.Forms.RadioButton CurrentPackageradioButton;
-        protected DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LookUpEdit lueCustomerPackages;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
     }
 }

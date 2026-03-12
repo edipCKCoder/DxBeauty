@@ -15,7 +15,7 @@ namespace DXBeauty.UI
         // Custom Field'ı property olarak tanımlıyoruz
         public int? CustomerServiceId
         {
-            get { return (int?)EditedAppointmentCopy.CustomFields["CS_ID"]; }
+            get { return (int?)EditedAppointmentCopy.CustomFields["CS_ID"];}
             set { EditedAppointmentCopy.CustomFields["CS_ID"] = value; }
         }
 

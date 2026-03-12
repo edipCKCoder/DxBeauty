@@ -32,14 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
             navBarControl = new DevExpress.XtraNavBar.NavBarControl();
+            paymentGroup = new DevExpress.XtraNavBar.NavBarGroup();
+            getPayment = new DevExpress.XtraNavBar.NavBarItem();
+            financialReport = new DevExpress.XtraNavBar.NavBarItem();
             customerGroup = new DevExpress.XtraNavBar.NavBarGroup();
             registerCustomer = new DevExpress.XtraNavBar.NavBarItem();
             customerHistory = new DevExpress.XtraNavBar.NavBarItem();
             CustomerPackages = new DevExpress.XtraNavBar.NavBarItem();
             organizerGroup = new DevExpress.XtraNavBar.NavBarGroup();
             scheduler = new DevExpress.XtraNavBar.NavBarItem();
-            paymentGroup = new DevExpress.XtraNavBar.NavBarGroup();
-            getPayment = new DevExpress.XtraNavBar.NavBarItem();
             servicesGroup = new DevExpress.XtraNavBar.NavBarGroup();
             createService = new DevExpress.XtraNavBar.NavBarItem();
             reminderGroup = new DevExpress.XtraNavBar.NavBarGroup();
@@ -88,29 +89,55 @@
             // 
             splitContainerControl.Panel2.Text = "Panel2";
             splitContainerControl.Size = new System.Drawing.Size(1110, 532);
-            splitContainerControl.SplitterPosition = 171;
+            splitContainerControl.SplitterPosition = 205;
             splitContainerControl.TabIndex = 0;
             splitContainerControl.Text = "splitContainerControl1";
             // 
             // navBarControl
             // 
-            navBarControl.ActiveGroup = customerGroup;
+            navBarControl.ActiveGroup = paymentGroup;
             navBarControl.Dock = System.Windows.Forms.DockStyle.Fill;
             navBarControl.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] { customerGroup, organizerGroup, paymentGroup, servicesGroup, reminderGroup });
-            navBarControl.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] { scheduler, registerCustomer, customerHistory, getPayment, createService, ReminderMessage, CustomerPackages });
+            navBarControl.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] { scheduler, registerCustomer, customerHistory, getPayment, createService, ReminderMessage, CustomerPackages, financialReport });
             navBarControl.Location = new System.Drawing.Point(0, 0);
             navBarControl.Name = "navBarControl";
-            navBarControl.OptionsNavPane.ExpandedWidth = 171;
+            navBarControl.OptionsNavPane.ExpandedWidth = 205;
             navBarControl.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            navBarControl.Size = new System.Drawing.Size(171, 520);
+            navBarControl.Size = new System.Drawing.Size(205, 520);
             navBarControl.StoreDefaultPaintStyleName = true;
             navBarControl.TabIndex = 1;
             navBarControl.Text = "navBarControl1";
             // 
+            // paymentGroup
+            // 
+            paymentGroup.Caption = "Ödeme";
+            paymentGroup.Expanded = true;
+            paymentGroup.ImageOptions.LargeImage = (System.Drawing.Image)resources.GetObject("paymentGroup.ImageOptions.LargeImage");
+            paymentGroup.ImageOptions.LargeImageIndex = 1;
+            paymentGroup.ImageOptions.SmallImage = (System.Drawing.Image)resources.GetObject("paymentGroup.ImageOptions.SmallImage");
+            paymentGroup.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] { new DevExpress.XtraNavBar.NavBarItemLink(getPayment), new DevExpress.XtraNavBar.NavBarItemLink(financialReport) });
+            paymentGroup.Name = "paymentGroup";
+            // 
+            // getPayment
+            // 
+            getPayment.Caption = "Ödeme Al";
+            getPayment.ImageOptions.LargeImage = (System.Drawing.Image)resources.GetObject("getPayment.ImageOptions.LargeImage");
+            getPayment.ImageOptions.SmallImage = (System.Drawing.Image)resources.GetObject("getPayment.ImageOptions.SmallImage");
+            getPayment.ImageOptions.SmallImageSize = new System.Drawing.Size(16, 16);
+            getPayment.Name = "getPayment";
+            getPayment.LinkClicked += getPayment_LinkClicked;
+            // 
+            // financialReport
+            // 
+            financialReport.Caption = "Tüm Müşteri Bakiyeleri";
+            financialReport.ImageOptions.SmallImageSize = new System.Drawing.Size(16, 16);
+            financialReport.ImageOptions.SvgImage = Properties.Resources.accounting;
+            financialReport.Name = "financialReport";
+            financialReport.LinkClicked += financialReport_LinkClicked;
+            // 
             // customerGroup
             // 
-            customerGroup.Caption = "Customers";
-            customerGroup.Expanded = true;
+            customerGroup.Caption = "Müşteriler";
             customerGroup.ImageOptions.LargeImage = (System.Drawing.Image)resources.GetObject("customerGroup.ImageOptions.LargeImage");
             customerGroup.ImageOptions.LargeImageIndex = 0;
             customerGroup.ImageOptions.SmallImage = (System.Drawing.Image)resources.GetObject("customerGroup.ImageOptions.SmallImage");
@@ -119,7 +146,7 @@
             // 
             // registerCustomer
             // 
-            registerCustomer.Caption = "Register Customer";
+            registerCustomer.Caption = "Müşteri Kayıt";
             registerCustomer.ImageOptions.LargeImage = (System.Drawing.Image)resources.GetObject("registerCustomer.ImageOptions.LargeImage");
             registerCustomer.ImageOptions.SmallImage = (System.Drawing.Image)resources.GetObject("registerCustomer.ImageOptions.SmallImage");
             registerCustomer.Name = "registerCustomer";
@@ -127,7 +154,7 @@
             // 
             // customerHistory
             // 
-            customerHistory.Caption = "Customer History";
+            customerHistory.Caption = "Müşteri Geçmiş Hareketler";
             customerHistory.ImageOptions.LargeImage = (System.Drawing.Image)resources.GetObject("customerHistory.ImageOptions.LargeImage");
             customerHistory.ImageOptions.SmallImage = (System.Drawing.Image)resources.GetObject("customerHistory.ImageOptions.SmallImage");
             customerHistory.Name = "customerHistory";
@@ -135,7 +162,7 @@
             // 
             // CustomerPackages
             // 
-            CustomerPackages.Caption = "Customer Packages";
+            CustomerPackages.Caption = "Müşteri Paketleri";
             CustomerPackages.ImageOptions.LargeImage = Properties.Resources.colormixer_32x32;
             CustomerPackages.ImageOptions.SmallImage = Properties.Resources.colormixer_16x16;
             CustomerPackages.Name = "CustomerPackages";
@@ -143,7 +170,7 @@
             // 
             // organizerGroup
             // 
-            organizerGroup.Caption = "Organizer";
+            organizerGroup.Caption = "Planlayıcı";
             organizerGroup.ImageOptions.LargeImage = (System.Drawing.Image)resources.GetObject("organizerGroup.ImageOptions.LargeImage");
             organizerGroup.ImageOptions.LargeImageIndex = 1;
             organizerGroup.ImageOptions.SmallImage = (System.Drawing.Image)resources.GetObject("organizerGroup.ImageOptions.SmallImage");
@@ -152,33 +179,16 @@
             // 
             // scheduler
             // 
-            scheduler.Caption = "Scheduler";
+            scheduler.Caption = "Takvim";
             scheduler.ImageOptions.LargeImage = Properties.Resources.switchtimescalesto_32x32;
             scheduler.ImageOptions.SmallImage = Properties.Resources.switchtimescalesto_16x16;
             scheduler.ImageOptions.SmallImageIndex = 4;
             scheduler.Name = "scheduler";
             scheduler.LinkClicked += NavBarItemScheduler_LinkClicked;
             // 
-            // paymentGroup
-            // 
-            paymentGroup.Caption = "Payment";
-            paymentGroup.ImageOptions.LargeImage = (System.Drawing.Image)resources.GetObject("paymentGroup.ImageOptions.LargeImage");
-            paymentGroup.ImageOptions.LargeImageIndex = 1;
-            paymentGroup.ImageOptions.SmallImage = (System.Drawing.Image)resources.GetObject("paymentGroup.ImageOptions.SmallImage");
-            paymentGroup.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] { new DevExpress.XtraNavBar.NavBarItemLink(getPayment) });
-            paymentGroup.Name = "paymentGroup";
-            // 
-            // getPayment
-            // 
-            getPayment.Caption = "Get Payment";
-            getPayment.ImageOptions.LargeImage = (System.Drawing.Image)resources.GetObject("getPayment.ImageOptions.LargeImage");
-            getPayment.ImageOptions.SmallImage = (System.Drawing.Image)resources.GetObject("getPayment.ImageOptions.SmallImage");
-            getPayment.Name = "getPayment";
-            getPayment.LinkClicked += getPayment_LinkClicked;
-            // 
             // servicesGroup
             // 
-            servicesGroup.Caption = "Services";
+            servicesGroup.Caption = "Hizmet/Satış Paketi";
             servicesGroup.ImageOptions.LargeImage = (System.Drawing.Image)resources.GetObject("servicesGroup.ImageOptions.LargeImage");
             servicesGroup.ImageOptions.SmallImage = (System.Drawing.Image)resources.GetObject("servicesGroup.ImageOptions.SmallImage");
             servicesGroup.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] { new DevExpress.XtraNavBar.NavBarItemLink(createService) });
@@ -186,7 +196,7 @@
             // 
             // createService
             // 
-            createService.Caption = "Create Service";
+            createService.Caption = "Hizmetler ve Satış Paketleri";
             createService.ImageOptions.LargeImage = (System.Drawing.Image)resources.GetObject("createService.ImageOptions.LargeImage");
             createService.ImageOptions.SmallImage = (System.Drawing.Image)resources.GetObject("createService.ImageOptions.SmallImage");
             createService.Name = "createService";
@@ -194,7 +204,7 @@
             // 
             // reminderGroup
             // 
-            reminderGroup.Caption = "Reminder";
+            reminderGroup.Caption = "Hatırlatıcı";
             reminderGroup.ImageOptions.LargeImage = Properties.Resources.reminder_32x32;
             reminderGroup.ImageOptions.LargeImageIndex = 0;
             reminderGroup.ImageOptions.LargeImageKey = "reminder_32x32.png";
@@ -204,7 +214,7 @@
             // 
             // ReminderMessage
             // 
-            ReminderMessage.Caption = "Send Reminder Message";
+            ReminderMessage.Caption = "Mesaj Şablonu Oluştur";
             ReminderMessage.ImageOptions.LargeImage = (System.Drawing.Image)resources.GetObject("ReminderMessage.ImageOptions.LargeImage");
             ReminderMessage.ImageOptions.SmallImage = (System.Drawing.Image)resources.GetObject("ReminderMessage.ImageOptions.SmallImage");
             ReminderMessage.Name = "ReminderMessage";
@@ -249,7 +259,7 @@
             // 
             // btnRibbonPayment
             // 
-            btnRibbonPayment.Caption = "Tahsilat Al";
+            btnRibbonPayment.Caption = "Ödeme Al";
             btnRibbonPayment.Hint = "Tahsilat Al";
             btnRibbonPayment.Id = 4;
             btnRibbonPayment.ImageOptions.SvgImage = Properties.Resources.financial;
@@ -391,5 +401,6 @@
         private DevExpress.XtraBars.SkinPaletteRibbonGalleryBarItem skinPaletteRibbonGalleryBarItem1;
         private DevExpress.XtraNavBar.NavBarItem CustomerPackages;
         private DevExpress.XtraBars.BarButtonItem btnRibbonPayment;
+        private DevExpress.XtraNavBar.NavBarItem financialReport;
     }
 }

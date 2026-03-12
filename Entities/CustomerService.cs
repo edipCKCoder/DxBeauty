@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DXBeauty.Enums;
+
 
 namespace DXBeauty.Entities
 {
@@ -15,18 +17,10 @@ namespace DXBeauty.Entities
         private int _remainingSessions;
         private decimal _remainingDebt;
         private decimal _paidAmount;
-        private StatusType _status; // active, completed, cancelled
+        private CastumerPackageStatusType _status; // Active, Inactive
         private string _packageName;
         private decimal _totalPrice;
-        public enum StatusType
-        {
-            None = 0,
-            Active = 1,
-            Suspended = 2,
-            Continued = 3,
-            Completed = 4,
-            Cancelled = 5
-        }
+       
         public int CustomerServiceId
         {
             get => _customerServiceId;
@@ -75,7 +69,7 @@ namespace DXBeauty.Entities
             set => _paidAmount = value;
         }
 
-        public StatusType Status
+        public CastumerPackageStatusType Status
         {
             get => _status;
             set => _status = value;

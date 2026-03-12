@@ -50,25 +50,50 @@ namespace DXBeauty.Data
         // Yeni Kayıt Ekle (Eklenen ID'yi geri döner)
         public async Task<int> AddAsync(Appointment appointment)
         {
-            using (var db = CreateConnection())
+            using (var connection = new NpgsqlConnection(_connectionString))
             {
-                string sql = @"
-                INSERT INTO appointments (
-                    customer_service_id, customer_id, appointment_start_date,
-                    created_at,
-                    appointment_end_date,
-                    type, subject, location, description, 
-                    status, reminder_info, recurrence_info, label, resource_id, all_day, service_id
-                ) 
-                VALUES (
-                    @CustomerServiceId, @CustomerId, @AppointmentStartDate,
-                    @CreatedAt,
-                    @AppointmentEndDate, @Type, @Subject, @Location, @Description, 
-                    @Status, @ReminderInfo, @RecurrenceInfo, @Label, @ResourceId, @AllDay, @ServiceId
-                ) 
-                RETURNING appointment_id;"; // PostgreSQL'de ID böyle geri alınır
+                await connection.OpenAsync();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // 1. YENİ RANDEVUYU VERİTABANINA EKLE
+                        string insertSql = @"
+                    INSERT INTO appointments (
+                        customer_id, customer_service_id, appointment_start_date, created_at, 
+                        appointment_end_date, type, subject, location, description, status, 
+                        reminder_info, recurrence_info, label, resource_id, all_day, service_id
+                    ) 
+                    VALUES (
+                        @CustomerId, @CustomerServiceId, @AppointmentStartDate, @CreatedAt, 
+                        @AppointmentEndDate, @Type, @Subject, @Location, @Description, @Status, 
+                        @ReminderInfo, @RecurrenceInfo, @Label, @ResourceId, @AllDay, @ServiceId
+                    ) 
+                    RETURNING appointment_id;";
 
-                return await db.ExecuteScalarAsync<int>(sql, appointment);
+                        // Nesnemizdeki özellikleri Dapper ile veritabanına yollayıp oluşan ID'yi alıyoruz
+                        int newAppointmentId = await connection.ExecuteScalarAsync<int>(insertSql, appointment, transaction);
+
+                        // 2. İŞTE O SİHİRLİ KONTROL: DOĞUŞTAN SEANS YAKAN (Status = 2 veya 4) RANDEVU MU?
+                        // Not: Senin Entity sınıfındaki property isimleri farklıysa (Örn: customerServiceId, status) onlara göre düzelt.
+                        if (appointment.CustomerServiceId.HasValue && (appointment.Status == 2 || appointment.Status == 4))
+                        {
+                            // Randevu 4 (Gelmedi) veya 2 (Tamamlandı) olarak doğdu, anında paketinden 1 seans düş!
+                            string decSql = "UPDATE customer_services SET remaining_sessions = remaining_sessions - 1 WHERE customer_service_id = @CsId";
+                            await connection.ExecuteAsync(decSql, new { CsId = appointment.CustomerServiceId.Value }, transaction);
+                        }
+
+                        // Her şey başarılıysa onayla!
+                        transaction.Commit();
+
+                        return newAppointmentId; // DevExpress'e atamak üzere ID'yi UI'a geri döndür
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Randevu eklenirken hata oluştu: " + ex.Message);
+                    }
+                }
             }
         }
 
@@ -102,6 +127,63 @@ namespace DXBeauty.Data
             }
         }
 
+        public async Task UpdateAppointmentStatusAsync(int appointmentId, int newStatus)
+        {
+            using (var connection = new NpgsqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // 1. Önce Randevunun MEVCUT durumunu ve Paket ID'sini öğrenelim
+                        string getAppSql = "SELECT status, customer_service_id FROM appointments WHERE appointment_id = @Id";
+                        var app = await connection.QuerySingleOrDefaultAsync(getAppSql, new { Id = appointmentId }, transaction);
+
+                        if (app == null) return;
+
+                        int oldStatus = app.status ?? 0;
+                        int? customerServiceId = app.customer_service_id;
+
+                        // 2. Sadece paketten düşülecek bir randevuysa (Tek seans/Paketsiz değilse) seans hesabı yap
+                        if (customerServiceId.HasValue && oldStatus != newStatus)
+                        {
+                            // Hangi durumlar seans yakar? (2: Completed, 4: NoShow)
+                            bool wasConsumed = (oldStatus == 2 || oldStatus == 4);
+                            bool willBeConsumed = (newStatus == 2 || newStatus == 4);
+
+                            // planned/Cannelled -> Completed/NoShow (SEANS DÜŞ)
+                            if (!wasConsumed && willBeConsumed)
+                            {
+                                // SENARYO A: Normalden -> Tamamlandı/NoShow'a geçti (SEANS DÜŞ)
+                                string decSql = "UPDATE customer_services SET remaining_sessions = remaining_sessions - 1 WHERE customer_service_id = @CsId";
+                                await connection.ExecuteAsync(decSql, new { CsId = customerServiceId.Value }, transaction);
+                            }
+                            // Completed/NoShow -> planned/Cannelled (SEANS İADE ET)
+                            else if (wasConsumed && !willBeConsumed)
+                            {
+                                // SENARYO B: Veznedar hata yaptı! Tamamlandı'dan -> Planlandı/İptal'e geri çekti (SEANS İADE ET)
+                                string incSql = "UPDATE customer_services SET remaining_sessions = remaining_sessions + 1 WHERE customer_service_id = @CsId";
+                                await connection.ExecuteAsync(incSql, new { CsId = customerServiceId.Value }, transaction);
+                            }
+                            // Not: Eğer Tamamlandı(2)'den NoShow(4)'a geçerse her iki taraf da "consumed" olduğu için if'lere girmez, seans sayısı bozulmaz! Kusursuz!
+                        }
+
+                        // 3. Son olarak randevunun kendi statüsünü güncelle
+                        string updateAppSql = "UPDATE appointments SET status = @NewStatus WHERE appointment_id = @Id";
+                        await connection.ExecuteAsync(updateAppSql, new { NewStatus = newStatus, Id = appointmentId }, transaction);
+
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Statü güncellenirken kritik bir hata oluştu: " + ex.Message);
+                    }
+                }
+            }
+        }
+
         // Kayıt Sil
         public async Task<bool> DeleteAsync(int appointmentId)
         {
@@ -129,5 +211,47 @@ namespace DXBeauty.Data
             }
 
         }
+
+        public async Task DeleteAppointmentSafeAsync(int appointmentId)
+        {
+            using (var connection = new NpgsqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // 1. SİLMEDEN ÖNCE: Randevunun mevcut durumunu ve Paketini öğren
+                        string getAppSql = "SELECT status, customer_service_id FROM appointments WHERE appointment_id = @Id";
+                        var app = await connection.QuerySingleOrDefaultAsync(getAppSql, new { Id = appointmentId }, transaction);
+
+                        if (app != null)
+                        {
+                            int status = app.status ?? 0;
+                            int? customerServiceId = app.customer_service_id;
+
+                            // 2. EĞER BU RANDEVU SEANS YAKMIŞ BİR RANDEVUYSA (2 veya 4) İADE ET!
+                            if (customerServiceId.HasValue && (status == 2 || status == 4))
+                            {
+                                string restoreSql = "UPDATE customer_services SET remaining_sessions = remaining_sessions + 1 WHERE customer_service_id = @CsId";
+                                await connection.ExecuteAsync(restoreSql, new { CsId = customerServiceId.Value }, transaction);
+                            }
+
+                            // 3. İade işlemi bittiyse (veya zaten seans yakmamış bir randevuysa) artık güvenle silebilirsin.
+                            string delSql = "DELETE FROM appointments WHERE appointment_id = @Id";
+                            await connection.ExecuteAsync(delSql, new { Id = appointmentId }, transaction);
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Randevu silinirken bir hata oluştu ve işlem geri alındı: " + ex.Message);
+                    }
+                }
+            }
+        }
+
     }
 }

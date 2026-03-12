@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace DXBeauty.Entities
 {
-    public class Installment
+    public class PaymentPlan
     {
-        private int _installmentId;
+        private int _paymentPlanId;
         private int _customerServiceId;
-        private int _installmentNumber;
+        private int _sequenceNumber;
         private decimal _amount;
         private DateTime _dueDate;
         private bool _isPaid;
-        private DateTime _paidAt;
-
-        public int InstallmentId
+        private DateTime? _paidAt;
+        private decimal _paidAmount;
+        public int PaymentPlanId
         {
-            get => _installmentId;
-           init => _installmentId = value;
+            get => _paymentPlanId;
+           init => _paymentPlanId = value;
         }
 
         public int CustomerServiceId
@@ -28,16 +28,22 @@ namespace DXBeauty.Entities
            init => _customerServiceId = value;
         }
 
-        public int InstallmentNumber
+        public int SequenceNumber
         {
-            get => _installmentNumber;
-           init => _installmentNumber = value;
+            get => _sequenceNumber;
+           init => _sequenceNumber = value;
         }
 
         public decimal Amount
         {
             get => _amount;
            init => _amount = value;
+        }
+
+        public decimal PaidAmount
+        {
+            get => _paidAmount;
+           init => _paidAmount = value;
         }
 
         public DateTime DueDate
@@ -52,7 +58,7 @@ namespace DXBeauty.Entities
            init => _isPaid = value;
         }
 
-        public DateTime PaidAt
+        public DateTime? PaidAt
         {
             get => _paidAt;
            init => _paidAt = value;

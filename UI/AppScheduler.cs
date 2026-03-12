@@ -1,16 +1,24 @@
-﻿using DevExpress.XtraEditors;
+﻿using Dapper;
+using DevExpress.XtraCharts.Designer.Native;
+using DevExpress.XtraEditors;
 using DevExpress.XtraScheduler;
+using DevExpress.XtraScheduler.Localization;
 using DevExpress.XtraScheduler.Xml;
 using DXBeauty.Data;
 using DXBeauty.Entities;
+using DXBeauty.Enums;
+using DXBeauty.Services;
+using Npgsql;
 using System;
 using System.ComponentModel;
 using System.Configuration;
+using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Appointment = DXBeauty.Entities.Appointment;
+using DXBeauty.Dtos;
 
 namespace DXBeauty.UI
 {
@@ -67,6 +75,24 @@ namespace DXBeauty.UI
             storage.Appointments.CustomFieldMappings.Add(new AppointmentCustomFieldMapping("ServiceId", "ServiceId"));
             storage.Appointments.CustomFieldMappings.Add(new AppointmentCustomFieldMapping("CS_ID", "CustomerServiceId"));
             storage.Appointments.CustomFieldMappings.Add(new AppointmentCustomFieldMapping("CustomerId", "CustomerId"));
+
+            // 1. DevExpress'in varsayılan statülerini temizle
+            schedulerDataStorage1.Appointments.Statuses.Clear();
+
+            // 2. Yardımcı metodumuzu Color yerine Brush alacak şekilde güncelliyoruz
+            void AddAppointmentStatus(DXBeauty.Enums.AppointmentStatusType type, string name, string description, Brush brush)
+            {
+                // Dördüncü parametre olarak Brush isteyen overload'u (aşırı yüklemeyi) kullanıyoruz
+                var status = schedulerDataStorage1.Appointments.Statuses.CreateNewStatus((int)type, name, description, brush);
+                schedulerDataStorage1.Appointments.Statuses.Add(status);
+            }
+
+            // 3. Kendi net statülerimizi "Brushes" sınıfı ile ekliyoruz
+            AddAppointmentStatus(DXBeauty.Enums.AppointmentStatusType.Planned, "Planlandı", "Müşteri Bekleniyor", Brushes.Orange);
+            AddAppointmentStatus(DXBeauty.Enums.AppointmentStatusType.Completed, "Tamamlandı", "İşlem Başarıyla Bitti", Brushes.LimeGreen);
+            AddAppointmentStatus(DXBeauty.Enums.AppointmentStatusType.Cancelled, "İptal (Haberli)", "Müşteri Haber Verdi", Brushes.Gray);
+            AddAppointmentStatus(DXBeauty.Enums.AppointmentStatusType.NoShow, "Gelmedi (No-Show)", "Habersiz Gelmedi", Brushes.Red);
+
         }
 
         private void schedulerControl2_EditAppointmentFormShowing(object sender, AppointmentFormEventArgs e)
@@ -108,23 +134,23 @@ namespace DXBeauty.UI
                 // Üstüne şık bir çizgi (ayraç) koysun ki DevExpress'in kendi menüsünden ayrı dursun
                 tahsilatButonu.BeginGroup = true;
 
+                var seciliRandevu = schedulerControl2.SelectedAppointments.FirstOrDefault();
+                if (seciliRandevu == null) return;
+
+                // Randevu ID'sini al
+                int? randevuId = seciliRandevu.Id != null ? Convert.ToInt32(seciliRandevu.Id) : (int?)null;
+
+                // CustomFields üzerinden Müşteri ID'sini al
+                int? musteriId = null;
+
+                if (seciliRandevu.CustomFields["CustomerId"] != null && seciliRandevu.CustomFields["CustomerId"] != DBNull.Value)
+                {
+                    musteriId = Convert.ToInt32(seciliRandevu.CustomFields["CustomerId"]);
+                }
+
                 // 2. Butona Tıklanma (Click) Olayını Tanımlıyoruz
                 tahsilatButonu.Click += (s, args) =>
                 {
-                    // O an sağ tıklanan (seçili olan) randevuyu yakala
-                    var seciliRandevu = schedulerControl2.SelectedAppointments.FirstOrDefault();
-                    if (seciliRandevu == null) return;
-
-                    // Randevu ID'sini al
-                    int? randevuId = seciliRandevu.Id != null ? Convert.ToInt32(seciliRandevu.Id) : (int?)null;
-
-                    // CustomFields üzerinden Müşteri ID'sini al
-                    int? musteriId = null;
-                    if (seciliRandevu.CustomFields["CustomerId"] != null && seciliRandevu.CustomFields["CustomerId"] != DBNull.Value)
-                    {
-                        musteriId = Convert.ToInt32(seciliRandevu.CustomFields["CustomerId"]);
-                    }
-
                     // --- BURASI PAYMENT FORM'UN AÇILACAĞI YER ---
 
                     // 1.Senin oluşturduğun UserControl'ü (Yapboz parçasını) hazırlıyoruz
@@ -148,6 +174,90 @@ namespace DXBeauty.UI
 
                 // 3. Butonu menünün en üstüne (0. indeks) ekle
                 e.Menu.Items.Insert(0, tahsilatButonu);
+
+                // =========================================================
+                // 2. YENİ WHATSAPP ALT MENÜSÜ (SUB-MENU)
+                // =========================================================
+                if (musteriId > 0 && randevuId.HasValue) // Müşterisi belli bir randevuysa WhatsApp menüsünü göster
+                {
+
+                    DevExpress.Utils.Menu.DXSubMenuItem whatsappMenu = new DevExpress.Utils.Menu.DXSubMenuItem("📱 WhatsApp İle Bildir");
+                    whatsappMenu.BeginGroup = true;
+
+                    // Alt Buton 1: Hatırlatma
+                    DevExpress.Utils.Menu.DXMenuItem btnHatirlat = new DevExpress.Utils.Menu.DXMenuItem("🔔 Randevu Hatırlat");
+                    btnHatirlat.Click += async (s, args) => await SendWhatsAppFromCalendarAsync((int)musteriId, randevuId.Value, seciliRandevu, "REMINDER");
+
+                    // Alt Buton 2: No-Show
+                    DevExpress.Utils.Menu.DXMenuItem btnGelmedi = new DevExpress.Utils.Menu.DXMenuItem("⚠️ Gelmedi (No-Show)");
+                    btnGelmedi.Click += async (s, args) => await SendWhatsAppFromCalendarAsync((int)musteriId, randevuId.Value, seciliRandevu, "NO_SHOW");
+
+                    // Alt Buton 3: İptal
+                    DevExpress.Utils.Menu.DXMenuItem btnIptal = new DevExpress.Utils.Menu.DXMenuItem("❌ İptal Onayı Gönder");
+                    btnIptal.Click += async (s, args) => await SendWhatsAppFromCalendarAsync((int)musteriId, randevuId.Value, seciliRandevu, "CANCEL");
+
+                    // Butonları Alt Menüye Ekle
+                    whatsappMenu.Items.Add(btnHatirlat);
+                    whatsappMenu.Items.Add(btnGelmedi);
+                    whatsappMenu.Items.Add(btnIptal);
+
+                    // Alt Menüyü Ana Menüye (Tahsilatın Altına) Ekle
+                    e.Menu.Items.Insert(1, whatsappMenu);
+                }
+            }
+        }
+        // Gerekli using'ler (Eğer yoksa en üste ekle)
+        // using Dapper;
+        // using Npgsql;
+        // using DXBeauty.Services; 
+
+        private async Task SendWhatsAppFromCalendarAsync(int customerId, int appointmentId, DevExpress.XtraScheduler.Appointment apt, string templateCode)
+        {
+            try
+            {
+                using (var connection = new NpgsqlConnection(connectionString)) // Kendi bağlantı cümleni yaz
+                {
+                    // 1. Müşterinin Adını ve Telefonunu Veritabanından Çek
+                    string musteriSql = "SELECT first_name || ' ' || last_name AS fullname, phone_number AS phone FROM customers WHERE customer_id = @Id";
+                    var musteri = await connection.QuerySingleOrDefaultAsync(musteriSql, new { Id = customerId });
+
+                    if (musteri == null || string.IsNullOrWhiteSpace(musteri.phone))
+                    {
+                        DevExpress.XtraEditors.XtraMessageBox.Show("Bu müşterinin kayıtlı bir telefon numarası bulunamadı!", "Eksik Bilgi", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    // 2. İlgili Şablonu Veritabanından Çek (Örn: 'REMINDER')
+                    string sablonSql = "SELECT template_content FROM message_templates WHERE template_code = @Code AND is_active = true LIMIT 1";
+                    string sablonIcerik = await connection.QuerySingleOrDefaultAsync<string>(sablonSql, new { Code = templateCode });
+
+                    if (string.IsNullOrWhiteSpace(sablonIcerik))
+                    {
+                        DevExpress.XtraEditors.XtraMessageBox.Show("Bu işlem için aktif bir mesaj şablonu bulunamadı. Lütfen ayarlardan şablonlarınızı kontrol edin.", "Şablon Bulunamadı", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    // 3. Şablonu Dinamik Verilerle Doldur (Hizmet adını Subject'ten veya DB'den alıyoruz)
+                    WhatsAppService waService = new WhatsAppService(connectionString);
+                    string hizmetAdi = apt.Subject; // Veya CustomFields["ServiceId"] üzerinden DB'den gerçek hizmet adını da çekebilirsin.
+
+                    string hazirMesaj = waService.GenerateMessageFromTemplate(
+                        templateContent: sablonIcerik,
+                        customerName: musteri.fullname,
+                        date: apt.Start,
+                        serviceName: hizmetAdi
+                    );
+
+                    // 4. BUM! Mesajı Gönder ve Logla!
+                    int messageType = 1; // Loglama için tip (Örn: 1 Hatırlatma, 4 No-Show)
+                    if (templateCode == "NO_SHOW") messageType = 4;
+
+                    await waService.SendMessageAsync(customerId, appointmentId, musteri.phone, hazirMesaj, messageType);
+                }
+            }
+            catch (Exception ex)
+            {
+                DevExpress.XtraEditors.XtraMessageBox.Show("WhatsApp yönlendirmesi sırasında hata oluştu: " + ex.Message, "Hata", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
             }
         }
 
@@ -265,6 +375,8 @@ namespace DXBeauty.UI
 
                 // 2. Repository üzerinden veritabanına kaydet
                 int yeniKayitId = await appointmentRepo.AddAsync(newEntity);
+
+
                 // 2. DevExpress'e bu yeni ID'yi zorla atıyoruz! (Sihirli Dokunuş)
                 schedulerDataStorage1.SetAppointmentId(apt, yeniKayitId);
             }
@@ -286,6 +398,11 @@ namespace DXBeauty.UI
                 if (apt.Id == null || Convert.ToInt32(apt.Id) == 0) continue;
 
                 int appointmentId = Convert.ToInt32(apt.Id);
+
+                int newStatus = (int)apt.StatusKey; // Enum'daki int değerini verir (1, 2, 3, 4)
+                
+                // Veritabanında o efsanevi metodu çalıştır!
+                await appointmentRepo.UpdateAppointmentStatusAsync(appointmentId, newStatus);
 
                 // 2. Formdan (veya sürükle-bırak ile) değişen GÜNCEL değerleri alıp Entity oluşturuyoruz.
                 // Dikkat: Insert (Ekleme) koduyla birebir aynı, sadece ilk parametreye "0" değil, gerçek "appointmentId" veriyoruz.
@@ -324,7 +441,8 @@ namespace DXBeauty.UI
             {
                 if (apt.Id == null) continue;
                 int id = Convert.ToInt32(apt.Id);
-                await appointmentRepo.DeleteAsync(id);
+                // YENİ AKILLI SİLME METODUMUZU ÇAĞIRIYORUZ
+                await appointmentRepo.DeleteAppointmentSafeAsync(id);
 
                 // 2. YETİM TEMİZLİĞİ (Sihirli Dokunuş)
                 // Eğer silinen randevu bir Ana Şablon (Type 1 - Pattern) ise...
@@ -336,9 +454,7 @@ namespace DXBeauty.UI
                     // Repository'e "Bu GUID'e sahip ne kadar istisna kopya varsa onları da sil" de!
                     await appointmentRepo.DeleteExceptionsAsync(patternGuid);
                 }
-
             }
-
         }
         private void SchedulerControl2_AppointmentDrop(object sender, DevExpress.XtraScheduler.AppointmentDragEventArgs e)
         {

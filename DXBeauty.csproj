@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="DevExpress.Win.Dashboard.Design" Version="25.1.3" />
     <PackageReference Include="DevExpress.Win.Design" Version="25.1.3" />
     <PackageReference Include="DevExpress.Win.BonusSkins" Version="25.1.3" />
     <PackageReference Include="Npgsql" Version="9.0.4" />

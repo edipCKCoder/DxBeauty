@@ -79,7 +79,7 @@ namespace DXBeauty.UI
             gridView1.OptionsSelection.MultiSelect = true;
             gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
 
-            if (gridView1.Columns["InstallmentId"] != null) gridView1.Columns["InstallmentId"].Visible = false;
+            if (gridView1.Columns["PaymentPlanId"] != null) gridView1.Columns["PaymentPlanId"].Visible = false;
             if (gridView1.Columns["CustomerServiceId"] != null) gridView1.Columns["CustomerServiceId"].Visible = false;
             if (gridView1.Columns["AppointmentId"] != null) gridView1.Columns["AppointmentId"].Visible = false;
 
