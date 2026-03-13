@@ -446,7 +446,7 @@ namespace DXBeauty.UI
             }
 
             // Eğer veznedar bir paket seçtiyse kontrol et
-            if (lueCustomerPackages.EditValue != null)
+            if (lueCustomerPackages.EditValue != null && lueCustomerPackages.EditValue != DBNull.Value)
             {
                 var selectedPackage = lueCustomerPackages.GetSelectedDataRow() as CustomerServiceLookupDto;
 
@@ -498,15 +498,31 @@ namespace DXBeauty.UI
             // --- GEÇMİŞ ZAMAN KONTROLÜ ---
             DateTime secilenBaslangic = edtStartDate.DateTime.Date + edtStartTime.Time.TimeOfDay;
 
-            // Kural: Seçilen saat ŞU AN'dan küçükse VE bu YENİ bir randevuysa engelle!
-            // (IsNewAppointment kullanıyoruz ki, dünkü randevuyu açıp durumunu güncelleyebilsinler)
-            if (Controller.IsNewAppointment && secilenBaslangic < DateTime.Now)
+            bool gecmisZamanMi = false;
+
+            // Eğer "Tüm Gün" işaretliyse, sadece gün kontrolü yap (Bugünden küçük mü?)
+            // DateTime.Today, o günün 00:00:00 saatini verir.
+            if (chkAllDay.Checked)
             {
-                XtraMessageBox.Show(
-                    "Geçmiş bir tarih veya saate yeni randevu oluşturulamaz. Lütfen ileri bir zaman seçiniz.",
+                gecmisZamanMi = secilenBaslangic.Date < DateTime.Today;
+            }
+            else
+            {
+                // Normal saatli randevuysa, anlık saate göre kontrol et.
+                // Opsiyonel: Eğer işletmede randevuların 5-10 dakika gecikmeli girilme ihtimali varsa,
+                // burayı da "secilenBaslangic.Date < DateTime.Today" yaparak 
+                // aynı gün içindeki geçmiş saat kısıtlamasını tamamen kaldırabilirsiniz.
+                gecmisZamanMi = secilenBaslangic < DateTime.Now;
+            }
+
+            // Kural: Seçilen zaman GEÇMİŞTEYSE ve bu YENİ bir randevuysa engelle!
+            if (Controller.IsNewAppointment && gecmisZamanMi)
+            {
+                DevExpress.XtraEditors.XtraMessageBox.Show(
+                    "Geçmiş bir tarih veya saate yeni randevu oluşturulamaz. Lütfen geçerli bir zaman seçiniz.",
                     "Geçersiz Tarih",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                    System.Windows.Forms.MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBoxIcon.Warning);
                 return; // Formun kapanmasını ve kaydetmeyi engelle
             }
 
@@ -524,16 +540,6 @@ namespace DXBeauty.UI
                 return;
             if (!SaveFormData(Controller.EditedAppointmentCopy))
                 return;
-            // YENİ HALİ: Personel Çakışma Kontrolü
-            if (!Controller.IsConflictResolved())
-            {
-                XtraMessageBox.Show(
-                    "Seçilen personelin bu saat diliminde başka bir randevusu bulunmaktadır. Lütfen farklı bir saat veya personel seçiniz.",
-                    "Personel Çakışması",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                return; // Formun kapanmasını ve kaydetmeyi engeller
-            }
             if (!Controller.IsTimeValid())
             {
                 ShowMessageBox(SchedulerLocalizer.GetString(SchedulerStringId.Msg_InvalidAppointmentTime), Controller.GetMessageBoxCaption(SchedulerStringId.Msg_InvalidAppointmentTime), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

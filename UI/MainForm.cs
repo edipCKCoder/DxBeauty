@@ -80,5 +80,44 @@ namespace DXBeauty
         }
 
 
+        private void btnRibbonfinancialReport_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShowControlInPanel(new UI.FinancialReportControl());
+        }
+
+        private void customerRegisterbarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShowControlInPanel(new UI.CustomerRegisterControl());
+        }
+
+        private void CustomerHistorybarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShowControlInPanel(new UI.CustomerHistoryControl());
+        }
+
+        private void customerPackagesbarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShowControlInPanel(new UI.CustomerPackagesControl());
+        }
+
+        private void schedulerBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShowControlInPanel(new UI.AppScheduler());
+        }
+
+        private void dashboardBarButtonItem6_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShowControlInPanel(new UI.DashboardControl());
+        }
+
+        private void servicesPackagesBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShowControlInPanel(new UI.ServicesControl());
+        }
+
+        private void reminderMessagebarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShowControlInPanel(new UI.MessageTemplateControl());
+        }
     }
 }

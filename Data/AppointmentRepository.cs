@@ -251,7 +251,7 @@ namespace DXBeauty.Data
                     }
                 }
             }
-        }
+        }     
 
     }
 }

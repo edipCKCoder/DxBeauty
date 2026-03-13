@@ -24,6 +24,8 @@ namespace DXBeauty.Dtos
         public string CustomerName { get; set; }
         public string ServiceName { get; set; }
         public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        // public DateTime SelectedTime { get; set; }
         public int Status { get; set; } // 0: Bekliyor, 1: Tamamlandı vb.
     }
 

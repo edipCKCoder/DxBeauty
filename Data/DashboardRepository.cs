@@ -2,6 +2,7 @@
 using DXBeauty.Dtos;
 using DXBeauty.Entities;
 using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -42,29 +43,31 @@ namespace DXBeauty.Data
             }
         }
 
-        // ====================================================================
-        // MODÜL 2: BUGÜNÜN RANDEVULARI (Değişmedi, Kusursuz Çalışıyor)
-        // ====================================================================
-        public async Task<IEnumerable<TodayAppointmentDto>> GetTodaysAppointmentsAsync()
+        // Artık "Bugünün" değil, "İstenilen Tarihin" randevularını getiriyor!
+        public async Task<IEnumerable<TodayAppointmentDto>> GetAppointmentsByDateAsync(DateTime selectedDate)
         {
             string sql = @"
-                SELECT 
-                    a.appointment_id AS AppointmentId,
-                    c.first_name || ' ' || c.last_name AS CustomerName,
-                    COALESCE(s.name, sp.name, 'Genel İşlem') AS ServiceName,
-                    a.appointment_start_date AS StartTime,
-                    a.status AS Status
-                FROM appointments a
-                INNER JOIN customers c ON a.customer_id = c.customer_id
-                LEFT JOIN services s ON a.service_id = s.service_id
-                LEFT JOIN customer_services cs ON a.customer_service_id = cs.customer_service_id
-                LEFT JOIN service_packages sp ON cs.service_package_id = sp.service_package_id
-                WHERE a.appointment_start_date::date = CURRENT_DATE AND a.status != 3
-                ORDER BY a.appointment_start_date ASC;";
+        SELECT 
+            a.appointment_id AS AppointmentId,
+            c.first_name || ' ' || c.last_name AS CustomerName,
+            COALESCE(s.name, sp.name, 'Genel İşlem') AS ServiceName,
+            a.appointment_start_date AS StartTime,
+            a.appointment_end_date AS EndTime,  
+            a.status AS Status
+        FROM appointments a
+        INNER JOIN customers c ON a.customer_id = c.customer_id
+        LEFT JOIN services s ON a.service_id = s.service_id
+        LEFT JOIN customer_services cs ON a.customer_service_id = cs.customer_service_id
+        LEFT JOIN service_packages sp ON cs.service_package_id = sp.service_package_id
+        
+        -- DİKKAT: Artık CURRENT_DATE yerine dışarıdan gelen @SelectedDate parametresini kullanıyoruz!
+        WHERE a.appointment_start_date::date = @SelectedDate::date AND a.status != 3
+        ORDER BY a.appointment_start_date ASC;";
 
             using (var connection = new NpgsqlConnection(_connectionString))
             {
-                return await connection.QueryAsync<TodayAppointmentDto>(sql);
+                // Dapper ile tarihi parametre olarak yolluyoruz
+                return await connection.QueryAsync<TodayAppointmentDto>(sql, new { SelectedDate = selectedDate });
             }
         }
 
@@ -133,6 +136,20 @@ namespace DXBeauty.Data
             using (var connection = new NpgsqlConnection(_connectionString))
             {
                 return await connection.QueryAsync<CriticalAlertDto>(sql);
+            }
+        }
+
+        // Randevusu olan (İptal edilmemiş) tüm benzersiz tarihleri getirir
+        public async Task<IEnumerable<DateTime>> GetActiveAppointmentDatesAsync()
+        {
+            string sql = @"
+        SELECT DISTINCT appointment_start_date::date 
+        FROM appointments 
+        WHERE status != 3;"; // 3: İptal durumu varsayımı
+
+            using (var connection = new NpgsqlConnection(_connectionString))
+            {
+                return await connection.QueryAsync<DateTime>(sql);
             }
         }
     }
