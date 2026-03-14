@@ -1,6 +1,7 @@
 ﻿using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.UserSkins;
+using DevExpress.Utils.Extensions;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Helpers;
 using DevExpress.XtraBars.Ribbon;
@@ -87,7 +88,18 @@ namespace DXBeauty
 
         private void customerRegisterbarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ShowControlInPanel(new UI.CustomerRegisterControl());
+
+            CustomerRegisterControl customerRegisterControl = new UI.CustomerRegisterControl();
+
+            customerRegisterControl.Dock = DockStyle.Fill;
+
+            XtraForm popUp = new XtraForm();
+
+            popUp.ClientSize = customerRegisterControl.Size;
+            popUp.AddControl(customerRegisterControl);
+            popUp.StartPosition = FormStartPosition.CenterScreen;
+            popUp.ShowDialog();
+
         }
 
         private void CustomerHistorybarButtonItem_ItemClick(object sender, ItemClickEventArgs e)

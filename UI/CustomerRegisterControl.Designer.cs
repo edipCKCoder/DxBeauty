@@ -28,239 +28,248 @@
         /// </summary>
         private void InitializeComponent()
         {
-            groupControl1 = new DevExpress.XtraEditors.GroupControl();
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            addressBox = new System.Windows.Forms.RichTextBox();
             birthdayBox = new DevExpress.XtraEditors.DateEdit();
-            emailBox = new System.Windows.Forms.TextBox();
-            phoneBox = new System.Windows.Forms.TextBox();
-            surnameBox = new System.Windows.Forms.TextBox();
-            nameBox = new System.Windows.Forms.TextBox();
             SaveButton = new DevExpress.XtraEditors.SimpleButton();
+            nameBox = new DevExpress.XtraEditors.TextEdit();
+            surnameBox = new DevExpress.XtraEditors.TextEdit();
+            phoneBox = new DevExpress.XtraEditors.TextEdit();
+            emailBox = new DevExpress.XtraEditors.TextEdit();
+            addressBox = new DevExpress.XtraEditors.MemoEdit();
             Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            ((System.ComponentModel.ISupportInitialize)groupControl1).BeginInit();
-            groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)birthdayBox.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)birthdayBox.Properties.CalendarTimeProperties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nameBox.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)surnameBox.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)phoneBox.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)emailBox.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)addressBox.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem8).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem7).BeginInit();
             SuspendLayout();
-            // 
-            // groupControl1
-            // 
-            groupControl1.Controls.Add(layoutControl1);
-            groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            groupControl1.Location = new System.Drawing.Point(0, 0);
-            groupControl1.Name = "groupControl1";
-            groupControl1.Size = new System.Drawing.Size(1069, 634);
-            groupControl1.TabIndex = 1;
-            groupControl1.Text = "Customer İnformations";
             // 
             // layoutControl1
             // 
-            layoutControl1.Controls.Add(addressBox);
             layoutControl1.Controls.Add(birthdayBox);
-            layoutControl1.Controls.Add(emailBox);
-            layoutControl1.Controls.Add(phoneBox);
-            layoutControl1.Controls.Add(surnameBox);
-            layoutControl1.Controls.Add(nameBox);
             layoutControl1.Controls.Add(SaveButton);
+            layoutControl1.Controls.Add(nameBox);
+            layoutControl1.Controls.Add(surnameBox);
+            layoutControl1.Controls.Add(phoneBox);
+            layoutControl1.Controls.Add(emailBox);
+            layoutControl1.Controls.Add(addressBox);
             layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            layoutControl1.Location = new System.Drawing.Point(2, 23);
+            layoutControl1.Location = new System.Drawing.Point(0, 0);
             layoutControl1.Name = "layoutControl1";
             layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1104, 195, 650, 400);
             layoutControl1.Root = Root;
-            layoutControl1.Size = new System.Drawing.Size(1065, 609);
+            layoutControl1.Size = new System.Drawing.Size(491, 370);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
-            // 
-            // addressBox
-            // 
-            addressBox.Location = new System.Drawing.Point(12, 124);
-            addressBox.MaximumSize = new System.Drawing.Size(0, 100);
-            addressBox.Name = "addressBox";
-            addressBox.Size = new System.Drawing.Size(1041, 100);
-            addressBox.TabIndex = 6;
-            addressBox.Text = "";
             // 
             // birthdayBox
             // 
             birthdayBox.EditValue = null;
-            birthdayBox.Location = new System.Drawing.Point(66, 84);
+            birthdayBox.Location = new System.Drawing.Point(119, 150);
             birthdayBox.Name = "birthdayBox";
             birthdayBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             birthdayBox.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            birthdayBox.Size = new System.Drawing.Size(987, 20);
+            birthdayBox.Size = new System.Drawing.Size(345, 22);
             birthdayBox.StyleController = layoutControl1;
             birthdayBox.TabIndex = 5;
             // 
-            // emailBox
+            // SaveButton
             // 
-            emailBox.Location = new System.Drawing.Point(66, 60);
-            emailBox.Margin = new System.Windows.Forms.Padding(5);
-            emailBox.Name = "emailBox";
-            emailBox.Size = new System.Drawing.Size(987, 20);
-            emailBox.TabIndex = 4;
-            // 
-            // phoneBox
-            // 
-            phoneBox.Location = new System.Drawing.Point(66, 36);
-            phoneBox.Name = "phoneBox";
-            phoneBox.Size = new System.Drawing.Size(987, 20);
-            phoneBox.TabIndex = 3;
-            // 
-            // surnameBox
-            // 
-            surnameBox.Location = new System.Drawing.Point(586, 12);
-            surnameBox.Name = "surnameBox";
-            surnameBox.Size = new System.Drawing.Size(467, 20);
-            surnameBox.TabIndex = 2;
+            SaveButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            SaveButton.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
+            SaveButton.ImageOptions.SvgImage = Properties.Resources.Save1;
+            SaveButton.Location = new System.Drawing.Point(175, 282);
+            SaveButton.Name = "SaveButton";
+            SaveButton.Size = new System.Drawing.Size(141, 53);
+            SaveButton.StyleController = layoutControl1;
+            SaveButton.TabIndex = 7;
+            SaveButton.Text = "Kayıt";
+            SaveButton.Click += SaveButton_Click;
             // 
             // nameBox
             // 
-            nameBox.Location = new System.Drawing.Point(66, 12);
+            nameBox.Location = new System.Drawing.Point(119, 42);
             nameBox.Name = "nameBox";
-            nameBox.Size = new System.Drawing.Size(462, 20);
+            nameBox.Size = new System.Drawing.Size(118, 22);
+            nameBox.StyleController = layoutControl1;
             nameBox.TabIndex = 0;
             // 
-            // SaveButton
+            // surnameBox
             // 
-            SaveButton.Location = new System.Drawing.Point(12, 228);
-            SaveButton.Name = "SaveButton";
-            SaveButton.Size = new System.Drawing.Size(1041, 22);
-            SaveButton.StyleController = layoutControl1;
-            SaveButton.TabIndex = 7;
-            SaveButton.Text = "Save";
-            SaveButton.Click += SaveButton_Click;
+            surnameBox.Location = new System.Drawing.Point(301, 42);
+            surnameBox.Name = "surnameBox";
+            surnameBox.Size = new System.Drawing.Size(163, 22);
+            surnameBox.StyleController = layoutControl1;
+            surnameBox.TabIndex = 2;
+            // 
+            // phoneBox
+            // 
+            phoneBox.Location = new System.Drawing.Point(119, 78);
+            phoneBox.Name = "phoneBox";
+            phoneBox.Size = new System.Drawing.Size(345, 22);
+            phoneBox.StyleController = layoutControl1;
+            phoneBox.TabIndex = 3;
+            // 
+            // emailBox
+            // 
+            emailBox.Location = new System.Drawing.Point(119, 114);
+            emailBox.Name = "emailBox";
+            emailBox.Size = new System.Drawing.Size(345, 22);
+            emailBox.StyleController = layoutControl1;
+            emailBox.TabIndex = 4;
+            // 
+            // addressBox
+            // 
+            addressBox.Location = new System.Drawing.Point(119, 196);
+            addressBox.Name = "addressBox";
+            addressBox.Size = new System.Drawing.Size(345, 64);
+            addressBox.StyleController = layoutControl1;
+            addressBox.TabIndex = 6;
             // 
             // Root
             // 
             Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            Root.GroupBordersVisible = false;
-            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem3, layoutControlItem4, layoutControlItem2, layoutControlItem8, layoutControlItem6, layoutControlItem7 });
+            Root.GroupStyle = DevExpress.Utils.GroupStyle.Light;
+            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem8, layoutControlItem7, layoutControlItem5, layoutControlItem1, layoutControlItem2, layoutControlItem3, layoutControlItem4 });
             Root.Name = "Root";
-            Root.Size = new System.Drawing.Size(1065, 609);
-            // 
-            // layoutControlItem1
-            // 
-            layoutControlItem1.Control = nameBox;
-            layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(520, 24);
-            layoutControlItem1.Text = "Name";
-            layoutControlItem1.TextSize = new System.Drawing.Size(42, 13);
-            // 
-            // layoutControlItem3
-            // 
-            layoutControlItem3.Control = phoneBox;
-            layoutControlItem3.Location = new System.Drawing.Point(0, 24);
-            layoutControlItem3.Name = "layoutControlItem3";
-            layoutControlItem3.Size = new System.Drawing.Size(1045, 24);
-            layoutControlItem3.Text = "Phone";
-            layoutControlItem3.TextSize = new System.Drawing.Size(42, 13);
-            // 
-            // layoutControlItem4
-            // 
-            layoutControlItem4.Control = emailBox;
-            layoutControlItem4.Location = new System.Drawing.Point(0, 48);
-            layoutControlItem4.Name = "layoutControlItem4";
-            layoutControlItem4.Size = new System.Drawing.Size(1045, 24);
-            layoutControlItem4.Text = "e-Mail";
-            layoutControlItem4.TextSize = new System.Drawing.Size(42, 13);
-            // 
-            // layoutControlItem2
-            // 
-            layoutControlItem2.Control = surnameBox;
-            layoutControlItem2.Location = new System.Drawing.Point(520, 0);
-            layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new System.Drawing.Size(525, 24);
-            layoutControlItem2.Text = "Surname";
-            layoutControlItem2.TextSize = new System.Drawing.Size(42, 13);
+            Root.Size = new System.Drawing.Size(491, 370);
+            Root.Spacing = new DevExpress.XtraLayout.Utils.Padding(15, 15, 15, 15);
+            Root.Text = "Müşteri Kayıt";
             // 
             // layoutControlItem8
             // 
             layoutControlItem8.Control = birthdayBox;
-            layoutControlItem8.Location = new System.Drawing.Point(0, 72);
+            layoutControlItem8.Location = new System.Drawing.Point(0, 108);
             layoutControlItem8.Name = "layoutControlItem8";
-            layoutControlItem8.Size = new System.Drawing.Size(1045, 24);
-            layoutControlItem8.Text = "Birthday";
-            layoutControlItem8.TextSize = new System.Drawing.Size(42, 13);
-            // 
-            // layoutControlItem6
-            // 
-            layoutControlItem6.Control = addressBox;
-            layoutControlItem6.Location = new System.Drawing.Point(0, 96);
-            layoutControlItem6.Name = "layoutControlItem6";
-            layoutControlItem6.Size = new System.Drawing.Size(1045, 120);
-            layoutControlItem6.Text = "Address";
-            layoutControlItem6.TextLocation = DevExpress.Utils.Locations.Top;
-            layoutControlItem6.TextSize = new System.Drawing.Size(42, 13);
+            layoutControlItem8.Size = new System.Drawing.Size(441, 36);
+            layoutControlItem8.Spacing = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 10);
+            layoutControlItem8.Text = "Doğum Tarihi :";
+            layoutControlItem8.TextSize = new System.Drawing.Size(80, 13);
             // 
             // layoutControlItem7
             // 
             layoutControlItem7.Control = SaveButton;
-            layoutControlItem7.Location = new System.Drawing.Point(0, 216);
+            layoutControlItem7.Location = new System.Drawing.Point(0, 232);
             layoutControlItem7.Name = "layoutControlItem7";
-            layoutControlItem7.Size = new System.Drawing.Size(1045, 373);
+            layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(150, 150, 10, 10);
+            layoutControlItem7.Size = new System.Drawing.Size(441, 73);
             layoutControlItem7.TextVisible = false;
+            // 
+            // layoutControlItem5
+            // 
+            layoutControlItem5.Control = nameBox;
+            layoutControlItem5.Location = new System.Drawing.Point(0, 0);
+            layoutControlItem5.Name = "layoutControlItem5";
+            layoutControlItem5.Size = new System.Drawing.Size(219, 36);
+            layoutControlItem5.Spacing = new DevExpress.XtraLayout.Utils.Padding(0, 5, 0, 0);
+            layoutControlItem5.Text = "Müşteri İsmi :";
+            layoutControlItem5.TextSize = new System.Drawing.Size(80, 13);
+            // 
+            // layoutControlItem1
+            // 
+            layoutControlItem1.Control = surnameBox;
+            layoutControlItem1.Location = new System.Drawing.Point(219, 0);
+            layoutControlItem1.Name = "layoutControlItem1";
+            layoutControlItem1.Size = new System.Drawing.Size(222, 36);
+            layoutControlItem1.Spacing = new DevExpress.XtraLayout.Utils.Padding(5, 0, 0, 10);
+            layoutControlItem1.Text = "Soyisim :";
+            layoutControlItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize;
+            layoutControlItem1.TextSize = new System.Drawing.Size(50, 13);
+            layoutControlItem1.TextToControlDistance = 0;
+            // 
+            // layoutControlItem2
+            // 
+            layoutControlItem2.Control = phoneBox;
+            layoutControlItem2.Location = new System.Drawing.Point(0, 36);
+            layoutControlItem2.Name = "layoutControlItem2";
+            layoutControlItem2.Size = new System.Drawing.Size(441, 36);
+            layoutControlItem2.Spacing = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 10);
+            layoutControlItem2.Text = "Telefon :";
+            layoutControlItem2.TextSize = new System.Drawing.Size(80, 13);
+            // 
+            // layoutControlItem3
+            // 
+            layoutControlItem3.Control = emailBox;
+            layoutControlItem3.Location = new System.Drawing.Point(0, 72);
+            layoutControlItem3.Name = "layoutControlItem3";
+            layoutControlItem3.Size = new System.Drawing.Size(441, 36);
+            layoutControlItem3.Spacing = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 10);
+            layoutControlItem3.Text = "E - Mail :";
+            layoutControlItem3.TextSize = new System.Drawing.Size(80, 13);
+            // 
+            // layoutControlItem4
+            // 
+            layoutControlItem4.Control = addressBox;
+            layoutControlItem4.Location = new System.Drawing.Point(0, 144);
+            layoutControlItem4.Name = "layoutControlItem4";
+            layoutControlItem4.Size = new System.Drawing.Size(441, 88);
+            layoutControlItem4.Spacing = new DevExpress.XtraLayout.Utils.Padding(0, 0, 10, 10);
+            layoutControlItem4.Text = "Müşteri Adresi :";
+            layoutControlItem4.TextSize = new System.Drawing.Size(80, 13);
             // 
             // CustomerRegisterControl
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            Controls.Add(groupControl1);
+            Controls.Add(layoutControl1);
             Name = "CustomerRegisterControl";
-            Size = new System.Drawing.Size(1069, 634);
-            ((System.ComponentModel.ISupportInitialize)groupControl1).EndInit();
-            groupControl1.ResumeLayout(false);
+            Size = new System.Drawing.Size(491, 370);
             ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
             layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)birthdayBox.Properties.CalendarTimeProperties).EndInit();
             ((System.ComponentModel.ISupportInitialize)birthdayBox.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nameBox.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)surnameBox.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)phoneBox.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)emailBox.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)addressBox.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)Root).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem5).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem8).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem7).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
-        private System.Windows.Forms.RichTextBox addressBox;
         private DevExpress.XtraEditors.DateEdit birthdayBox;
-        private System.Windows.Forms.TextBox emailBox;
-        private System.Windows.Forms.TextBox phoneBox;
-        private System.Windows.Forms.TextBox surnameBox;
-        private System.Windows.Forms.TextBox nameBox;
         private DevExpress.XtraEditors.SimpleButton SaveButton;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraEditors.TextEdit nameBox;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraEditors.TextEdit surnameBox;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraEditors.TextEdit phoneBox;
+        private DevExpress.XtraEditors.TextEdit emailBox;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraEditors.MemoEdit addressBox;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
     }
 }

@@ -40,7 +40,6 @@
             searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -66,7 +65,6 @@
             ((System.ComponentModel.ISupportInitialize)searchLookUpEdit1View).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem6).BeginInit();
@@ -129,49 +127,49 @@
             // 
             // txtDescription
             // 
-            txtDescription.Location = new System.Drawing.Point(123, 147);
+            txtDescription.Location = new System.Drawing.Point(12, 134);
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new System.Drawing.Size(204, 241);
+            txtDescription.Size = new System.Drawing.Size(315, 254);
             txtDescription.StyleController = layoutControl2;
             txtDescription.TabIndex = 10;
             // 
             // calcAmount
             // 
-            calcAmount.Location = new System.Drawing.Point(123, 121);
+            calcAmount.Location = new System.Drawing.Point(101, 90);
             calcAmount.Name = "calcAmount";
             calcAmount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            calcAmount.Size = new System.Drawing.Size(204, 22);
+            calcAmount.Size = new System.Drawing.Size(226, 22);
             calcAmount.StyleController = layoutControl2;
             calcAmount.TabIndex = 9;
             // 
             // cmbPaymentMethod
             // 
-            cmbPaymentMethod.Location = new System.Drawing.Point(123, 95);
+            cmbPaymentMethod.Location = new System.Drawing.Point(101, 64);
             cmbPaymentMethod.Name = "cmbPaymentMethod";
             cmbPaymentMethod.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             cmbPaymentMethod.Properties.Items.AddRange(new object[] { "Nakit", "Kredi Kartı", "Havale/EFT" });
-            cmbPaymentMethod.Size = new System.Drawing.Size(204, 22);
+            cmbPaymentMethod.Size = new System.Drawing.Size(226, 22);
             cmbPaymentMethod.StyleController = layoutControl2;
             cmbPaymentMethod.TabIndex = 8;
             // 
             // dtPaymentDate
             // 
             dtPaymentDate.EditValue = null;
-            dtPaymentDate.Location = new System.Drawing.Point(123, 69);
+            dtPaymentDate.Location = new System.Drawing.Point(101, 38);
             dtPaymentDate.Name = "dtPaymentDate";
             dtPaymentDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             dtPaymentDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            dtPaymentDate.Size = new System.Drawing.Size(204, 22);
+            dtPaymentDate.Size = new System.Drawing.Size(226, 22);
             dtPaymentDate.StyleController = layoutControl2;
             dtPaymentDate.TabIndex = 7;
             // 
             // slueCustomer
             // 
-            slueCustomer.Location = new System.Drawing.Point(123, 12);
+            slueCustomer.Location = new System.Drawing.Point(101, 12);
             slueCustomer.Name = "slueCustomer";
             slueCustomer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             slueCustomer.Properties.PopupView = searchLookUpEdit1View;
-            slueCustomer.Size = new System.Drawing.Size(204, 22);
+            slueCustomer.Size = new System.Drawing.Size(226, 22);
             slueCustomer.StyleController = layoutControl2;
             slueCustomer.TabIndex = 6;
             slueCustomer.EditValueChanged += slueCustomer_EditValueChanged;
@@ -187,7 +185,7 @@
             // 
             layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             layoutControlGroup1.GroupBordersVisible = false;
-            layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem3, emptySpaceItem1, layoutControlItem4, layoutControlItem5, layoutControlItem6, layoutControlItem7, layoutControlItem8 });
+            layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem3, layoutControlItem4, layoutControlItem5, layoutControlItem6, layoutControlItem7, layoutControlItem8 });
             layoutControlGroup1.Name = "Root";
             layoutControlGroup1.Size = new System.Drawing.Size(339, 426);
             layoutControlGroup1.TextVisible = false;
@@ -198,45 +196,47 @@
             layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             layoutControlItem3.Name = "layoutControlItem3";
             layoutControlItem3.Size = new System.Drawing.Size(319, 26);
-            layoutControlItem3.TextSize = new System.Drawing.Size(99, 13);
-            // 
-            // emptySpaceItem1
-            // 
-            emptySpaceItem1.Location = new System.Drawing.Point(0, 26);
-            emptySpaceItem1.Name = "emptySpaceItem1";
-            emptySpaceItem1.Size = new System.Drawing.Size(319, 31);
+            layoutControlItem3.Text = "Müşteri Adı :";
+            layoutControlItem3.TextSize = new System.Drawing.Size(77, 13);
             // 
             // layoutControlItem4
             // 
             layoutControlItem4.Control = dtPaymentDate;
-            layoutControlItem4.Location = new System.Drawing.Point(0, 57);
+            layoutControlItem4.Location = new System.Drawing.Point(0, 26);
             layoutControlItem4.Name = "layoutControlItem4";
             layoutControlItem4.Size = new System.Drawing.Size(319, 26);
-            layoutControlItem4.TextSize = new System.Drawing.Size(99, 13);
+            layoutControlItem4.Text = "İşlem Tarihi :";
+            layoutControlItem4.TextSize = new System.Drawing.Size(77, 13);
             // 
             // layoutControlItem5
             // 
             layoutControlItem5.Control = cmbPaymentMethod;
-            layoutControlItem5.Location = new System.Drawing.Point(0, 83);
+            layoutControlItem5.Location = new System.Drawing.Point(0, 52);
             layoutControlItem5.Name = "layoutControlItem5";
             layoutControlItem5.Size = new System.Drawing.Size(319, 26);
-            layoutControlItem5.TextSize = new System.Drawing.Size(99, 13);
+            layoutControlItem5.Text = "Ödeme Tipi :";
+            layoutControlItem5.TextSize = new System.Drawing.Size(77, 13);
             // 
             // layoutControlItem6
             // 
             layoutControlItem6.Control = calcAmount;
-            layoutControlItem6.Location = new System.Drawing.Point(0, 109);
+            layoutControlItem6.Location = new System.Drawing.Point(0, 78);
             layoutControlItem6.Name = "layoutControlItem6";
             layoutControlItem6.Size = new System.Drawing.Size(319, 26);
-            layoutControlItem6.TextSize = new System.Drawing.Size(99, 13);
+            layoutControlItem6.Text = "Ödenen Tutar :";
+            layoutControlItem6.TextSize = new System.Drawing.Size(77, 13);
             // 
             // layoutControlItem7
             // 
             layoutControlItem7.Control = txtDescription;
-            layoutControlItem7.Location = new System.Drawing.Point(0, 135);
+            layoutControlItem7.Location = new System.Drawing.Point(0, 104);
             layoutControlItem7.Name = "layoutControlItem7";
-            layoutControlItem7.Size = new System.Drawing.Size(319, 245);
-            layoutControlItem7.TextSize = new System.Drawing.Size(99, 13);
+            layoutControlItem7.Size = new System.Drawing.Size(319, 276);
+            layoutControlItem7.Text = "Açıklama :";
+            layoutControlItem7.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            layoutControlItem7.TextLocation = DevExpress.Utils.Locations.Top;
+            layoutControlItem7.TextSize = new System.Drawing.Size(51, 13);
+            layoutControlItem7.TextToControlDistance = 5;
             // 
             // layoutControlItem8
             // 
@@ -313,7 +313,6 @@
             ((System.ComponentModel.ISupportInitialize)searchLookUpEdit1View).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem5).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem6).EndInit();
@@ -346,7 +345,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
