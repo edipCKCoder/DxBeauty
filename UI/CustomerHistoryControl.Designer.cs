@@ -62,7 +62,7 @@
             // 
             // slueCustomer
             // 
-            slueCustomer.Location = new System.Drawing.Point(123, 12);
+            slueCustomer.Location = new System.Drawing.Point(123, 32);
             slueCustomer.Name = "slueCustomer";
             slueCustomer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             slueCustomer.Properties.PopupView = searchLookUpEdit1View;
@@ -80,10 +80,10 @@
             // 
             // gridControlHistory
             // 
-            gridControlHistory.Location = new System.Drawing.Point(12, 38);
+            gridControlHistory.Location = new System.Drawing.Point(12, 58);
             gridControlHistory.MainView = gridView1;
             gridControlHistory.Name = "gridControlHistory";
-            gridControlHistory.Size = new System.Drawing.Size(814, 457);
+            gridControlHistory.Size = new System.Drawing.Size(814, 437);
             gridControlHistory.TabIndex = 4;
             gridControlHistory.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
             // 
@@ -95,18 +95,17 @@
             // Root
             // 
             Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            Root.GroupBordersVisible = false;
+            Root.GroupStyle = DevExpress.Utils.GroupStyle.Card;
             Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2 });
             Root.Name = "Root";
             Root.Size = new System.Drawing.Size(838, 507);
-            Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             layoutControlItem1.Control = gridControlHistory;
             layoutControlItem1.Location = new System.Drawing.Point(0, 26);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(818, 461);
+            layoutControlItem1.Size = new System.Drawing.Size(818, 441);
             layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2

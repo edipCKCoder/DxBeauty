@@ -12,10 +12,14 @@ namespace DXBeauty.UI
         public Customer EditingCustomer { get; private set; }
         public bool IsEditMode => EditingCustomer != null;
 
+        // DevExpress doğrulama sağlayıcısı
+        private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider;
 
         public CustomerRegisterControl()
         {
             InitializeComponent();
+
+            SetupValidations();
 
         }
 
@@ -45,6 +49,13 @@ namespace DXBeauty.UI
 
         private void UpdateCustomer()
         {
+            // EKLENEN KISIM: Kuralları kontrol et! Eğer hatalı/boş alan varsa kaydetmeyi durdur.
+            if (!dxValidationProvider.Validate())
+            {
+                // Boş kutuların yanında otomatik kırmızı ikon çıkacak. İşlemi iptal ediyoruz.
+                return;
+            }
+
             EditingCustomer.FirstName = nameBox.Text;
             EditingCustomer.LastName = surnameBox.Text;
             EditingCustomer.PhoneNumber = phoneBox.Text;
@@ -57,6 +68,14 @@ namespace DXBeauty.UI
 
         private void InsertCustomer()
         {
+
+            // EKLENEN KISIM: Kuralları kontrol et! Eğer hatalı/boş alan varsa kaydetmeyi durdur.
+            if (!dxValidationProvider.Validate())
+            {
+                // Boş kutuların yanında otomatik kırmızı ikon çıkacak. İşlemi iptal ediyoruz.
+                return;
+            }
+
             Customer customer = new Customer
             {
                 FirstName = nameBox.Text,
@@ -68,6 +87,32 @@ namespace DXBeauty.UI
             };
 
             CustomerSaved?.Invoke(customer);
+        }
+
+        private void SetupValidations()
+        {
+            dxValidationProvider = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider();
+
+            // 1. KURAL: Alan Boş Bırakılamaz (Zorunlu Alan Kuralı)
+            var notEmptyRule = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            notEmptyRule.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            notEmptyRule.ErrorText = "Bu alan boş bırakılamaz!"; // Çarpı ikonunun üzerine gelince yazacak yazı
+            notEmptyRule.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical; // Kırmızı ikon çıkarır
+
+            // Hangi kutucuklar "Boş Bırakılamaz" olacaksa onlara bu kuralı atıyoruz:
+            dxValidationProvider.SetValidationRule(nameBox, notEmptyRule); // Ad zorunlu
+            dxValidationProvider.SetValidationRule(surnameBox, notEmptyRule); // Soyad zorunlu
+            dxValidationProvider.SetValidationRule(phoneBox, notEmptyRule); // Telefon zorunlu
+
+            // 2. KURAL (Opsiyonel): E-Posta formatı kontrolü
+            var emailRule = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            emailRule.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Contains;
+            emailRule.Value1 = "@";
+            emailRule.ErrorText = "Lütfen geçerli bir e-posta adresi giriniz!";
+            emailRule.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning; // Sarı ikon çıkarır (zorunlu değil ama uyarır)
+
+            // E-Posta kutusu boş değilse format kontrolü yap
+            dxValidationProvider.SetValidationRule(emailBox, emailRule);
         }
     }
 }

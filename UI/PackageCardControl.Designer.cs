@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions buttonImageOptions1 = new DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions();
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             totalPriceEdit = new DevExpress.XtraEditors.TextEdit();
             installmentAllowedEdit = new DevExpress.XtraEditors.CheckEdit();
@@ -146,12 +147,17 @@
             // 
             // Root
             // 
+            buttonImageOptions1.Location = DevExpress.XtraEditors.ButtonPanel.ImageLocation.AfterText;
+            buttonImageOptions1.SvgImage = Properties.Resources.EducationIcon;
+            buttonImageOptions1.SvgImageSize = new System.Drawing.Size(16, 16);
+            Root.CustomHeaderButtons.AddRange(new DevExpress.XtraEditors.ButtonPanel.IBaseButton[] { new DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("", true, buttonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Yeni isim ver", -1, true, null, true, false, true, "btnEditTitle", -1) });
             Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             Root.GroupStyle = DevExpress.Utils.GroupStyle.Card;
             Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, layoutControlItem3, layoutControlItem4, layoutControlItem5 });
             Root.Name = "Root";
             Root.Size = new System.Drawing.Size(199, 209);
             Root.TextLocation = DevExpress.Utils.Locations.Default;
+            Root.CustomButtonClick += Root_CustomButtonClick_1;
             // 
             // layoutControlItem1
             // 

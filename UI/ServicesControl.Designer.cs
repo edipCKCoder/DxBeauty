@@ -102,7 +102,7 @@
             // 
             layoutViewField_IsActiveColumn.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
             layoutViewField_IsActiveColumn.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
-            layoutViewField_IsActiveColumn.EditorPreferredWidth = 107;
+            layoutViewField_IsActiveColumn.EditorPreferredWidth = 106;
             layoutViewField_IsActiveColumn.Location = new System.Drawing.Point(0, 81);
             layoutViewField_IsActiveColumn.MaxSize = new System.Drawing.Size(0, 35);
             layoutViewField_IsActiveColumn.MinSize = new System.Drawing.Size(99, 35);
@@ -148,9 +148,9 @@
             // 
             flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Location = new System.Drawing.Point(364, 39);
+            flowLayoutPanel1.Location = new System.Drawing.Point(369, 39);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new System.Drawing.Size(504, 459);
+            flowLayoutPanel1.Size = new System.Drawing.Size(499, 459);
             flowLayoutPanel1.TabIndex = 1;
             // 
             // createServiceButton
@@ -158,7 +158,7 @@
             createServiceButton.Cursor = System.Windows.Forms.Cursors.Hand;
             createServiceButton.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
             createServiceButton.ImageOptions.SvgImage = Properties.Resources.AddTo;
-            createServiceButton.Location = new System.Drawing.Point(32, 353);
+            createServiceButton.Location = new System.Drawing.Point(33, 439);
             createServiceButton.MaximumSize = new System.Drawing.Size(135, 56);
             createServiceButton.MinimumSize = new System.Drawing.Size(100, 45);
             createServiceButton.Name = "createServiceButton";
@@ -175,7 +175,7 @@
             addPackageButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleRight;
             addPackageButton.ImageOptions.SvgImage = Properties.Resources.AddTo1;
             addPackageButton.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
-            addPackageButton.Location = new System.Drawing.Point(184, 353);
+            addPackageButton.Location = new System.Drawing.Point(188, 439);
             addPackageButton.MaximumSize = new System.Drawing.Size(135, 56);
             addPackageButton.MinimumSize = new System.Drawing.Size(100, 45);
             addPackageButton.Name = "addPackageButton";
@@ -187,16 +187,33 @@
             // 
             // gridControl1
             // 
+            gridControl1.EmbeddedNavigator.Buttons.Append.Visible = false;
+            gridControl1.EmbeddedNavigator.Buttons.CancelEdit.Visible = false;
+            gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
+            gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
+            gridControl1.EmbeddedNavigator.Buttons.First.Visible = false;
+            gridControl1.EmbeddedNavigator.Buttons.Last.Visible = false;
+            gridControl1.EmbeddedNavigator.Buttons.Next.Visible = false;
+            gridControl1.EmbeddedNavigator.Buttons.NextPage.Visible = false;
+            gridControl1.EmbeddedNavigator.Buttons.Prev.Visible = false;
+            gridControl1.EmbeddedNavigator.Buttons.PrevPage.Visible = false;
+            gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
+            gridControl1.EmbeddedNavigator.Cursor = System.Windows.Forms.Cursors.Default;
+            gridControl1.EmbeddedNavigator.TextLocation = DevExpress.XtraEditors.NavigatorButtonsTextLocation.None;
+            gridControl1.EmbeddedNavigator.TextStringFormat = "";
             gridControl1.Location = new System.Drawing.Point(24, 39);
             gridControl1.MainView = layoutView1;
             gridControl1.Name = "gridControl1";
             gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemToggleSwitch1, repositoryItemMemoEdit1, repositoryItemCalcEdit1 });
-            gridControl1.Size = new System.Drawing.Size(300, 220);
+            gridControl1.Size = new System.Drawing.Size(305, 393);
             gridControl1.TabIndex = 0;
+            gridControl1.UseEmbeddedNavigator = true;
             gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { layoutView1 });
             // 
             // layoutView1
             // 
+            layoutView1.Appearance.CardCaption.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
+            layoutView1.Appearance.CardCaption.Options.UseBorderColor = true;
             layoutView1.CardMinSize = new System.Drawing.Size(281, 161);
             layoutView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] { descriptionColumn, IsActiveColumn, nameColumn, layoutViewColumn1 });
             layoutView1.GridControl = gridControl1;
@@ -204,7 +221,7 @@
             layoutView1.OptionsBehavior.AutoFocusCardOnScrolling = true;
             layoutView1.OptionsBehavior.AutoFocusNewCard = true;
             layoutView1.OptionsItemText.AlignMode = DevExpress.XtraGrid.Views.Layout.FieldTextAlignMode.AutoSize;
-            layoutView1.OptionsItemText.TextToControlDistance = 3;
+            layoutView1.OptionsItemText.TextToControlDistance = 4;
             layoutView1.PaintStyleName = "Skin";
             layoutView1.TemplateCard = layoutViewCard1;
             layoutView1.CardClick += layoutView1_CardClick_1;
@@ -274,8 +291,8 @@
             layoutViewCard1.GroupStyle = DevExpress.Utils.GroupStyle.Card;
             layoutViewCard1.HeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
             layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutViewField_descriptionColumn, layoutViewField_IsActiveColumn, layoutViewField_nameColumn, layoutViewField_layoutViewColumn1 });
-            layoutViewCard1.Name = "layoutViewCard1";
-            layoutViewCard1.OptionsItemText.TextToControlDistance = 3;
+            layoutViewCard1.Name = "layoutViewTemplateCard";
+            layoutViewCard1.OptionsItemText.TextToControlDistance = 4;
             layoutViewCard1.Text = "TemplateCard";
             // 
             // Root
@@ -293,7 +310,7 @@
             layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, layoutControlItem3, simpleSeparator1 });
             layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             layoutControlGroup1.Name = "layoutControlGroup1";
-            layoutControlGroup1.Size = new System.Drawing.Size(328, 502);
+            layoutControlGroup1.Size = new System.Drawing.Size(333, 502);
             layoutControlGroup1.Text = "Hizmetler";
             // 
             // layoutControlItem1
@@ -303,7 +320,7 @@
             layoutControlItem1.MaxSize = new System.Drawing.Size(0, 600);
             layoutControlItem1.MinSize = new System.Drawing.Size(104, 15);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(304, 224);
+            layoutControlItem1.Size = new System.Drawing.Size(309, 397);
             layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             layoutControlItem1.TextVisible = false;
             // 
@@ -312,11 +329,11 @@
             layoutControlItem2.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
             layoutControlItem2.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
             layoutControlItem2.Control = createServiceButton;
-            layoutControlItem2.Location = new System.Drawing.Point(0, 225);
+            layoutControlItem2.Location = new System.Drawing.Point(0, 398);
             layoutControlItem2.MaxSize = new System.Drawing.Size(500, 300);
             layoutControlItem2.MinSize = new System.Drawing.Size(100, 35);
             layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new System.Drawing.Size(155, 238);
+            layoutControlItem2.Size = new System.Drawing.Size(158, 65);
             layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             layoutControlItem2.TextVisible = false;
             // 
@@ -325,19 +342,19 @@
             layoutControlItem3.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
             layoutControlItem3.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
             layoutControlItem3.Control = addPackageButton;
-            layoutControlItem3.Location = new System.Drawing.Point(155, 225);
+            layoutControlItem3.Location = new System.Drawing.Point(158, 398);
             layoutControlItem3.MinSize = new System.Drawing.Size(100, 22);
             layoutControlItem3.Name = "layoutControlItem3";
             layoutControlItem3.OptionsPrint.AppearanceItem.Options.UseBorderColor = true;
-            layoutControlItem3.Size = new System.Drawing.Size(149, 238);
+            layoutControlItem3.Size = new System.Drawing.Size(151, 65);
             layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             layoutControlItem3.TextVisible = false;
             // 
             // simpleSeparator1
             // 
-            simpleSeparator1.Location = new System.Drawing.Point(0, 224);
+            simpleSeparator1.Location = new System.Drawing.Point(0, 397);
             simpleSeparator1.Name = "simpleSeparator1";
-            simpleSeparator1.Size = new System.Drawing.Size(304, 1);
+            simpleSeparator1.Size = new System.Drawing.Size(309, 1);
             // 
             // layoutControlGroup2
             // 
@@ -345,9 +362,9 @@
             layoutControlGroup2.AppearanceGroup.Options.UseBackColor = true;
             layoutControlGroup2.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem4 });
-            layoutControlGroup2.Location = new System.Drawing.Point(340, 0);
+            layoutControlGroup2.Location = new System.Drawing.Point(345, 0);
             layoutControlGroup2.Name = "layoutControlGroup2";
-            layoutControlGroup2.Size = new System.Drawing.Size(532, 502);
+            layoutControlGroup2.Size = new System.Drawing.Size(527, 502);
             layoutControlGroup2.Text = "Satış Paketleri";
             // 
             // layoutControlItem4
@@ -357,12 +374,12 @@
             layoutControlItem4.Name = "layoutControlItem4";
             layoutControlItem4.OptionsPrint.AppearanceItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             layoutControlItem4.OptionsPrint.AppearanceItem.Options.UseBackColor = true;
-            layoutControlItem4.Size = new System.Drawing.Size(508, 463);
+            layoutControlItem4.Size = new System.Drawing.Size(503, 463);
             layoutControlItem4.TextVisible = false;
             // 
             // splitterItem2
             // 
-            splitterItem2.Location = new System.Drawing.Point(328, 0);
+            splitterItem2.Location = new System.Drawing.Point(333, 0);
             splitterItem2.Name = "splitterItem2";
             splitterItem2.Size = new System.Drawing.Size(12, 502);
             // 

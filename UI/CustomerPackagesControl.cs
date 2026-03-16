@@ -157,6 +157,16 @@ namespace DXBeauty.UI
 
             sluCustomerEdit.Properties.DisplayMember = "FullName";
             sluCustomerEdit.Properties.ValueMember = "CustomerId";
+
+            // Sütunların otomatik oluşturulmasını zorlayın
+            sluCustomerEdit.Properties.PopulateViewColumns();
+
+            sluCustomerEdit.Properties.View.Columns["CustomerId"].Visible = false;
+            sluCustomerEdit.Properties.View.Columns["Birthday"].Visible = false;
+            sluCustomerEdit.Properties.View.Columns["Email"].Visible = false;
+            sluCustomerEdit.Properties.View.Columns["FirstName"].Visible = false;
+            sluCustomerEdit.Properties.View.Columns["LastName"].Visible = false;
+           
         }
 
 

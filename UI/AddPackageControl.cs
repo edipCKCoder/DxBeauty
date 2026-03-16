@@ -1,4 +1,5 @@
 ﻿using DevExpress.DataAccess.Native.Json;
+using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
 using DXBeauty.Data;
 using DXBeauty.Entities;
@@ -21,15 +22,34 @@ namespace DXBeauty.UI
 
         public event Action<ServicePackage> ServicePackageSaved;
         private readonly ServicePackageRepository repo;
+        private readonly ServiceRepository service_Repo;
         private readonly string connectionString;
         private Service _SelectedService;
+
+        public AddPackageControl()
+        {
+            InitializeComponent();
+            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            service_Repo = new ServiceRepository(connectionString);
+            FillDropDownMenu();
+            _SelectedService = new Service();
+            layoutControlItem6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            dropDownButton1.Visible = true;
+            repo = new ServicePackageRepository(connectionString);
+            
+
+        }
+
 
         public AddPackageControl(Service service)
         {
             InitializeComponent();
+            layoutControlItem6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            dropDownButton1.Visible = false;
 
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             repo = new ServicePackageRepository(connectionString);
+            
             _SelectedService = service;
             Root.Text = _SelectedService.Name;
         }
@@ -78,12 +98,74 @@ namespace DXBeauty.UI
 
 
             //Db Insert
+            try
+            {
+                repo.Insert(servicePackage);
+            }
+            catch (Exception ex)
+            {
+                // Burada ileride hatayı bir .txt dosyasına (Log) kaydedeceğiz.
+                DevExpress.XtraEditors.XtraMessageBox.Show(
+                    "İşlem sırasında beklenmeyen bir hata oluştu.\n\nDetay: " + ex.Message,
+                    "Sistem Uyarı",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
             
-            repo.Insert(servicePackage);
+
+            DevExpress.XtraEditors.XtraMessageBox.Show("Satıl paketi başarıyla kaydedildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             ServicePackageSaved?.Invoke(servicePackage);
             this.ParentForm.Close();
             
         }
+
+        public void FillDropDownMenu()
+        {
+            // 1. Repository'den verileri çek (Örn: Hizmet Listesi)
+            var services = service_Repo.GetAll();
+
+            // 2. Bir DXPopupMenu oluştur
+            DXPopupMenu menu = new DXPopupMenu();
+
+            foreach (var service in services)
+            {
+                // 3. Her veri için bir menü öğesi (DXMenuItem) oluştur
+                DXMenuItem menuItem = new DXMenuItem
+                {
+                    Caption = service.Name,
+                    Tag = service.ServiceId // ID değerini Tag içinde saklayabiliriz
+                };
+
+                // 4. Tıklama olayını (Event) bağla
+                menuItem.Click += MenuItem_Click;
+
+                // 5. Menüye ekle
+                menu.Items.Add(menuItem);
+            }
+
+            // 💡 KRİTİK NOKTA: Oluşturulan menüyü DropDownButton'a ata
+            dropDownButton1.DropDownControl = menu;
+        }
+
+        // Menü öğesine tıklandığında çalışacak metod
+        private void MenuItem_Click(object sender, EventArgs e)
+        {
+            DXMenuItem clickedItem = sender as DXMenuItem;
+            if (clickedItem != null)
+            {
+                int selectedId = (int)clickedItem.Tag;
+
+                // 💡 Artık _SelectedService null olmadığı için bu satır hata vermeyecek
+                _SelectedService.ServiceId = selectedId;
+                dropDownButton1.Text = clickedItem.Caption;
+                Root.Text = clickedItem.Caption; // Root.Text'i güncellemek istersen diye ismi de alıyoruz
+                //XtraMessageBox.Show($"Seçilen ID: {selectedId} - İsim: {clickedItem.Caption}");
+            }
+        }
+
+
+
     }
 }

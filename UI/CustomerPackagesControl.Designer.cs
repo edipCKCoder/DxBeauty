@@ -47,6 +47,11 @@
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement3 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement4 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement5 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.ContextButton contextButton1 = new DevExpress.Utils.ContextButton();
             DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
@@ -80,6 +85,7 @@
             layoutViewColumn4 = new DevExpress.XtraGrid.Columns.TileViewColumn();
             layoutViewColumn5 = new DevExpress.XtraGrid.Columns.TileViewColumn();
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            labelControl1 = new DevExpress.XtraEditors.LabelControl();
             customerPackageGridControl = new DevExpress.XtraGrid.GridControl();
             tileView2 = new DevExpress.XtraGrid.Views.Tile.TileView();
             layoutViewColumn10 = new DevExpress.XtraGrid.Columns.TileViewColumn();
@@ -108,10 +114,11 @@
             Root = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            splitterItem1 = new DevExpress.XtraLayout.SplitterItem();
-            simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
             layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            splitterItem1 = new DevExpress.XtraLayout.SplitterItem();
+            splitterItem2 = new DevExpress.XtraLayout.SplitterItem();
+            layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             dragDropEvents1 = new DevExpress.Utils.DragDrop.DragDropEvents(components);
             dragDropEvents2 = new DevExpress.Utils.DragDrop.DragDropEvents(components);
             dragDropEvents3 = new DevExpress.Utils.DragDrop.DragDropEvents(components);
@@ -144,47 +151,48 @@
             ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)splitterItem1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)simpleSeparator1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitterItem1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitterItem2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
             SuspendLayout();
             // 
             // layoutViewColumn6
             // 
-            layoutViewColumn6.Caption = "Package Name";
-            layoutViewColumn6.CustomizationCaption = "Package Name";
             layoutViewColumn6.FieldName = "Name";
             layoutViewColumn6.Name = "layoutViewColumn6";
+            layoutViewColumn6.OptionsEditForm.Caption = "Satış Paketi İsmi:";
             layoutViewColumn6.Visible = true;
             layoutViewColumn6.VisibleIndex = 0;
             // 
             // layoutViewColumn7
             // 
-            layoutViewColumn7.Caption = "Remaining Session";
-            layoutViewColumn7.CustomizationCaption = "Remaining Session";
+            layoutViewColumn7.Caption = "Kalan Seans:";
             layoutViewColumn7.FieldName = "RemainingSessions";
             layoutViewColumn7.Name = "layoutViewColumn7";
             layoutViewColumn7.OptionsColumn.ShowCaption = true;
+            layoutViewColumn7.OptionsEditForm.Caption = "Kalan Seans:";
             layoutViewColumn7.Visible = true;
             layoutViewColumn7.VisibleIndex = 1;
             // 
             // tileViewColumn1
             // 
-            tileViewColumn1.Caption = "Remaining Debt";
-            tileViewColumn1.CustomizationCaption = "Remaining Debt";
+            tileViewColumn1.Caption = "Kalan Borç:";
             tileViewColumn1.FieldName = "RemainingDebt";
             tileViewColumn1.Name = "tileViewColumn1";
             tileViewColumn1.OptionsColumn.ShowCaption = true;
+            tileViewColumn1.OptionsEditForm.Caption = "Kalan Borç:";
             tileViewColumn1.Visible = true;
             tileViewColumn1.VisibleIndex = 3;
             // 
             // tileViewColumn2
             // 
-            tileViewColumn2.Caption = "Paid Amount";
-            tileViewColumn2.CustomizationCaption = "Paid Amount";
+            tileViewColumn2.Caption = "Ödenen Tutar:";
             tileViewColumn2.FieldName = "PaidAmount";
             tileViewColumn2.Name = "tileViewColumn2";
+            tileViewColumn2.OptionsColumn.ShowCaption = true;
+            tileViewColumn2.OptionsEditForm.Caption = "Ödenen Tutar:";
             tileViewColumn2.Visible = true;
             tileViewColumn2.VisibleIndex = 4;
             // 
@@ -199,8 +207,7 @@
             // 
             // layoutViewColumn2
             // 
-            layoutViewColumn2.Caption = "Session Count";
-            layoutViewColumn2.CustomizationCaption = "Session Count";
+            layoutViewColumn2.Caption = "Seans Sayısı:";
             layoutViewColumn2.FieldName = "SessionCount";
             layoutViewColumn2.Name = "layoutViewColumn2";
             layoutViewColumn2.OptionsColumn.ShowCaption = true;
@@ -210,7 +217,7 @@
             // 
             // layoutViewColumn3
             // 
-            layoutViewColumn3.Caption = "Total Price";
+            layoutViewColumn3.Caption = "Toplam Tutar:";
             layoutViewColumn3.FieldName = "TotalPrice";
             layoutViewColumn3.Name = "layoutViewColumn3";
             layoutViewColumn3.OptionsColumn.ShowCaption = true;
@@ -219,8 +226,7 @@
             // 
             // layoutViewColumn4
             // 
-            layoutViewColumn4.Caption = "Installment Allowed";
-            layoutViewColumn4.CustomizationCaption = "Installment Allowed";
+            layoutViewColumn4.Caption = "Taksit Yapılabilir:";
             layoutViewColumn4.FieldName = "IsInstallmentAllowed";
             layoutViewColumn4.Name = "layoutViewColumn4";
             layoutViewColumn4.OptionsColumn.ShowCaption = true;
@@ -228,31 +234,44 @@
             // 
             // layoutViewColumn5
             // 
-            layoutViewColumn5.Caption = "Enable";
-            layoutViewColumn5.CustomizationCaption = "Enable";
+            layoutViewColumn5.Caption = "Aktif / Pasif";
             layoutViewColumn5.FieldName = "IsActive";
             layoutViewColumn5.Name = "layoutViewColumn5";
+            layoutViewColumn5.OptionsColumn.ShowCaption = true;
             // 
             // layoutControl1
             // 
+            layoutControl1.Controls.Add(labelControl1);
             layoutControl1.Controls.Add(customerPackageGridControl);
             layoutControl1.Controls.Add(sluCustomerEdit);
             layoutControl1.Controls.Add(splitContainerControl1);
             layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             layoutControl1.Location = new System.Drawing.Point(0, 0);
             layoutControl1.Name = "layoutControl1";
-            layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1211, 330, 650, 400);
+            layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1012, 449, 650, 400);
             layoutControl1.Root = Root;
             layoutControl1.Size = new System.Drawing.Size(828, 622);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
             // 
+            // labelControl1
+            // 
+            labelControl1.AllowHtmlTextInToolTip = DevExpress.Utils.DefaultBoolean.True;
+            labelControl1.Appearance.ForeColor = DevExpress.LookAndFeel.DXSkinColors.ForeColors.Critical;
+            labelControl1.Appearance.Options.UseForeColor = true;
+            labelControl1.Location = new System.Drawing.Point(202, 279);
+            labelControl1.Name = "labelControl1";
+            labelControl1.Size = new System.Drawing.Size(424, 13);
+            labelControl1.StyleController = layoutControl1;
+            labelControl1.TabIndex = 4;
+            labelControl1.Text = "Önce Müşteri Seçiniz! Sonra Satış paketini sürükleyerek üstteki boş alana bırakınız.";
+            // 
             // customerPackageGridControl
             // 
-            customerPackageGridControl.Location = new System.Drawing.Point(24, 349);
+            customerPackageGridControl.Location = new System.Drawing.Point(24, 39);
             customerPackageGridControl.MainView = tileView2;
             customerPackageGridControl.Name = "customerPackageGridControl";
-            customerPackageGridControl.Size = new System.Drawing.Size(780, 237);
+            customerPackageGridControl.Size = new System.Drawing.Size(780, 212);
             customerPackageGridControl.TabIndex = 3;
             customerPackageGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { tileView2 });
             // 
@@ -262,6 +281,7 @@
             tileView2.GridControl = customerPackageGridControl;
             tileView2.Name = "tileView2";
             tileView2.OptionsEditForm.EditFormColumnCount = 1;
+            tileView2.OptionsFind.AlwaysVisible = true;
             tileView2.OptionsTiles.ItemSize = new System.Drawing.Size(252, 142);
             tileView2.TileColumns.Add(tableColumnDefinition1);
             tileView2.TileColumns.Add(tableColumnDefinition2);
@@ -326,19 +346,22 @@
             // 
             // layoutViewColumn10
             // 
-            layoutViewColumn10.Caption = "Status";
-            layoutViewColumn10.CustomizationCaption = "Status";
+            layoutViewColumn10.Caption = "Durum:";
             layoutViewColumn10.FieldName = "Status";
             layoutViewColumn10.Name = "layoutViewColumn10";
+            layoutViewColumn10.OptionsColumn.ShowCaption = true;
+            layoutViewColumn10.OptionsEditForm.Caption = "Durum:";
             layoutViewColumn10.Visible = true;
             layoutViewColumn10.VisibleIndex = 2;
             // 
             // sluCustomerEdit
             // 
             sluCustomerEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            sluCustomerEdit.Location = new System.Drawing.Point(12, 296);
+            sluCustomerEdit.Location = new System.Drawing.Point(12, 588);
             sluCustomerEdit.Name = "sluCustomerEdit";
-            sluCustomerEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            serializableAppearanceObject1.ForeColor = DevExpress.LookAndFeel.DXSkinColors.ForeColors.Critical;
+            serializableAppearanceObject1.Options.UseForeColor = true;
+            sluCustomerEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
             sluCustomerEdit.Properties.NullText = "Lütfen Müşteri Seçiniz...";
             sluCustomerEdit.Properties.PopupView = searchLookUpEdit1View;
             sluCustomerEdit.Size = new System.Drawing.Size(804, 22);
@@ -355,7 +378,7 @@
             // 
             // splitContainerControl1
             // 
-            splitContainerControl1.Location = new System.Drawing.Point(12, 12);
+            splitContainerControl1.Location = new System.Drawing.Point(12, 296);
             splitContainerControl1.MaximumSize = new System.Drawing.Size(0, 400);
             splitContainerControl1.Name = "splitContainerControl1";
             // 
@@ -368,7 +391,7 @@
             // 
             splitContainerControl1.Panel2.Controls.Add(packageGridControl);
             splitContainerControl1.Panel2.Text = "Panel2";
-            splitContainerControl1.Size = new System.Drawing.Size(804, 279);
+            splitContainerControl1.Size = new System.Drawing.Size(804, 276);
             splitContainerControl1.SplitterPosition = 325;
             splitContainerControl1.TabIndex = 0;
             // 
@@ -379,7 +402,7 @@
             seviceGridControl.MainView = serviceView;
             seviceGridControl.Name = "seviceGridControl";
             seviceGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemToggleSwitch1, repositoryItemMemoEdit1, repositoryItemCalcEdit1 });
-            seviceGridControl.Size = new System.Drawing.Size(325, 279);
+            seviceGridControl.Size = new System.Drawing.Size(325, 276);
             seviceGridControl.TabIndex = 1;
             seviceGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { serviceView });
             // 
@@ -519,7 +542,7 @@
             packageGridControl.Location = new System.Drawing.Point(0, 0);
             packageGridControl.MainView = tileView1;
             packageGridControl.Name = "packageGridControl";
-            packageGridControl.Size = new System.Drawing.Size(467, 279);
+            packageGridControl.Size = new System.Drawing.Size(467, 276);
             packageGridControl.TabIndex = 0;
             packageGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { tileView1 });
             // 
@@ -562,6 +585,7 @@
             tileView1.OptionsDragDrop.AllowDrag = true;
             tileView1.OptionsEditForm.EditFormColumnCount = 1;
             tileView1.OptionsEditForm.PopupEditFormWidth = 280;
+            tileView1.OptionsFind.AlwaysVisible = true;
             tileView1.OptionsTiles.AllowItemHover = true;
             tileView1.OptionsTiles.Orientation = System.Windows.Forms.Orientation.Vertical;
             tileView1.OptionsTiles.RowCount = 0;
@@ -614,12 +638,12 @@
             tileViewItemElement9.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement9.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
             tileViewItemElement9.RowIndex = 3;
-            tileViewItemElement9.Text = "Install Allowed";
+            tileViewItemElement9.Text = "Taksit Yapılabilir";
             tileViewItemElement9.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleLeft;
             tileViewItemElement10.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement10.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
             tileViewItemElement10.RowIndex = 4;
-            tileViewItemElement10.Text = "Enable";
+            tileViewItemElement10.Text = "Aktif / Pasif";
             tileViewItemElement10.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleLeft;
             tileView1.TileTemplate.Add(tileViewItemElement6);
             tileView1.TileTemplate.Add(tileViewItemElement7);
@@ -633,15 +657,17 @@
             // 
             // tileViewColumn3
             // 
-            tileViewColumn3.Caption = "tileViewColumn3";
+            tileViewColumn3.Caption = "Taksit Yapılabilir:";
             tileViewColumn3.Name = "tileViewColumn3";
+            tileViewColumn3.OptionsColumn.ShowCaption = true;
             tileViewColumn3.Visible = true;
             tileViewColumn3.VisibleIndex = 3;
             // 
             // tileViewColumn4
             // 
-            tileViewColumn4.Caption = "tileViewColumn4";
+            tileViewColumn4.Caption = "Aktif / Pasif";
             tileViewColumn4.Name = "tileViewColumn4";
+            tileViewColumn4.OptionsColumn.ShowCaption = true;
             tileViewColumn4.Visible = true;
             tileViewColumn4.VisibleIndex = 4;
             // 
@@ -653,7 +679,7 @@
             // Root
             // 
             Root.GroupStyle = DevExpress.Utils.GroupStyle.Light;
-            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, splitterItem1, simpleSeparator1, layoutControlGroup1 });
+            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, layoutControlGroup1, splitterItem1, splitterItem2, layoutControlItem4 });
             Root.Name = "Root";
             Root.Size = new System.Drawing.Size(828, 622);
             Root.TextVisible = false;
@@ -661,41 +687,29 @@
             // layoutControlItem1
             // 
             layoutControlItem1.Control = splitContainerControl1;
-            layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            layoutControlItem1.Location = new System.Drawing.Point(0, 284);
             layoutControlItem1.MaxSize = new System.Drawing.Size(0, 400);
             layoutControlItem1.MinSize = new System.Drawing.Size(5, 5);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(808, 283);
+            layoutControlItem1.Size = new System.Drawing.Size(808, 280);
             layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             layoutControlItem2.Control = sluCustomerEdit;
-            layoutControlItem2.Location = new System.Drawing.Point(0, 284);
+            layoutControlItem2.Location = new System.Drawing.Point(0, 576);
             layoutControlItem2.Name = "layoutControlItem2";
             layoutControlItem2.Size = new System.Drawing.Size(808, 26);
             layoutControlItem2.TextVisible = false;
-            // 
-            // splitterItem1
-            // 
-            splitterItem1.Location = new System.Drawing.Point(0, 590);
-            splitterItem1.Name = "splitterItem1";
-            splitterItem1.Size = new System.Drawing.Size(808, 12);
-            // 
-            // simpleSeparator1
-            // 
-            simpleSeparator1.Location = new System.Drawing.Point(0, 283);
-            simpleSeparator1.Name = "simpleSeparator1";
-            simpleSeparator1.Size = new System.Drawing.Size(808, 1);
             // 
             // layoutControlGroup1
             // 
             layoutControlGroup1.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem3 });
-            layoutControlGroup1.Location = new System.Drawing.Point(0, 310);
+            layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             layoutControlGroup1.Name = "layoutControlGroup1";
-            layoutControlGroup1.Size = new System.Drawing.Size(808, 280);
+            layoutControlGroup1.Size = new System.Drawing.Size(808, 255);
             layoutControlGroup1.Text = "Müşteriye Satılalan Paketler";
             // 
             // layoutControlItem3
@@ -704,9 +718,32 @@
             layoutControlItem3.CustomizationFormText = "layout Control Item3";
             layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             layoutControlItem3.Name = "layoutControlItem3";
-            layoutControlItem3.Size = new System.Drawing.Size(784, 241);
+            layoutControlItem3.Size = new System.Drawing.Size(784, 216);
             layoutControlItem3.Text = "layout Control Item3";
             layoutControlItem3.TextVisible = false;
+            // 
+            // splitterItem1
+            // 
+            splitterItem1.Location = new System.Drawing.Point(0, 255);
+            splitterItem1.Name = "splitterItem1";
+            splitterItem1.Size = new System.Drawing.Size(808, 12);
+            // 
+            // splitterItem2
+            // 
+            splitterItem2.Location = new System.Drawing.Point(0, 564);
+            splitterItem2.Name = "splitterItem2";
+            splitterItem2.Size = new System.Drawing.Size(808, 12);
+            // 
+            // layoutControlItem4
+            // 
+            layoutControlItem4.AppearanceItemCaption.ForeColor = DevExpress.LookAndFeel.DXSkinColors.ForeColors.Critical;
+            layoutControlItem4.AppearanceItemCaption.Options.UseForeColor = true;
+            layoutControlItem4.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
+            layoutControlItem4.Control = labelControl1;
+            layoutControlItem4.Location = new System.Drawing.Point(0, 267);
+            layoutControlItem4.Name = "layoutControlItem4";
+            layoutControlItem4.Size = new System.Drawing.Size(808, 17);
+            layoutControlItem4.TextVisible = false;
             // 
             // CustomerPackagesControl
             // 
@@ -743,10 +780,11 @@
             ((System.ComponentModel.ISupportInitialize)Root).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)splitterItem1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)simpleSeparator1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)splitterItem1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)splitterItem2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
             ResumeLayout(false);
         }
 
@@ -793,10 +831,12 @@
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
         private DevExpress.XtraLayout.SplitterItem splitterItem1;
-        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraGrid.Columns.TileViewColumn tileViewColumn2;
         private DevExpress.XtraGrid.Columns.TileViewColumn tileViewColumn3;
         private DevExpress.XtraGrid.Columns.TileViewColumn tileViewColumn4;
+        private DevExpress.XtraLayout.SplitterItem splitterItem2;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
     }
 }

@@ -22,5 +22,29 @@ namespace DXBeauty.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("CompactSkin/WXI")]
+        public string SkinName {
+            get {
+                return ((string)(this["SkinName"]));
+            }
+            set {
+                this["SkinName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PaletteName {
+            get {
+                return ((string)(this["PaletteName"]));
+            }
+            set {
+                this["PaletteName"] = value;
+            }
+        }
     }
 }

@@ -171,6 +171,7 @@ namespace DXBeauty.UI
 
         private void LoadServicePackages(Service selectedService)
         {
+            if (selectedService == null) return;
             List<ServicePackage> servicePackage = servicePackageRepo.GetByService(selectedService.ServiceId);
             flowLayoutPanel1.Controls.Clear();
             foreach (var package in servicePackage)

@@ -20,7 +20,7 @@ namespace DXBeauty.Entities
         public int ServiceId
         {
             get => _serviceId;
-            private set => _serviceId = value;
+            set  => _serviceId = value;
         }
 
         public string Name
