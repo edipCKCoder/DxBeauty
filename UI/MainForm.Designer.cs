@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
             navBarControl = new DevExpress.XtraNavBar.NavBarControl();
-            reminderGroup = new DevExpress.XtraNavBar.NavBarGroup();
-            ReminderMessage = new DevExpress.XtraNavBar.NavBarItem();
             customerGroup = new DevExpress.XtraNavBar.NavBarGroup();
             registerCustomer = new DevExpress.XtraNavBar.NavBarItem();
             customerHistory = new DevExpress.XtraNavBar.NavBarItem();
@@ -45,6 +43,8 @@
             financialReport = new DevExpress.XtraNavBar.NavBarItem();
             servicesGroup = new DevExpress.XtraNavBar.NavBarGroup();
             createService = new DevExpress.XtraNavBar.NavBarItem();
+            reminderGroup = new DevExpress.XtraNavBar.NavBarGroup();
+            ReminderMessage = new DevExpress.XtraNavBar.NavBarItem();
             ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
@@ -65,9 +65,16 @@
             servicesPackagesBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             reminderMessagebarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
             ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             popupControlContainer2 = new DevExpress.XtraBars.PopupControlContainer(components);
             buttonEdit = new DevExpress.XtraEditors.ButtonEdit();
             popupControlContainer1 = new DevExpress.XtraBars.PopupControlContainer(components);
@@ -75,8 +82,6 @@
             someLabelControl1 = new DevExpress.XtraEditors.LabelControl();
             navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)splitContainerControl).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainerControl.Panel1).BeginInit();
             splitContainerControl.Panel1.SuspendLayout();
@@ -106,14 +111,14 @@
             // splitContainerControl.Panel2
             // 
             splitContainerControl.Panel2.Text = "Panel2";
-            splitContainerControl.Size = new System.Drawing.Size(1194, 548);
+            splitContainerControl.Size = new System.Drawing.Size(1194, 605);
             splitContainerControl.SplitterPosition = 205;
             splitContainerControl.TabIndex = 0;
             splitContainerControl.Text = "splitContainerControl1";
             // 
             // navBarControl
             // 
-            navBarControl.ActiveGroup = reminderGroup;
+            navBarControl.ActiveGroup = customerGroup;
             navBarControl.Dock = System.Windows.Forms.DockStyle.Fill;
             navBarControl.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] { customerGroup, organizerGroup, paymentGroup, servicesGroup, reminderGroup });
             navBarControl.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] { scheduler, registerCustomer, customerHistory, getPayment, createService, ReminderMessage, CustomerPackages, financialReport });
@@ -121,33 +126,15 @@
             navBarControl.Name = "navBarControl";
             navBarControl.OptionsNavPane.ExpandedWidth = 205;
             navBarControl.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            navBarControl.Size = new System.Drawing.Size(205, 536);
+            navBarControl.Size = new System.Drawing.Size(205, 593);
             navBarControl.StoreDefaultPaintStyleName = true;
             navBarControl.TabIndex = 1;
             navBarControl.Text = "navBarControl1";
             // 
-            // reminderGroup
-            // 
-            reminderGroup.Caption = "Hatırlatıcı";
-            reminderGroup.Expanded = true;
-            reminderGroup.ImageOptions.LargeImage = Properties.Resources.reminder_32x32;
-            reminderGroup.ImageOptions.LargeImageIndex = 0;
-            reminderGroup.ImageOptions.LargeImageKey = "reminder_32x32.png";
-            reminderGroup.ImageOptions.SmallImage = Properties.Resources.reminder_16x16;
-            reminderGroup.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] { new DevExpress.XtraNavBar.NavBarItemLink(ReminderMessage) });
-            reminderGroup.Name = "reminderGroup";
-            // 
-            // ReminderMessage
-            // 
-            ReminderMessage.Caption = "Mesaj Şablonu Oluştur";
-            ReminderMessage.ImageOptions.LargeImage = (System.Drawing.Image)resources.GetObject("ReminderMessage.ImageOptions.LargeImage");
-            ReminderMessage.ImageOptions.SmallImage = (System.Drawing.Image)resources.GetObject("ReminderMessage.ImageOptions.SmallImage");
-            ReminderMessage.Name = "ReminderMessage";
-            ReminderMessage.LinkClicked += ReminderMessage_LinkClicked;
-            // 
             // customerGroup
             // 
             customerGroup.Caption = "Müşteriler";
+            customerGroup.Expanded = true;
             customerGroup.ImageOptions.LargeImage = (System.Drawing.Image)resources.GetObject("customerGroup.ImageOptions.LargeImage");
             customerGroup.ImageOptions.LargeImageIndex = 0;
             customerGroup.ImageOptions.SmallImage = (System.Drawing.Image)resources.GetObject("customerGroup.ImageOptions.SmallImage");
@@ -238,23 +225,42 @@
             createService.Name = "createService";
             createService.LinkClicked += createService_LinkClicked;
             // 
+            // reminderGroup
+            // 
+            reminderGroup.Caption = "Hatırlatıcı";
+            reminderGroup.ImageOptions.LargeImage = Properties.Resources.reminder_32x32;
+            reminderGroup.ImageOptions.LargeImageIndex = 0;
+            reminderGroup.ImageOptions.LargeImageKey = "reminder_32x32.png";
+            reminderGroup.ImageOptions.SmallImage = Properties.Resources.reminder_16x16;
+            reminderGroup.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] { new DevExpress.XtraNavBar.NavBarItemLink(ReminderMessage) });
+            reminderGroup.Name = "reminderGroup";
+            // 
+            // ReminderMessage
+            // 
+            ReminderMessage.Caption = "Mesaj Şablonu Oluştur";
+            ReminderMessage.ImageOptions.LargeImage = (System.Drawing.Image)resources.GetObject("ReminderMessage.ImageOptions.LargeImage");
+            ReminderMessage.ImageOptions.SmallImage = (System.Drawing.Image)resources.GetObject("ReminderMessage.ImageOptions.SmallImage");
+            ReminderMessage.Name = "ReminderMessage";
+            ReminderMessage.LinkClicked += ReminderMessage_LinkClicked;
+            // 
             // ribbonStatusBar
             // 
-            ribbonStatusBar.Location = new System.Drawing.Point(0, 718);
+            ribbonStatusBar.Location = new System.Drawing.Point(0, 775);
             ribbonStatusBar.Name = "ribbonStatusBar";
             ribbonStatusBar.Ribbon = ribbonControl1;
             ribbonStatusBar.Size = new System.Drawing.Size(1194, 31);
             // 
             // ribbonControl1
             // 
+            ribbonControl1.AutoSaveLayoutToXml = true;
             ribbonControl1.CaptionBarItemLinks.Add(skinDropDownButtonItem1);
             ribbonControl1.CaptionBarItemLinks.Add(skinPaletteRibbonGalleryBarItem1);
             ribbonControl1.ExpandCollapseItem.Id = 0;
-            ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinDropDownButtonItem1, skinPaletteRibbonGalleryBarItem1, ribbonControl1.ExpandCollapseItem, skinRibbonGalleryBarItem1, barButtonItem1, barButtonItem2, btnRibbonPayment, barButtonItem3, barButtonItem4, barButtonItem5, btnRibbonfinancialReport, customerRegisterbarButtonItem, CustomerHistorybarButtonItem, customerPackagesbarButtonItem, schedulerBarButtonItem, dashboardBarButtonItem6, servicesPackagesBarButtonItem, reminderMessagebarButtonItem, barButtonItem6, barButtonItem7 });
+            ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinDropDownButtonItem1, skinPaletteRibbonGalleryBarItem1, ribbonControl1.ExpandCollapseItem, skinRibbonGalleryBarItem1, barButtonItem1, barButtonItem2, btnRibbonPayment, barButtonItem3, barButtonItem4, barButtonItem5, btnRibbonfinancialReport, customerRegisterbarButtonItem, CustomerHistorybarButtonItem, customerPackagesbarButtonItem, schedulerBarButtonItem, dashboardBarButtonItem6, servicesPackagesBarButtonItem, reminderMessagebarButtonItem, barButtonItem6, barButtonItem7, barButtonItem8, barButtonItem9 });
             ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            ribbonControl1.MaxItemId = 28;
+            ribbonControl1.MaxItemId = 30;
             ribbonControl1.Name = "ribbonControl1";
-            ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage2 });
+            ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage2, ribbonPage1 });
             ribbonControl1.Size = new System.Drawing.Size(1194, 170);
             ribbonControl1.StatusBar = ribbonStatusBar;
             // 
@@ -367,6 +373,31 @@
             barButtonItem6.Name = "barButtonItem6";
             barButtonItem6.ItemClick += barButtonItem6_ItemClick;
             // 
+            // barButtonItem7
+            // 
+            barButtonItem7.Caption = "Satış Paketi Oluştur";
+            barButtonItem7.Id = 27;
+            barButtonItem7.ImageOptions.Image = Properties.Resources.bosaleitem_16x16;
+            barButtonItem7.ImageOptions.LargeImage = Properties.Resources.bosaleitem_32x32;
+            barButtonItem7.Name = "barButtonItem7";
+            barButtonItem7.ItemClick += barButtonItem7_ItemClick;
+            // 
+            // barButtonItem8
+            // 
+            barButtonItem8.Caption = "Müşteri Geçmiş Hareketler";
+            barButtonItem8.Id = 28;
+            barButtonItem8.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem8.ImageOptions.SvgImage");
+            barButtonItem8.Name = "barButtonItem8";
+            barButtonItem8.ItemClick += barButtonItem8_ItemClick;
+            // 
+            // barButtonItem9
+            // 
+            barButtonItem9.Caption = "Müşteri Ödeme Planı";
+            barButtonItem9.Id = 29;
+            barButtonItem9.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem9.ImageOptions.SvgImage");
+            barButtonItem9.Name = "barButtonItem9";
+            barButtonItem9.ItemClick += barButtonItem9_ItemClick;
+            // 
             // ribbonPage2
             // 
             ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup4, ribbonPageGroup5, ribbonPageGroup1 });
@@ -382,6 +413,27 @@
             // 
             ribbonPageGroup5.ItemLinks.Add(barButtonItem6);
             ribbonPageGroup5.Name = "ribbonPageGroup5";
+            // 
+            // ribbonPageGroup1
+            // 
+            ribbonPageGroup1.ItemLinks.Add(barButtonItem7);
+            ribbonPageGroup1.Name = "ribbonPageGroup1";
+            // 
+            // ribbonPage1
+            // 
+            ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup3, ribbonPageGroup6 });
+            ribbonPage1.Name = "ribbonPage1";
+            ribbonPage1.Text = "Raporlar";
+            // 
+            // ribbonPageGroup3
+            // 
+            ribbonPageGroup3.ItemLinks.Add(barButtonItem8);
+            ribbonPageGroup3.Name = "ribbonPageGroup3";
+            // 
+            // ribbonPageGroup6
+            // 
+            ribbonPageGroup6.ItemLinks.Add(barButtonItem9);
+            ribbonPageGroup6.Name = "ribbonPageGroup6";
             // 
             // popupControlContainer2
             // 
@@ -423,7 +475,7 @@
             // 
             someLabelControl2.Location = new System.Drawing.Point(3, 57);
             someLabelControl2.Name = "someLabelControl2";
-            someLabelControl2.Size = new System.Drawing.Size(52, 13);
+            someLabelControl2.Size = new System.Drawing.Size(49, 13);
             someLabelControl2.TabIndex = 0;
             someLabelControl2.Text = "Some Info";
             // 
@@ -431,7 +483,7 @@
             // 
             someLabelControl1.Location = new System.Drawing.Point(3, 3);
             someLabelControl1.Name = "someLabelControl1";
-            someLabelControl1.Size = new System.Drawing.Size(52, 13);
+            someLabelControl1.Size = new System.Drawing.Size(49, 13);
             someLabelControl1.TabIndex = 0;
             someLabelControl1.Text = "Some Info";
             // 
@@ -448,26 +500,12 @@
             ribbonPageGroup2.ItemLinks.Add(barButtonItem4);
             ribbonPageGroup2.Name = "ribbonPageGroup2";
             // 
-            // ribbonPageGroup1
-            // 
-            ribbonPageGroup1.ItemLinks.Add(barButtonItem7);
-            ribbonPageGroup1.Name = "ribbonPageGroup1";
-            // 
-            // barButtonItem7
-            // 
-            barButtonItem7.Caption = "Satış Paketi Oluştur";
-            barButtonItem7.Id = 27;
-            barButtonItem7.ImageOptions.Image = Properties.Resources.bosaleitem_16x16;
-            barButtonItem7.ImageOptions.LargeImage = Properties.Resources.bosaleitem_32x32;
-            barButtonItem7.Name = "barButtonItem7";
-            barButtonItem7.ItemClick += barButtonItem7_ItemClick;
-            // 
             // MainForm
             // 
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1194, 749);
+            ClientSize = new System.Drawing.Size(1194, 806);
             Controls.Add(splitContainerControl);
             Controls.Add(popupControlContainer1);
             Controls.Add(popupControlContainer2);
@@ -546,5 +584,10 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem6;
         private DevExpress.XtraBars.BarButtonItem barButtonItem7;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem8;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem9;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
     }
 }

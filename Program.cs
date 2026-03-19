@@ -2,6 +2,7 @@
 using DevExpress.Skins;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -12,6 +13,16 @@ namespace DXBeauty {
         /// </summary>
         [STAThread]
         static void Main() {
+
+            // Uygulama ara yüz dilini Türkçe yap
+            // The following code must be executed before application startup.
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("tr");
+            Thread.CurrentThread.CurrentUICulture = culture;
+            Thread.CurrentThread.CurrentCulture = culture;
+
+            // Sets the German culture as the default culture for all threads in the application. 
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

@@ -104,7 +104,7 @@
             layoutViewField_nameColumn = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             layoutViewColumn8 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             repositoryItemCalcEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
-            layoutViewField_layoutViewColumn1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            layoutViewField_layoutViewColumn8 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
             packageGridControl = new DevExpress.XtraGrid.GridControl();
             tileView1 = new DevExpress.XtraGrid.Views.Tile.TileView();
@@ -143,7 +143,7 @@
             ((System.ComponentModel.ISupportInitialize)layoutViewField_IsActiveColumn).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewField_nameColumn).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemCalcEdit1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewCard1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)packageGridControl).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tileView1).BeginInit();
@@ -250,7 +250,7 @@
             layoutControl1.Name = "layoutControl1";
             layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1012, 449, 650, 400);
             layoutControl1.Root = Root;
-            layoutControl1.Size = new System.Drawing.Size(828, 622);
+            layoutControl1.Size = new System.Drawing.Size(828, 725);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
             // 
@@ -259,19 +259,19 @@
             labelControl1.AllowHtmlTextInToolTip = DevExpress.Utils.DefaultBoolean.True;
             labelControl1.Appearance.ForeColor = DevExpress.LookAndFeel.DXSkinColors.ForeColors.Critical;
             labelControl1.Appearance.Options.UseForeColor = true;
-            labelControl1.Location = new System.Drawing.Point(202, 279);
+            labelControl1.Location = new System.Drawing.Point(218, 294);
             labelControl1.Name = "labelControl1";
-            labelControl1.Size = new System.Drawing.Size(424, 13);
+            labelControl1.Size = new System.Drawing.Size(392, 13);
             labelControl1.StyleController = layoutControl1;
             labelControl1.TabIndex = 4;
             labelControl1.Text = "Önce Müşteri Seçiniz! Sonra Satış paketini sürükleyerek üstteki boş alana bırakınız.";
             // 
             // customerPackageGridControl
             // 
-            customerPackageGridControl.Location = new System.Drawing.Point(24, 39);
+            customerPackageGridControl.Location = new System.Drawing.Point(24, 66);
             customerPackageGridControl.MainView = tileView2;
             customerPackageGridControl.Name = "customerPackageGridControl";
-            customerPackageGridControl.Size = new System.Drawing.Size(780, 212);
+            customerPackageGridControl.Size = new System.Drawing.Size(780, 202);
             customerPackageGridControl.TabIndex = 3;
             customerPackageGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { tileView2 });
             // 
@@ -357,14 +357,14 @@
             // sluCustomerEdit
             // 
             sluCustomerEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            sluCustomerEdit.Location = new System.Drawing.Point(12, 588);
+            sluCustomerEdit.Location = new System.Drawing.Point(12, 693);
             sluCustomerEdit.Name = "sluCustomerEdit";
             serializableAppearanceObject1.ForeColor = DevExpress.LookAndFeel.DXSkinColors.ForeColors.Critical;
             serializableAppearanceObject1.Options.UseForeColor = true;
             sluCustomerEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
             sluCustomerEdit.Properties.NullText = "Lütfen Müşteri Seçiniz...";
             sluCustomerEdit.Properties.PopupView = searchLookUpEdit1View;
-            sluCustomerEdit.Size = new System.Drawing.Size(804, 22);
+            sluCustomerEdit.Size = new System.Drawing.Size(804, 20);
             sluCustomerEdit.StyleController = layoutControl1;
             sluCustomerEdit.TabIndex = 2;
             sluCustomerEdit.EditValueChanged += sluCustomerEdit_EditValueChanged;
@@ -378,7 +378,7 @@
             // 
             // splitContainerControl1
             // 
-            splitContainerControl1.Location = new System.Drawing.Point(12, 296);
+            splitContainerControl1.Location = new System.Drawing.Point(12, 311);
             splitContainerControl1.MaximumSize = new System.Drawing.Size(0, 400);
             splitContainerControl1.Name = "splitContainerControl1";
             // 
@@ -391,7 +391,7 @@
             // 
             splitContainerControl1.Panel2.Controls.Add(packageGridControl);
             splitContainerControl1.Panel2.Text = "Panel2";
-            splitContainerControl1.Size = new System.Drawing.Size(804, 276);
+            splitContainerControl1.Size = new System.Drawing.Size(804, 368);
             splitContainerControl1.SplitterPosition = 325;
             splitContainerControl1.TabIndex = 0;
             // 
@@ -402,7 +402,7 @@
             seviceGridControl.MainView = serviceView;
             seviceGridControl.Name = "seviceGridControl";
             seviceGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemToggleSwitch1, repositoryItemMemoEdit1, repositoryItemCalcEdit1 });
-            seviceGridControl.Size = new System.Drawing.Size(325, 276);
+            seviceGridControl.Size = new System.Drawing.Size(325, 368);
             seviceGridControl.TabIndex = 1;
             seviceGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { serviceView });
             // 
@@ -410,7 +410,7 @@
             // 
             serviceView.Appearance.CardCaption.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
             serviceView.Appearance.CardCaption.Options.UseBorderColor = true;
-            serviceView.CardMinSize = new System.Drawing.Size(200, 160);
+            serviceView.CardHorzInterval = 1;
             serviceView.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] { descriptionColumn, IsActiveColumn, nameColumn, layoutViewColumn8 });
             serviceView.GridControl = seviceGridControl;
             serviceView.Name = "serviceView";
@@ -419,7 +419,6 @@
             serviceView.OptionsBehavior.Editable = false;
             serviceView.OptionsBehavior.ReadOnly = true;
             serviceView.OptionsItemText.AlignMode = DevExpress.XtraGrid.Views.Layout.FieldTextAlignMode.AutoSize;
-            serviceView.OptionsItemText.TextToControlDistance = 3;
             serviceView.PaintStyleName = "Skin";
             serviceView.TemplateCard = layoutViewCard1;
             serviceView.FocusedRowChanged += serviceView_FocusedRowChanged_1;
@@ -439,13 +438,14 @@
             // 
             // layoutViewField_descriptionColumn
             // 
-            layoutViewField_descriptionColumn.EditorPreferredWidth = 161;
-            layoutViewField_descriptionColumn.Location = new System.Drawing.Point(0, 26);
+            layoutViewField_descriptionColumn.EditorPreferredWidth = 106;
+            layoutViewField_descriptionColumn.Location = new System.Drawing.Point(0, 0);
             layoutViewField_descriptionColumn.Name = "layoutViewField_descriptionColumn";
-            layoutViewField_descriptionColumn.Size = new System.Drawing.Size(261, 29);
+            layoutViewField_descriptionColumn.Size = new System.Drawing.Size(204, 28);
+            layoutViewField_descriptionColumn.StartNewLine = true;
             layoutViewField_descriptionColumn.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            layoutViewField_descriptionColumn.TextSize = new System.Drawing.Size(94, 13);
-            layoutViewField_descriptionColumn.TextToControlDistance = 2;
+            layoutViewField_descriptionColumn.TextSize = new System.Drawing.Size(87, 13);
+            layoutViewField_descriptionColumn.TextToControlDistance = 5;
             // 
             // IsActiveColumn
             // 
@@ -467,14 +467,14 @@
             // 
             layoutViewField_IsActiveColumn.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
             layoutViewField_IsActiveColumn.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
-            layoutViewField_IsActiveColumn.EditorPreferredWidth = 107;
-            layoutViewField_IsActiveColumn.Location = new System.Drawing.Point(0, 81);
+            layoutViewField_IsActiveColumn.EditorPreferredWidth = 55;
+            layoutViewField_IsActiveColumn.Location = new System.Drawing.Point(0, 28);
             layoutViewField_IsActiveColumn.MaxSize = new System.Drawing.Size(0, 35);
             layoutViewField_IsActiveColumn.MinSize = new System.Drawing.Size(99, 35);
             layoutViewField_IsActiveColumn.Name = "layoutViewField_IsActiveColumn";
-            layoutViewField_IsActiveColumn.Size = new System.Drawing.Size(261, 35);
+            layoutViewField_IsActiveColumn.Size = new System.Drawing.Size(204, 35);
             layoutViewField_IsActiveColumn.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            layoutViewField_IsActiveColumn.TextSize = new System.Drawing.Size(147, 13);
+            layoutViewField_IsActiveColumn.TextSize = new System.Drawing.Size(138, 13);
             // 
             // nameColumn
             // 
@@ -486,13 +486,13 @@
             // 
             // layoutViewField_nameColumn
             // 
-            layoutViewField_nameColumn.EditorPreferredWidth = 197;
-            layoutViewField_nameColumn.Location = new System.Drawing.Point(0, 0);
+            layoutViewField_nameColumn.EditorPreferredWidth = 139;
+            layoutViewField_nameColumn.Location = new System.Drawing.Point(0, 63);
             layoutViewField_nameColumn.Name = "layoutViewField_nameColumn";
-            layoutViewField_nameColumn.Size = new System.Drawing.Size(261, 26);
+            layoutViewField_nameColumn.Size = new System.Drawing.Size(204, 24);
             layoutViewField_nameColumn.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            layoutViewField_nameColumn.TextSize = new System.Drawing.Size(58, 13);
-            layoutViewField_nameColumn.TextToControlDistance = 2;
+            layoutViewField_nameColumn.TextSize = new System.Drawing.Size(54, 13);
+            layoutViewField_nameColumn.TextToControlDistance = 5;
             // 
             // layoutViewColumn8
             // 
@@ -502,7 +502,7 @@
             layoutViewColumn8.ColumnEdit = repositoryItemCalcEdit1;
             layoutViewColumn8.CustomizationCaption = "Varsayılan Fiyat";
             layoutViewColumn8.FieldName = "DefaultPrice";
-            layoutViewColumn8.LayoutViewField = layoutViewField_layoutViewColumn1;
+            layoutViewColumn8.LayoutViewField = layoutViewField_layoutViewColumn8;
             layoutViewColumn8.Name = "layoutViewColumn8";
             // 
             // repositoryItemCalcEdit1
@@ -514,26 +514,26 @@
             repositoryItemCalcEdit1.Precision = 2;
             repositoryItemCalcEdit1.UseMaskAsDisplayFormat = true;
             // 
-            // layoutViewField_layoutViewColumn1
+            // layoutViewField_layoutViewColumn8
             // 
-            layoutViewField_layoutViewColumn1.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
-            layoutViewField_layoutViewColumn1.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
-            layoutViewField_layoutViewColumn1.EditorPreferredWidth = 173;
-            layoutViewField_layoutViewColumn1.Location = new System.Drawing.Point(0, 55);
-            layoutViewField_layoutViewColumn1.Name = "layoutViewField_layoutViewColumn1";
-            layoutViewField_layoutViewColumn1.Size = new System.Drawing.Size(261, 26);
-            layoutViewField_layoutViewColumn1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            layoutViewField_layoutViewColumn1.TextSize = new System.Drawing.Size(82, 13);
-            layoutViewField_layoutViewColumn1.TextToControlDistance = 2;
+            layoutViewField_layoutViewColumn8.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
+            layoutViewField_layoutViewColumn8.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
+            layoutViewField_layoutViewColumn8.EditorPreferredWidth = 113;
+            layoutViewField_layoutViewColumn8.Location = new System.Drawing.Point(0, 87);
+            layoutViewField_layoutViewColumn8.Name = "layoutViewField_layoutViewColumn8";
+            layoutViewField_layoutViewColumn8.Size = new System.Drawing.Size(204, 24);
+            layoutViewField_layoutViewColumn8.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            layoutViewField_layoutViewColumn8.TextSize = new System.Drawing.Size(80, 13);
+            layoutViewField_layoutViewColumn8.TextToControlDistance = 5;
             // 
             // layoutViewCard1
             // 
             layoutViewCard1.CustomizationFormText = "TemplateCard";
             layoutViewCard1.GroupStyle = DevExpress.Utils.GroupStyle.Card;
             layoutViewCard1.HeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
-            layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutViewField_descriptionColumn, layoutViewField_IsActiveColumn, layoutViewField_nameColumn, layoutViewField_layoutViewColumn1 });
-            layoutViewCard1.Name = "layoutViewTemplateCard";
-            layoutViewCard1.OptionsItemText.TextToControlDistance = 3;
+            layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutViewField_descriptionColumn, layoutViewField_IsActiveColumn, layoutViewField_nameColumn, layoutViewField_layoutViewColumn8 });
+            layoutViewCard1.Name = "layoutViewCard1";
+            layoutViewCard1.OptionsItemText.TextToControlDistance = 5;
             layoutViewCard1.Text = "TemplateCard";
             // 
             // packageGridControl
@@ -542,7 +542,7 @@
             packageGridControl.Location = new System.Drawing.Point(0, 0);
             packageGridControl.MainView = tileView1;
             packageGridControl.Name = "packageGridControl";
-            packageGridControl.Size = new System.Drawing.Size(467, 276);
+            packageGridControl.Size = new System.Drawing.Size(469, 368);
             packageGridControl.TabIndex = 0;
             packageGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { tileView1 });
             // 
@@ -587,8 +587,11 @@
             tileView1.OptionsEditForm.PopupEditFormWidth = 280;
             tileView1.OptionsFind.AlwaysVisible = true;
             tileView1.OptionsTiles.AllowItemHover = true;
-            tileView1.OptionsTiles.Orientation = System.Windows.Forms.Orientation.Vertical;
+            tileView1.OptionsTiles.IndentBetweenGroups = 55;
+            tileView1.OptionsTiles.ItemPadding = new System.Windows.Forms.Padding(9);
+            tileView1.OptionsTiles.LayoutMode = DevExpress.XtraGrid.Views.Tile.TileViewLayoutMode.Kanban;
             tileView1.OptionsTiles.RowCount = 0;
+            tileView1.OptionsTiles.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Top;
             tileView1.TileColumns.Add(tableColumnDefinition4);
             tileView1.TileColumns.Add(tableColumnDefinition5);
             tableRowDefinition6.Length.Value = 20D;
@@ -678,29 +681,29 @@
             // 
             // Root
             // 
-            Root.GroupStyle = DevExpress.Utils.GroupStyle.Light;
+            Root.GroupStyle = DevExpress.Utils.GroupStyle.Card;
             Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, layoutControlGroup1, splitterItem1, splitterItem2, layoutControlItem4 });
             Root.Name = "Root";
-            Root.Size = new System.Drawing.Size(828, 622);
-            Root.TextVisible = false;
+            Root.Size = new System.Drawing.Size(828, 725);
+            Root.Text = "Müşteri Paket Satışı";
             // 
             // layoutControlItem1
             // 
             layoutControlItem1.Control = splitContainerControl1;
-            layoutControlItem1.Location = new System.Drawing.Point(0, 284);
+            layoutControlItem1.Location = new System.Drawing.Point(0, 278);
             layoutControlItem1.MaxSize = new System.Drawing.Size(0, 400);
             layoutControlItem1.MinSize = new System.Drawing.Size(5, 5);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(808, 280);
+            layoutControlItem1.Size = new System.Drawing.Size(808, 372);
             layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             layoutControlItem2.Control = sluCustomerEdit;
-            layoutControlItem2.Location = new System.Drawing.Point(0, 576);
+            layoutControlItem2.Location = new System.Drawing.Point(0, 660);
             layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new System.Drawing.Size(808, 26);
+            layoutControlItem2.Size = new System.Drawing.Size(808, 24);
             layoutControlItem2.TextVisible = false;
             // 
             // layoutControlGroup1
@@ -709,7 +712,7 @@
             layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem3 });
             layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             layoutControlGroup1.Name = "layoutControlGroup1";
-            layoutControlGroup1.Size = new System.Drawing.Size(808, 255);
+            layoutControlGroup1.Size = new System.Drawing.Size(808, 251);
             layoutControlGroup1.Text = "Müşteriye Satılalan Paketler";
             // 
             // layoutControlItem3
@@ -718,21 +721,21 @@
             layoutControlItem3.CustomizationFormText = "layout Control Item3";
             layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             layoutControlItem3.Name = "layoutControlItem3";
-            layoutControlItem3.Size = new System.Drawing.Size(784, 216);
+            layoutControlItem3.Size = new System.Drawing.Size(784, 206);
             layoutControlItem3.Text = "layout Control Item3";
             layoutControlItem3.TextVisible = false;
             // 
             // splitterItem1
             // 
-            splitterItem1.Location = new System.Drawing.Point(0, 255);
+            splitterItem1.Location = new System.Drawing.Point(0, 251);
             splitterItem1.Name = "splitterItem1";
-            splitterItem1.Size = new System.Drawing.Size(808, 12);
+            splitterItem1.Size = new System.Drawing.Size(808, 10);
             // 
             // splitterItem2
             // 
-            splitterItem2.Location = new System.Drawing.Point(0, 564);
+            splitterItem2.Location = new System.Drawing.Point(0, 650);
             splitterItem2.Name = "splitterItem2";
-            splitterItem2.Size = new System.Drawing.Size(808, 12);
+            splitterItem2.Size = new System.Drawing.Size(808, 10);
             // 
             // layoutControlItem4
             // 
@@ -740,7 +743,7 @@
             layoutControlItem4.AppearanceItemCaption.Options.UseForeColor = true;
             layoutControlItem4.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
             layoutControlItem4.Control = labelControl1;
-            layoutControlItem4.Location = new System.Drawing.Point(0, 267);
+            layoutControlItem4.Location = new System.Drawing.Point(0, 261);
             layoutControlItem4.Name = "layoutControlItem4";
             layoutControlItem4.Size = new System.Drawing.Size(808, 17);
             layoutControlItem4.TextVisible = false;
@@ -751,7 +754,7 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             Controls.Add(layoutControl1);
             Name = "CustomerPackagesControl";
-            Size = new System.Drawing.Size(828, 622);
+            Size = new System.Drawing.Size(828, 725);
             ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
             layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)customerPackageGridControl).EndInit();
@@ -772,7 +775,7 @@
             ((System.ComponentModel.ISupportInitialize)layoutViewField_IsActiveColumn).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewField_nameColumn).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemCalcEdit1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn8).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewCard1).EndInit();
             ((System.ComponentModel.ISupportInitialize)packageGridControl).EndInit();
             ((System.ComponentModel.ISupportInitialize)tileView1).EndInit();
@@ -820,16 +823,11 @@
         private DevExpress.XtraGrid.Views.Layout.LayoutView serviceView;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn descriptionColumn;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
-        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_descriptionColumn;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn IsActiveColumn;
         private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch1;
-        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_IsActiveColumn;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn nameColumn;
-        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_nameColumn;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn layoutViewColumn8;
         private DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit repositoryItemCalcEdit1;
-        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1;
-        private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
         private DevExpress.XtraLayout.SplitterItem splitterItem1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraGrid.Columns.TileViewColumn tileViewColumn2;
@@ -838,5 +836,10 @@
         private DevExpress.XtraLayout.SplitterItem splitterItem2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_descriptionColumn;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_IsActiveColumn;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_nameColumn;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn8;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
     }
 }

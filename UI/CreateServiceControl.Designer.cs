@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateServiceControl));
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             calcDefaultPrice = new DevExpress.XtraEditors.CalcEdit();
             serviceName = new DevExpress.XtraEditors.TextEdit();
@@ -69,41 +70,41 @@
             layoutControl1.Name = "layoutControl1";
             layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(663, 48, 650, 400);
             layoutControl1.Root = Root;
-            layoutControl1.Size = new System.Drawing.Size(280, 307);
+            layoutControl1.Size = new System.Drawing.Size(280, 243);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
             // 
             // calcDefaultPrice
             // 
-            calcDefaultPrice.Location = new System.Drawing.Point(124, 164);
+            calcDefaultPrice.Location = new System.Drawing.Point(119, 126);
             calcDefaultPrice.MinimumSize = new System.Drawing.Size(70, 0);
             calcDefaultPrice.Name = "calcDefaultPrice";
             calcDefaultPrice.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             calcDefaultPrice.Properties.MaskSettings.Set("mask", "c");
             calcDefaultPrice.Properties.UseMaskAsDisplayFormat = true;
-            calcDefaultPrice.Size = new System.Drawing.Size(125, 22);
+            calcDefaultPrice.Size = new System.Drawing.Size(138, 20);
             calcDefaultPrice.StyleController = layoutControl1;
             calcDefaultPrice.TabIndex = 3;
             // 
             // serviceName
             // 
-            serviceName.Location = new System.Drawing.Point(31, 63);
+            serviceName.Location = new System.Drawing.Point(23, 61);
             serviceName.Name = "serviceName";
-            serviceName.Size = new System.Drawing.Size(218, 22);
+            serviceName.Size = new System.Drawing.Size(234, 20);
             serviceName.StyleController = layoutControl1;
             serviceName.TabIndex = 0;
             // 
             // serviceDescription
             // 
-            serviceDescription.Location = new System.Drawing.Point(31, 122);
+            serviceDescription.Location = new System.Drawing.Point(23, 102);
             serviceDescription.Name = "serviceDescription";
-            serviceDescription.Size = new System.Drawing.Size(218, 22);
+            serviceDescription.Size = new System.Drawing.Size(234, 20);
             serviceDescription.StyleController = layoutControl1;
             serviceDescription.TabIndex = 2;
             // 
             // isActive
             // 
-            isActive.Location = new System.Drawing.Point(200, 206);
+            isActive.Location = new System.Drawing.Point(193, 150);
             isActive.MaximumSize = new System.Drawing.Size(30, 0);
             isActive.Name = "isActive";
             isActive.Properties.Caption = "";
@@ -114,7 +115,10 @@
             // 
             // createServiceButton
             // 
-            createServiceButton.Location = new System.Drawing.Point(105, 248);
+            createServiceButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            createServiceButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("createServiceButton.ImageOptions.SvgImage");
+            createServiceButton.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
+            createServiceButton.Location = new System.Drawing.Point(105, 184);
             createServiceButton.MaximumSize = new System.Drawing.Size(70, 0);
             createServiceButton.MinimumSize = new System.Drawing.Size(0, 25);
             createServiceButton.Name = "createServiceButton";
@@ -130,7 +134,7 @@
             Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, layoutControlItem3, layoutControlItem4, layoutControlItem5 });
             Root.Name = "Root";
             Root.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            Root.Size = new System.Drawing.Size(280, 307);
+            Root.Size = new System.Drawing.Size(280, 243);
             Root.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             Root.Text = "Yeni Hizmet";
             // 
@@ -139,25 +143,23 @@
             layoutControlItem1.Control = serviceName;
             layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            layoutControlItem1.Size = new System.Drawing.Size(238, 59);
+            layoutControlItem1.Size = new System.Drawing.Size(238, 41);
             layoutControlItem1.Text = "Hizmet Adı";
             layoutControlItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             layoutControlItem1.TextLocation = DevExpress.Utils.Locations.Top;
-            layoutControlItem1.TextSize = new System.Drawing.Size(55, 13);
+            layoutControlItem1.TextSize = new System.Drawing.Size(50, 13);
             layoutControlItem1.TextToControlDistance = 4;
             // 
             // layoutControlItem2
             // 
             layoutControlItem2.Control = serviceDescription;
-            layoutControlItem2.Location = new System.Drawing.Point(0, 59);
+            layoutControlItem2.Location = new System.Drawing.Point(0, 41);
             layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            layoutControlItem2.Size = new System.Drawing.Size(238, 59);
+            layoutControlItem2.Size = new System.Drawing.Size(238, 41);
             layoutControlItem2.Text = "Açıklama";
             layoutControlItem2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             layoutControlItem2.TextLocation = DevExpress.Utils.Locations.Top;
-            layoutControlItem2.TextSize = new System.Drawing.Size(45, 13);
+            layoutControlItem2.TextSize = new System.Drawing.Size(41, 13);
             layoutControlItem2.TextToControlDistance = 4;
             // 
             // layoutControlItem3
@@ -165,20 +167,19 @@
             layoutControlItem3.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
             layoutControlItem3.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
             layoutControlItem3.Control = isActive;
-            layoutControlItem3.Location = new System.Drawing.Point(0, 160);
+            layoutControlItem3.Location = new System.Drawing.Point(0, 106);
             layoutControlItem3.Name = "layoutControlItem3";
-            layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            layoutControlItem3.Size = new System.Drawing.Size(238, 40);
+            layoutControlItem3.Size = new System.Drawing.Size(238, 24);
             layoutControlItem3.Text = "Kullanımda / Kullanım Dışı :";
             layoutControlItem3.TextLocation = DevExpress.Utils.Locations.Left;
-            layoutControlItem3.TextSize = new System.Drawing.Size(139, 13);
+            layoutControlItem3.TextSize = new System.Drawing.Size(124, 13);
             // 
             // layoutControlItem4
             // 
             layoutControlItem4.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
             layoutControlItem4.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
             layoutControlItem4.Control = createServiceButton;
-            layoutControlItem4.Location = new System.Drawing.Point(0, 200);
+            layoutControlItem4.Location = new System.Drawing.Point(0, 130);
             layoutControlItem4.Name = "layoutControlItem4";
             layoutControlItem4.Size = new System.Drawing.Size(238, 50);
             layoutControlItem4.TextVisible = false;
@@ -186,15 +187,14 @@
             // layoutControlItem5
             // 
             layoutControlItem5.Control = calcDefaultPrice;
-            layoutControlItem5.Location = new System.Drawing.Point(0, 118);
+            layoutControlItem5.Location = new System.Drawing.Point(0, 82);
             layoutControlItem5.Name = "layoutControlItem5";
-            layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            layoutControlItem5.Size = new System.Drawing.Size(238, 42);
+            layoutControlItem5.Size = new System.Drawing.Size(238, 24);
             layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.SupportHorzAlignment;
             layoutControlItem5.Text = "Taban Fiyat (TL) :";
             layoutControlItem5.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Left;
-            layoutControlItem5.TextSize = new System.Drawing.Size(83, 13);
+            layoutControlItem5.TextSize = new System.Drawing.Size(86, 13);
             layoutControlItem5.TextToControlDistance = 10;
             // 
             // emptySpaceItem3
@@ -213,7 +213,7 @@
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             Controls.Add(layoutControl1);
             Name = "CreateServiceControl";
-            Size = new System.Drawing.Size(280, 307);
+            Size = new System.Drawing.Size(280, 243);
             ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
             layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)calcDefaultPrice.Properties).EndInit();

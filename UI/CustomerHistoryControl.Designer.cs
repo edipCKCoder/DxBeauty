@@ -62,11 +62,12 @@
             // 
             // slueCustomer
             // 
-            slueCustomer.Location = new System.Drawing.Point(123, 32);
+            slueCustomer.Location = new System.Drawing.Point(91, 45);
             slueCustomer.Name = "slueCustomer";
             slueCustomer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            slueCustomer.Properties.NullText = "Lütfen Müşteri Seçiniz...";
             slueCustomer.Properties.PopupView = searchLookUpEdit1View;
-            slueCustomer.Size = new System.Drawing.Size(703, 22);
+            slueCustomer.Size = new System.Drawing.Size(722, 22);
             slueCustomer.StyleController = layoutControl1;
             slueCustomer.TabIndex = 5;
             slueCustomer.EditValueChanged += slueCustomer_EditValueChanged;
@@ -80,10 +81,10 @@
             // 
             // gridControlHistory
             // 
-            gridControlHistory.Location = new System.Drawing.Point(12, 58);
+            gridControlHistory.Location = new System.Drawing.Point(25, 71);
             gridControlHistory.MainView = gridView1;
             gridControlHistory.Name = "gridControlHistory";
-            gridControlHistory.Size = new System.Drawing.Size(814, 437);
+            gridControlHistory.Size = new System.Drawing.Size(788, 411);
             gridControlHistory.TabIndex = 4;
             gridControlHistory.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
             // 
@@ -99,13 +100,15 @@
             Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2 });
             Root.Name = "Root";
             Root.Size = new System.Drawing.Size(838, 507);
+            Root.Spacing = new DevExpress.XtraLayout.Utils.Padding(13, 13, 13, 13);
+            Root.Text = "Müşteri Geçmiş Hareketler";
             // 
             // layoutControlItem1
             // 
             layoutControlItem1.Control = gridControlHistory;
             layoutControlItem1.Location = new System.Drawing.Point(0, 26);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(818, 441);
+            layoutControlItem1.Size = new System.Drawing.Size(792, 415);
             layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
@@ -113,8 +116,9 @@
             layoutControlItem2.Control = slueCustomer;
             layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new System.Drawing.Size(818, 26);
-            layoutControlItem2.TextSize = new System.Drawing.Size(99, 13);
+            layoutControlItem2.Size = new System.Drawing.Size(792, 26);
+            layoutControlItem2.Text = "Müşteriler :";
+            layoutControlItem2.TextSize = new System.Drawing.Size(54, 13);
             // 
             // CustomerHistoryControl
             // 

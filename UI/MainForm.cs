@@ -207,5 +207,33 @@ namespace DXBeauty
 
             popUp.ShowDialog();
         }
+
+        private void barButtonItem8_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            CustomerHistoryControl customerHistory = new UI.CustomerHistoryControl();
+            customerHistory.Dock = DockStyle.Fill;
+            XtraForm popUp = new XtraForm();
+
+
+            popUp.ClientSize = customerHistory.Size;
+            popUp.Controls.Add(customerHistory); // (PopUp.AddControl yerine PopUp.Controls.Add kullanmalısınız)
+            popUp.StartPosition = FormStartPosition.CenterScreen;
+
+            popUp.ShowDialog();
+        }
+
+        private void barButtonItem9_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            FinancialReportControl financialReportControl = new UI.FinancialReportControl();
+            financialReportControl.Dock = DockStyle.Fill;
+            XtraForm popUp = new XtraForm();
+
+
+            popUp.ClientSize = financialReportControl.Size;
+            popUp.Controls.Add(financialReportControl); // (PopUp.AddControl yerine PopUp.Controls.Add kullanmalısınız)
+            popUp.StartPosition = FormStartPosition.CenterScreen;
+
+            popUp.ShowDialog();
+        }
     }
 }

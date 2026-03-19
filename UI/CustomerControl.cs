@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DXBeauty.Data;
 using DXBeauty.Dtos;
 using DXBeauty.Entities;
@@ -37,6 +38,10 @@ namespace DXBeauty.UI
 
             var customers = repo.GetAll().ToList();
             customerGridControl.DataSource = customers;
+            // Olayı (Event) koda elle bağlıyoruz
+            repositoryItemButtonEdit1.ButtonClick += RepositoryItemButtonEdit1_ButtonClick;
+           
+
 
             // Müşterinin kendi oluşturduğu (Özel) şablonları veritabanından çekip hafızaya alıyoruz
             using (var connection = new NpgsqlConnection(connectionString))
@@ -45,6 +50,45 @@ namespace DXBeauty.UI
                 _ozelSablonlar = (await connection.QueryAsync<MessageTemplate>(sql)).ToList();
             }
         }
+
+        private void RepositoryItemButtonEdit1_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            var seciliMusteri = gridViewMusteriler.GetFocusedRow() as Customer;
+            if (seciliMusteri == null) return;
+
+            // EĞER SİSTEMDE HİÇ ÖZEL ŞABLON VARSA, ALT MENÜYÜ OLUŞTUR
+            if (_ozelSablonlar != null && _ozelSablonlar.Count > 0)
+            {
+                // 1. Ana Popup Menüsünü oluştur (Kapsayıcı) 
+                DevExpress.Utils.Menu.DXPopupMenu anaMenu = new DevExpress.Utils.Menu.DXPopupMenu();
+
+                DevExpress.Utils.Menu.DXSubMenuItem ozelMesajMenu = new DevExpress.Utils.Menu.DXSubMenuItem("💬 Özel Mesaj Gönder");
+                ozelMesajMenu.BeginGroup = true; // Üstüne şık bir ayraç çizgisi koy
+
+                // Hafızadaki özel şablonları tek tek alt menüye buton olarak ekle
+                foreach (var sablon in _ozelSablonlar)
+                {
+                    DevExpress.Utils.Menu.DXMenuItem sablonButonu = new DevExpress.Utils.Menu.DXMenuItem("✨ " + sablon.TemplateName);
+
+                    // Butona tıklandığında WhatsApp fırlatıcıyı çağır
+                    sablonButonu.Click += async (s, args) =>
+                    {
+                        await SendCustomWhatsAppAsync(seciliMusteri, sablon.TemplateContent);
+                    };
+
+                    ozelMesajMenu.Items.Add(sablonButonu);
+                }
+
+                // 2. Alt menüyü ana popup menüsüne ekle ✅
+                anaMenu.Items.Add(ozelMesajMenu);
+
+                // 3. Menüyü FARE KOORDİNATLARINDA göster ❗
+                // PointToClient: Ekran koordinatını Grid üzerindeki koordinata çevirir.
+                anaMenu.ShowPopup(customerGridControl, customerGridControl.PointToClient(Control.MousePosition));
+            }
+
+        }
+        
 
         private void NewRegister_Click(object sender, EventArgs e)
         {
@@ -114,8 +158,10 @@ namespace DXBeauty.UI
                 customerGridControl.DataSource = repo.GetAll().ToList(); // grid refresh
                 popup.Close();
             };
-
+            popup.ClientSize = registerControl.Size;
+            popup.StartPosition = FormStartPosition.CenterScreen;
             popup.Controls.Add(registerControl);
+
             popup.ShowDialog();
         }
 

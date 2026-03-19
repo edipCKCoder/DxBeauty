@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,11 @@ namespace DXBeauty.Dtos
 {
     public class CustomerHistoryMasterDto
     {
+        [DisplayName("İşlem Tarihi")]
         public DateTime EventDate { get; set; }      // İşlem Tarihi (Randevu tarihi, Satış tarihi veya Tahsilat tarihi)
+        [DisplayName("İşlem Türü")]
         public string EventType { get; set; }        // İşlem Türü: "Randevu", "Paket Satışı", "Tahsilat"
+        [DisplayName("İşlem Detayı")]
         public string Summary { get; set; }          // Özet: "Lazer Epilasyon (Tamamlandı)", "2. Taksit Ödemesi", "Cilt Bakım Paketi"
 
         // --- DEVEXPRESS MASTER-DETAIL LİSTELERİ ---

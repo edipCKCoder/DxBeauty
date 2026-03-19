@@ -77,18 +77,18 @@
             // 
             // totalPriceEdit
             // 
-            totalPriceEdit.Location = new System.Drawing.Point(104, 58);
+            totalPriceEdit.Location = new System.Drawing.Point(94, 57);
             totalPriceEdit.Name = "totalPriceEdit";
             totalPriceEdit.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             totalPriceEdit.Properties.MaskSettings.Set("mask", "c");
             totalPriceEdit.Properties.UseMaskAsDisplayFormat = true;
-            totalPriceEdit.Size = new System.Drawing.Size(83, 22);
+            totalPriceEdit.Size = new System.Drawing.Size(93, 20);
             totalPriceEdit.StyleController = layoutControl1;
             totalPriceEdit.TabIndex = 2;
             // 
             // installmentAllowedEdit
             // 
-            installmentAllowedEdit.Location = new System.Drawing.Point(139, 84);
+            installmentAllowedEdit.Location = new System.Drawing.Point(139, 81);
             installmentAllowedEdit.MaximumSize = new System.Drawing.Size(20, 30);
             installmentAllowedEdit.Name = "installmentAllowedEdit";
             installmentAllowedEdit.Properties.Caption = "";
@@ -104,7 +104,7 @@
             packageServiceEditButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             packageServiceEditButton.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.None;
             packageServiceEditButton.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            packageServiceEditButton.Location = new System.Drawing.Point(49, 154);
+            packageServiceEditButton.Location = new System.Drawing.Point(49, 153);
             packageServiceEditButton.MaximumSize = new System.Drawing.Size(100, 40);
             packageServiceEditButton.MinimumSize = new System.Drawing.Size(70, 10);
             packageServiceEditButton.Name = "packageServiceEditButton";
@@ -122,7 +122,7 @@
             // 
             // isActiveEdit
             // 
-            isActiveEdit.Location = new System.Drawing.Point(163, 118);
+            isActiveEdit.Location = new System.Drawing.Point(163, 115);
             isActiveEdit.MaximumSize = new System.Drawing.Size(20, 30);
             isActiveEdit.Name = "isActiveEdit";
             isActiveEdit.Properties.Caption = "";
@@ -134,14 +134,14 @@
             // sessionCountEdit
             // 
             sessionCountEdit.EditValue = new decimal(new int[] { 0, 0, 0, 0 });
-            sessionCountEdit.Location = new System.Drawing.Point(104, 32);
+            sessionCountEdit.Location = new System.Drawing.Point(94, 33);
             sessionCountEdit.Name = "sessionCountEdit";
             sessionCountEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             sessionCountEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             sessionCountEdit.Properties.MaskSettings.Set("mask", "");
             sessionCountEdit.Properties.MaskSettings.Set("autoHideDecimalSeparator", true);
             sessionCountEdit.Properties.UseMaskAsDisplayFormat = true;
-            sessionCountEdit.Size = new System.Drawing.Size(83, 22);
+            sessionCountEdit.Size = new System.Drawing.Size(93, 20);
             sessionCountEdit.StyleController = layoutControl1;
             sessionCountEdit.TabIndex = 0;
             // 
@@ -164,25 +164,25 @@
             layoutControlItem1.Control = sessionCountEdit;
             layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(179, 26);
-            layoutControlItem1.Text = "Session Count :";
-            layoutControlItem1.TextSize = new System.Drawing.Size(80, 13);
+            layoutControlItem1.Size = new System.Drawing.Size(179, 24);
+            layoutControlItem1.Text = "Seans Sayısı :";
+            layoutControlItem1.TextSize = new System.Drawing.Size(70, 13);
             // 
             // layoutControlItem2
             // 
             layoutControlItem2.Control = totalPriceEdit;
-            layoutControlItem2.Location = new System.Drawing.Point(0, 26);
+            layoutControlItem2.Location = new System.Drawing.Point(0, 24);
             layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new System.Drawing.Size(179, 26);
-            layoutControlItem2.Text = "Total Price :";
-            layoutControlItem2.TextSize = new System.Drawing.Size(80, 13);
+            layoutControlItem2.Size = new System.Drawing.Size(179, 24);
+            layoutControlItem2.Text = "Toplam Tutar :";
+            layoutControlItem2.TextSize = new System.Drawing.Size(70, 13);
             // 
             // layoutControlItem3
             // 
             layoutControlItem3.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
             layoutControlItem3.Control = installmentAllowedEdit;
             layoutControlItem3.CustomizationFormText = "Taksit Yapılabilir : ";
-            layoutControlItem3.Location = new System.Drawing.Point(0, 52);
+            layoutControlItem3.Location = new System.Drawing.Point(0, 48);
             layoutControlItem3.Name = "layoutControlItem3";
             layoutControlItem3.Size = new System.Drawing.Size(179, 34);
             layoutControlItem3.Text = "Taksit Yapılabilir :";
@@ -196,10 +196,10 @@
             layoutControlItem4.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
             layoutControlItem4.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
             layoutControlItem4.Control = packageServiceEditButton;
-            layoutControlItem4.Location = new System.Drawing.Point(0, 120);
+            layoutControlItem4.Location = new System.Drawing.Point(0, 116);
             layoutControlItem4.MinSize = new System.Drawing.Size(50, 25);
             layoutControlItem4.Name = "layoutControlItem4";
-            layoutControlItem4.Size = new System.Drawing.Size(179, 49);
+            layoutControlItem4.Size = new System.Drawing.Size(179, 52);
             layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             layoutControlItem4.TextVisible = false;
             // 
@@ -207,7 +207,7 @@
             // 
             layoutControlItem5.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
             layoutControlItem5.Control = isActiveEdit;
-            layoutControlItem5.Location = new System.Drawing.Point(0, 86);
+            layoutControlItem5.Location = new System.Drawing.Point(0, 82);
             layoutControlItem5.Name = "layoutControlItem5";
             layoutControlItem5.Size = new System.Drawing.Size(179, 34);
             layoutControlItem5.Text = "Kullanımda / Kullanım Dışı :";
