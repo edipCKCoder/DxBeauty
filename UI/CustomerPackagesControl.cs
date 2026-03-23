@@ -29,7 +29,7 @@ namespace DXBeauty.UI
         private CustomerRepository _customerRepository;
         private ServicePackageRepository _servicePackageRepository;
         private CustomerServiceRepository _customerServiceRepository;
-
+        public static CustomerPackagesControl Instance { get; private set; }
         private DevExpress.Utils.Behaviors.BehaviorManager _dragDropManager;
 
         public CustomerPackagesControl()
@@ -37,7 +37,7 @@ namespace DXBeauty.UI
             InitializeComponent();
             _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             _dragDropManager = new DevExpress.Utils.Behaviors.BehaviorManager();
-
+            Instance = this;
 
             LoadData();
             
@@ -142,7 +142,7 @@ namespace DXBeauty.UI
             }
         }
 
-        void LoadData()
+        public void LoadData()
         {
 
             _customerRepository = new CustomerRepository(_connectionString);
@@ -150,13 +150,21 @@ namespace DXBeauty.UI
             _servicePackageRepository = new ServicePackageRepository(_connectionString);
             _customerServiceRepository = new CustomerServiceRepository(_connectionString);
 
-            sluCustomerEdit.Properties.DataSource = _customerRepository.GetAll();
-            packageGridControl.DataSource = _servicePackageRepository.GetAll();
-            seviceGridControl.DataSource = _serviceRepository.GetAll();
 
+            
+            packageGridControl.DataSource = _servicePackageRepository.GetAll();
+
+
+            var costumerList = _customerRepository.GetAll();
+            sluCustomerEdit.Properties.DataSource = costumerList;
 
             sluCustomerEdit.Properties.DisplayMember = "FullName";
             sluCustomerEdit.Properties.ValueMember = "CustomerId";
+
+            if (costumerList.Any())
+            {
+                sluCustomerEdit.EditValue = costumerList.FirstOrDefault().CustomerId;
+            }
 
             // Sütunların otomatik oluşturulmasını zorlayın
             sluCustomerEdit.Properties.PopulateViewColumns();
@@ -166,7 +174,7 @@ namespace DXBeauty.UI
             sluCustomerEdit.Properties.View.Columns["Email"].Visible = false;
             sluCustomerEdit.Properties.View.Columns["FirstName"].Visible = false;
             sluCustomerEdit.Properties.View.Columns["LastName"].Visible = false;
-           
+
         }
 
 
@@ -205,23 +213,73 @@ namespace DXBeauty.UI
 
         private void tileView1_ContextButtonClick(object sender, ContextItemClickEventArgs e)
         {
-            TileViewItem item = e.DataItem as TileViewItem;
+            TileViewItem controlItem = e.DataItem as TileViewItem;
             if (e.Item.Name == "contextButton1")
             {
-                ServicePackage servicePackage = (ServicePackage)tileView1.GetRow(item.RowHandle);
+                ServicePackage servicePackage = (ServicePackage)tileView1.GetRow(controlItem.RowHandle);
                 servicePackage.IsActive = true;
                 _servicePackageRepository.Update(servicePackage);
-                tileView1.RefreshRow(item.RowHandle);
+                tileView1.RefreshRow(controlItem.RowHandle);
                 tileView1.LayoutChanged();
             }
             else if (e.Item.Name == "contextButton2")
             {
-                ServicePackage servicePackage = (ServicePackage)tileView1.GetRow(item.RowHandle);
+                ServicePackage servicePackage = (ServicePackage)tileView1.GetRow(controlItem.RowHandle);
                 servicePackage.IsActive = false;
                 _servicePackageRepository.Update(servicePackage);
-                tileView1.RefreshRow(item.RowHandle);
+                tileView1.RefreshRow(controlItem.RowHandle);
                 tileView1.LayoutChanged();
             }
+            else if (e.Item.Name == "contextButton3")
+            {
+                ServicePackage servicePackage = (ServicePackage)tileView1.GetRow(controlItem.RowHandle);
+                if (sluCustomerEdit.EditValue == null)
+                {
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Lütfen önce bir müşteri seçin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                   
+                    return;
+                }
+
+                if (servicePackage != null)
+                {
+                    // Eger aktif paketse ekledra)
+                    if (servicePackage.IsActive == false)
+                    {
+                        DevExpress.XtraEditors.XtraMessageBox.Show("Paket kullanım dışı lütfen aktif bir paket seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);  
+                        return;
+                    }
+                }
+
+                int customerId = (int)sluCustomerEdit.EditValue;
+
+                // 1. AYNI PAKET KONTROLÜ
+                var currentlyCustomerServices = _customerServiceRepository.GetByCustomer(customerId);
+                foreach (var item in currentlyCustomerServices)
+                {
+                    // Eğer müşteri bu paketi önceden aldıysa ve statüsü Active ise uyar
+                    if (item.ServicePackageId == servicePackage.ServicePackageId)
+                    {
+                        XtraMessageBox.Show("Bu müşterinin zaten devam eden aynı paketi var!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+                // 5. TAKSİTLERİ (BORÇ PLANI) OLUŞTUR VE KAYDET
+                XtraForm popup = new XtraForm();
+                PaymentPlanWizardControl paymentPlanWizardControl = new PaymentPlanWizardControl(customerId, servicePackage);
+
+                popup.ClientSize = paymentPlanWizardControl.Size;
+                paymentPlanWizardControl.Dock = DockStyle.Fill;
+                popup.AddControl(paymentPlanWizardControl);
+                popup.StartPosition = FormStartPosition.CenterScreen;
+                popup.ShowDialog();
+
+                // 6. EKRANI YENİLE VE BAŞARI MESAJI VER
+                LoadCustomerServices(customerId);
+                //XtraMessageBox.Show($"Paket müşteriye başarıyla tanımlandı!\nToplam: {newCustomerService.TotalPrice} TL\nTaksit Sayısı: {installmentCount}", "Satış Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+
+
         }
 
 
@@ -271,13 +329,6 @@ namespace DXBeauty.UI
             {
                 e.Allow = false;
             }
-        }
-
-
-        private void serviceView_FocusedRowChanged_1(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
-            var serviceId = (int)serviceView.GetRowCellValue(e.FocusedRowHandle, "ServiceId");
-            packageGridControl.DataSource = _servicePackageRepository.GetByService(serviceId);
         }
     }
 }

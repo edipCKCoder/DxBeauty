@@ -70,22 +70,72 @@ namespace DXBeauty.UI
         {
             int selectedType = rgPaymentType.SelectedIndex;
 
-            // 0: Peşin, 1: Taksitli, 2: Açık Hesap
-            if (selectedType == 1) // Sadece Taksitli seçilirse Grid ve Planlama araçları görünür
+            // 0: Peşin (Tamamı Peşin), 1: Taksitli, 2: Açık Hesap
+
+            if (selectedType == 0) // TAMAMI PEŞİN
             {
-                cmbIntervalTypeLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                spinInstallmentCountLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                spinIntervalValueLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                gridInstallmentsLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                btnGeneratePlanLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            }
-            else // Peşin veya Açık Hesap'ta planlama alanı gizlenir!
-            {
+                // UI Gizleme (Taksit alanları gizlenir)
                 spinInstallmentCountLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 spinIntervalValueLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 gridInstallmentsLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 btnGeneratePlanLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 cmbIntervalTypeLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+                // KİLİT NOKTASI: Tamamı peşin olduğu için Peşinat = Toplam Tutar olmalı ve değiştirilememelidir!
+                calcDownPayment.ReadOnly = true;
+                calcDownPayment.Value = calcTotalPrice.Value; // Bunu yaptığımız an EditValueChanged tetiklenir ve Kalan Borç 0 olur.
+
+                // Varsa önceki taksit tablosunu temizle
+                gridInstallments.DataSource = null;
+                
+            }
+            else if (selectedType == 1) // TAKSİTLİ
+            {
+                // UI Gösterme
+                cmbIntervalTypeLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                spinInstallmentCountLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                spinIntervalValueLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                gridInstallmentsLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                btnGeneratePlanLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+
+                // Peşinat Kutusu Açılır: Taksitli olduğu için kullanıcı elden aldığı kadarını kendi girer.
+                calcDownPayment.ReadOnly = false;
+
+                // Eğer personel "Peşin"den "Taksitli"ye dönerse, yanlışlıkla tüm parayı peşin almasın diye sıfırlıyoruz
+                if (calcDownPayment.Value == calcTotalPrice.Value)
+                {
+                    calcDownPayment.Value = 0;
+                }
+            }
+            else if (selectedType == 2) // AÇIK HESAP
+            {
+                // UI Gizleme
+                spinInstallmentCountLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                spinIntervalValueLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                gridInstallmentsLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                btnGeneratePlanLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                cmbIntervalTypeLayout.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+                // Açık hesapta müşteri isterse hiç vermez (0), isterse bir miktar (kapora) verir. O yüzden kutu açıktır.
+                calcDownPayment.ReadOnly = false;
+            }
+
+            // ⚠️ KRİTİK MÜDAHALE: Formun Boşluğunu Almak İçin
+
+            // 1. LayoutControl'e değişen görünürlükleri hesaplaması için komut ver
+            layoutControl1.Root.Update();
+
+            // 2. Bu UserControl'ü içinde barındıran dış pencereyi (PopUp XtraForm) bul
+            Form parentForm = this.FindForm();
+
+            if (parentForm != null)
+            {
+                // 3. Pencerenin genişliğini sabit tut, yüksekliğini sadece 
+                // LayoutControl'ün içindeki dolu elemanların kapladığı alana eşitle
+                parentForm.ClientSize = new System.Drawing.Size(
+                    parentForm.ClientSize.Width,
+                    layoutControl1.Root.MinSize.Height
+                );
             }
         }
 
@@ -99,6 +149,17 @@ namespace DXBeauty.UI
             // Peşinat girildikçe kalan borcu otomatik hesapla
             decimal total = calcTotalPrice.Value;
             decimal downPayment = calcDownPayment.Value;
+
+            // GÜVENLİK ÖNLEMİ: Alınan peşinat, toplam paket tutarını geçemez!
+            if (downPayment > total)
+            {
+                XtraMessageBox.Show("Alınan tutar (Peşinat), toplam tutardan büyük olamaz!", "Hatalı Giriş", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                // Kutuyu zorla geri maksimum değere (toplam tutara) çek
+                calcDownPayment.Value = total;
+                downPayment = total;
+            }
+
             calcRemainingDebt.Value = total - downPayment;
         }
 
@@ -150,18 +211,21 @@ namespace DXBeauty.UI
         private async void btnSave_Click(object sender, EventArgs e)
         {
             int paymentType = rgPaymentType.SelectedIndex; // 0: Peşin, 1: Taksitli, 2: Açık Hesap
-            decimal downPayment = calcDownPayment.Value;
-            decimal remainingDebt = calcRemainingDebt.Value;
+
+            //  RASYONEL MÜDAHALE: "Tamamı Peşin" seçildiyse, ekrandaki diğer kutuları yoksay. 
+            // Peşinat = Toplam Tutar'dır. Kalan Borç = 0'dır.
+            decimal downPayment = (paymentType == 0) ? calcTotalPrice.Value : calcDownPayment.Value;
+            decimal remainingDebt = (paymentType == 0) ? 0m : calcRemainingDebt.Value;
 
             // --- 1. STATÜYÜ C# TARAFINDA (KAYDETMEDEN ÖNCE) BELİRLE ---
             int initialStatus = 1; // Varsayılan: NoPayment (1)
 
-            if (calcRemainingDebt.Value <= 0)
+            if (remainingDebt <= 0)
             {
                 // Kalan borç sıfırsa, müşteri her şeyi o an peşin ödemiştir
                 initialStatus = 3; // NoDebt (3)
             }
-            else if (calcDownPayment.Value > 0)
+            else if (downPayment > 0)
             {
                 // Kalan borç var ama adam masaya peşinat da koydu
                 initialStatus = 2; // PartialPayment (2)

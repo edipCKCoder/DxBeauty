@@ -31,6 +31,7 @@ namespace DXBeauty.Data
             
             -- Satırın ne borcu olduğunu anlatan o şık vitrin yazısı
             CASE 
+                WHEN pp.plan_type = 1 AND pp.amount >= cs.total_price THEN 'Tamamı Peşin'
                 WHEN pp.plan_type = 1 THEN 'Peşinat'
                 WHEN pp.plan_type = 3 THEN 'Açık Hesap'
                 ELSE COALESCE(pp.sequence_number::text, '') || '. Taksit'

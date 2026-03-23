@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using Dapper;
+using DevExpress.XtraEditors;
 using DXBeauty.Data;
 using DXBeauty.Dtos;
 using System;
@@ -79,9 +80,11 @@ namespace DXBeauty.UI
             gridView1.OptionsSelection.MultiSelect = true;
             gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
 
+
             if (gridView1.Columns["PaymentPlanId"] != null) gridView1.Columns["PaymentPlanId"].Visible = false;
             if (gridView1.Columns["CustomerServiceId"] != null) gridView1.Columns["CustomerServiceId"].Visible = false;
             if (gridView1.Columns["AppointmentId"] != null) gridView1.Columns["AppointmentId"].Visible = false;
+
 
             // Eğer takvimden geldiysek ve belirli bir randevuyla açıldıysa onu otomatik seç
             if (_appointmentId.HasValue)
@@ -97,6 +100,60 @@ namespace DXBeauty.UI
                 }
             }
         }
+
+        private async Task LoadCustomerSummaryInfo(int customerId)
+        {
+            // Bu metod çalıştığında önce ekranı "Hesaplanıyor..." durumuna getirip temizleyelim
+            txtKalanToplamBorc.Text = "...";
+            txtVadesiGecmisBorc.Text = "...";
+            txtMusteriKayitTarihi.Text = "...";
+           
+
+            // Npgsql bağlantınızı kullanarak çok hafif bir sorgu atıyoruz
+            using (var connection = new Npgsql.NpgsqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+
+                // 1. Müşterinin Kayıt Tarihini Çek (customers tablosundan)
+                // Eğer tablonuzda 'created_at' diye bir kolon yoksa, kendi kayıt tarihi kolon adınızı yazın
+                string kayitSql = "SELECT created_at FROM customers WHERE customer_id = @Id;";
+                var kayitTarihi = await connection.ExecuteScalarAsync<DateTime?>(kayitSql, new { Id = customerId });
+
+                txtMusteriKayitTarihi.Text = kayitTarihi.HasValue ? kayitTarihi.Value.ToString("dd.MM.yyyy") : "Bilinmiyor";
+
+                // 2. Kalan Toplam Borcu Hesapla (customer_services tablosundan 'remaining_debt'leri topla)
+                string toplamBorcSql = "SELECT COALESCE(SUM(remaining_debt), 0) FROM customer_services WHERE customer_id = @Id;";
+                decimal toplamBorc = await connection.ExecuteScalarAsync<decimal>(toplamBorcSql, new { Id = customerId });
+
+                txtKalanToplamBorc.Text = toplamBorc.ToString("C2"); // ₺ formatında yazdır
+
+                // 3. Vadesi Geçmiş Borcu Hesapla (payment_plans tablosundan, bugünden önceki ödenmemişleri topla)
+                string gecikmisBorcSql = @"
+            SELECT COALESCE(SUM(pp.amount - COALESCE(pp.paid_amount, 0)), 0) 
+            FROM payment_plans pp
+            INNER JOIN customer_services cs ON pp.customer_service_id = cs.customer_service_id
+            WHERE cs.customer_id = @Id 
+            AND pp.is_paid = false 
+            AND pp.due_date < CURRENT_DATE;";
+
+                decimal gecikmisBorc = await connection.ExecuteScalarAsync<decimal>(gecikmisBorcSql, new { Id = customerId });
+
+                txtVadesiGecmisBorc.Text = gecikmisBorc.ToString("C2");
+
+                // Gecikmiş borç varsa dikkat çekmesi için rengini kırmızı yapalım
+                if (gecikmisBorc > 0)
+                {
+                    txtVadesiGecmisBorc.ForeColor = Color.Red;
+                    txtVadesiGecmisBorc.Font = new Font(txtVadesiGecmisBorc.Font, FontStyle.Bold);
+                }
+                else
+                {
+                    txtVadesiGecmisBorc.ForeColor = Color.Black; // Standart renk
+                    txtVadesiGecmisBorc.Font = new Font(txtVadesiGecmisBorc.Font, FontStyle.Regular);
+                }
+            }
+        }
+
 
 
         private void CalculateTotalSelectedAmount()
@@ -177,9 +234,41 @@ namespace DXBeauty.UI
                 {
                     XtraMessageBox.Show("Tahsilat başarıyla alındı ve borçlar kapatıldı!", "İşlem Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // İşlem bittikten sonra taşıyıcı formu (Dialog'u) kapat
-                    var parentForm = this.FindForm();
-                    if (parentForm != null) parentForm.DialogResult = DialogResult.OK;
+                    Form parentForm = this.FindForm();
+
+                    if (parentForm != null)
+                    {
+                        // ⚠️ 1. SENARYO: Eğer bu kontrol ayrı bir Pop-Up pencerede açılmışsa
+                        if (parentForm.Modal)
+                        {
+                            parentForm.DialogResult = DialogResult.OK;
+                            parentForm.Close(); // Kapanmayı kesin olarak zorla
+                        }
+                        else
+                        {
+                            // Sekmeyi kapatmak yerine ekranı sıfırla ve güncel durumu yükle
+
+                            // 1. Kullanıcı giriş alanlarını temizle
+                            calcAmount.EditValue = 0m;
+                            txtDescription.Text = string.Empty;
+                            cmbPaymentMethod.SelectedIndex = -1; // Ödeme yöntemini sıfırla
+                            dtPaymentDate.DateTime = DateTime.Now; // Tarihi bugüne çek
+
+                            // 2. Müşterinin güncel borçlarını ve sağ paneldeki özetini yeniden yükle
+                            if (_customerId.HasValue)
+                            {
+                                // Grid'i güncel borçlarla doldur (Ödenenler listeden düşecektir)
+                                await LoadCustomerDebts(_customerId.Value);
+
+                                // Sağ taraftaki "Kalan Toplam Borç" vs. panosunu yeni duruma göre güncelle
+                                await LoadCustomerSummaryInfo(_customerId.Value);
+
+                                // Seçimler sıfırlandığı için toplam tutarı da 0'a çekecek metodu çağır
+                                CalculateTotalSelectedAmount();
+                            }
+                        }
+                    }
+                    
                 }
             }
             catch (Exception ex)
@@ -200,12 +289,18 @@ namespace DXBeauty.UI
 
                 // Ve o müşterinin borçlarını getiriyoruz
                 await LoadCustomerDebts(selectedCustomerId);
+
+                // ⚠️ YENİ KOD: Sağ taraftaki "Sadece Okunabilir" özet panosunu doldur!
+                await LoadCustomerSummaryInfo(selectedCustomerId);
             }
             else
             {
                 // Temizlendiyse grid'i boşalt
                 gridControl1.DataSource = null;
                 _customerId = null;
+                txtKalanToplamBorc.Text = "";
+                txtVadesiGecmisBorc.Text = "";
+                txtMusteriKayitTarihi.Text = "";
             }
         }
     }

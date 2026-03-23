@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            gridInstallments = new DevExpress.XtraGrid.GridControl();
+            gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             cmbIntervalType = new DevExpress.XtraEditors.ComboBoxEdit();
             spinIntervalValue = new DevExpress.XtraEditors.SpinEdit();
             btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            gridInstallments = new DevExpress.XtraGrid.GridControl();
-            gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             calcRemainingDebt = new DevExpress.XtraEditors.CalcEdit();
             calcDownPayment = new DevExpress.XtraEditors.CalcEdit();
             calcTotalPrice = new DevExpress.XtraEditors.CalcEdit();
@@ -57,10 +57,10 @@
             cmbIntervalTypeLayout = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)cmbIntervalType.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)spinIntervalValue.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridInstallments).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cmbIntervalType.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)spinIntervalValue.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)calcRemainingDebt.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)calcDownPayment.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)calcTotalPrice.Properties).BeginInit();
@@ -84,10 +84,10 @@
             // 
             // layoutControl1
             // 
+            layoutControl1.Controls.Add(gridInstallments);
             layoutControl1.Controls.Add(cmbIntervalType);
             layoutControl1.Controls.Add(spinIntervalValue);
             layoutControl1.Controls.Add(btnCancel);
-            layoutControl1.Controls.Add(gridInstallments);
             layoutControl1.Controls.Add(calcRemainingDebt);
             layoutControl1.Controls.Add(calcDownPayment);
             layoutControl1.Controls.Add(calcTotalPrice);
@@ -98,29 +98,43 @@
             layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             layoutControl1.Location = new System.Drawing.Point(0, 0);
             layoutControl1.Name = "layoutControl1";
-            layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1100, 295, 650, 400);
+            layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1051, 300, 650, 400);
             layoutControl1.Root = Root;
             layoutControl1.Size = new System.Drawing.Size(717, 565);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
             // 
+            // gridInstallments
+            // 
+            gridInstallments.Location = new System.Drawing.Point(12, 220);
+            gridInstallments.MainView = gridView1;
+            gridInstallments.Name = "gridInstallments";
+            gridInstallments.Size = new System.Drawing.Size(693, 307);
+            gridInstallments.TabIndex = 8;
+            gridInstallments.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
+            // 
+            // gridView1
+            // 
+            gridView1.GridControl = gridInstallments;
+            gridView1.Name = "gridView1";
+            // 
             // cmbIntervalType
             // 
-            cmbIntervalType.Location = new System.Drawing.Point(105, 165);
+            cmbIntervalType.Location = new System.Drawing.Point(98, 168);
             cmbIntervalType.Name = "cmbIntervalType";
             cmbIntervalType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             cmbIntervalType.Properties.Items.AddRange(new object[] { "Ay", "Hafta", "Gün" });
-            cmbIntervalType.Size = new System.Drawing.Size(126, 22);
+            cmbIntervalType.Size = new System.Drawing.Size(133, 22);
             cmbIntervalType.StyleController = layoutControl1;
             cmbIntervalType.TabIndex = 11;
             // 
             // spinIntervalValue
             // 
             spinIntervalValue.EditValue = new decimal(new int[] { 0, 0, 0, 0 });
-            spinIntervalValue.Location = new System.Drawing.Point(339, 165);
+            spinIntervalValue.Location = new System.Drawing.Point(333, 168);
             spinIntervalValue.Name = "spinIntervalValue";
             spinIntervalValue.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            spinIntervalValue.Size = new System.Drawing.Size(116, 22);
+            spinIntervalValue.Size = new System.Drawing.Size(122, 22);
             spinIntervalValue.StyleController = layoutControl1;
             spinIntervalValue.TabIndex = 5;
             // 
@@ -133,61 +147,47 @@
             btnCancel.TabIndex = 10;
             btnCancel.Text = "İptal Et";
             // 
-            // gridInstallments
-            // 
-            gridInstallments.Location = new System.Drawing.Point(12, 217);
-            gridInstallments.MainView = gridView1;
-            gridInstallments.Name = "gridInstallments";
-            gridInstallments.Size = new System.Drawing.Size(693, 310);
-            gridInstallments.TabIndex = 8;
-            gridInstallments.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
-            // 
-            // gridView1
-            // 
-            gridView1.GridControl = gridInstallments;
-            gridView1.Name = "gridView1";
-            // 
             // calcRemainingDebt
             // 
-            calcRemainingDebt.Location = new System.Drawing.Point(135, 138);
+            calcRemainingDebt.Location = new System.Drawing.Point(126, 141);
             calcRemainingDebt.Name = "calcRemainingDebt";
             calcRemainingDebt.Properties.AppearanceReadOnly.ForeColor = DevExpress.LookAndFeel.DXSkinColors.ForeColors.Critical;
             calcRemainingDebt.Properties.AppearanceReadOnly.Options.UseForeColor = true;
             calcRemainingDebt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             calcRemainingDebt.Properties.ReadOnly = true;
-            calcRemainingDebt.Size = new System.Drawing.Size(570, 22);
+            calcRemainingDebt.Size = new System.Drawing.Size(579, 22);
             calcRemainingDebt.StyleController = layoutControl1;
             calcRemainingDebt.TabIndex = 4;
             // 
             // calcDownPayment
             // 
-            calcDownPayment.Location = new System.Drawing.Point(135, 112);
+            calcDownPayment.Location = new System.Drawing.Point(126, 115);
             calcDownPayment.Name = "calcDownPayment";
             calcDownPayment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            calcDownPayment.Size = new System.Drawing.Size(570, 22);
+            calcDownPayment.Size = new System.Drawing.Size(579, 22);
             calcDownPayment.StyleController = layoutControl1;
             calcDownPayment.TabIndex = 3;
             calcDownPayment.EditValueChanged += calcDownPayment_EditValueChanged;
             // 
             // calcTotalPrice
             // 
-            calcTotalPrice.Location = new System.Drawing.Point(135, 29);
+            calcTotalPrice.Location = new System.Drawing.Point(126, 89);
             calcTotalPrice.Name = "calcTotalPrice";
             calcTotalPrice.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             calcTotalPrice.Properties.ReadOnly = true;
-            calcTotalPrice.Size = new System.Drawing.Size(570, 22);
+            calcTotalPrice.Size = new System.Drawing.Size(579, 22);
             calcTotalPrice.StyleController = layoutControl1;
             calcTotalPrice.TabIndex = 0;
             // 
             // rgPaymentType
             // 
-            rgPaymentType.Location = new System.Drawing.Point(12, 72);
+            rgPaymentType.Location = new System.Drawing.Point(12, 46);
             rgPaymentType.Name = "rgPaymentType";
             rgPaymentType.Properties.Columns = 3;
             rgPaymentType.Properties.ItemHorzAlignment = DevExpress.XtraEditors.RadioItemHorzAlignment.Center;
-            rgPaymentType.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] { new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Peşin"), new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Taksit"), new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Açık Hesap", true, null, "") });
+            rgPaymentType.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] { new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Tamamı Peşin"), new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Taksitli"), new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Açık Hesap", true, null, "") });
             rgPaymentType.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow;
-            rgPaymentType.Size = new System.Drawing.Size(693, 36);
+            rgPaymentType.Size = new System.Drawing.Size(693, 39);
             rgPaymentType.StyleController = layoutControl1;
             rgPaymentType.TabIndex = 2;
             rgPaymentType.SelectedIndexChanged += rgPaymentType_SelectedIndexChanged;
@@ -195,16 +195,16 @@
             // spinInstallmentCount
             // 
             spinInstallmentCount.EditValue = new decimal(new int[] { 0, 0, 0, 0 });
-            spinInstallmentCount.Location = new System.Drawing.Point(530, 165);
+            spinInstallmentCount.Location = new System.Drawing.Point(529, 168);
             spinInstallmentCount.Name = "spinInstallmentCount";
             spinInstallmentCount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            spinInstallmentCount.Size = new System.Drawing.Size(175, 22);
+            spinInstallmentCount.Size = new System.Drawing.Size(176, 22);
             spinInstallmentCount.StyleController = layoutControl1;
             spinInstallmentCount.TabIndex = 6;
             // 
             // btnGeneratePlan
             // 
-            btnGeneratePlan.Location = new System.Drawing.Point(12, 191);
+            btnGeneratePlan.Location = new System.Drawing.Point(12, 194);
             btnGeneratePlan.Name = "btnGeneratePlan";
             btnGeneratePlan.Size = new System.Drawing.Size(693, 22);
             btnGeneratePlan.StyleController = layoutControl1;
@@ -226,7 +226,7 @@
             // 
             Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             Root.GroupBordersVisible = false;
-            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { lblPackageName, calcTotalPriceLayout, rgPaymentTypeLayout, calcDownPaymentLayout, calcRemainingDebtLayout, simpleSeparator1, spinInstallmentCountLayout, btnGeneratePlanLayout, gridInstallmentsLayout, btnSaveLayout, btnCancelLayout, spinIntervalValueLayout, cmbIntervalTypeLayout });
+            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { lblPackageName, calcTotalPriceLayout, calcDownPaymentLayout, calcRemainingDebtLayout, simpleSeparator1, spinInstallmentCountLayout, btnGeneratePlanLayout, gridInstallmentsLayout, btnSaveLayout, btnCancelLayout, spinIntervalValueLayout, cmbIntervalTypeLayout, rgPaymentTypeLayout });
             Root.Name = "Root";
             Root.Size = new System.Drawing.Size(717, 565);
             Root.TextVisible = false;
@@ -236,16 +236,16 @@
             lblPackageName.Location = new System.Drawing.Point(0, 0);
             lblPackageName.Name = "lblPackageName";
             lblPackageName.Size = new System.Drawing.Size(697, 17);
-            lblPackageName.TextSize = new System.Drawing.Size(111, 13);
+            lblPackageName.TextSize = new System.Drawing.Size(102, 13);
             // 
             // calcTotalPriceLayout
             // 
             calcTotalPriceLayout.Control = calcTotalPrice;
-            calcTotalPriceLayout.Location = new System.Drawing.Point(0, 17);
+            calcTotalPriceLayout.Location = new System.Drawing.Point(0, 77);
             calcTotalPriceLayout.Name = "calcTotalPriceLayout";
             calcTotalPriceLayout.Size = new System.Drawing.Size(697, 26);
             calcTotalPriceLayout.Text = "Toplam tutar :";
-            calcTotalPriceLayout.TextSize = new System.Drawing.Size(111, 13);
+            calcTotalPriceLayout.TextSize = new System.Drawing.Size(102, 13);
             // 
             // rgPaymentTypeLayout
             // 
@@ -253,56 +253,56 @@
             rgPaymentTypeLayout.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             rgPaymentTypeLayout.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
             rgPaymentTypeLayout.Control = rgPaymentType;
-            rgPaymentTypeLayout.Location = new System.Drawing.Point(0, 43);
-            rgPaymentTypeLayout.MaxSize = new System.Drawing.Size(697, 0);
-            rgPaymentTypeLayout.MinSize = new System.Drawing.Size(697, 55);
+            rgPaymentTypeLayout.Location = new System.Drawing.Point(0, 17);
+            rgPaymentTypeLayout.MaxSize = new System.Drawing.Size(0, 60);
+            rgPaymentTypeLayout.MinSize = new System.Drawing.Size(106, 60);
             rgPaymentTypeLayout.Name = "rgPaymentTypeLayout";
-            rgPaymentTypeLayout.Size = new System.Drawing.Size(697, 57);
+            rgPaymentTypeLayout.Size = new System.Drawing.Size(697, 60);
             rgPaymentTypeLayout.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             rgPaymentTypeLayout.Text = "Ödeme Türü";
             rgPaymentTypeLayout.TextLocation = DevExpress.Utils.Locations.Top;
-            rgPaymentTypeLayout.TextSize = new System.Drawing.Size(111, 13);
+            rgPaymentTypeLayout.TextSize = new System.Drawing.Size(102, 13);
             // 
             // calcDownPaymentLayout
             // 
             calcDownPaymentLayout.Control = calcDownPayment;
-            calcDownPaymentLayout.Location = new System.Drawing.Point(0, 100);
+            calcDownPaymentLayout.Location = new System.Drawing.Point(0, 103);
             calcDownPaymentLayout.Name = "calcDownPaymentLayout";
             calcDownPaymentLayout.Size = new System.Drawing.Size(697, 26);
             calcDownPaymentLayout.Text = "Peşinat Tutarı :";
-            calcDownPaymentLayout.TextSize = new System.Drawing.Size(111, 13);
+            calcDownPaymentLayout.TextSize = new System.Drawing.Size(102, 13);
             // 
             // calcRemainingDebtLayout
             // 
             calcRemainingDebtLayout.Control = calcRemainingDebt;
-            calcRemainingDebtLayout.Location = new System.Drawing.Point(0, 126);
+            calcRemainingDebtLayout.Location = new System.Drawing.Point(0, 129);
             calcRemainingDebtLayout.Name = "calcRemainingDebtLayout";
             calcRemainingDebtLayout.Size = new System.Drawing.Size(697, 26);
             calcRemainingDebtLayout.Text = "Kalan Bakiye :";
-            calcRemainingDebtLayout.TextSize = new System.Drawing.Size(111, 13);
+            calcRemainingDebtLayout.TextSize = new System.Drawing.Size(102, 13);
             // 
             // simpleSeparator1
             // 
-            simpleSeparator1.Location = new System.Drawing.Point(0, 152);
+            simpleSeparator1.Location = new System.Drawing.Point(0, 155);
             simpleSeparator1.Name = "simpleSeparator1";
             simpleSeparator1.Size = new System.Drawing.Size(697, 1);
             // 
             // spinInstallmentCountLayout
             // 
             spinInstallmentCountLayout.Control = spinInstallmentCount;
-            spinInstallmentCountLayout.Location = new System.Drawing.Point(447, 153);
+            spinInstallmentCountLayout.Location = new System.Drawing.Point(447, 156);
             spinInstallmentCountLayout.Name = "spinInstallmentCountLayout";
             spinInstallmentCountLayout.Size = new System.Drawing.Size(250, 26);
             spinInstallmentCountLayout.Text = "Taksit Sayısı :";
             spinInstallmentCountLayout.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            spinInstallmentCountLayout.TextSize = new System.Drawing.Size(66, 13);
+            spinInstallmentCountLayout.TextSize = new System.Drawing.Size(65, 13);
             spinInstallmentCountLayout.TextToControlDistance = 5;
             // 
             // btnGeneratePlanLayout
             // 
             btnGeneratePlanLayout.ContentVertAlignment = DevExpress.Utils.VertAlignment.Top;
             btnGeneratePlanLayout.Control = btnGeneratePlan;
-            btnGeneratePlanLayout.Location = new System.Drawing.Point(0, 179);
+            btnGeneratePlanLayout.Location = new System.Drawing.Point(0, 182);
             btnGeneratePlanLayout.Name = "btnGeneratePlanLayout";
             btnGeneratePlanLayout.Size = new System.Drawing.Size(697, 26);
             btnGeneratePlanLayout.TextVisible = false;
@@ -310,9 +310,12 @@
             // gridInstallmentsLayout
             // 
             gridInstallmentsLayout.Control = gridInstallments;
-            gridInstallmentsLayout.Location = new System.Drawing.Point(0, 205);
+            gridInstallmentsLayout.Location = new System.Drawing.Point(0, 208);
+            gridInstallmentsLayout.MaxSize = new System.Drawing.Size(0, 600);
+            gridInstallmentsLayout.MinSize = new System.Drawing.Size(120, 300);
             gridInstallmentsLayout.Name = "gridInstallmentsLayout";
-            gridInstallmentsLayout.Size = new System.Drawing.Size(697, 314);
+            gridInstallmentsLayout.Size = new System.Drawing.Size(697, 311);
+            gridInstallmentsLayout.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             gridInstallmentsLayout.TextVisible = false;
             // 
             // btnSaveLayout
@@ -340,23 +343,23 @@
             // spinIntervalValueLayout
             // 
             spinIntervalValueLayout.Control = spinIntervalValue;
-            spinIntervalValueLayout.Location = new System.Drawing.Point(223, 153);
+            spinIntervalValueLayout.Location = new System.Drawing.Point(223, 156);
             spinIntervalValueLayout.Name = "spinIntervalValueLayout";
             spinIntervalValueLayout.Size = new System.Drawing.Size(224, 26);
             spinIntervalValueLayout.Text = "Vade Aralığı Sayısı :";
             spinIntervalValueLayout.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            spinIntervalValueLayout.TextSize = new System.Drawing.Size(99, 13);
+            spinIntervalValueLayout.TextSize = new System.Drawing.Size(93, 13);
             spinIntervalValueLayout.TextToControlDistance = 5;
             // 
             // cmbIntervalTypeLayout
             // 
             cmbIntervalTypeLayout.Control = cmbIntervalType;
-            cmbIntervalTypeLayout.Location = new System.Drawing.Point(0, 153);
+            cmbIntervalTypeLayout.Location = new System.Drawing.Point(0, 156);
             cmbIntervalTypeLayout.Name = "cmbIntervalTypeLayout";
             cmbIntervalTypeLayout.Size = new System.Drawing.Size(223, 26);
             cmbIntervalTypeLayout.Text = "Vade Aralığı Türü";
             cmbIntervalTypeLayout.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            cmbIntervalTypeLayout.TextSize = new System.Drawing.Size(88, 13);
+            cmbIntervalTypeLayout.TextSize = new System.Drawing.Size(81, 13);
             cmbIntervalTypeLayout.TextToControlDistance = 5;
             // 
             // PaymentPlanWizardControl
@@ -369,10 +372,10 @@
             Load += PaymentPlanWizardControl_Load;
             ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
             layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)cmbIntervalType.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)spinIntervalValue.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridInstallments).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cmbIntervalType.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)spinIntervalValue.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)calcRemainingDebt.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)calcDownPayment.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)calcTotalPrice.Properties).EndInit();

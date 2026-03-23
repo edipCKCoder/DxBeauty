@@ -111,8 +111,17 @@ namespace DXBeauty.UI
             emailRule.ErrorText = "Lütfen geçerli bir e-posta adresi giriniz!";
             emailRule.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning; // Sarı ikon çıkarır (zorunlu değil ama uyarır)
 
-            // E-Posta kutusu boş değilse format kontrolü yap
-            dxValidationProvider.SetValidationRule(emailBox, emailRule);
+            if (emailBox != null && !string.IsNullOrWhiteSpace(emailBox.Text))
+            {
+                // E-posta kutusu fiziksel olarak var VE içinde metin var.
+                // Format kuralını burada bağlayın:
+                dxValidationProvider.SetValidationRule(emailBox, emailRule);
+            }
+            else
+            {
+                // Kutu boşsa kuralı kaldırın (Opsiyonel: Boşken hata vermemesi için)
+                dxValidationProvider.SetValidationRule(emailBox, null);
+            }
         }
     }
 }

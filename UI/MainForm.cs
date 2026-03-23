@@ -30,7 +30,7 @@ namespace DXBeauty
         public MainForm()
         {
             InitializeComponent();
-            ShowControlInPanel(new UI.DashboardControl());
+
             DevExpress.LookAndFeel.UserLookAndFeel.Default.StyleChanged += UserLookAndFeel_StyleChanged;
 
         }
@@ -45,65 +45,56 @@ namespace DXBeauty
             Properties.Settings.Default.Save();
         }
 
-        private void NavBarItemScheduler_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            ShowControlInPanel(new UI.AppScheduler());
-        }
 
-        private void RegisterCustomer_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        private void ShowControlInPanel(XtraUserControl control,string sekmeBasligi)
         {
-            ShowControlInPanel(new UI.CustomerControl());
-        }
-
-        private void CustomerHistory_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            ShowControlInPanel(new UI.CustomerHistoryControl());
-        }
-        private void getPayment_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            ShowControlInPanel(new UI.GetPaymentsControl());
-        }
-        private void financialReport_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            ShowControlInPanel(new UI.FinancialReportControl());
-        }
-
-        private void createService_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            ShowControlInPanel(new UI.ServicesControl());
-        }
-
-        private void ReminderMessage_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            ShowControlInPanel(new UI.MessageTemplateControl());
-        }
-        private void CustomerPackages_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            ShowControlInPanel(new UI.CustomerPackagesControl());
-        }
-        private void ShowControlInPanel(XtraUserControl control)
-        {
-            // Panel2'yi temizle
-            splitContainerControl.Panel2.Controls.Clear();
-
-            // Yeni kontrolü ekle
+            // Açık sekmeleri tarar, varsa öne getirir, yoksa yeni sekme açar
+            foreach (DevExpress.XtraBars.Docking2010.Views.BaseDocument doc in documentManager1.View.Documents)
+            {
+                if (doc.Control != null && doc.Control.GetType() == control.GetType())
+                {
+                    documentManager1.View.Controller.Activate(doc);
+                    return;
+                }
+            }
             control.Dock = DockStyle.Fill;
-            splitContainerControl.Panel2.Controls.Add(control);
+            // ⚠️ YENİ KOD: Eklenen sekmeyi 'yeniSekme' değişkenine alıyoruz
+            DevExpress.XtraBars.Docking2010.Views.BaseDocument yeniSekme = documentManager1.View.AddDocument(control);
+
+            // Sekmenin üzerinde yazacak olan başlığı atıyoruz
+            yeniSekme.Caption = sekmeBasligi;
+        }
+
+        private void btnRibbonScheduler_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShowControlInPanel(new UI.AppScheduler(), "Takvim");
         }
 
         private void btnRibbonPayment_ItemClick(object sender, ItemClickEventArgs e)
         {
-            // Ribbon menüden tıklandığında Tahsilat UserControl'ünü ana panele yükle
-            ShowControlInPanel(new UI.GetPaymentsControl());
+            ShowControlInPanel(new UI.GetPaymentsControl(), "Tahsilat");
         }
-
 
         private void btnRibbonfinancialReport_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ShowControlInPanel(new UI.FinancialReportControl());
+            FinancialReportControl financialReportControl = new UI.FinancialReportControl();
+            financialReportControl.Dock = DockStyle.Fill;
+            XtraForm popUp = new XtraForm();
+
+
+            popUp.ClientSize = financialReportControl.Size;
+            popUp.Controls.Add(financialReportControl); // (PopUp.AddControl yerine PopUp.Controls.Add kullanmalısınız)
+            popUp.StartPosition = FormStartPosition.CenterScreen;
+
+            popUp.ShowDialog();
         }
 
-        private void customerRegisterbarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        private void btnRibbonCustomerHistory_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShowControlInPanel(new UI.CustomerHistoryControl(),"Müşteri Geçmişi");
+        }
+
+        private void btnRibbonCustomerRegister_ItemClick(object sender, ItemClickEventArgs e)
         {
             CustomerRegisterControl customerRegisterControl = new UI.CustomerRegisterControl();
             customerRegisterControl.Dock = DockStyle.Fill;
@@ -120,6 +111,13 @@ namespace DXBeauty
                     var repo = new CustomerRepository(connectionString);
                     repo.Insert(customer);
 
+                    // 2. AÇIK OLAN FORMU BUL VE METODU ÇALIŞTIR ❗
+                    if (CustomerPackagesControl.Instance != null)
+                    {
+                        CustomerPackagesControl.Instance.LoadData();
+                    }
+                    
+
                     // 2. İşlem başarılıysa mesaj ver
                     DevExpress.XtraEditors.XtraMessageBox.Show("Müşteri başarıyla kaydedildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -135,6 +133,7 @@ namespace DXBeauty
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
+              
             };
 
             popUp.ClientSize = customerRegisterControl.Size;
@@ -150,11 +149,9 @@ namespace DXBeauty
             {
                 DevExpress.XtraEditors.XtraMessageBox.Show("Ekran açılırken bir sorun oluştu: " + ex.Message, "Sistem Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
 
-        private void barButtonItem6_ItemClick(object sender, ItemClickEventArgs e)
+        private void btnRibbonCreateService_ItemClick(object sender, ItemClickEventArgs e)
         {
             CreateServiceControl createServiceControl = new UI.CreateServiceControl();
             createServiceControl.Dock = DockStyle.Fill;
@@ -194,7 +191,7 @@ namespace DXBeauty
             }
         }
 
-        private void barButtonItem7_ItemClick(object sender, ItemClickEventArgs e)
+        private void btnRibbonDefinePackage_ItemClick(object sender, ItemClickEventArgs e)
         {
             AddPackageControl addPackageControl = new UI.AddPackageControl();
             addPackageControl.Dock = DockStyle.Fill;
@@ -208,32 +205,29 @@ namespace DXBeauty
             popUp.ShowDialog();
         }
 
-        private void barButtonItem8_ItemClick(object sender, ItemClickEventArgs e)
+        private void btnRibbonDashboard_ItemClick(object sender, ItemClickEventArgs e)
         {
-            CustomerHistoryControl customerHistory = new UI.CustomerHistoryControl();
-            customerHistory.Dock = DockStyle.Fill;
-            XtraForm popUp = new XtraForm();
-
-
-            popUp.ClientSize = customerHistory.Size;
-            popUp.Controls.Add(customerHistory); // (PopUp.AddControl yerine PopUp.Controls.Add kullanmalısınız)
-            popUp.StartPosition = FormStartPosition.CenterScreen;
-
-            popUp.ShowDialog();
+            ShowControlInPanel(new UI.DashboardControl(),"Gösterge Panosu");
         }
 
-        private void barButtonItem9_ItemClick(object sender, ItemClickEventArgs e)
+        private void btnRibbonCustomerList_ItemClick(object sender, ItemClickEventArgs e)
         {
-            FinancialReportControl financialReportControl = new UI.FinancialReportControl();
-            financialReportControl.Dock = DockStyle.Fill;
-            XtraForm popUp = new XtraForm();
+            ShowControlInPanel(new UI.CustomerControl(), "Müşteriler");
+        }
 
+        private void btnRibbonCustomerPackages_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShowControlInPanel(new UI.CustomerPackagesControl(), "Müşteriye Paket Tanımla");
+        }
 
-            popUp.ClientSize = financialReportControl.Size;
-            popUp.Controls.Add(financialReportControl); // (PopUp.AddControl yerine PopUp.Controls.Add kullanmalısınız)
-            popUp.StartPosition = FormStartPosition.CenterScreen;
+        private void btnRibbonServicePackages_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShowControlInPanel(new UI.ServicesControl(), "Hizmetler ve Paketler");
+        }
 
-            popUp.ShowDialog();
+        private void btnRibbonMessageTemplate_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShowControlInPanel(new UI.MessageTemplateControl(), "Mesaj Şablonları");
         }
     }
 }
