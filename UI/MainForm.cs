@@ -32,7 +32,7 @@ namespace DXBeauty
             InitializeComponent();
 
             DevExpress.LookAndFeel.UserLookAndFeel.Default.StyleChanged += UserLookAndFeel_StyleChanged;
-
+            ShowControlInPanel(new UI.DashboardControl(), "Gösterge Panosu");
         }
 
         private void UserLookAndFeel_StyleChanged(object sender, EventArgs e)

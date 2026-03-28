@@ -123,6 +123,29 @@ namespace DXBeauty.UI
             {
                 slueCustomer.EditValue = myController.CustomerId.Value;
             }
+            // =====================================================================
+            // İŞTE YENİ GÜVENLİK KİLİDİ: MÜŞTERİ DEĞİŞTİRME ENGELİ
+            // =====================================================================
+            if (!myController.IsNewAppointment)
+            {
+                // Eğer bu var olan (eski) bir randevuysa, müşteri kutusunu kilitle!
+                slueCustomer.ReadOnly = true;
+                // İsteğe bağlı: Personel neden kilitli olduğunu anlasın diye ipucu ekleyebilirsin
+                slueCustomer.ToolTip = "Var olan bir randevunun müşterisi değiştirilemez. Yanlışlık varsa randevuyu iptal edip yenisini oluşturun.";
+            }
+            else
+            {
+                // Yeni randevu açılıyorsa açık bırak
+                slueCustomer.ReadOnly = false;
+                slueCustomer.ToolTip = "";
+            }
+            // =====================================================================
+            //  RASYONEL MÜDAHALE: Randevu boşluğa veya "Tüm Gün" alanına tıklanarak açılsa bile
+            // bunu reddet ve normal saatli randevuya çevir.
+            myController.AllDay = false;
+
+            // Arayüzden bu kutuyu tamamen gizle ki personel görüp kafası karışmasın
+            this.chkAllDay.Visible = false;
 
         }
         public virtual bool SaveFormData(Appointment appointment)
@@ -134,20 +157,35 @@ namespace DXBeauty.UI
             if (slueCustomer.EditValue != null && slueCustomer.EditValue != DBNull.Value)
             {
                 myController.CustomerId = Convert.ToInt32(slueCustomer.EditValue);
+                // ZORUNLU BIND: Arka plandaki şablona çiviyle çakıyoruz!
+                appointment.CustomFields["CustomerId"] = myController.CustomerId;
             }
             else
             {
                 myController.CustomerId = null;
+                appointment.CustomFields["CustomerId"] = null;
             }
 
             // --- EKSİK OLAN: Paket ID (CS_ID) Kaydetme ---
             if (lueCustomerPackages.EditValue != null && lueCustomerPackages.EditValue != DBNull.Value)
             {
                 myController.CustomerServiceId = Convert.ToInt32(lueCustomerPackages.EditValue);
+                // ZORUNLU BIND: Tekrarlı yavrular doğarken bu CS_ID'yi miras alsın!
+                appointment.CustomFields["CS_ID"] = myController.CustomerServiceId;
             }
             else
             {
                 myController.CustomerServiceId = null;
+                appointment.CustomFields["CS_ID"] = null;
+            }
+
+            // --- 3. SUBJECT (KONU) GÜNCELLEMESİ ---
+            // Otomasyon metni oluşturmuş olsa bile, tekrarlı randevular bunu kaçırmasın diye
+            // TextBox'taki son metni zorla (Hard-Bind) şablona ve Controller'a atıyoruz.
+            if (!string.IsNullOrWhiteSpace(tbSubject.Text))
+            {
+                myController.Subject = tbSubject.Text;
+                appointment.Subject = tbSubject.Text;
             }
             return true;
         }
@@ -280,7 +318,7 @@ namespace DXBeauty.UI
                 // Arama kısmında hangi kolonlar görünsün?
                 SetupCustomerSearchLookupColumns();
                 // Doğrudan cast (null değilse)
-             
+
             }
             catch (Exception ex)
             {
@@ -294,7 +332,41 @@ namespace DXBeauty.UI
 
         private async void LoadCustomerPackages(int customerId)
         {
+            // 1. Veritabanından listeyi çek (Burada SQL kör olduğu için sanal çocukları sayamadı ve Boşta seansı yanlış getirdi)
             var packages = await _customerServiceRepository.GetCustomerActivePackagesAsync(customerId);
+
+            // ======================================================================================
+            // 2. SİHİRLİ DOKUNUŞ: DevExpress'in RAM'indeki tüm sanal çocukları sayarak listeyi düzelt!
+            // ======================================================================================
+
+            // DevExpress'ten bugünden itibaren gelecek 2 yıl içindeki TÜM randevuları istiyoruz. 
+            // GetAppointments metodu XML'leri otomatik açar ve bize sanal/gerçek tüm kutucukları verir!
+            var futureAppointments = this.Storage.GetAppointments(DateTime.Now.Date, DateTime.Now.AddYears(2));
+
+            foreach (var package in packages)
+            {
+                int takvimdekiPlanliSayi = 0;
+
+                // Gelecekteki tüm randevuları dön ve bu pakete ait olanları say
+                foreach (DevExpress.XtraScheduler.Appointment apt in futureAppointments)
+                {
+                    int? aptCsId = apt.CustomFields["CS_ID"] != null ? Convert.ToInt32(apt.CustomFields["CS_ID"]) : (int?)null;
+                    int status = apt.StatusKey != null ? Convert.ToInt32(apt.StatusKey) : 0;
+
+                    // Eğer statüsü Planlandı (1) ise ve bu pakete aitse sayacı artır
+                    if (aptCsId == package.CustomerServiceId && status == 1)
+                    {
+                        takvimdekiPlanliSayi++;
+                    }
+                }
+
+                // 3. Paketin DTO'sunu ezerek GERÇEK Boşta Seansı güncelle!
+                // Gerçek Kalan Seans (DB'den gelen kesin bilgi) eksi Takvimdeki Planlı Kutucuklar (DevExpress'ten gelen kesin bilgi)
+                package.AvailableSessions = package.RemainingSessions - takvimdekiPlanliSayi;
+
+                if (package.AvailableSessions < 0) package.AvailableSessions = 0; // Eksiye düşme güvenliği
+            }
+
 
             lueCustomerPackages.Properties.DataSource = packages;
             lueCustomerPackages.Properties.DisplayMember = "DisplayText"; // Bizim o havalı yazımız
@@ -366,6 +438,12 @@ namespace DXBeauty.UI
             this.edtStartDate.InvalidValue += new InvalidValueExceptionEventHandler(OnEdtStartDateInvalidValue);
             this.edtStartTime.Validating += new CancelEventHandler(OnEdtStartTimeValidating);
             this.edtStartTime.InvalidValue += new InvalidValueExceptionEventHandler(OnEdtStartTimeInvalidValue);
+            // YENİ: Otomasyon tetikleyicilerini bağlıyoruz
+            // Herhangi biri değiştiğinde GenerateAutomaticSubject metodu çalışacak!
+            this.slueCustomer.EditValueChanged += GenerateAutomaticSubject;
+            this.lueCustomerPackages.EditValueChanged += GenerateAutomaticSubject;
+            this.edtResource.EditValueChanged += GenerateAutomaticSubject;
+
         }
         protected internal virtual void UnsubscribeControlsEvents()
         {
@@ -379,6 +457,12 @@ namespace DXBeauty.UI
             this.edtStartDate.InvalidValue -= new InvalidValueExceptionEventHandler(OnEdtStartDateInvalidValue);
             this.edtStartTime.Validating -= new CancelEventHandler(OnEdtStartTimeValidating);
             this.edtStartTime.InvalidValue -= new InvalidValueExceptionEventHandler(OnEdtStartTimeInvalidValue);
+
+
+            //  YENİ: Otomasyon tetikleyicilerini koparıyoruz (Hafıza sızıntısını önler)
+            this.slueCustomer.EditValueChanged -= GenerateAutomaticSubject;
+            this.lueCustomerPackages.EditValueChanged -= GenerateAutomaticSubject;
+            this.edtResource.EditValueChanged -= GenerateAutomaticSubject;
         }
         void OnBtnOkClick(object sender, EventArgs e)
         {
@@ -444,7 +528,16 @@ namespace DXBeauty.UI
                     MessageBoxIcon.Warning);
                 return;
             }
-
+            //Eğer veznedar bir paket seçmediyse kontrol et
+            if (lueCustomerPackages.EditValue == null || lueCustomerPackages.EditValue == DBNull.Value)
+            {
+                XtraMessageBox.Show(
+                    "Lütfen bir Aktif bir Paket seçiniz.",
+                    "Eksik Bilgi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
             // Eğer veznedar bir paket seçtiyse kontrol et
             if (lueCustomerPackages.EditValue != null && lueCustomerPackages.EditValue != DBNull.Value)
             {
@@ -586,6 +679,13 @@ namespace DXBeauty.UI
         {
             if (!Controller.ShouldShowRecurrenceButton)
                 return;
+
+
+            // SİHİRLİ DOKUNUŞ: Kopyalama (Clone) işleminden hemen önce ekrandaki tüm verileri
+            // (Subject, CS_ID vb.) Controller'a zorla yazdır ki tekrarlı yavrular boş doğmasın!
+            SaveFormData(Controller.EditedAppointmentCopy);
+
+
             // --- YENİ EKLENEN GÜVENLİK KONTROLÜ ---
 
             Appointment patternCopy = Controller.PrepareToRecurrenceEdit();
@@ -674,6 +774,52 @@ namespace DXBeauty.UI
                 // İşlemlerine devam et...
                 LoadCustomerPackages(customerId);
             }
+        }
+
+        // RASYONEL OTOMASYON: Seçimler değiştikçe konuyu otomatik güncelleyen motor
+        private void GenerateAutomaticSubject(object sender, EventArgs e)
+        {
+            this.BeginInvoke(new Action(() =>
+            {
+                // Müşteri seçilmeden işlem yapma
+                if (slueCustomer.EditValue == null || slueCustomer.EditValue == DBNull.Value) return;
+
+                string musteriAdi = slueCustomer.Text;
+                string paketBilgisi = "";
+                string personelAdi = edtResource.Text;
+
+                // 1. Paket DTO'sunu yakala ve "AvailableSessions" bilgisini al
+                var seciliPaket = lueCustomerPackages.GetSelectedDataRow() as CustomerServiceLookupDto;
+                if (seciliPaket != null)
+                {
+                    // İstediğiniz format: Paket Adı (Boşta: X)
+                    paketBilgisi = $"{seciliPaket.PackageName}";
+                }
+
+                // 2. Metinleri Birleştirme (Müşteri - Paket)
+                string yeniKonu = musteriAdi;
+
+                if (!string.IsNullOrWhiteSpace(paketBilgisi))
+                {
+                    yeniKonu += $" - {paketBilgisi}";
+                }
+
+                // 3. Personel (Resource) seçiliyse ve DevExpress'in varsayılan boş değeri değilse ekle
+                if (!string.IsNullOrWhiteSpace(personelAdi) && personelAdi != "(None)" && personelAdi != "Any" && personelAdi != "(Herhangi biri)")
+                {
+                    yeniKonu += $" ({personelAdi})";
+                }
+
+                // 4. Sonucu "Konu" kutusuna yazdır ve DevExpress Controller'ına zorla kaydet!
+                tbSubject.Text = yeniKonu.Trim();
+
+                if (tbSubject.DataBindings["Text"] != null)
+                {
+                    tbSubject.DataBindings["Text"].WriteValue();
+                }
+
+            }));
+            
         }
     }
 }

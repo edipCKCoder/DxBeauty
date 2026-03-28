@@ -28,8 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.PieSeriesView pieSeriesView1 = new DevExpress.XtraCharts.PieSeriesView();
+            DevExpress.XtraCharts.DoughnutSeriesView doughnutSeriesView1 = new DevExpress.XtraCharts.DoughnutSeriesView();
+            DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel1 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
+            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardControl));
+            DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement5 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement6 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement7 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement8 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement9 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement10 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement11 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement12 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement13 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition1 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
@@ -47,63 +63,62 @@
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement3 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement4 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement5 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement14 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement15 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement16 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement17 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement18 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement19 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement20 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement21 = new DevExpress.XtraEditors.TileItemElement();
             tileViewColumn2 = new DevExpress.XtraGrid.Columns.TileViewColumn();
             tileViewColumn3 = new DevExpress.XtraGrid.Columns.TileViewColumn();
-            tileViewColumn4 = new DevExpress.XtraGrid.Columns.TileViewColumn();
-            tileViewColumn5 = new DevExpress.XtraGrid.Columns.TileViewColumn();
             repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            dateNavDashboard = new DevExpress.XtraScheduler.DateNavigator();
             chartPackages = new DevExpress.XtraCharts.ChartControl();
+            panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            dateNavDashboard = new DevExpress.XtraScheduler.DateNavigator();
+            tileControl1 = new DevExpress.XtraEditors.TileControl();
+            tileGroup2 = new DevExpress.XtraEditors.TileGroup();
+            tileItem1 = new DevExpress.XtraEditors.TileItem();
+            tileItem3 = new DevExpress.XtraEditors.TileItem();
+            tileItem7 = new DevExpress.XtraEditors.TileItem();
+            tileItem8 = new DevExpress.XtraEditors.TileItem();
             chartRevenue = new DevExpress.XtraCharts.ChartControl();
             gridAlerts = new DevExpress.XtraGrid.GridControl();
             gridViewAlerts = new DevExpress.XtraGrid.Views.Grid.GridView();
             gridTodayAppointments = new DevExpress.XtraGrid.GridControl();
             tileView1 = new DevExpress.XtraGrid.Views.Tile.TileView();
             tileViewColumn1 = new DevExpress.XtraGrid.Columns.TileViewColumn();
-            panelControl4 = new DevExpress.XtraEditors.PanelControl();
-            layoutControl5 = new DevExpress.XtraLayout.LayoutControl();
-            lblAppCount = new DevExpress.XtraEditors.LabelControl();
-            layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
-            layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
-            emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-            panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            layoutControl4 = new DevExpress.XtraLayout.LayoutControl();
-            lblExpected = new DevExpress.XtraEditors.LabelControl();
-            layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
-            layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
-            lblPaymentDetails = new DevExpress.XtraEditors.LabelControl();
-            layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
-            layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
-            emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
-            lblTotalRevenue = new DevExpress.XtraEditors.LabelControl();
-            layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            tileViewColumn4 = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            tileViewColumn6 = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            tileViewColumn5 = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            tileViewColumn7 = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            tileViewColumn8 = new DevExpress.XtraGrid.Columns.TileViewColumn();
             Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            tileViewColumn6 = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            svgImageCollection1 = new DevExpress.Utils.SvgImageCollection(components);
+            layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            tileItem5 = new DevExpress.XtraEditors.TileItem();
+            tileItem2 = new DevExpress.XtraEditors.TileItem();
+            tileItem4 = new DevExpress.XtraEditors.TileItem();
+            tileItem6 = new DevExpress.XtraEditors.TileItem();
             ((System.ComponentModel.ISupportInitialize)repositoryItemImageComboBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dateNavDashboard).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dateNavDashboard.CalendarTimeProperties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartPackages).BeginInit();
             ((System.ComponentModel.ISupportInitialize)series1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pieSeriesView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)doughnutSeriesView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)sideBySideBarSeriesLabel1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
+            panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dateNavDashboard).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dateNavDashboard.CalendarTimeProperties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartRevenue).BeginInit();
             ((System.ComponentModel.ISupportInitialize)xyDiagram1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)series2).BeginInit();
@@ -111,44 +126,15 @@
             ((System.ComponentModel.ISupportInitialize)gridViewAlerts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridTodayAppointments).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tileView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl4).BeginInit();
-            panelControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)layoutControl5).BeginInit();
-            layoutControl5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)layoutControlGroup4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem12).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl3).BeginInit();
-            panelControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)layoutControl4).BeginInit();
-            layoutControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)layoutControlGroup3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem11).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl2).BeginInit();
-            panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)layoutControl3).BeginInit();
-            layoutControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem10).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
-            panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)layoutControl2).BeginInit();
-            layoutControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem9).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem7).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem8).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem13).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)svgImageCollection1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).BeginInit();
             SuspendLayout();
             // 
             // tileViewColumn2
@@ -165,23 +151,6 @@
             tileViewColumn3.Visible = true;
             tileViewColumn3.VisibleIndex = 2;
             // 
-            // tileViewColumn4
-            // 
-            tileViewColumn4.DisplayFormat.FormatString = "hh:mm tt";
-            tileViewColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            tileViewColumn4.FieldName = "StartTime";
-            tileViewColumn4.Name = "tileViewColumn4";
-            tileViewColumn4.Visible = true;
-            tileViewColumn4.VisibleIndex = 4;
-            // 
-            // tileViewColumn5
-            // 
-            tileViewColumn5.ColumnEdit = repositoryItemImageComboBox1;
-            tileViewColumn5.FieldName = "Status";
-            tileViewColumn5.Name = "tileViewColumn5";
-            tileViewColumn5.Visible = true;
-            tileViewColumn5.VisibleIndex = 5;
-            // 
             // repositoryItemImageComboBox1
             // 
             repositoryItemImageComboBox1.AutoHeight = false;
@@ -191,15 +160,12 @@
             // 
             // layoutControl1
             // 
-            layoutControl1.Controls.Add(dateNavDashboard);
             layoutControl1.Controls.Add(chartPackages);
+            layoutControl1.Controls.Add(panelControl1);
+            layoutControl1.Controls.Add(tileControl1);
             layoutControl1.Controls.Add(chartRevenue);
             layoutControl1.Controls.Add(gridAlerts);
             layoutControl1.Controls.Add(gridTodayAppointments);
-            layoutControl1.Controls.Add(panelControl4);
-            layoutControl1.Controls.Add(panelControl3);
-            layoutControl1.Controls.Add(panelControl2);
-            layoutControl1.Controls.Add(panelControl1);
             layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             layoutControl1.Location = new System.Drawing.Point(0, 0);
             layoutControl1.Name = "layoutControl1";
@@ -209,40 +175,227 @@
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
             // 
+            // chartPackages
+            // 
+            chartPackages.BorderOptions.Visibility = DevExpress.Utils.DefaultBoolean.False;
+            chartPackages.Legend.Visibility = DevExpress.Utils.DefaultBoolean.False;
+            chartPackages.Location = new System.Drawing.Point(485, 474);
+            chartPackages.Name = "chartPackages";
+            series1.Name = "Series 1";
+            series1.SeriesID = 0;
+            series1.View = doughnutSeriesView1;
+            chartPackages.SeriesSerializable = new DevExpress.XtraCharts.Series[]
+    {
+    series1
+    };
+            sideBySideBarSeriesLabel1.TextPattern = "{A} :{V}";
+            chartPackages.SeriesTemplate.Label = sideBySideBarSeriesLabel1;
+            chartPackages.Size = new System.Drawing.Size(470, 199);
+            chartPackages.TabIndex = 9;
+            // 
+            // panelControl1
+            // 
+            panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            panelControl1.Controls.Add(dateNavDashboard);
+            panelControl1.Location = new System.Drawing.Point(12, 219);
+            panelControl1.Name = "panelControl1";
+            panelControl1.Padding = new System.Windows.Forms.Padding(5);
+            panelControl1.Size = new System.Drawing.Size(233, 251);
+            panelControl1.TabIndex = 8;
+            // 
             // dateNavDashboard
             // 
             dateNavDashboard.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
             dateNavDashboard.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
             dateNavDashboard.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            dateNavDashboard.DateTime = new System.DateTime(2026, 3, 26, 0, 0, 0, 0);
+            dateNavDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
+            dateNavDashboard.EditValue = new System.DateTime(2026, 3, 26, 0, 0, 0, 0);
             dateNavDashboard.FirstDayOfWeek = System.DayOfWeek.Monday;
-            dateNavDashboard.Location = new System.Drawing.Point(12, 146);
+            dateNavDashboard.Location = new System.Drawing.Point(5, 5);
             dateNavDashboard.Name = "dateNavDashboard";
-            dateNavDashboard.Size = new System.Drawing.Size(230, 292);
-            dateNavDashboard.StyleController = layoutControl1;
-            dateNavDashboard.TabIndex = 10;
+            dateNavDashboard.Size = new System.Drawing.Size(223, 241);
+            dateNavDashboard.TabIndex = 3;
             dateNavDashboard.CustomDrawDayNumberCell += dateNavDashboard_CustomDrawDayNumberCell;
             dateNavDashboard.EditValueChanged += dateNavigator1_EditValueChanged;
             // 
-            // chartPackages
+            // tileControl1
             // 
-            chartPackages.Location = new System.Drawing.Point(507, 442);
-            chartPackages.Name = "chartPackages";
-            series1.Name = "Series 1";
-            series1.SeriesID = 0;
-            series1.View = pieSeriesView1;
-            chartPackages.SeriesSerializable = new DevExpress.XtraCharts.Series[]
-    {
-    series1
-    };
-            chartPackages.Size = new System.Drawing.Size(448, 231);
-            chartPackages.TabIndex = 9;
+            tileControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            tileControl1.Groups.Add(tileGroup2);
+            tileControl1.ItemSize = 105;
+            tileControl1.Location = new System.Drawing.Point(12, 12);
+            tileControl1.MaxId = 8;
+            tileControl1.Name = "tileControl1";
+            tileControl1.OptionsLayout.StoreAppearance = true;
+            tileControl1.Size = new System.Drawing.Size(943, 203);
+            tileControl1.TabIndex = 0;
+            tileControl1.Text = "tileControl1";
+            // 
+            // tileGroup2
+            // 
+            tileGroup2.Items.Add(tileItem1);
+            tileGroup2.Items.Add(tileItem3);
+            tileGroup2.Items.Add(tileItem7);
+            tileGroup2.Items.Add(tileItem8);
+            tileGroup2.Name = "tileGroup2";
+            // 
+            // tileItem1
+            // 
+            tileItem1.AppearanceItem.Normal.BackColor = System.Drawing.Color.White;
+            tileItem1.AppearanceItem.Normal.BorderColor = System.Drawing.SystemColors.ControlLight;
+            tileItem1.AppearanceItem.Normal.Options.UseBackColor = true;
+            tileItem1.AppearanceItem.Normal.Options.UseBorderColor = true;
+            tileItemElement1.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement1.Appearance.Normal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            tileItemElement1.Appearance.Normal.Options.UseFont = true;
+            tileItemElement1.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement1.Text = "45.750 TL";
+            tileItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleRight;
+            tileItemElement1.TextLocation = new System.Drawing.Point(0, 9);
+            tileItemElement2.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement2.Appearance.Normal.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            tileItemElement2.Appearance.Normal.Options.UseFont = true;
+            tileItemElement2.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement2.Text = "Bugünün Cirosu";
+            tileItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopRight;
+            tileItemElement2.TextLocation = new System.Drawing.Point(0, 17);
+            tileItemElement3.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleLeft;
+            tileItemElement3.ImageOptions.ImageLocation = new System.Drawing.Point(10, 0);
+            tileItemElement3.ImageOptions.ImageToTextIndent = 0;
+            tileItemElement3.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage");
+            tileItemElement3.ImageOptions.SvgImageSize = new System.Drawing.Size(70, 55);
+            tileItemElement3.Text = "";
+            tileItem1.Elements.Add(tileItemElement1);
+            tileItem1.Elements.Add(tileItemElement2);
+            tileItem1.Elements.Add(tileItemElement3);
+            tileItem1.Id = 0;
+            tileItem1.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
+            tileItem1.Name = "tileItem1";
+            // 
+            // tileItem3
+            // 
+            tileItem3.AppearanceItem.Normal.BackColor = System.Drawing.Color.White;
+            tileItem3.AppearanceItem.Normal.BorderColor = System.Drawing.SystemColors.ControlLight;
+            tileItem3.AppearanceItem.Normal.Options.UseBackColor = true;
+            tileItem3.AppearanceItem.Normal.Options.UseBorderColor = true;
+            tileItemElement4.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement4.Appearance.Normal.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            tileItemElement4.Appearance.Normal.Options.UseFont = true;
+            tileItemElement4.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement4.Text = "Ödeme Yöntemi";
+            tileItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopCenter;
+            tileItemElement5.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement5.Appearance.Normal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            tileItemElement5.Appearance.Normal.Options.UseFont = true;
+            tileItemElement5.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement5.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement5.ImageOptions.ImageLocation = new System.Drawing.Point(-3, -10);
+            tileItemElement5.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage1");
+            tileItemElement5.ImageOptions.SvgImageSize = new System.Drawing.Size(35, 40);
+            tileItemElement5.Text = "asdasdasd";
+            tileItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            tileItemElement5.TextLocation = new System.Drawing.Point(0, 3);
+            tileItemElement6.Appearance.Normal.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            tileItemElement6.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement6.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft;
+            tileItemElement6.ImageOptions.ImageLocation = new System.Drawing.Point(3, 15);
+            tileItemElement6.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage2");
+            tileItemElement6.ImageOptions.SvgImageSize = new System.Drawing.Size(35, 40);
+            tileItemElement6.Text = "";
+            tileItemElement6.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleLeft;
+            tileItemElement6.TextLocation = new System.Drawing.Point(3, 10);
+            tileItemElement7.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement7.Appearance.Normal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            tileItemElement7.Appearance.Normal.Options.UseFont = true;
+            tileItemElement7.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement7.Text = "element3";
+            tileItemElement7.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleLeft;
+            tileItemElement7.TextLocation = new System.Drawing.Point(3, 28);
+            tileItemElement8.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement8.Appearance.Normal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            tileItemElement8.Appearance.Normal.Options.UseFont = true;
+            tileItemElement8.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement8.Text = "element1";
+            tileItemElement8.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomRight;
+            tileItemElement8.TextLocation = new System.Drawing.Point(3, 3);
+            tileItemElement9.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleRight;
+            tileItemElement9.ImageOptions.ImageLocation = new System.Drawing.Point(-13, -10);
+            tileItemElement9.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage3");
+            tileItemElement9.ImageOptions.SvgImageSize = new System.Drawing.Size(35, 40);
+            tileItemElement9.Text = "";
+            tileItem3.Elements.Add(tileItemElement4);
+            tileItem3.Elements.Add(tileItemElement5);
+            tileItem3.Elements.Add(tileItemElement6);
+            tileItem3.Elements.Add(tileItemElement7);
+            tileItem3.Elements.Add(tileItemElement8);
+            tileItem3.Elements.Add(tileItemElement9);
+            tileItem3.Id = 5;
+            tileItem3.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
+            tileItem3.Name = "tileItem3";
+            // 
+            // tileItem7
+            // 
+            tileItem7.AppearanceItem.Normal.BackColor = System.Drawing.Color.White;
+            tileItem7.AppearanceItem.Normal.BorderColor = System.Drawing.SystemColors.ControlLight;
+            tileItem7.AppearanceItem.Normal.Options.UseBackColor = true;
+            tileItem7.AppearanceItem.Normal.Options.UseBorderColor = true;
+            tileItemElement10.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement10.Appearance.Normal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            tileItemElement10.Appearance.Normal.Options.UseFont = true;
+            tileItemElement10.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement10.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement10.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage4");
+            tileItemElement10.ImageOptions.SvgImageSize = new System.Drawing.Size(35, 40);
+            tileItemElement10.Text = "";
+            tileItemElement10.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            tileItemElement11.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement11.Appearance.Normal.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            tileItemElement11.Appearance.Normal.Options.UseFont = true;
+            tileItemElement11.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement11.Text = "Beklenen Taksit Tutarı";
+            tileItemElement11.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopCenter;
+            tileItem7.Elements.Add(tileItemElement10);
+            tileItem7.Elements.Add(tileItemElement11);
+            tileItem7.Id = 6;
+            tileItem7.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
+            tileItem7.Name = "tileItem7";
+            // 
+            // tileItem8
+            // 
+            tileItem8.AppearanceItem.Normal.BackColor = System.Drawing.Color.White;
+            tileItem8.AppearanceItem.Normal.BorderColor = System.Drawing.SystemColors.ControlLight;
+            tileItem8.AppearanceItem.Normal.Options.UseBackColor = true;
+            tileItem8.AppearanceItem.Normal.Options.UseBorderColor = true;
+            tileItemElement12.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement12.Appearance.Normal.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            tileItemElement12.Appearance.Normal.Options.UseFont = true;
+            tileItemElement12.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement12.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage5");
+            tileItemElement12.ImageOptions.SvgImageSize = new System.Drawing.Size(40, 30);
+            tileItemElement12.Text = "Aktif Randevular";
+            tileItemElement12.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopCenter;
+            tileItemElement13.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement13.Appearance.Normal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            tileItemElement13.Appearance.Normal.Options.UseFont = true;
+            tileItemElement13.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement13.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement13.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement13.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage6");
+            tileItemElement13.Text = "element1";
+            tileItemElement13.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItem8.Elements.Add(tileItemElement12);
+            tileItem8.Elements.Add(tileItemElement13);
+            tileItem8.Id = 7;
+            tileItem8.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
+            tileItem8.Name = "tileItem8";
             // 
             // chartRevenue
             // 
             xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
             xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
             chartRevenue.Diagram = xyDiagram1;
-            chartRevenue.Location = new System.Drawing.Point(507, 146);
+            chartRevenue.Location = new System.Drawing.Point(485, 219);
             chartRevenue.Name = "chartRevenue";
             chartRevenue.PaletteName = "Concourse";
             series2.Name = "Series 1";
@@ -251,16 +404,16 @@
     {
     series2
     };
-            chartRevenue.Size = new System.Drawing.Size(448, 292);
-            chartRevenue.TabIndex = 6;
+            chartRevenue.Size = new System.Drawing.Size(470, 251);
+            chartRevenue.TabIndex = 5;
             // 
             // gridAlerts
             // 
-            gridAlerts.Location = new System.Drawing.Point(12, 442);
+            gridAlerts.Location = new System.Drawing.Point(12, 474);
             gridAlerts.MainView = gridViewAlerts;
             gridAlerts.Name = "gridAlerts";
-            gridAlerts.Size = new System.Drawing.Size(491, 231);
-            gridAlerts.TabIndex = 8;
+            gridAlerts.Size = new System.Drawing.Size(469, 199);
+            gridAlerts.TabIndex = 6;
             gridAlerts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewAlerts });
             // 
             // gridViewAlerts
@@ -271,27 +424,20 @@
             // 
             // gridTodayAppointments
             // 
-            gridTodayAppointments.Location = new System.Drawing.Point(246, 146);
+            gridTodayAppointments.Location = new System.Drawing.Point(249, 219);
             gridTodayAppointments.MainView = tileView1;
             gridTodayAppointments.Name = "gridTodayAppointments";
             gridTodayAppointments.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemImageComboBox1 });
-            gridTodayAppointments.Size = new System.Drawing.Size(257, 292);
-            gridTodayAppointments.TabIndex = 7;
+            gridTodayAppointments.Size = new System.Drawing.Size(232, 251);
+            gridTodayAppointments.TabIndex = 4;
             gridTodayAppointments.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { tileView1 });
             // 
             // tileView1
             // 
-            tileView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { tileViewColumn1, tileViewColumn2, tileViewColumn3, tileViewColumn4, tileViewColumn6, tileViewColumn5 });
+            tileView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { tileViewColumn1, tileViewColumn2, tileViewColumn3, tileViewColumn4, tileViewColumn6, tileViewColumn5, tileViewColumn7, tileViewColumn8 });
             tileView1.GridControl = gridTodayAppointments;
             tileView1.Name = "tileView1";
-            tileView1.OptionsTiles.GroupTextPadding = new System.Windows.Forms.Padding(12, 8, 12, 8);
-            tileView1.OptionsTiles.IndentBetweenGroups = 5;
-            tileView1.OptionsTiles.IndentBetweenItems = 0;
             tileView1.OptionsTiles.ItemPadding = new System.Windows.Forms.Padding(8);
-            tileView1.OptionsTiles.ItemSize = new System.Drawing.Size(220, 100);
-            tileView1.OptionsTiles.LayoutMode = DevExpress.XtraGrid.Views.Tile.TileViewLayoutMode.List;
-            tileView1.OptionsTiles.Orientation = System.Windows.Forms.Orientation.Vertical;
-            tileView1.OptionsTiles.Padding = new System.Windows.Forms.Padding(20);
             tileView1.OptionsTiles.RowCount = 0;
             tableColumnDefinition1.Length.Value = 82D;
             tableColumnDefinition2.Length.Value = 13D;
@@ -299,6 +445,8 @@
             tileView1.TileColumns.Add(tableColumnDefinition1);
             tileView1.TileColumns.Add(tableColumnDefinition2);
             tileView1.TileColumns.Add(tableColumnDefinition3);
+            tileView1.TileHtmlTemplate.Styles = resources.GetString("tileView1.TileHtmlTemplate.Styles");
+            tileView1.TileHtmlTemplate.Template = resources.GetString("tileView1.TileHtmlTemplate.Template");
             tileView1.TileRows.Add(tableRowDefinition1);
             tileView1.TileRows.Add(tableRowDefinition2);
             tileView1.TileRows.Add(tableRowDefinition3);
@@ -323,20 +471,17 @@
             tileViewItemElement2.RowIndex = 1;
             tileViewItemElement2.Text = "tileViewColumn3";
             tileViewItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileViewItemElement3.Column = tileViewColumn4;
             tileViewItemElement3.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement3.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
             tileViewItemElement3.RowIndex = 2;
             tileViewItemElement3.Text = "tileViewColumn4";
             tileViewItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileViewItemElement4.Column = tileViewColumn5;
             tileViewItemElement4.ColumnIndex = 1;
             tileViewItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement4.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
             tileViewItemElement4.RowIndex = 3;
             tileViewItemElement4.Text = "tileViewColumn5";
             tileViewItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileViewItemElement5.Column = tileViewColumn6;
             tileViewItemElement5.ColumnIndex = 2;
             tileViewItemElement5.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement5.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
@@ -356,335 +501,212 @@
             tileViewColumn1.Visible = true;
             tileViewColumn1.VisibleIndex = 0;
             // 
-            // panelControl4
+            // tileViewColumn4
             // 
-            panelControl4.Controls.Add(layoutControl5);
-            panelControl4.Location = new System.Drawing.Point(772, 12);
-            panelControl4.Name = "panelControl4";
-            panelControl4.Size = new System.Drawing.Size(183, 130);
-            panelControl4.TabIndex = 4;
+            tileViewColumn4.Caption = "Time Display";
+            tileViewColumn4.FieldName = "TimeDisplay";
+            tileViewColumn4.Name = "tileViewColumn4";
+            tileViewColumn4.Visible = true;
+            tileViewColumn4.VisibleIndex = 3;
             // 
-            // layoutControl5
+            // tileViewColumn6
             // 
-            layoutControl5.Controls.Add(lblAppCount);
-            layoutControl5.Dock = System.Windows.Forms.DockStyle.Fill;
-            layoutControl5.Location = new System.Drawing.Point(2, 2);
-            layoutControl5.Name = "layoutControl5";
-            layoutControl5.Root = layoutControlGroup4;
-            layoutControl5.Size = new System.Drawing.Size(179, 126);
-            layoutControl5.TabIndex = 0;
-            layoutControl5.Text = "layoutControl5";
+            tileViewColumn6.Caption = "Status";
+            tileViewColumn6.FieldName = "Status";
+            tileViewColumn6.Name = "tileViewColumn6";
             // 
-            // lblAppCount
+            // tileViewColumn5
             // 
-            lblAppCount.Appearance.Options.UseTextOptions = true;
-            lblAppCount.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            lblAppCount.LineStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            lblAppCount.LineVisible = true;
-            lblAppCount.Location = new System.Drawing.Point(26, 29);
-            lblAppCount.Name = "lblAppCount";
-            lblAppCount.Size = new System.Drawing.Size(127, 13);
-            lblAppCount.StyleController = layoutControl5;
-            lblAppCount.TabIndex = 4;
-            lblAppCount.Text = "labelControl1";
+            tileViewColumn5.Caption = "Status Text";
+            tileViewColumn5.FieldName = "StatusText";
+            tileViewColumn5.Name = "tileViewColumn5";
+            tileViewColumn5.Visible = true;
+            tileViewColumn5.VisibleIndex = 4;
             // 
-            // layoutControlGroup4
+            // tileViewColumn7
             // 
-            layoutControlGroup4.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            layoutControlGroup4.GroupBordersVisible = false;
-            layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem12, emptySpaceItem4 });
-            layoutControlGroup4.Name = "layoutControlGroup4";
-            layoutControlGroup4.Size = new System.Drawing.Size(179, 126);
-            layoutControlGroup4.TextVisible = false;
+            tileViewColumn7.Caption = "Status Css Class";
+            tileViewColumn7.FieldName = "StatusCssClass";
+            tileViewColumn7.Name = "tileViewColumn7";
             // 
-            // layoutControlItem12
+            // tileViewColumn8
             // 
-            layoutControlItem12.AppearanceItemCaption.Options.UseTextOptions = true;
-            layoutControlItem12.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            layoutControlItem12.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
-            layoutControlItem12.Control = lblAppCount;
-            layoutControlItem12.Location = new System.Drawing.Point(0, 0);
-            layoutControlItem12.Name = "layoutControlItem12";
-            layoutControlItem12.Size = new System.Drawing.Size(159, 34);
-            layoutControlItem12.Text = "Bugünkü Randevu Sayısı";
-            layoutControlItem12.TextLocation = DevExpress.Utils.Locations.Top;
-            layoutControlItem12.TextSize = new System.Drawing.Size(127, 13);
-            // 
-            // emptySpaceItem4
-            // 
-            emptySpaceItem4.Location = new System.Drawing.Point(0, 34);
-            emptySpaceItem4.Name = "emptySpaceItem4";
-            emptySpaceItem4.Size = new System.Drawing.Size(159, 72);
-            // 
-            // panelControl3
-            // 
-            panelControl3.Controls.Add(layoutControl4);
-            panelControl3.Location = new System.Drawing.Point(578, 12);
-            panelControl3.Name = "panelControl3";
-            panelControl3.Size = new System.Drawing.Size(190, 130);
-            panelControl3.TabIndex = 3;
-            // 
-            // layoutControl4
-            // 
-            layoutControl4.Controls.Add(lblExpected);
-            layoutControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            layoutControl4.Location = new System.Drawing.Point(2, 2);
-            layoutControl4.Name = "layoutControl4";
-            layoutControl4.Root = layoutControlGroup3;
-            layoutControl4.Size = new System.Drawing.Size(186, 126);
-            layoutControl4.TabIndex = 0;
-            layoutControl4.Text = "layoutControl4";
-            // 
-            // lblExpected
-            // 
-            lblExpected.Appearance.Options.UseTextOptions = true;
-            lblExpected.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            lblExpected.LineStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            lblExpected.LineVisible = true;
-            lblExpected.Location = new System.Drawing.Point(46, 29);
-            lblExpected.Name = "lblExpected";
-            lblExpected.Size = new System.Drawing.Size(93, 13);
-            lblExpected.StyleController = layoutControl4;
-            lblExpected.TabIndex = 4;
-            lblExpected.Text = "labelControl1";
-            // 
-            // layoutControlGroup3
-            // 
-            layoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            layoutControlGroup3.GroupBordersVisible = false;
-            layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem11, emptySpaceItem3 });
-            layoutControlGroup3.Name = "layoutControlGroup3";
-            layoutControlGroup3.Size = new System.Drawing.Size(186, 126);
-            layoutControlGroup3.TextVisible = false;
-            // 
-            // layoutControlItem11
-            // 
-            layoutControlItem11.AppearanceItemCaption.Options.UseTextOptions = true;
-            layoutControlItem11.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            layoutControlItem11.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
-            layoutControlItem11.Control = lblExpected;
-            layoutControlItem11.Location = new System.Drawing.Point(0, 0);
-            layoutControlItem11.Name = "layoutControlItem11";
-            layoutControlItem11.Size = new System.Drawing.Size(166, 34);
-            layoutControlItem11.Text = "Beklenen Taksitler";
-            layoutControlItem11.TextLocation = DevExpress.Utils.Locations.Top;
-            layoutControlItem11.TextSize = new System.Drawing.Size(93, 13);
-            // 
-            // emptySpaceItem3
-            // 
-            emptySpaceItem3.Location = new System.Drawing.Point(0, 34);
-            emptySpaceItem3.Name = "emptySpaceItem3";
-            emptySpaceItem3.Size = new System.Drawing.Size(166, 72);
-            // 
-            // panelControl2
-            // 
-            panelControl2.Controls.Add(layoutControl3);
-            panelControl2.Location = new System.Drawing.Point(311, 12);
-            panelControl2.Name = "panelControl2";
-            panelControl2.Size = new System.Drawing.Size(263, 130);
-            panelControl2.TabIndex = 2;
-            // 
-            // layoutControl3
-            // 
-            layoutControl3.Controls.Add(lblPaymentDetails);
-            layoutControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            layoutControl3.Location = new System.Drawing.Point(2, 2);
-            layoutControl3.Name = "layoutControl3";
-            layoutControl3.Root = layoutControlGroup2;
-            layoutControl3.Size = new System.Drawing.Size(259, 126);
-            layoutControl3.TabIndex = 0;
-            layoutControl3.Text = "layoutControl3";
-            // 
-            // lblPaymentDetails
-            // 
-            lblPaymentDetails.Appearance.Options.UseTextOptions = true;
-            lblPaymentDetails.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            lblPaymentDetails.LineStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            lblPaymentDetails.LineVisible = true;
-            lblPaymentDetails.Location = new System.Drawing.Point(63, 29);
-            lblPaymentDetails.Name = "lblPaymentDetails";
-            lblPaymentDetails.Size = new System.Drawing.Size(133, 13);
-            lblPaymentDetails.StyleController = layoutControl3;
-            lblPaymentDetails.TabIndex = 4;
-            lblPaymentDetails.Text = "labelControl1";
-            // 
-            // layoutControlGroup2
-            // 
-            layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            layoutControlGroup2.GroupBordersVisible = false;
-            layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem10, emptySpaceItem2 });
-            layoutControlGroup2.Name = "layoutControlGroup2";
-            layoutControlGroup2.Size = new System.Drawing.Size(259, 126);
-            layoutControlGroup2.TextVisible = false;
-            // 
-            // layoutControlItem10
-            // 
-            layoutControlItem10.AppearanceItemCaption.Options.UseTextOptions = true;
-            layoutControlItem10.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            layoutControlItem10.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
-            layoutControlItem10.Control = lblPaymentDetails;
-            layoutControlItem10.Location = new System.Drawing.Point(0, 0);
-            layoutControlItem10.Name = "layoutControlItem10";
-            layoutControlItem10.Size = new System.Drawing.Size(239, 34);
-            layoutControlItem10.Text = "Nakit / Kredi Kartı dağılımı";
-            layoutControlItem10.TextLocation = DevExpress.Utils.Locations.Top;
-            layoutControlItem10.TextSize = new System.Drawing.Size(133, 13);
-            // 
-            // emptySpaceItem2
-            // 
-            emptySpaceItem2.Location = new System.Drawing.Point(0, 34);
-            emptySpaceItem2.Name = "emptySpaceItem2";
-            emptySpaceItem2.Size = new System.Drawing.Size(239, 72);
-            // 
-            // panelControl1
-            // 
-            panelControl1.Controls.Add(layoutControl2);
-            panelControl1.Location = new System.Drawing.Point(12, 12);
-            panelControl1.Name = "panelControl1";
-            panelControl1.Size = new System.Drawing.Size(295, 130);
-            panelControl1.TabIndex = 0;
-            // 
-            // layoutControl2
-            // 
-            layoutControl2.Controls.Add(lblTotalRevenue);
-            layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            layoutControl2.Location = new System.Drawing.Point(2, 2);
-            layoutControl2.Name = "layoutControl2";
-            layoutControl2.Root = layoutControlGroup1;
-            layoutControl2.Size = new System.Drawing.Size(291, 126);
-            layoutControl2.TabIndex = 0;
-            layoutControl2.Text = "layoutControl2";
-            // 
-            // lblTotalRevenue
-            // 
-            lblTotalRevenue.Appearance.Options.UseTextOptions = true;
-            lblTotalRevenue.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            lblTotalRevenue.LineStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            lblTotalRevenue.LineVisible = true;
-            lblTotalRevenue.Location = new System.Drawing.Point(103, 29);
-            lblTotalRevenue.Name = "lblTotalRevenue";
-            lblTotalRevenue.Size = new System.Drawing.Size(85, 13);
-            lblTotalRevenue.StyleController = layoutControl2;
-            lblTotalRevenue.TabIndex = 4;
-            lblTotalRevenue.Text = "labelControl1";
-            // 
-            // layoutControlGroup1
-            // 
-            layoutControlGroup1.AppearanceGroup.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
-            layoutControlGroup1.AppearanceGroup.Options.UseBorderColor = true;
-            layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            layoutControlGroup1.GroupBordersVisible = false;
-            layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem9, emptySpaceItem1 });
-            layoutControlGroup1.Name = "layoutControlGroup1";
-            layoutControlGroup1.Size = new System.Drawing.Size(291, 126);
-            // 
-            // layoutControlItem9
-            // 
-            layoutControlItem9.AppearanceItemCaption.Options.UseTextOptions = true;
-            layoutControlItem9.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            layoutControlItem9.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
-            layoutControlItem9.Control = lblTotalRevenue;
-            layoutControlItem9.Location = new System.Drawing.Point(0, 0);
-            layoutControlItem9.Name = "layoutControlItem9";
-            layoutControlItem9.Size = new System.Drawing.Size(271, 34);
-            layoutControlItem9.Text = "Bugünün Cirosu";
-            layoutControlItem9.TextLocation = DevExpress.Utils.Locations.Top;
-            layoutControlItem9.TextSize = new System.Drawing.Size(85, 13);
-            // 
-            // emptySpaceItem1
-            // 
-            emptySpaceItem1.Location = new System.Drawing.Point(0, 34);
-            emptySpaceItem1.Name = "emptySpaceItem1";
-            emptySpaceItem1.Size = new System.Drawing.Size(271, 72);
+            tileViewColumn8.Caption = "Phone Number";
+            tileViewColumn8.FieldName = "PhoneNumber";
+            tileViewColumn8.Name = "tileViewColumn8";
+            tileViewColumn8.Visible = true;
+            tileViewColumn8.VisibleIndex = 5;
             // 
             // Root
             // 
             Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, layoutControlItem3, layoutControlItem4, layoutControlItem5, layoutControlItem6, layoutControlItem7, layoutControlItem8, layoutControlItem13 });
+            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem5, layoutControlItem6, layoutControlItem7, layoutControlItem1, layoutControlItem2, layoutControlItem3 });
             Root.Name = "Root";
             Root.Size = new System.Drawing.Size(967, 685);
             Root.TextVisible = false;
             // 
-            // layoutControlItem1
-            // 
-            layoutControlItem1.Control = panelControl1;
-            layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(299, 134);
-            layoutControlItem1.TextVisible = false;
-            // 
-            // layoutControlItem2
-            // 
-            layoutControlItem2.Control = panelControl2;
-            layoutControlItem2.Location = new System.Drawing.Point(299, 0);
-            layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new System.Drawing.Size(267, 134);
-            layoutControlItem2.TextVisible = false;
-            // 
-            // layoutControlItem3
-            // 
-            layoutControlItem3.Control = panelControl3;
-            layoutControlItem3.Location = new System.Drawing.Point(566, 0);
-            layoutControlItem3.Name = "layoutControlItem3";
-            layoutControlItem3.Size = new System.Drawing.Size(194, 134);
-            layoutControlItem3.TextVisible = false;
-            // 
-            // layoutControlItem4
-            // 
-            layoutControlItem4.Control = panelControl4;
-            layoutControlItem4.Location = new System.Drawing.Point(760, 0);
-            layoutControlItem4.Name = "layoutControlItem4";
-            layoutControlItem4.Size = new System.Drawing.Size(187, 134);
-            layoutControlItem4.TextVisible = false;
-            // 
             // layoutControlItem5
             // 
             layoutControlItem5.Control = gridTodayAppointments;
-            layoutControlItem5.Location = new System.Drawing.Point(234, 134);
+            layoutControlItem5.Location = new System.Drawing.Point(237, 207);
             layoutControlItem5.Name = "layoutControlItem5";
-            layoutControlItem5.Size = new System.Drawing.Size(261, 296);
+            layoutControlItem5.Size = new System.Drawing.Size(236, 255);
             layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem6
             // 
             layoutControlItem6.Control = gridAlerts;
-            layoutControlItem6.Location = new System.Drawing.Point(0, 430);
+            layoutControlItem6.Location = new System.Drawing.Point(0, 462);
             layoutControlItem6.Name = "layoutControlItem6";
-            layoutControlItem6.Size = new System.Drawing.Size(495, 235);
+            layoutControlItem6.Size = new System.Drawing.Size(473, 203);
             layoutControlItem6.TextVisible = false;
             // 
             // layoutControlItem7
             // 
             layoutControlItem7.Control = chartRevenue;
-            layoutControlItem7.Location = new System.Drawing.Point(495, 134);
+            layoutControlItem7.Location = new System.Drawing.Point(473, 207);
             layoutControlItem7.Name = "layoutControlItem7";
-            layoutControlItem7.Size = new System.Drawing.Size(452, 296);
+            layoutControlItem7.Size = new System.Drawing.Size(474, 255);
             layoutControlItem7.TextVisible = false;
             // 
-            // layoutControlItem8
+            // layoutControlItem1
             // 
-            layoutControlItem8.Control = chartPackages;
-            layoutControlItem8.Location = new System.Drawing.Point(495, 430);
-            layoutControlItem8.Name = "layoutControlItem8";
-            layoutControlItem8.Size = new System.Drawing.Size(452, 235);
-            layoutControlItem8.TextVisible = false;
+            layoutControlItem1.Control = tileControl1;
+            layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            layoutControlItem1.Name = "layoutControlItem1";
+            layoutControlItem1.Size = new System.Drawing.Size(947, 207);
+            layoutControlItem1.TextVisible = false;
             // 
-            // layoutControlItem13
+            // layoutControlItem2
             // 
-            layoutControlItem13.Control = dateNavDashboard;
-            layoutControlItem13.Location = new System.Drawing.Point(0, 134);
-            layoutControlItem13.Name = "layoutControlItem13";
-            layoutControlItem13.Size = new System.Drawing.Size(234, 296);
-            layoutControlItem13.TextVisible = false;
+            layoutControlItem2.Control = panelControl1;
+            layoutControlItem2.Location = new System.Drawing.Point(0, 207);
+            layoutControlItem2.Name = "layoutControlItem2";
+            layoutControlItem2.Size = new System.Drawing.Size(237, 255);
+            layoutControlItem2.TextVisible = false;
             // 
-            // tileViewColumn6
+            // layoutControlItem3
             // 
-            tileViewColumn6.DisplayFormat.FormatString = "hh:mm tt";
-            tileViewColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            tileViewColumn6.FieldName = "EndTime";
-            tileViewColumn6.Name = "tileViewColumn6";
-            tileViewColumn6.Visible = true;
-            tileViewColumn6.VisibleIndex = 3;
+            layoutControlItem3.Control = chartPackages;
+            layoutControlItem3.Location = new System.Drawing.Point(473, 462);
+            layoutControlItem3.Name = "layoutControlItem3";
+            layoutControlItem3.Size = new System.Drawing.Size(474, 203);
+            layoutControlItem3.TextVisible = false;
+            // 
+            // svgImageCollection1
+            // 
+            svgImageCollection1.Add("clockIcon", "image://svgimages/business objects/bo_scheduler.svg");
+            // 
+            // layoutControlGroup2
+            // 
+            layoutControlGroup2.GroupStyle = DevExpress.Utils.GroupStyle.Title;
+            layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
+            layoutControlGroup2.Name = "layoutControlGroup1";
+            layoutControlGroup2.Size = new System.Drawing.Size(947, 170);
+            // 
+            // tileItem5
+            // 
+            tileItem5.AppearanceItem.Normal.BackColor = System.Drawing.Color.White;
+            tileItem5.AppearanceItem.Normal.BorderColor = System.Drawing.SystemColors.ControlLight;
+            tileItem5.AppearanceItem.Normal.Options.UseBackColor = true;
+            tileItem5.AppearanceItem.Normal.Options.UseBorderColor = true;
+            tileItemElement14.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement14.Appearance.Normal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            tileItemElement14.Appearance.Normal.Options.UseFont = true;
+            tileItemElement14.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement14.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage7");
+            tileItemElement14.Text = "45.750 TL";
+            tileItemElement14.TextLocation = new System.Drawing.Point(35, 30);
+            tileItemElement15.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement15.Appearance.Normal.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            tileItemElement15.Appearance.Normal.Options.UseFont = true;
+            tileItemElement15.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement15.Text = "Bugünün Cirosu";
+            tileItemElement15.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual;
+            tileItemElement15.TextLocation = new System.Drawing.Point(35, 10);
+            tileItem5.Elements.Add(tileItemElement14);
+            tileItem5.Elements.Add(tileItemElement15);
+            tileItem5.Id = 0;
+            tileItem5.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
+            tileItem5.Name = "tileItem5";
+            // 
+            // tileItem2
+            // 
+            tileItem2.AppearanceItem.Normal.BackColor = System.Drawing.Color.White;
+            tileItem2.AppearanceItem.Normal.BorderColor = System.Drawing.SystemColors.ControlLight;
+            tileItem2.AppearanceItem.Normal.Options.UseBackColor = true;
+            tileItem2.AppearanceItem.Normal.Options.UseBorderColor = true;
+            tileItemElement16.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement16.Appearance.Normal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            tileItemElement16.Appearance.Normal.Options.UseFont = true;
+            tileItemElement16.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement16.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage8");
+            tileItemElement16.Text = "45.750 TL";
+            tileItemElement16.TextLocation = new System.Drawing.Point(35, 30);
+            tileItemElement17.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement17.Appearance.Normal.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            tileItemElement17.Appearance.Normal.Options.UseFont = true;
+            tileItemElement17.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement17.Text = "Bugünün Cirosu";
+            tileItemElement17.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual;
+            tileItemElement17.TextLocation = new System.Drawing.Point(35, 10);
+            tileItem2.Elements.Add(tileItemElement16);
+            tileItem2.Elements.Add(tileItemElement17);
+            tileItem2.Id = 0;
+            tileItem2.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
+            tileItem2.Name = "tileItem2";
+            // 
+            // tileItem4
+            // 
+            tileItem4.AppearanceItem.Normal.BackColor = System.Drawing.Color.White;
+            tileItem4.AppearanceItem.Normal.BorderColor = System.Drawing.SystemColors.ControlLight;
+            tileItem4.AppearanceItem.Normal.Options.UseBackColor = true;
+            tileItem4.AppearanceItem.Normal.Options.UseBorderColor = true;
+            tileItemElement18.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement18.Appearance.Normal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            tileItemElement18.Appearance.Normal.Options.UseFont = true;
+            tileItemElement18.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement18.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage9");
+            tileItemElement18.Text = "45.750 TL";
+            tileItemElement18.TextLocation = new System.Drawing.Point(35, 30);
+            tileItemElement19.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement19.Appearance.Normal.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            tileItemElement19.Appearance.Normal.Options.UseFont = true;
+            tileItemElement19.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement19.Text = "Bugünün Cirosu";
+            tileItemElement19.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual;
+            tileItemElement19.TextLocation = new System.Drawing.Point(35, 10);
+            tileItem4.Elements.Add(tileItemElement18);
+            tileItem4.Elements.Add(tileItemElement19);
+            tileItem4.Id = 0;
+            tileItem4.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
+            tileItem4.Name = "tileItem4";
+            // 
+            // tileItem6
+            // 
+            tileItem6.AppearanceItem.Normal.BackColor = System.Drawing.Color.White;
+            tileItem6.AppearanceItem.Normal.BorderColor = System.Drawing.SystemColors.ControlLight;
+            tileItem6.AppearanceItem.Normal.Options.UseBackColor = true;
+            tileItem6.AppearanceItem.Normal.Options.UseBorderColor = true;
+            tileItemElement20.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement20.Appearance.Normal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            tileItemElement20.Appearance.Normal.Options.UseFont = true;
+            tileItemElement20.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement20.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage10");
+            tileItemElement20.Text = "45.750 TL";
+            tileItemElement20.TextLocation = new System.Drawing.Point(35, 30);
+            tileItemElement21.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            tileItemElement21.Appearance.Normal.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            tileItemElement21.Appearance.Normal.Options.UseFont = true;
+            tileItemElement21.Appearance.Normal.Options.UseForeColor = true;
+            tileItemElement21.Text = "Bugünün Cirosu";
+            tileItemElement21.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual;
+            tileItemElement21.TextLocation = new System.Drawing.Point(35, 10);
+            tileItem6.Elements.Add(tileItemElement20);
+            tileItem6.Elements.Add(tileItemElement21);
+            tileItem6.Id = 0;
+            tileItem6.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
+            tileItem6.Name = "tileItem6";
             // 
             // DashboardControl
             // 
@@ -697,11 +719,14 @@
             ((System.ComponentModel.ISupportInitialize)repositoryItemImageComboBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
             layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)doughnutSeriesView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)series1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)sideBySideBarSeriesLabel1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chartPackages).EndInit();
+            ((System.ComponentModel.ISupportInitialize)panelControl1).EndInit();
+            panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dateNavDashboard.CalendarTimeProperties).EndInit();
             ((System.ComponentModel.ISupportInitialize)dateNavDashboard).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pieSeriesView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)series1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)chartPackages).EndInit();
             ((System.ComponentModel.ISupportInitialize)xyDiagram1).EndInit();
             ((System.ComponentModel.ISupportInitialize)series2).EndInit();
             ((System.ComponentModel.ISupportInitialize)chartRevenue).EndInit();
@@ -709,97 +734,56 @@
             ((System.ComponentModel.ISupportInitialize)gridViewAlerts).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridTodayAppointments).EndInit();
             ((System.ComponentModel.ISupportInitialize)tileView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl4).EndInit();
-            panelControl4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)layoutControl5).EndInit();
-            layoutControl5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)layoutControlGroup4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem12).EndInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl3).EndInit();
-            panelControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)layoutControl4).EndInit();
-            layoutControl4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)layoutControlGroup3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem11).EndInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl2).EndInit();
-            panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)layoutControl3).EndInit();
-            layoutControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem10).EndInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)panelControl1).EndInit();
-            panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)layoutControl2).EndInit();
-            layoutControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem9).EndInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)Root).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem5).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem6).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem7).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem8).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem13).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)svgImageCollection1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
-        private DevExpress.XtraEditors.PanelControl panelControl4;
-        private DevExpress.XtraEditors.PanelControl panelControl3;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraEditors.LabelControl lblExpected;
-        private DevExpress.XtraEditors.LabelControl lblPaymentDetails;
-        private DevExpress.XtraEditors.LabelControl lblTotalRevenue;
         private DevExpress.XtraGrid.GridControl gridAlerts;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewAlerts;
         private DevExpress.XtraGrid.GridControl gridTodayAppointments;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraCharts.ChartControl chartPackages;
         private DevExpress.XtraCharts.ChartControl chartRevenue;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
-        private DevExpress.XtraLayout.LayoutControl layoutControl2;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-        private DevExpress.XtraLayout.LayoutControl layoutControl3;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
-        private DevExpress.XtraLayout.LayoutControl layoutControl4;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
-        private DevExpress.XtraLayout.LayoutControl layoutControl5;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;
-        private DevExpress.XtraEditors.LabelControl lblAppCount;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
         private DevExpress.XtraScheduler.DateNavigator dateNavDashboard;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraGrid.Views.Tile.TileView tileView1;
         private DevExpress.XtraGrid.Columns.TileViewColumn tileViewColumn1;
         private DevExpress.XtraGrid.Columns.TileViewColumn tileViewColumn2;
         private DevExpress.XtraGrid.Columns.TileViewColumn tileViewColumn3;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
+        private DevExpress.XtraEditors.TileControl tileControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraEditors.TileGroup tileGroup2;
+        private DevExpress.XtraEditors.TileItem tileItem1;
+        private DevExpress.XtraEditors.TileItem tileItem5;
+        private DevExpress.XtraEditors.TileItem tileItem2;
+        private DevExpress.XtraEditors.TileItem tileItem4;
+        private DevExpress.XtraEditors.TileItem tileItem6;
+        private DevExpress.XtraEditors.TileItem tileItem3;
+        private DevExpress.XtraEditors.TileItem tileItem7;
+        private DevExpress.XtraEditors.TileItem tileItem8;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraGrid.Columns.TileViewColumn tileViewColumn4;
         private DevExpress.XtraGrid.Columns.TileViewColumn tileViewColumn5;
-        private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
         private DevExpress.XtraGrid.Columns.TileViewColumn tileViewColumn6;
+        private DevExpress.XtraGrid.Columns.TileViewColumn tileViewColumn7;
+        private DevExpress.XtraGrid.Columns.TileViewColumn tileViewColumn8;
+        private DevExpress.Utils.SvgImageCollection svgImageCollection1;
+        private DevExpress.XtraCharts.ChartControl chartPackages;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
     }
 }

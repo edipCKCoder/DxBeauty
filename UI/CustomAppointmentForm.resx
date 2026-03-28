@@ -122,17 +122,17 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblSubject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 106</value>
+    <value>18, 138</value>
   </data>
   <data name="lblSubject.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 13</value>
+    <value>28, 13</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lblSubject.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="lblSubject.Text" xml:space="preserve">
-    <value>&amp;Subject:</value>
+    <value>&amp;Konu:</value>
   </data>
   <data name="&gt;&gt;lblSubject.Name" xml:space="preserve">
     <value>lblSubject</value>
@@ -144,22 +144,22 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblSubject.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="lblLocation.AccessibleName" xml:space="preserve">
     <value>Location</value>
   </data>
   <data name="lblLocation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 140</value>
+    <value>18, 173</value>
   </data>
   <data name="lblLocation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 13</value>
+    <value>50, 13</value>
   </data>
   <data name="lblLocation.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="lblLocation.Text" xml:space="preserve">
-    <value>&amp;Location:</value>
+    <value>&amp;İşlem Yeri:</value>
   </data>
   <data name="&gt;&gt;lblLocation.Name" xml:space="preserve">
     <value>lblLocation</value>
@@ -171,7 +171,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblLocation.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tbSubject.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -181,7 +181,7 @@
     <value />
   </data>
   <data name="tbSubject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 99</value>
+    <value>74, 129</value>
   </data>
   <data name="tbSubject.Properties.AccessibleName" xml:space="preserve">
     <value>Subject</value>
@@ -202,22 +202,22 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tbSubject.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="lblLabel.AccessibleName" xml:space="preserve">
     <value>Label</value>
   </data>
   <data name="lblLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 85</value>
+    <value>14, 65</value>
   </data>
   <data name="lblLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 13</value>
+    <value>77, 13</value>
   </data>
   <data name="lblLabel.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
   <data name="lblLabel.Text" xml:space="preserve">
-    <value>Appointment&amp;Color:</value>
+    <value>Randevu &amp;Rengi:</value>
   </data>
   <data name="&gt;&gt;lblLabel.Name" xml:space="preserve">
     <value>lblLabel</value>
@@ -235,16 +235,16 @@
     <value>Start time</value>
   </data>
   <data name="lblStartTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 174</value>
+    <value>18, 206</value>
   </data>
   <data name="lblStartTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 13</value>
+    <value>94, 13</value>
   </data>
   <data name="lblStartTime.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
   <data name="lblStartTime.Text" xml:space="preserve">
-    <value>S&amp;tart time:</value>
+    <value>* B&amp;aşlangıç Zamanı:</value>
   </data>
   <data name="&gt;&gt;lblStartTime.Name" xml:space="preserve">
     <value>lblStartTime</value>
@@ -256,22 +256,22 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblStartTime.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="lblEndTime.AccessibleName" xml:space="preserve">
     <value>End time</value>
   </data>
   <data name="lblEndTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 208</value>
+    <value>18, 239</value>
   </data>
   <data name="lblEndTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 13</value>
+    <value>69, 13</value>
   </data>
   <data name="lblEndTime.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
   <data name="lblEndTime.Text" xml:space="preserve">
-    <value>&amp;End time:</value>
+    <value>* &amp;Bitiş Zamanı:</value>
   </data>
   <data name="&gt;&gt;lblEndTime.Name" xml:space="preserve">
     <value>lblEndTime</value>
@@ -283,10 +283,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblEndTime.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
   </data>
   <data name="chkAllDay.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 17</value>
+    <value>119, 347</value>
   </data>
   <data name="chkAllDay.Properties.AccessibleName" xml:space="preserve">
     <value>All day event</value>
@@ -295,10 +295,13 @@
     <value>&amp;All day event</value>
   </data>
   <data name="chkAllDay.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 20</value>
+    <value>87, 20</value>
   </data>
   <data name="chkAllDay.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
+  </data>
+  <data name="chkAllDay.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;chkAllDay.Name" xml:space="preserve">
     <value>chkAllDay</value>
@@ -307,7 +310,7 @@
     <value>DevExpress.XtraEditors.CheckEdit, DevExpress.XtraEditors.v25.1, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;chkAllDay.Parent" xml:space="preserve">
-    <value>panel1</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;chkAllDay.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -316,16 +319,19 @@
     <value>Show time as</value>
   </data>
   <data name="lblShowTimeAs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 238</value>
+    <value>223, 354</value>
   </data>
   <data name="lblShowTimeAs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 13</value>
+    <value>67, 13</value>
   </data>
   <data name="lblShowTimeAs.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
   <data name="lblShowTimeAs.Text" xml:space="preserve">
     <value>Sho&amp;w time as:</value>
+  </data>
+  <data name="lblShowTimeAs.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;lblShowTimeAs.Name" xml:space="preserve">
     <value>lblShowTimeAs</value>
@@ -337,7 +343,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblShowTimeAs.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>19</value>
   </data>
   <data name="btnOk.AccessibleName" xml:space="preserve">
     <value>Ok</value>
@@ -346,7 +352,7 @@
     <value>Bottom, Left</value>
   </data>
   <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 371</value>
+    <value>16, 375</value>
   </data>
   <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -367,7 +373,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="btnCancel.AccessibleName" xml:space="preserve">
     <value>Cancel</value>
@@ -376,7 +382,7 @@
     <value>Bottom, Left</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>104, 371</value>
+    <value>104, 375</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -385,7 +391,7 @@
     <value>26</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>İptal</value>
   </data>
   <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
     <value>btnCancel</value>
@@ -397,7 +403,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>20</value>
   </data>
   <data name="btnDelete.AccessibleName" xml:space="preserve">
     <value>Delete</value>
@@ -406,7 +412,7 @@
     <value>Bottom, Left</value>
   </data>
   <data name="btnDelete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 371</value>
+    <value>192, 375</value>
   </data>
   <data name="btnDelete.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -415,7 +421,7 @@
     <value>27</value>
   </data>
   <data name="btnDelete.Text" xml:space="preserve">
-    <value>&amp;Delete</value>
+    <value>&amp;Sil</value>
   </data>
   <data name="&gt;&gt;btnDelete.Name" xml:space="preserve">
     <value>btnDelete</value>
@@ -427,7 +433,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnDelete.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>21</value>
   </data>
   <data name="btnRecurrence.AccessibleName" xml:space="preserve">
     <value>Recurrence</value>
@@ -436,16 +442,16 @@
     <value>Bottom, Left</value>
   </data>
   <data name="btnRecurrence.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 371</value>
+    <value>280, 375</value>
   </data>
   <data name="btnRecurrence.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>102, 23</value>
   </data>
   <data name="btnRecurrence.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
   </data>
   <data name="btnRecurrence.Text" xml:space="preserve">
-    <value>&amp;Recurrence</value>
+    <value>&amp;Tekrarlı &amp;Randevu</value>
   </data>
   <data name="&gt;&gt;btnRecurrence.Name" xml:space="preserve">
     <value>btnRecurrence</value>
@@ -457,7 +463,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnRecurrence.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>22</value>
   </data>
   <data name="edtStartDate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -466,7 +472,7 @@
     <value>2005-03-31</value>
   </data>
   <data name="edtStartDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 165</value>
+    <value>119, 198</value>
   </data>
   <data name="edtStartDate.Properties.AccessibleName" xml:space="preserve">
     <value>Start date</value>
@@ -476,7 +482,7 @@
     <value>Combo</value>
   </data>
   <data name="edtStartDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>95, 22</value>
   </data>
   <data name="edtStartDate.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -491,7 +497,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;edtStartDate.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="edtEndDate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -500,7 +506,7 @@
     <value>2005-03-31</value>
   </data>
   <data name="edtEndDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 199</value>
+    <value>118, 234</value>
   </data>
   <data name="edtEndDate.Properties.AccessibleName" xml:space="preserve">
     <value>End date</value>
@@ -509,7 +515,7 @@
     <value>Combo</value>
   </data>
   <data name="edtEndDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 22</value>
+    <value>96, 22</value>
   </data>
   <data name="edtEndDate.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -524,16 +530,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;edtEndDate.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>23</value>
   </data>
   <data name="chkReminder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 46</value>
+    <value>14, 25</value>
   </data>
   <data name="chkReminder.Properties.Caption" xml:space="preserve">
-    <value>&amp;Reminder</value>
+    <value>&amp;Hatırlatıcı</value>
   </data>
   <data name="chkReminder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 20</value>
+    <value>68, 20</value>
   </data>
   <data name="chkReminder.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -548,7 +554,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;chkReminder.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="tbDescription.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -557,13 +563,13 @@
     <value />
   </data>
   <data name="tbDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 283</value>
+    <value>14, 287</value>
   </data>
   <data name="tbDescription.Properties.AccessibleName" xml:space="preserve">
     <value>Message</value>
   </data>
   <data name="tbDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>571, 82</value>
+    <value>571, 51</value>
   </data>
   <data name="tbDescription.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -578,16 +584,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tbDescription.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="lblResource.AccessibleName" xml:space="preserve">
     <value>Resource</value>
   </data>
   <data name="lblResource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 72</value>
+    <value>280, 38</value>
   </data>
   <data name="lblResource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 13</value>
+    <value>45, 13</value>
   </data>
   <data name="lblResource.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -605,7 +611,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblResource.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="tbLocation.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -614,7 +620,7 @@
     <value />
   </data>
   <data name="tbLocation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 133</value>
+    <value>74, 164</value>
   </data>
   <data name="tbLocation.Properties.AccessibleName" xml:space="preserve">
     <value>Location</value>
@@ -635,16 +641,61 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tbLocation.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>17</value>
   </data>
   <data name="panel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;cbReminder.Name" xml:space="preserve">
+    <value>cbReminder</value>
+  </data>
+  <data name="&gt;&gt;cbReminder.Type" xml:space="preserve">
+    <value>DevExpress.XtraScheduler.UI.DurationEdit, DevExpress.XtraScheduler.v25.1, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;cbReminder.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;cbReminder.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;edtLabel.Name" xml:space="preserve">
+    <value>edtLabel</value>
+  </data>
+  <data name="&gt;&gt;edtLabel.Type" xml:space="preserve">
+    <value>DevExpress.XtraScheduler.UI.AppointmentLabelEdit, DevExpress.XtraScheduler.v25.1, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;edtLabel.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;edtLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>393, 173</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 103</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.PanelControl, DevExpress.Utils.v25.1, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="cbReminder.EditValue" xml:space="preserve">
     <value />
   </data>
   <data name="cbReminder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 46</value>
+    <value>92, 23</value>
   </data>
   <data name="cbReminder.Properties.AccessibleName" xml:space="preserve">
     <value>Reminder</value>
@@ -671,7 +722,7 @@
     <value>1</value>
   </data>
   <data name="edtLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>118, 82</value>
+    <value>97, 61</value>
   </data>
   <data name="edtLabel.Properties.AccessibleName" xml:space="preserve">
     <value>Label</value>
@@ -680,7 +731,7 @@
     <value>Combo</value>
   </data>
   <data name="edtLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 22</value>
+    <value>81, 22</value>
   </data>
   <data name="edtLabel.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -695,31 +746,10 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;edtLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>395, 153</value>
-  </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 108</value>
-  </data>
-  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.PanelControl, DevExpress.Utils.v25.1, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>2</value>
   </data>
   <data name="edtResource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>333, 65</value>
+    <value>331, 34</value>
   </data>
   <data name="edtResource.Properties.AccessibleName" xml:space="preserve">
     <value>Resource</value>
@@ -728,10 +758,10 @@
     <value>Combo</value>
   </data>
   <data name="edtResource.Properties.NullText" xml:space="preserve">
-    <value>Please Select a Personel...</value>
+    <value>Lütfen Bir Personel Seçiniz...</value>
   </data>
   <data name="edtResource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
+    <value>191, 22</value>
   </data>
   <data name="edtResource.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -746,7 +776,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;edtResource.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="edtStartTime.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -755,7 +785,7 @@
     <value>2005-03-31</value>
   </data>
   <data name="edtStartTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>298, 164</value>
+    <value>223, 197</value>
   </data>
   <data name="edtStartTime.Properties.AccessibleName" xml:space="preserve">
     <value>Start time</value>
@@ -776,7 +806,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;edtStartTime.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="edtEndTime.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -785,7 +815,7 @@
     <value>2005-03-31</value>
   </data>
   <data name="edtEndTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>299, 199</value>
+    <value>223, 235</value>
   </data>
   <data name="edtEndTime.Properties.AccessibleName" xml:space="preserve">
     <value>End time</value>
@@ -806,13 +836,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;edtEndTime.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>24</value>
   </data>
   <data name="edtShowTimeAs.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
   <data name="edtShowTimeAs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 231</value>
+    <value>296, 345</value>
   </data>
   <data name="edtShowTimeAs.Properties.AccessibleName" xml:space="preserve">
     <value>Show time as</value>
@@ -826,6 +856,9 @@
   <data name="edtShowTimeAs.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
+  <data name="edtShowTimeAs.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;edtShowTimeAs.Name" xml:space="preserve">
     <value>edtShowTimeAs</value>
   </data>
@@ -836,16 +869,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;edtShowTimeAs.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>25</value>
   </data>
   <data name="slueCustomer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 65</value>
+    <value>78, 34</value>
   </data>
   <data name="slueCustomer.Properties.Buttons" type="DevExpress.XtraEditors.Controls.ButtonPredefines, DevExpress.Utils.v25.1">
     <value>Combo</value>
   </data>
   <data name="slueCustomer.Properties.NullText" xml:space="preserve">
-    <value>Please Select a Customer...</value>
+    <value>Lütfen Bir Müşteri Seçiniz...</value>
   </data>
   <data name="slueCustomer.Size" type="System.Drawing.Size, System.Drawing">
     <value>171, 22</value>
@@ -863,22 +896,22 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;slueCustomer.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="labelControl1.AccessibleName" xml:space="preserve">
     <value>Subject</value>
   </data>
   <data name="labelControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 72</value>
+    <value>24, 38</value>
   </data>
   <data name="labelControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 13</value>
+    <value>48, 13</value>
   </data>
   <data name="labelControl1.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
   </data>
   <data name="labelControl1.Text" xml:space="preserve">
-    <value>&amp;Customer:</value>
+    <value>* &amp;Müşteri:</value>
   </data>
   <data name="&gt;&gt;labelControl1.Name" xml:space="preserve">
     <value>labelControl1</value>
@@ -890,13 +923,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelControl1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="lueCustomerPackages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 37</value>
+    <value>16, 91</value>
   </data>
   <data name="lueCustomerPackages.Properties.Buttons" type="DevExpress.XtraEditors.Controls.ButtonPredefines, DevExpress.Utils.v25.1">
     <value>Combo</value>
+  </data>
+  <data name="lueCustomerPackages.Properties.NullText" xml:space="preserve">
+    <value>Lütfen Müşteriye Tanımlı Satış Paketini Seçiniz...</value>
   </data>
   <data name="lueCustomerPackages.Size" type="System.Drawing.Size, System.Drawing">
     <value>569, 22</value>
@@ -914,19 +950,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lueCustomerPackages.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="labelControl2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>226, 18</value>
+    <value>223, 72</value>
   </data>
   <data name="labelControl2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 13</value>
+    <value>128, 13</value>
   </data>
   <data name="labelControl2.TabIndex" type="System.Int32, mscorlib">
     <value>33</value>
   </data>
   <data name="labelControl2.Text" xml:space="preserve">
-    <value>Müşteri Satış Paketleri</value>
+    <value>* Müşterinin Satış Paketleri</value>
   </data>
   <data name="&gt;&gt;labelControl2.Name" xml:space="preserve">
     <value>labelControl2</value>
@@ -938,6 +974,30 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelControl2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="labelControl3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 268</value>
+  </data>
+  <data name="labelControl3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 13</value>
+  </data>
+  <data name="labelControl3.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="labelControl3.Text" xml:space="preserve">
+    <value>Açıklama:</value>
+  </data>
+  <data name="&gt;&gt;labelControl3.Name" xml:space="preserve">
+    <value>labelControl3</value>
+  </data>
+  <data name="&gt;&gt;labelControl3.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v25.1, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;labelControl3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelControl3.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -947,10 +1007,10 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>603, 405</value>
+    <value>603, 409</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>498, 286</value>
+    <value>498, 282</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>

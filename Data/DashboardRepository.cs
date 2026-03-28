@@ -52,7 +52,8 @@ namespace DXBeauty.Data
             c.first_name || ' ' || c.last_name AS CustomerName,
             COALESCE(s.name, sp.name, 'Genel İşlem') AS ServiceName,
             a.appointment_start_date AS StartTime,
-            a.appointment_end_date AS EndTime,  
+            a.appointment_end_date AS EndTime, 
+            c.phone_number AS PhoneNumber,
             a.status AS Status
         FROM appointments a
         INNER JOIN customers c ON a.customer_id = c.customer_id

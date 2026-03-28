@@ -4,6 +4,8 @@ using DXBeauty.Data;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -27,6 +29,9 @@ namespace DXBeauty.UI
                 // ... Kasa Özeti (Label'lar) kodların aynen kalıyor ...
 
                 // LİSTELER (Artık randevuları yüklerken bugünün tarihini yolluyoruz)
+
+                tileView1.HtmlImages = svgImageCollection1;
+
                 gridTodayAppointments.DataSource = await _dashboardRepo.GetAppointmentsByDateAsync(DateTime.Today);
                 gridAlerts.DataSource = await _dashboardRepo.GetCriticalAlertsAsync();
 
@@ -59,15 +64,22 @@ namespace DXBeauty.UI
                 // =========================================================
                 var summary = await _dashboardRepo.GetDailySummaryAsync();
 
-                lblTotalRevenue.Text = $"{summary.TotalRevenue:N2} ₺";
-                lblPaymentDetails.Text = $"Nakit: {summary.CashTotal:N2} ₺ | Kart: {summary.CreditCardTotal:N2} ₺";
-                lblExpected.Text = $"{summary.ExpectedInstallments:N2} ₺";
-                lblAppCount.Text = $"{summary.TodayAppointmentCount} Kişi";
+                tileItem1.Elements[0].Text = $"{summary.TotalRevenue:N2} ₺";
+             
+                tileItem3.Elements[3].Text = $"Nakit\n{summary.CashTotal:N2} ₺ ";
+
+                tileItem3.Elements[1].Text = $"Kart\n{ summary.CreditCardTotal:N2} ₺";
+                
+                tileItem3.Elements[4].Text = $"Havale/EFT\n      { summary.EftTotal:N2} ₺";
+
+
+                tileItem7.Elements[0].Text = $"{summary.ExpectedInstallments:N2} ₺";
+                tileItem8.Elements[1].Text = $"{summary.TodayAppointmentCount}";
 
                 // =========================================================
                 // 2. LİSTELER (Bugünün Randevuları ve Alarmlar)
                 // =========================================================
-                
+
                 gridAlerts.DataSource = await _dashboardRepo.GetCriticalAlertsAsync();
 
                 // Grid kolonlarını otomatik sığdır
@@ -128,35 +140,83 @@ namespace DXBeauty.UI
         // --- En Çok Satan Paketler Grafiği (Pie Chart) ---
         private async Task LoadPackagesChartAsync()
         {
+            // 1. Veritabanından veriyi çek
             var packageData = await _dashboardRepo.GetTopSellingPackagesAsync();
 
-            chartPackages.Series.Clear();
-            Series series = new Series("Satışlar", ViewType.Pie);
+            // 🚨 DİKKAT: Series.Clear() veya foreach döngüsü YOK! 
+            // Tasarımcıdaki Doughnut (Halka) serimizi bozmadan doğrudan veriyi basıyoruz:
+            chartPackages.DataSource = packageData;
 
-            foreach (var item in packageData)
+            // ⚡️ 2. Hangi verinin nereye gideceğini C# üzerinden kesin olarak belirt (Tasarımcıdaki olası hataları ezer geçer)
+            chartPackages.Series[0].ArgumentDataMember = "PackageName"; // X Ekseni (İsimler)
+            chartPackages.Series[0].ValueDataMembers.AddRange(new string[] { "SalesCount" }); // Y Ekseni (Sayılar)
+
+            // ⚡️ 3. Etiket Formatını Zorla Uygula
+            chartPackages.Series[0].Label.TextPattern = "{A}\n{V} Seans\n({VP:P0})";
+
+            // 🎯 4. Merkeze Dinamik Toplam Sayıyı Yazdırma
+            int toplamIslem = packageData.Sum(x => x.SalesCount);
+
+            // =========================================================================
+            // 🔥 5. BORDER'I VE GÖRSEL KARMAŞAYI C# İLE ZORLA TEMİZLEME
+            // =========================================================================
+
+            // ❗️ Grafiğin etrafındaki dış border'ı kaldırır (ÇOK KRİTİK)
+            chartPackages.BorderOptions.Visibility = DevExpress.Utils.DefaultBoolean.False;
+
+            // ❗️ Etiketlerin etrafındaki o bağlantı çizgilerini ve etiket çerçevelerini temizler
+            DoughnutSeriesLabel label = (DoughnutSeriesLabel)chartPackages.Series[0].Label;
+            label.Border.Visibility = DevExpress.Utils.DefaultBoolean.False; // Etiket kutu çerçevesini siler
+            //label.FillStyle.FillMode = FillMode.Empty; // Etiket arka planını transparan yapar (beyaz kutu gider)
+            //label.Position = PieSeriesLabelPosition.Outside; // Etiketleri dışarıda tutmaya devam et
+
+            // ❗️ Lejantı (sağdaki renk kutucuklarını) gizleyelim, veri tekrarı olmasın
+            chartPackages.Legend.Visibility = DevExpress.Utils.DefaultBoolean.False;
+
+            // 🎯 5. DİNAMİK MERKEZLEME VE TOPLAM SAYIYI YAZDIRMA (KAYMAYI ÇÖZEN KISIM)
+            // =========================================================================
+
+            // =========================================================================
+            // 🔥 KAYMAYI KÖKÜNDEN ÇÖZEN YENİ MİMARİ: TOTAL LABEL 🔥
+            // =========================================================================
+
+            // Serinin görünümünü (View) Doughnut (Halka) olarak yakalıyoruz
+            DoughnutSeriesView view = chartPackages.Series[0].View as DoughnutSeriesView;
+            if (view != null)
             {
-                // X ekseni Paket Adı (Örn: Lazer), Y ekseni Satış Sayısı (Örn: 25)
-                series.Points.Add(new SeriesPoint(item.PackageName, item.SalesCount));
+                // ❗️ Merkezdeki etiketi görünür yap
+                view.TotalLabel.Visible = true;
+
+                // ❗️ {TV} komutu (Total Value), LINQ ile sum() yapmana gerek kalmadan 
+                // tüm dilimlerin toplamını otomatik olarak hesaplar ve merkeze yazar!
+                view.TotalLabel.TextPattern = "Toplam\n{TV} Seans";
+
+                // İstersen yazının fontunu ve rengini de buradan şık bir hale getirebilirsin
+                view.TotalLabel.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+                view.TotalLabel.TextColor = Color.FromArgb(73, 80, 87);
             }
 
-            chartPackages.Series.Add(series);
+            // =========================================================================
+            // 📌 GRAFİK BAŞLIĞI (CHART TITLE) EKLEME
+            // =========================================================================
 
-            // Pastanın üzerinde yüzdeleri göstermek için:
-            series.Label.TextPattern = "{A}: {V} ({VP:P0})"; // A: İsim, V: Sayı, VP: Yüzde
-            ((PieSeriesLabel)series.Label).Position = PieSeriesLabelPosition.TwoColumns;
+            // Önce eski başlıkları temizle (Form her yüklendiğinde üst üste binmemesi için)
+            chartPackages.Titles.Clear();
 
-            // 1. Varsa eski başlıkları temizle (Metot tekrar çağrıldığında üst üste binmemesi için)
-            //chartRevenue.Titles.Clear();
+            // Yeni bir başlık nesnesi oluştur
+            DevExpress.XtraCharts.ChartTitle baslik = new DevExpress.XtraCharts.ChartTitle();
 
-            // 2. Yeni bir başlık nesnesi oluştur
-            DevExpress.XtraCharts.ChartTitle chartTitle = new DevExpress.XtraCharts.ChartTitle();
+            // ❗️ Başlık Metni
+            baslik.Text = "En Çok Satılan 5 Paket";
 
-            // 3. Başlığın metnini ve (opsiyonel) fontunu belirle
-            chartTitle.Text = "En Çok Satan 5 Paket";
-            chartTitle.Font = new System.Drawing.Font("Tahoma", 10, System.Drawing.FontStyle.Regular);
+            // ❗️ Görsel Ayarlar (Modern ve Okunaklı)
+            baslik.Font = new Font("Tahoma", 12, FontStyle.Bold);
+            baslik.TextColor = Color.FromArgb(73, 80, 87); // Koyu profesyonel gri
+            baslik.Alignment = StringAlignment.Center;     // Tam ortaya hizala
+            baslik.Dock = ChartTitleDockStyle.Top;         // Grafiğin en tepesine sabitle
 
-            // 4. Başlığı grafiğe ekle
-            chartPackages.Titles.Add(chartTitle);
+            // Başlığı grafiğe dahil et
+            chartPackages.Titles.Add(baslik);
 
         }
 

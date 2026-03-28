@@ -383,6 +383,16 @@ namespace DXBeauty.Properties {
         /// <summary>
         ///   DevExpress.Utils.Svg.SvgImage türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage GoToMessage {
+            get {
+                object obj = ResourceManager.GetObject("GoToMessage", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static DevExpress.Utils.Svg.SvgImage Info {
             get {
                 object obj = ResourceManager.GetObject("Info", resourceCulture);

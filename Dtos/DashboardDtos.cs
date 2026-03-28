@@ -26,7 +26,25 @@ namespace DXBeauty.Dtos
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         // public DateTime SelectedTime { get; set; }
+
+        public string PhoneNumber { get; set; }
         public int Status { get; set; } // 0: Bekliyor, 1: Tamamlandı vb.
+
+        // 💡 EKLENEN 1: Ekranda saat aralığını tek satırda göstermek için (Örn: 10:00 - 11:30)
+        public string TimeDisplay => $"{StartTime:HH:mm} - {EndTime:HH:mm}";
+
+        // 💡 EKLENEN 2: HTML'de "0" yerine "PLANLANDI" yazısını göstermek için
+        public string StatusText => Status switch
+        {
+            1 => "PLANLANDI",
+            2 => "TAMAMLANDI",
+            3 => "İPTAL (HABERLİ)",
+            4 => "GELMEDİ",
+            _ => "RANDEVU OLUŞTURULMADI" // 0 veya tanımlanmamış diğer durumlar için (Default)
+        };
+
+        // 💡 EKLENEN YENİ ÖZELLİK: dx-class'a göndereceğimiz güvenli CSS sınıf adını üretir
+        public string StatusCssClass => $"status-{Status}";
     }
 
     // Modül 3: Grafikler İçin DTO'lar

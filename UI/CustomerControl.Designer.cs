@@ -98,18 +98,18 @@
             layoutControl1.Controls.Add(layoutControl2);
             layoutControl1.Controls.Add(customerGridControl);
             layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            layoutControl1.Location = new System.Drawing.Point(2, 23);
+            layoutControl1.Location = new System.Drawing.Point(2, 22);
             layoutControl1.Name = "layoutControl1";
             layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1192, 320, 650, 400);
             layoutControl1.Root = Root;
-            layoutControl1.Size = new System.Drawing.Size(894, 589);
+            layoutControl1.Size = new System.Drawing.Size(894, 590);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
             // 
             // layoutControl3
             // 
             layoutControl3.Controls.Add(NewRegister);
-            layoutControl3.Location = new System.Drawing.Point(493, 513);
+            layoutControl3.Location = new System.Drawing.Point(493, 514);
             layoutControl3.Name = "layoutControl3";
             layoutControl3.Root = layoutControlGroup2;
             layoutControl3.Size = new System.Drawing.Size(389, 64);
@@ -152,7 +152,7 @@
             // layoutControl2
             // 
             layoutControl2.Controls.Add(editButton);
-            layoutControl2.Location = new System.Drawing.Point(12, 513);
+            layoutControl2.Location = new System.Drawing.Point(12, 514);
             layoutControl2.Name = "layoutControl2";
             layoutControl2.Root = layoutControlGroup1;
             layoutControl2.Size = new System.Drawing.Size(477, 64);
@@ -198,7 +198,7 @@
             customerGridControl.MainView = gridViewMusteriler;
             customerGridControl.Name = "customerGridControl";
             customerGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemButtonEdit1 });
-            customerGridControl.Size = new System.Drawing.Size(870, 497);
+            customerGridControl.Size = new System.Drawing.Size(870, 498);
             customerGridControl.TabIndex = 0;
             customerGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewMusteriler });
             customerGridControl.Load += CustomerControl_LoadAsync;
@@ -227,7 +227,7 @@
             // repositoryItemButtonEdit1
             // 
             repositoryItemButtonEdit1.AutoHeight = false;
-            editorButtonImageOptions1.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("editorButtonImageOptions1.SvgImage");
+            editorButtonImageOptions1.SvgImage = Properties.Resources.GoToMessage;
             editorButtonImageOptions1.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
             editorButtonImageOptions1.SvgImageSize = new System.Drawing.Size(16, 16);
             repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "WhatsApp ile Mesaj Gönder", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
@@ -294,7 +294,7 @@
             Root.GroupBordersVisible = false;
             Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, layoutControlItem3 });
             Root.Name = "Root";
-            Root.Size = new System.Drawing.Size(894, 589);
+            Root.Size = new System.Drawing.Size(894, 590);
             Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -302,13 +302,13 @@
             layoutControlItem1.Control = customerGridControl;
             layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(874, 501);
+            layoutControlItem1.Size = new System.Drawing.Size(874, 502);
             layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             layoutControlItem2.Control = layoutControl2;
-            layoutControlItem2.Location = new System.Drawing.Point(0, 501);
+            layoutControlItem2.Location = new System.Drawing.Point(0, 502);
             layoutControlItem2.Name = "layoutControlItem2";
             layoutControlItem2.Size = new System.Drawing.Size(481, 68);
             layoutControlItem2.TextVisible = false;
@@ -316,7 +316,7 @@
             // layoutControlItem3
             // 
             layoutControlItem3.Control = layoutControl3;
-            layoutControlItem3.Location = new System.Drawing.Point(481, 501);
+            layoutControlItem3.Location = new System.Drawing.Point(481, 502);
             layoutControlItem3.Name = "layoutControlItem3";
             layoutControlItem3.Size = new System.Drawing.Size(393, 68);
             layoutControlItem3.TextVisible = false;

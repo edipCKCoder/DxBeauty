@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GetPaymentsControl));
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             slueCustomer = new DevExpress.XtraEditors.SearchLookUpEdit();
             gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -42,8 +43,6 @@
             txtVadesiGecmisBorc = new DevExpress.XtraEditors.TextEdit();
             txtMusteriKayitTarihi = new DevExpress.XtraEditors.TextEdit();
             layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -54,6 +53,8 @@
             layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             gridControl1 = new DevExpress.XtraGrid.GridControl();
             gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -79,8 +80,6 @@
             ((System.ComponentModel.ISupportInitialize)txtVadesiGecmisBorc.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtMusteriKayitTarihi.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem8).BeginInit();
@@ -91,6 +90,8 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridControl1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
@@ -164,9 +165,13 @@
             // 
             // btnSavePayment
             // 
-            btnSavePayment.Location = new System.Drawing.Point(12, 288);
+            btnSavePayment.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnSavePayment.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
+            btnSavePayment.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btnSavePayment.ImageOptions.SvgImage");
+            btnSavePayment.Location = new System.Drawing.Point(105, 283);
+            btnSavePayment.MaximumSize = new System.Drawing.Size(120, 0);
             btnSavePayment.Name = "btnSavePayment";
-            btnSavePayment.Size = new System.Drawing.Size(325, 22);
+            btnSavePayment.Size = new System.Drawing.Size(120, 53);
             btnSavePayment.StyleController = layoutControl2;
             btnSavePayment.TabIndex = 8;
             btnSavePayment.Text = "Kaydet (Tahsilatı Al)";
@@ -174,15 +179,15 @@
             // 
             // txtDescription
             // 
-            txtDescription.Location = new System.Drawing.Point(12, 119);
+            txtDescription.Location = new System.Drawing.Point(12, 118);
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new System.Drawing.Size(325, 53);
+            txtDescription.Size = new System.Drawing.Size(325, 39);
             txtDescription.StyleController = layoutControl2;
             txtDescription.TabIndex = 4;
             // 
             // calcAmount
             // 
-            calcAmount.Location = new System.Drawing.Point(122, 64);
+            calcAmount.Location = new System.Drawing.Point(122, 12);
             calcAmount.Name = "calcAmount";
             calcAmount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             calcAmount.Size = new System.Drawing.Size(215, 22);
@@ -202,7 +207,7 @@
             // dtPaymentDate
             // 
             dtPaymentDate.EditValue = null;
-            dtPaymentDate.Location = new System.Drawing.Point(122, 12);
+            dtPaymentDate.Location = new System.Drawing.Point(122, 64);
             dtPaymentDate.Name = "dtPaymentDate";
             dtPaymentDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             dtPaymentDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
@@ -212,7 +217,7 @@
             // 
             // txtKalanToplamBorc
             // 
-            txtKalanToplamBorc.Location = new System.Drawing.Point(122, 190);
+            txtKalanToplamBorc.Location = new System.Drawing.Point(122, 175);
             txtKalanToplamBorc.Name = "txtKalanToplamBorc";
             txtKalanToplamBorc.Properties.ReadOnly = true;
             txtKalanToplamBorc.Size = new System.Drawing.Size(215, 22);
@@ -221,7 +226,7 @@
             // 
             // txtVadesiGecmisBorc
             // 
-            txtVadesiGecmisBorc.Location = new System.Drawing.Point(122, 216);
+            txtVadesiGecmisBorc.Location = new System.Drawing.Point(122, 201);
             txtVadesiGecmisBorc.Name = "txtVadesiGecmisBorc";
             txtVadesiGecmisBorc.Properties.ReadOnly = true;
             txtVadesiGecmisBorc.Size = new System.Drawing.Size(215, 22);
@@ -230,7 +235,7 @@
             // 
             // txtMusteriKayitTarihi
             // 
-            txtMusteriKayitTarihi.Location = new System.Drawing.Point(122, 242);
+            txtMusteriKayitTarihi.Location = new System.Drawing.Point(122, 227);
             txtMusteriKayitTarihi.Name = "txtMusteriKayitTarihi";
             txtMusteriKayitTarihi.Properties.ReadOnly = true;
             txtMusteriKayitTarihi.Size = new System.Drawing.Size(215, 22);
@@ -241,33 +246,15 @@
             // 
             layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             layoutControlGroup1.GroupBordersVisible = false;
-            layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem4, layoutControlItem5, layoutControlItem6, layoutControlItem7, layoutControlItem8, emptySpaceItem1, emptySpaceItem2, layoutControlItem11, LayoutControlVadesiGecmisBorc, layoutControlItem3, emptySpaceItem3, emptySpaceItem4 });
+            layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem6, layoutControlItem7, layoutControlItem8, emptySpaceItem1, emptySpaceItem2, layoutControlItem11, LayoutControlVadesiGecmisBorc, layoutControlItem3, emptySpaceItem3, emptySpaceItem4, layoutControlItem5, layoutControlItem4 });
             layoutControlGroup1.Name = "Root";
             layoutControlGroup1.Size = new System.Drawing.Size(349, 399);
             layoutControlGroup1.TextVisible = false;
             // 
-            // layoutControlItem4
-            // 
-            layoutControlItem4.Control = dtPaymentDate;
-            layoutControlItem4.Location = new System.Drawing.Point(0, 0);
-            layoutControlItem4.Name = "layoutControlItem4";
-            layoutControlItem4.Size = new System.Drawing.Size(329, 26);
-            layoutControlItem4.Text = "İşlem Tarihi :";
-            layoutControlItem4.TextSize = new System.Drawing.Size(98, 13);
-            // 
-            // layoutControlItem5
-            // 
-            layoutControlItem5.Control = cmbPaymentMethod;
-            layoutControlItem5.Location = new System.Drawing.Point(0, 26);
-            layoutControlItem5.Name = "layoutControlItem5";
-            layoutControlItem5.Size = new System.Drawing.Size(329, 26);
-            layoutControlItem5.Text = "Ödeme Tipi :";
-            layoutControlItem5.TextSize = new System.Drawing.Size(98, 13);
-            // 
             // layoutControlItem6
             // 
             layoutControlItem6.Control = calcAmount;
-            layoutControlItem6.Location = new System.Drawing.Point(0, 52);
+            layoutControlItem6.Location = new System.Drawing.Point(0, 0);
             layoutControlItem6.Name = "layoutControlItem6";
             layoutControlItem6.Size = new System.Drawing.Size(329, 26);
             layoutControlItem6.Text = "Ödenen Tutar :";
@@ -276,11 +263,11 @@
             // layoutControlItem7
             // 
             layoutControlItem7.Control = txtDescription;
-            layoutControlItem7.Location = new System.Drawing.Point(0, 89);
+            layoutControlItem7.Location = new System.Drawing.Point(0, 88);
             layoutControlItem7.MaxSize = new System.Drawing.Size(0, 80);
             layoutControlItem7.MinSize = new System.Drawing.Size(52, 44);
             layoutControlItem7.Name = "layoutControlItem7";
-            layoutControlItem7.Size = new System.Drawing.Size(329, 75);
+            layoutControlItem7.Size = new System.Drawing.Size(329, 61);
             layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             layoutControlItem7.Text = "Açıklama :";
             layoutControlItem7.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
@@ -290,28 +277,32 @@
             // 
             // layoutControlItem8
             // 
+            layoutControlItem8.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
+            layoutControlItem8.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
             layoutControlItem8.Control = btnSavePayment;
-            layoutControlItem8.Location = new System.Drawing.Point(0, 276);
+            layoutControlItem8.Location = new System.Drawing.Point(0, 261);
+            layoutControlItem8.MinSize = new System.Drawing.Size(142, 40);
             layoutControlItem8.Name = "layoutControlItem8";
-            layoutControlItem8.Size = new System.Drawing.Size(329, 26);
+            layoutControlItem8.Size = new System.Drawing.Size(329, 77);
+            layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             layoutControlItem8.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             emptySpaceItem1.Location = new System.Drawing.Point(0, 78);
             emptySpaceItem1.Name = "emptySpaceItem1";
-            emptySpaceItem1.Size = new System.Drawing.Size(329, 11);
+            emptySpaceItem1.Size = new System.Drawing.Size(329, 10);
             // 
             // emptySpaceItem2
             // 
-            emptySpaceItem2.Location = new System.Drawing.Point(0, 256);
+            emptySpaceItem2.Location = new System.Drawing.Point(0, 241);
             emptySpaceItem2.Name = "emptySpaceItem2";
             emptySpaceItem2.Size = new System.Drawing.Size(329, 20);
             // 
             // layoutControlItem11
             // 
             layoutControlItem11.Control = txtMusteriKayitTarihi;
-            layoutControlItem11.Location = new System.Drawing.Point(0, 230);
+            layoutControlItem11.Location = new System.Drawing.Point(0, 215);
             layoutControlItem11.Name = "layoutControlItem11";
             layoutControlItem11.Size = new System.Drawing.Size(329, 26);
             layoutControlItem11.Text = "Müsteri Kayıt Tarihi :";
@@ -320,7 +311,7 @@
             // LayoutControlVadesiGecmisBorc
             // 
             LayoutControlVadesiGecmisBorc.Control = txtVadesiGecmisBorc;
-            LayoutControlVadesiGecmisBorc.Location = new System.Drawing.Point(0, 204);
+            LayoutControlVadesiGecmisBorc.Location = new System.Drawing.Point(0, 189);
             LayoutControlVadesiGecmisBorc.Name = "LayoutControlVadesiGecmisBorc";
             LayoutControlVadesiGecmisBorc.Size = new System.Drawing.Size(329, 26);
             LayoutControlVadesiGecmisBorc.Text = "Vadesi Gecmis Borç :";
@@ -329,7 +320,7 @@
             // layoutControlItem3
             // 
             layoutControlItem3.Control = txtKalanToplamBorc;
-            layoutControlItem3.Location = new System.Drawing.Point(0, 178);
+            layoutControlItem3.Location = new System.Drawing.Point(0, 163);
             layoutControlItem3.Name = "layoutControlItem3";
             layoutControlItem3.Size = new System.Drawing.Size(329, 26);
             layoutControlItem3.Text = "Kalan Toplam Borç :";
@@ -337,15 +328,33 @@
             // 
             // emptySpaceItem3
             // 
-            emptySpaceItem3.Location = new System.Drawing.Point(0, 164);
+            emptySpaceItem3.Location = new System.Drawing.Point(0, 149);
             emptySpaceItem3.Name = "emptySpaceItem3";
             emptySpaceItem3.Size = new System.Drawing.Size(329, 14);
             // 
             // emptySpaceItem4
             // 
-            emptySpaceItem4.Location = new System.Drawing.Point(0, 302);
+            emptySpaceItem4.Location = new System.Drawing.Point(0, 338);
             emptySpaceItem4.Name = "emptySpaceItem4";
-            emptySpaceItem4.Size = new System.Drawing.Size(329, 77);
+            emptySpaceItem4.Size = new System.Drawing.Size(329, 41);
+            // 
+            // layoutControlItem5
+            // 
+            layoutControlItem5.Control = cmbPaymentMethod;
+            layoutControlItem5.Location = new System.Drawing.Point(0, 26);
+            layoutControlItem5.Name = "layoutControlItem5";
+            layoutControlItem5.Size = new System.Drawing.Size(329, 26);
+            layoutControlItem5.Text = "Ödeme Yöntemi :";
+            layoutControlItem5.TextSize = new System.Drawing.Size(98, 13);
+            // 
+            // layoutControlItem4
+            // 
+            layoutControlItem4.Control = dtPaymentDate;
+            layoutControlItem4.Location = new System.Drawing.Point(0, 52);
+            layoutControlItem4.Name = "layoutControlItem4";
+            layoutControlItem4.Size = new System.Drawing.Size(329, 26);
+            layoutControlItem4.Text = "İşlem Tarihi :";
+            layoutControlItem4.TextSize = new System.Drawing.Size(98, 13);
             // 
             // gridControl1
             // 
@@ -440,8 +449,6 @@
             ((System.ComponentModel.ISupportInitialize)txtVadesiGecmisBorc.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtMusteriKayitTarihi.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem5).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem6).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem7).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem8).EndInit();
@@ -452,6 +459,8 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem3).EndInit();
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridControl1).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)Root).EndInit();

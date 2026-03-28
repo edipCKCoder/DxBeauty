@@ -56,6 +56,7 @@
             labelControl1 = new DevExpress.XtraEditors.LabelControl();
             lueCustomerPackages = new DevExpress.XtraEditors.LookUpEdit();
             labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            labelControl3 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)tbSubject.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chkAllDay.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)edtStartDate.Properties).BeginInit();
@@ -200,7 +201,6 @@
             panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             panel1.Controls.Add(lblLabel);
             panel1.Controls.Add(cbReminder);
-            panel1.Controls.Add(chkAllDay);
             panel1.Controls.Add(edtLabel);
             panel1.Controls.Add(chkReminder);
             panel1.Name = "panel1";
@@ -278,11 +278,17 @@
             resources.ApplyResources(lueCustomerPackages, "lueCustomerPackages");
             lueCustomerPackages.Name = "lueCustomerPackages";
             lueCustomerPackages.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton((DevExpress.XtraEditors.Controls.ButtonPredefines)resources.GetObject("lueCustomerPackages.Properties.Buttons")) });
+            lueCustomerPackages.Properties.NullText = resources.GetString("lueCustomerPackages.Properties.NullText");
             // 
             // labelControl2
             // 
             resources.ApplyResources(labelControl2, "labelControl2");
             labelControl2.Name = "labelControl2";
+            // 
+            // labelControl3
+            // 
+            resources.ApplyResources(labelControl3, "labelControl3");
+            labelControl3.Name = "labelControl3";
             // 
             // CustomAppointmentForm
             // 
@@ -292,7 +298,9 @@
             resources.ApplyResources(this, "$this");
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             CancelButton = btnCancel;
+            Controls.Add(labelControl3);
             Controls.Add(labelControl2);
+            Controls.Add(chkAllDay);
             Controls.Add(lueCustomerPackages);
             Controls.Add(edtResource);
             Controls.Add(labelControl1);
@@ -376,5 +384,6 @@
         protected DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LookUpEdit lueCustomerPackages;
         private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
     }
 }

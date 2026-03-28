@@ -5,11 +5,13 @@ using DevExpress.XtraScheduler;
 using DevExpress.XtraScheduler.Localization;
 using DevExpress.XtraScheduler.Xml;
 using DXBeauty.Data;
+using DXBeauty.Dtos;
 using DXBeauty.Entities;
 using DXBeauty.Enums;
 using DXBeauty.Services;
 using Npgsql;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Drawing;
@@ -18,10 +20,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Appointment = DXBeauty.Entities.Appointment;
-using DXBeauty.Dtos;
 
 namespace DXBeauty.UI
 {
+
     public partial class AppScheduler : DevExpress.XtraEditors.XtraUserControl
     {
 
@@ -30,14 +32,17 @@ namespace DXBeauty.UI
         private BindingList<Personnel> personnelList = new BindingList<Personnel>();
         private readonly string connectionString;
         private AppointmentRepository appointmentRepo;
-
+        private CustomerServiceRepository customerServiceRepo;
+      
+      
         public AppScheduler()
         {
             InitializeComponent();
+            SchedulerLocalizer.Active = new TurkishSchedulerLocalizer();
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             personnelRepo = new PersonnelRepository(connectionString);
             appointmentRepo = new AppointmentRepository(connectionString);
-
+            customerServiceRepo = new CustomerServiceRepository(connectionString);
 
         }
 
@@ -104,7 +109,9 @@ namespace DXBeauty.UI
 
         private async void AppScheduler_Load(object sender, EventArgs e)
         {
-            // Donmayı engellemek için tüm yükleme işlemini tek bir asenkron metotta topluyoruz
+       
+            // Load metodunun içine ekle:
+            schedulerDataStorage1.AppointmentInserting += SchedulerDataStorage1_AppointmentInserting;
             // Randevu EKLENDİĞİNDE çalışır
             schedulerDataStorage1.AppointmentsInserted += SchedulerDataStorage1_AppointmentsInserted;
 
@@ -120,7 +127,97 @@ namespace DXBeauty.UI
             // Sağ tık menüsü açılırken araya giriyoruz
             schedulerControl2.PopupMenuShowing += SchedulerControl2_PopupMenuShowing;
 
+
+
             await InitializeSchedulerDataAsync();
+        }
+
+      
+
+  
+        private void SchedulerDataStorage1_AppointmentInserting(object sender, PersistentObjectCancelEventArgs e)
+        {
+            DevExpress.XtraScheduler.Appointment apt = (DevExpress.XtraScheduler.Appointment)e.Object;
+
+            // 1. Sadece paketli (seanslı) randevuları kontrol et. (Boş randevu veya toplantıysa karışma)
+            if (apt.CustomFields["CS_ID"] == null || apt.CustomFields["CS_ID"] == DBNull.Value) return;
+
+            int customerServiceId = Convert.ToInt32(apt.CustomFields["CS_ID"]);
+
+            // 2. Müşterinin "Planlanabilir Seans" sayısını bul
+            // (Burada veritabanından 'gercekKalanSeans'ı dapper ile çekip, az önce yazdığımız GetPlanlanabilirSeans metoduna vermelisin)
+            int gercekKalanSeans = customerServiceRepo.GetRemainingSessions(customerServiceId); // Temsili veritabanı okuma metodun
+            int planlanabilirSeans = GetPlanlanabilirSeans(customerServiceId, gercekKalanSeans);
+
+            // 3. Kullanıcının eklemeye çalıştığı randevu kaç seans yiyecek?
+            int harcanacakSeans = 1; // Eğer normal (tekli) bir randevuysa 1 seans harcar.
+
+            // Eğer bu bir TEKRARLI RANDEVU şablonuysa (Type == Pattern)
+            if (apt.IsRecurring && apt.Type == DevExpress.XtraScheduler.AppointmentType.Pattern)
+            {
+                // GÜVENLİK 1: Sonsuz Döngü Kontrolü
+                if (apt.RecurrenceInfo.Range == DevExpress.XtraScheduler.RecurrenceRange.NoEndDate)
+                {
+                    DevExpress.XtraEditors.XtraMessageBox.Show(
+                        "Paketli (Seanslı) işlemlerde 'Bitiş Yok' (Sonsuz) tekrarlı randevu oluşturamazsınız!\nLütfen belirli bir tekrar sayısı veya bitiş tarihi seçin.",
+                        "Hatalı Kural", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    e.Cancel = true; // İŞLEMİ İPTAL ET
+                    return;
+                }
+
+                // GÜVENLİK 2: Gelecekte Kaç Randevu Doğuracağını Hesapla
+                try
+                {
+                    DevExpress.XtraScheduler.OccurrenceCalculator calc = DevExpress.XtraScheduler.OccurrenceCalculator.CreateInstance(apt.RecurrenceInfo);
+
+                    // Şablonun başlangıcından bitişine kadar olan zaman dilimini hesapla
+                    DevExpress.XtraScheduler.TimeInterval interval = new DevExpress.XtraScheduler.TimeInterval(apt.RecurrenceInfo.Start, apt.RecurrenceInfo.End + TimeSpan.FromDays(1));
+
+                    // Bu zaman diliminde kaç tane randevu oluşacağını say!
+                    DevExpress.XtraScheduler.AppointmentBaseCollection occurrences = calc.CalcOccurrences(interval, apt);
+
+                    harcanacakSeans = occurrences.Count;
+                }
+                catch (Exception ex)
+                {
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Tekrarlı randevu hesaplanırken bir sorun oluştu: " + ex.Message, "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true;
+                    return;
+                }
+            }
+
+            // 4. FİNAL KONTROLÜ (OVERBOOKING ENGELLEME)
+            if (harcanacakSeans > planlanabilirSeans)
+            {
+                DevExpress.XtraEditors.XtraMessageBox.Show(
+                    $"Yetersiz Seans!\n\nMüşterinin planlanabilir {planlanabilirSeans} seansı kalmış, ancak siz {harcanacakSeans} adet randevu oluşturmaya çalışıyorsunuz.\n\nLütfen tekrar sayısını azaltın.",
+                    "Kapasite Aşımı",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                e.Cancel = true; // Takvime eklenmesini FİZİKSEL OLARAK ENGELLER. Form açık kalır, müşteri hatasını düzeltir.
+            }
+        }
+
+        public int GetPlanlanabilirSeans(int customerServiceId, int gercekKalanSeans)
+        {
+            var futureAppointments = schedulerDataStorage1.GetAppointments(DateTime.Now, DateTime.Now.AddYears(2));
+            int gelecektekiPlanliRandevuSayisi = 0;
+
+            foreach (var apt in futureAppointments)
+            {
+                int? aptCsId = apt.CustomFields["CS_ID"] != null ? Convert.ToInt32(apt.CustomFields["CS_ID"]) : (int?)null;
+                int status = apt.StatusKey != null ? Convert.ToInt32(apt.StatusKey) : 0;
+
+                if (aptCsId == customerServiceId && status == 1) // 1 = Planned
+                {
+                    gelecektekiPlanliRandevuSayisi++;
+                }
+            }
+
+            int planlanabilirSeans = gercekKalanSeans - gelecektekiPlanliRandevuSayisi;
+            return planlanabilirSeans < 0 ? 0 : planlanabilirSeans;
         }
 
         private void SchedulerControl2_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
@@ -130,7 +227,7 @@ namespace DXBeauty.UI
             {
                 // 1. Kendi "Tahsilat Al" butonumuzu oluşturuyoruz
                 DevExpress.Utils.Menu.DXMenuItem tahsilatButonu = new DevExpress.Utils.Menu.DXMenuItem("Tahsilat Al");
-
+                tahsilatButonu.ImageOptions.SvgImage = svgImageCollection1[4];
                 // Üstüne şık bir çizgi (ayraç) koysun ki DevExpress'in kendi menüsünden ayrı dursun
                 tahsilatButonu.BeginGroup = true;
 
@@ -181,19 +278,23 @@ namespace DXBeauty.UI
                 if (musteriId > 0 && randevuId.HasValue) // Müşterisi belli bir randevuysa WhatsApp menüsünü göster
                 {
 
-                    DevExpress.Utils.Menu.DXSubMenuItem whatsappMenu = new DevExpress.Utils.Menu.DXSubMenuItem("📱 WhatsApp İle Bildir");
+                    DevExpress.Utils.Menu.DXSubMenuItem whatsappMenu = new DevExpress.Utils.Menu.DXSubMenuItem("WhatsApp İle Bildir");
+                    whatsappMenu.ImageOptions.SvgImage = Properties.Resources.GoToMessage;
                     whatsappMenu.BeginGroup = true;
 
                     // Alt Buton 1: Hatırlatma
-                    DevExpress.Utils.Menu.DXMenuItem btnHatirlat = new DevExpress.Utils.Menu.DXMenuItem("🔔 Randevu Hatırlat");
+                    DevExpress.Utils.Menu.DXMenuItem btnHatirlat = new DevExpress.Utils.Menu.DXMenuItem("Randevu Hatırlat");
+                    btnHatirlat.ImageOptions.SvgImage = svgImageCollection1[0];
                     btnHatirlat.Click += async (s, args) => await SendWhatsAppFromCalendarAsync((int)musteriId, randevuId.Value, seciliRandevu, "REMINDER");
 
                     // Alt Buton 2: No-Show
-                    DevExpress.Utils.Menu.DXMenuItem btnGelmedi = new DevExpress.Utils.Menu.DXMenuItem("⚠️ Gelmedi (No-Show)");
+                    DevExpress.Utils.Menu.DXMenuItem btnGelmedi = new DevExpress.Utils.Menu.DXMenuItem("Gelmedi (No-Show)");
+                    btnGelmedi.ImageOptions.SvgImage = svgImageCollection1[2];
                     btnGelmedi.Click += async (s, args) => await SendWhatsAppFromCalendarAsync((int)musteriId, randevuId.Value, seciliRandevu, "NO_SHOW");
 
                     // Alt Buton 3: İptal
-                    DevExpress.Utils.Menu.DXMenuItem btnIptal = new DevExpress.Utils.Menu.DXMenuItem("❌ İptal Onayı Gönder");
+                    DevExpress.Utils.Menu.DXMenuItem btnIptal = new DevExpress.Utils.Menu.DXMenuItem("İptal Onayı Gönder");
+                    btnIptal.ImageOptions.SvgImage = svgImageCollection1[3];
                     btnIptal.Click += async (s, args) => await SendWhatsAppFromCalendarAsync((int)musteriId, randevuId.Value, seciliRandevu, "CANCEL");
 
                     // Butonları Alt Menüye Ekle
@@ -206,10 +307,7 @@ namespace DXBeauty.UI
                 }
             }
         }
-        // Gerekli using'ler (Eğer yoksa en üste ekle)
-        // using Dapper;
-        // using Npgsql;
-        // using DXBeauty.Services; 
+       
 
         private async Task SendWhatsAppFromCalendarAsync(int customerId, int appointmentId, DevExpress.XtraScheduler.Appointment apt, string templateCode)
         {
@@ -303,7 +401,6 @@ namespace DXBeauty.UI
                 schedulerControl2.EndUpdate();
             }
 
-
         }
 
 
@@ -314,10 +411,15 @@ namespace DXBeauty.UI
             {
 
                 // 1. İŞİN SIRRI BURADA: DevExpress'in arkada gizlice güncellediği asıl Entity nesnemizi yakalıyoruz!
+
                 var sourceObj = apt.GetSourceObject(schedulerDataStorage1) as DXBeauty.Entities.Appointment;
 
+
+
                 // Eğer nesneyi bulamazsa güvenlice devam etsin
+
                 if (sourceObj == null) continue;
+
                 // 1. DevExpress Appointment nesnesini, kendi Entity nesnemize çeviriyoruz
                 var newEntity = new Appointment
                 (
@@ -367,7 +469,7 @@ namespace DXBeauty.UI
                     apt.ResourceId != null && apt.ResourceId != ResourceEmpty.Id ? Convert.ToInt32(apt.ResourceId) : (int?)null,
 
                     // 15. allDay (Tüm gün mü?)
-                    apt.AllDay,
+                    apt.AllDay = false,
 
                     // 16. serviceId (Artık formdan taşıdığımız Custom Field üzerinden okuyoruz!)
                     apt.CustomFields["ServiceId"] != null ? Convert.ToInt32(apt.CustomFields["ServiceId"]) : (int?)null
@@ -379,30 +481,36 @@ namespace DXBeauty.UI
 
                 // 2. DevExpress'e bu yeni ID'yi zorla atıyoruz! (Sihirli Dokunuş)
                 schedulerDataStorage1.SetAppointmentId(apt, yeniKayitId);
+
+                
             }
+        
+            
         }
 
         private async void SchedulerDataStorage1_AppointmentsChanged(object sender, PersistentObjectsEventArgs e)
         {
             foreach (DevExpress.XtraScheduler.Appointment apt in e.Objects)
             {
+                // 1. GÜVENLİK: Randevu ID'si yoksa hiç bulaşma
+                if (apt.Id == null || Convert.ToInt32(apt.Id) == 0) continue;
+                int appointmentId = Convert.ToInt32(apt.Id);
+
+                // =========================================================================
+                // KİLİT HAMLE 1: STATÜ GÜNCELLEMEYİ SOURCEOBJ KONTROLÜNDEN ÖNCE YAPIYORUZ!
+                // Çünkü sağ tık menüsünde GetSourceObject anlık olarak null dönebilir.
+                // =========================================================================
+                int newStatus = (int)apt.StatusKey; // Enum'daki int değerini verir (1, 2, 3, 4)
+
+                // Önce efsanevi seans düşme/iade etme metodunu çalıştırıp BİTMESİNİ BEKLİYORUZ (await)
+                await appointmentRepo.UpdateAppointmentStatusAsync(appointmentId, newStatus);
 
                 // 1. İŞİN SIRRI BURADA: DevExpress'in arkada gizlice güncellediği asıl Entity nesnemizi yakalıyoruz!
                 var sourceObj = apt.GetSourceObject(schedulerDataStorage1) as DXBeauty.Entities.Appointment;
 
                 // Eğer nesneyi bulamazsa güvenlice devam etsin
                 if (sourceObj == null) continue;
-
-                // 1. Güncellenen kaydın veritabanındaki ID'sini alıyoruz
-                // Eğer ID null ise (yeni eklenmiş ama henüz veritabanından ID almamış bir kayıt olabilir), işlem yapma
-                if (apt.Id == null || Convert.ToInt32(apt.Id) == 0) continue;
-
-                int appointmentId = Convert.ToInt32(apt.Id);
-
-                int newStatus = (int)apt.StatusKey; // Enum'daki int değerini verir (1, 2, 3, 4)
-                
-                // Veritabanında o efsanevi metodu çalıştır!
-                await appointmentRepo.UpdateAppointmentStatusAsync(appointmentId, newStatus);
+       
 
                 // 2. Formdan (veya sürükle-bırak ile) değişen GÜNCEL değerleri alıp Entity oluşturuyoruz.
                 // Dikkat: Insert (Ekleme) koduyla birebir aynı, sadece ilk parametreye "0" değil, gerçek "appointmentId" veriyoruz.
@@ -426,13 +534,15 @@ namespace DXBeauty.UI
                     sourceObj.RecurrenceInfo,
                     apt.LabelKey != null ? Convert.ToInt32(apt.LabelKey) : (int?)null,
                     apt.ResourceId != null && apt.ResourceId != ResourceEmpty.Id ? Convert.ToInt32(apt.ResourceId) : (int?)null,
-                    apt.AllDay,
+                    apt.AllDay = false,
                     apt.CustomFields["ServiceId"] != null ? Convert.ToInt32(apt.CustomFields["ServiceId"]) : (int?)null
                 );
 
                 // 3. Repository üzerinden veritabanında UPDATE işlemini yap
                 await appointmentRepo.UpdateAsync(updatedEntity);
             }
+          
+           
         }
 
         private async void SchedulerDataStorage1_AppointmentsDeleted(object sender, PersistentObjectsEventArgs e)
@@ -472,5 +582,30 @@ namespace DXBeauty.UI
             }
         }
 
+
+        public class TurkishSchedulerLocalizer : SchedulerLocalizer
+        {
+            public override string GetLocalizedString(SchedulerStringId id)
+            {
+                // 1. Sağ tık menüsündeki "Zaman Gösterimi" başlığı için:
+                if (id == SchedulerStringId.MenuCmd_ShowTimeAs)
+                {
+                    return "Randevu Durumu";
+                }
+                if (id == SchedulerStringId.MenuCmd_LabelAs)
+                {
+                    return "Randevu Rengi";
+                }
+                if (id == SchedulerStringId.MenuCmd_NewAppointment)
+                {
+                    return "Yeni Randevu Oluştur";
+                }
+
+                return base.GetLocalizedString(id);
+            }
+        }
     }
+
+
+
 }

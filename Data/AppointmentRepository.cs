@@ -47,7 +47,7 @@ namespace DXBeauty.Data
             }
         }
 
-        // Yeni Kayıt Ekle (Eklenen ID'yi geri döner)
+        // Yeni Kayıt Ekle (Eklenen ID'yi geri döner) //SEANS GÜNCELLEME
         public async Task<int> AddAsync(Appointment appointment)
         {
             using (var connection = new NpgsqlConnection(_connectionString))
@@ -196,21 +196,50 @@ namespace DXBeauty.Data
         }
 
 
-        // Ana şablon silindiğinde ona bağlı "Yetim" kopyaları siler
         public async Task DeleteExceptionsAsync(string patternGuid)
         {
-
-            using (var db = CreateConnection())
+            using (var connection = new NpgsqlConnection(_connectionString))
             {
-                // recurrence_info kolonunda bu GUID geçen ve Type'ı 3 veya 4 olan kayıtları bul ve sil
-                string sql = @"DELETE FROM appointments 
-                   WHERE type IN (3, 4) 
-                   AND recurrence_info LIKE '%' || @Guid || '%'";
+                await connection.OpenAsync();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // 1. Önce bu şablona ait, SEANS YAKMIŞ (Status 2 veya 4) olan istisnaları bul ve paket ID'lerini al
+                        string findConsumedSql = @"
+                                SELECT customer_service_id, COUNT(*) as count 
+                                FROM appointments 
+                                WHERE type IN (3, 4) 
+                                AND status IN (2, 4) 
+                                AND customer_service_id IS NOT NULL
+                                AND recurrence_info LIKE '%' || @Guid || '%'
+                                GROUP BY customer_service_id";
 
-                await db.ExecuteAsync(sql, new { Guid = patternGuid });
+                        var consumedRecords = await connection.QueryAsync(findConsumedSql, new { Guid = patternGuid }, transaction);
+
+                        // 2. Yaktıkları seansları paketlerine (customer_services) İADE ET
+                        foreach (var record in consumedRecords)
+                        {
+                            string restoreSql = "UPDATE customer_services SET remaining_sessions = remaining_sessions + @Count WHERE customer_service_id = @CsId";
+                            await connection.ExecuteAsync(restoreSql, new { Count = record.count, CsId = record.customer_service_id }, transaction);
+                        }
+
+                        // 3. Artık iadeler yapıldığına göre güvenle tüm istisnaları silebiliriz
+                        string sql = "DELETE FROM appointments WHERE type IN (3, 4) AND recurrence_info LIKE '%' || @Guid || '%'";
+                        await connection.ExecuteAsync(sql, new { Guid = patternGuid }, transaction);
+
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
             }
-
         }
+
+
 
         public async Task DeleteAppointmentSafeAsync(int appointmentId)
         {

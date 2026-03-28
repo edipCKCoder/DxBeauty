@@ -188,7 +188,11 @@ namespace DXBeauty.UI
         private async void btnSavePayment_Click(object sender, EventArgs e)
         {
             // 1. Güvenlik Kontrolleri (Kullanıcı verileri doğru girmiş mi?)
-            if (!_customerId.HasValue) return;
+            if (!_customerId.HasValue) 
+            {
+                XtraMessageBox.Show("Lütfen bir Müşteri seçiniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (string.IsNullOrEmpty(cmbPaymentMethod.Text))
             {
                 XtraMessageBox.Show("Lütfen bir ödeme yöntemi (Nakit/Kart vb.) seçiniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);

@@ -19,7 +19,16 @@ namespace DXBeauty.Data
             _connectionString = connectionString;
         }
 
+        //get remaing sessions
 
+        public int GetRemainingSessions(int customerServiceId)
+        {
+            string sql = "SELECT remaining_sessions FROM customer_services WHERE customer_service_id = @CustomerServiceId";
+            using (var connection = new NpgsqlConnection(_connectionString))
+            {
+                return connection.QueryFirstOrDefault<int>(sql, new { CustomerServiceId = customerServiceId });
+            }
+        }
 
         public async Task<IEnumerable<CustomerServiceLookupDto>> GetCustomerActivePackagesAsync(int customerId)
         {
