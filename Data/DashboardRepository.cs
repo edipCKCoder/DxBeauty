@@ -50,7 +50,7 @@ namespace DXBeauty.Data
         SELECT 
             a.appointment_id AS AppointmentId,
             c.first_name || ' ' || c.last_name AS CustomerName,
-            COALESCE(s.name, sp.name, 'Genel İşlem') AS ServiceName,
+            COALESCE(s.service_name, sp.name, 'Genel İşlem') AS ServiceName,
             a.appointment_start_date AS StartTime,
             a.appointment_end_date AS EndTime, 
             c.phone_number AS PhoneNumber,

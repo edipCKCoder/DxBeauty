@@ -60,6 +60,7 @@
             layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(components);
+            svgImageCollection1 = new DevExpress.Utils.SvgImageCollection(components);
             ((System.ComponentModel.ISupportInitialize)groupControl1).BeginInit();
             groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
@@ -80,6 +81,7 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)behaviorManager1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)svgImageCollection1).BeginInit();
             SuspendLayout();
             // 
             // groupControl1
@@ -321,6 +323,10 @@
             layoutControlItem3.Size = new System.Drawing.Size(393, 68);
             layoutControlItem3.TextVisible = false;
             // 
+            // svgImageCollection1
+            // 
+            svgImageCollection1.Add("ai", "image://svgimages/miscellaneous/ai.svg");
+            // 
             // CustomerControl
             // 
             Appearance.BackColor = System.Drawing.SystemColors.Control;
@@ -350,6 +356,7 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
             ((System.ComponentModel.ISupportInitialize)behaviorManager1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)svgImageCollection1).EndInit();
             ResumeLayout(false);
         }
 
@@ -382,5 +389,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+        private DevExpress.Utils.SvgImageCollection svgImageCollection1;
     }
 }

@@ -289,4 +289,22 @@
   <data name="GoToMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GoToMessage.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
+  <data name="snapinsertheader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\snapinsertheader.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="Edit2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Edit2.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="Dpad" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Dpad.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="Dpad1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Dpad1.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="closeheaderandfooter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\closeheaderandfooter.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="GoToMessage1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GoToMessage1.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
 </root>

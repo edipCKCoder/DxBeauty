@@ -34,7 +34,7 @@ namespace DXBeauty.UI
             }
             var service = new Service
                 {
-                    Name = serviceName.Text,
+                    ServiceName = serviceName.Text,
                     Description = serviceDescription.Text,
                     DefaultPrice = calcDefaultPrice.Value,
                     IsActive = isActive.Checked,

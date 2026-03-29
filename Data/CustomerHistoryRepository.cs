@@ -26,10 +26,10 @@ namespace DXBeauty.Data
                 SELECT 
                     a.appointment_start_date as EventDate,
                     'Randevu' as EventType,
-                    COALESCE(s.name, 'Genel İşlem') || ' Randevusu' as Summary,
+                    COALESCE(s.service_name, 'Genel İşlem') || ' Randevusu' as Summary,
                     a.appointment_start_date as StartDate,
                     a.appointment_end_date as EndDate,
-                    s.name as ServiceName,
+                    s.service_name as ServiceName,
                     p.full_name as PersonnelName,
                     a.status as Status,
                     a.subject as Subject,
@@ -58,7 +58,7 @@ namespace DXBeauty.Data
                         ELSE pp.sequence_number || '. Taksit' 
                     END as PaymentPlanInfo,
                     sp.name as RelatedPackage,
-                    s.name as RelatedAppointment
+                    s.service_name as RelatedAppointment
                 FROM payments p
                 LEFT JOIN payment_plans pp ON p.payment_plan_id = pp.payment_plan_id
                 LEFT JOIN customer_services cs ON p.customer_service_id = cs.customer_service_id

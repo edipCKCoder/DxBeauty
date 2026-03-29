@@ -26,6 +26,7 @@ namespace DXBeauty.Data
             string sql = @"
         -- 1. BÖLÜM: PAKET ÖDEME PLANLARI (Peşinat, Taksit, Açık Hesap)
         SELECT 
+
             'Paket Ödemesi' AS DebtType,
             -- İŞTE SİHİRLİ VİTRİN KODU:
             CASE 
@@ -50,7 +51,7 @@ namespace DXBeauty.Data
         -- 2. BÖLÜM: ÖDENMEMİŞ TEK SEANS RANDEVULARI (Eskisiyle aynı)
         SELECT 
             'Tek Seans' AS DebtType,
-            COALESCE(s.name, 'Genel İşlem') || ' Randevusu' AS Description,
+            COALESCE(s.service_name, 'Genel İşlem') || ' Randevusu' AS Description,
             CAST(a.appointment_start_date AS DATE) AS DueDate,
             default_price AS Amount,
             NULL::int AS PaymentPlanId,

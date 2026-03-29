@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DXBeauty.Data;
 using DXBeauty.Dtos;
 using Npgsql;
@@ -23,6 +24,36 @@ namespace DXBeauty.UI
         {
             InitializeComponent();
             _paymentPlanRepository = new PaymentPlanRepository(_connectionString);
+
+            repositoryItemButtonEdit1.ButtonClick += RepositoryItemButtonEdit1_ButtonClick;
+        }
+
+        private void RepositoryItemButtonEdit1_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            var seciliSatir = gridViewFinancialReport.GetRow(gridViewFinancialReport.FocusedRowHandle) as FinancialReportDto;
+
+            if (seciliSatir == null) return;
+
+            // EĞER BU SATIRIN BORCU VARSA WHATSAPP BUTONUNU EKLE!
+            if (seciliSatir.RemainingDebt > 0 && !seciliSatir.IsPaid)
+            {
+                // Popup menüyü oluştur
+                DevExpress.Utils.Menu.DXPopupMenu anaMenu = new DevExpress.Utils.Menu.DXPopupMenu();
+
+                // Alt menüyü oluştur
+                DevExpress.Utils.Menu.DXMenuItem btnWhatsapp = new DevExpress.Utils.Menu.DXMenuItem("WhatsApp Borç Hatırlatması Gönder");
+                btnWhatsapp.ImageOptions.SvgImage = Properties.Resources.accounting;
+                btnWhatsapp.BeginGroup = true;
+
+                // Butona Tıklandığında Çalışacak Kod
+                btnWhatsapp.Click += async (s, args) =>
+                {
+                    await SendDebtReminderAsync(seciliSatir);
+                };
+                anaMenu.Items.Add(btnWhatsapp);
+
+                anaMenu.ShowPopup(gridFinancialReport, gridFinancialReport.PointToClient(Control.MousePosition));
+            }
         }
 
         private async void FinancialReportControl_Load(object sender, EventArgs e)

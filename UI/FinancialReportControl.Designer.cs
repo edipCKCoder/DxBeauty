@@ -28,9 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             gridFinancialReport = new DevExpress.XtraGrid.GridControl();
             gridViewFinancialReport = new DevExpress.XtraGrid.Views.Grid.GridView();
+            gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -46,6 +53,7 @@
             layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridFinancialReport).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridViewFinancialReport).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemButtonEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
             SuspendLayout();
@@ -67,17 +75,38 @@
             gridFinancialReport.Location = new System.Drawing.Point(25, 45);
             gridFinancialReport.MainView = gridViewFinancialReport;
             gridFinancialReport.Name = "gridFinancialReport";
+            gridFinancialReport.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemButtonEdit1 });
             gridFinancialReport.Size = new System.Drawing.Size(931, 545);
             gridFinancialReport.TabIndex = 4;
             gridFinancialReport.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewFinancialReport });
             // 
             // gridViewFinancialReport
             // 
-            gridViewFinancialReport.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { gridColumn9, gridColumn1, gridColumn2, gridColumn3, gridColumn4, gridColumn5, gridColumn6, gridColumn7, gridColumn8 });
+            gridViewFinancialReport.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { gridColumn10, gridColumn9, gridColumn1, gridColumn2, gridColumn3, gridColumn4, gridColumn5, gridColumn6, gridColumn7, gridColumn8 });
             gridViewFinancialReport.GridControl = gridFinancialReport;
             gridViewFinancialReport.Name = "gridViewFinancialReport";
             gridViewFinancialReport.OptionsFind.AlwaysVisible = true;
             gridViewFinancialReport.PopupMenuShowing += gridViewFinancialReport_PopupMenuShowing;
+            // 
+            // gridColumn10
+            // 
+            gridColumn10.Caption = "Mesaj Gönder";
+            gridColumn10.ColumnEdit = repositoryItemButtonEdit1;
+            gridColumn10.Name = "gridColumn10";
+            gridColumn10.Visible = true;
+            gridColumn10.VisibleIndex = 9;
+            // 
+            // repositoryItemButtonEdit1
+            // 
+            repositoryItemButtonEdit1.AutoHeight = false;
+            repositoryItemButtonEdit1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            editorButtonImageOptions1.SvgImage = Properties.Resources.GoToMessage1;
+            editorButtonImageOptions1.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
+            editorButtonImageOptions1.SvgImageSize = new System.Drawing.Size(16, 16);
+            repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
+            repositoryItemButtonEdit1.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
+            repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // gridColumn9
             // 
@@ -181,6 +210,7 @@
             layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridFinancialReport).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridViewFinancialReport).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemButtonEdit1).EndInit();
             ((System.ComponentModel.ISupportInitialize)Root).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
             ResumeLayout(false);
@@ -202,5 +232,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
     }
 }

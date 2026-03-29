@@ -103,37 +103,63 @@ namespace DXBeauty.UI
         {
             var revenueData = await _dashboardRepo.GetMonthlyRevenueTrendAsync();
 
-            chartRevenue.Series.Clear(); // Önceki verileri temizle
+            // =========================================================================
+            // ⚡️ 1. VERİ BAĞLAMA (Foreach yerine doğrudan ve güvenli bağlama)
+            // =========================================================================
+            chartRevenue.Series.Clear();
             Series series = new Series("Günlük Ciro", ViewType.Bar);
-
-            foreach (var item in revenueData)
-            {
-                // X ekseni Tarih (Örn: 12 Mart), Y ekseni Tutar (Örn: 5000)
-                series.Points.Add(new SeriesPoint(item.Date.ToString("dd MMM"), item.DailyTotal));
-            }
-
             chartRevenue.Series.Add(series);
-            chartRevenue.Legend.Visibility = DevExpress.Utils.DefaultBoolean.False; // Lejantı gizle, daha şık dursun
 
-            // X eksenindeki yazıların üst üste binmemesi için hafif eğik yazdırabiliriz
-            ((XYDiagram)chartRevenue.Diagram).AxisX.Label.Angle = -45;
+            series.DataSource = revenueData;
+            // DTO'daki property isimlerini buraya yazıyoruz
+            series.ArgumentDataMember = "Date";
+            series.ValueDataMembers.AddRange(new string[] { "DailyTotal" });
 
-            // Y EKSENİ PARA BİRİMİ AYARI
-            // {V:N0} -> Sayıyı binlik ayracı ile yazar (Örn: 10.000)
-            // Sonuna da " ₺" sembolünü ekliyoruz.
-            ((XYDiagram)chartRevenue.Diagram).AxisY.Label.TextPattern = "{V:N0} ₺";
+            // =========================================================================
+            // 🎨 2. ÇUBUK (BAR) TASARIMI
+            // =========================================================================
+            BarSeriesView view = (BarSeriesView)series.View;
+            view.Color = Color.FromArgb(23, 162, 184); // Kurumsal Turkuaz rengi
+            view.Border.Visibility = DevExpress.Utils.DefaultBoolean.False; // Sert kenarlıkları sil
+            view.BarWidth = 0.5; // Çubukları biraz incelt, daha zarif dursun
 
-            // 1. Varsa eski başlıkları temizle (Metot tekrar çağrıldığında üst üste binmemesi için)
+            // Üzerindeki sabit yazıları gizle (Kalabalığı önler)
+            series.LabelsVisibility = DevExpress.Utils.DefaultBoolean.False;
+
+            // =========================================================================
+            // 📐 3. EKSEN VE IZGARA (DIAGRAM) TEMİZLİĞİ
+            // =========================================================================
+            XYDiagram diagram = (XYDiagram)chartRevenue.Diagram;
+
+            // -- Y EKSENİ (TUTAR) --
+            diagram.AxisY.Label.TextPattern = "{V:N0} ₺";
+            diagram.AxisY.GridLines.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Dash; // ❗️ Kesik çizgiler
+            diagram.AxisY.GridLines.Color = Color.FromArgb(230, 230, 230); // ❗️ Çok açık ve kibar gri
+            diagram.AxisY.Tickmarks.Visible = false; // Eksen çentiklerini sil
+
+            // -- X EKSENİ (TARİH) --
+            diagram.AxisX.Label.Angle = -45;
+            // DTO'daki Date nesnesini doğrudan formatlıyoruz (Eski .ToString("dd MMM")'ye gerek kalmadı)
+            diagram.AxisX.Label.TextPattern = "{A:dd MMM}";
+            diagram.AxisX.GridLines.Visible = false; // ❗️ Dikey çizgileri tamamen sil
+            diagram.AxisX.Tickmarks.Visible = false; // Eksen çentiklerini sil
+
+            // =========================================================================
+            // 🖱️ 4. ETKİLEŞİM VE BAŞLIK AYARLARI
+            // =========================================================================
+            chartRevenue.Legend.Visibility = DevExpress.Utils.DefaultBoolean.False; // Lejantı gizle
+
+            // ❗️ Fare (Mouse) ile çubuğun üzerine gelince çıkacak modern bilgi baloncuğu (Crosshair)
+            chartRevenue.CrosshairOptions.ShowArgumentLine = true;
+            chartRevenue.CrosshairOptions.ShowValueLabels = true;
+            series.CrosshairLabelPattern = "{A:dd MMMM}: {V:N0} ₺"; // Örn: 24 Mart: 19.500 ₺
+
+            // Başlık Ekleme
             chartRevenue.Titles.Clear();
-
-            // 2. Yeni bir başlık nesnesi oluştur
             DevExpress.XtraCharts.ChartTitle chartTitle = new DevExpress.XtraCharts.ChartTitle();
-
-            // 3. Başlığın metnini ve (opsiyonel) fontunu belirle
             chartTitle.Text = "Son 30 Günlük Ciro Trendi";
-            chartTitle.Font = new System.Drawing.Font("Tahoma", 12, System.Drawing.FontStyle.Regular);
-
-            // 4. Başlığı grafiğe ekle
+            chartTitle.Font = new Font("Segoe UI", 12, FontStyle.Bold); // Modern Font
+            chartTitle.TextColor = Color.FromArgb(73, 80, 87); // Koyu profesyonel gri
             chartRevenue.Titles.Add(chartTitle);
         }
 
@@ -210,7 +236,7 @@ namespace DXBeauty.UI
             baslik.Text = "En Çok Satılan 5 Paket";
 
             // ❗️ Görsel Ayarlar (Modern ve Okunaklı)
-            baslik.Font = new Font("Tahoma", 12, FontStyle.Bold);
+            baslik.Font = new Font("Segoe UI", 12, FontStyle.Bold);
             baslik.TextColor = Color.FromArgb(73, 80, 87); // Koyu profesyonel gri
             baslik.Alignment = StringAlignment.Center;     // Tam ortaya hizala
             baslik.Dock = ChartTitleDockStyle.Top;         // Grafiğin en tepesine sabitle

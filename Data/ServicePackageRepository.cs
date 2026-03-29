@@ -6,8 +6,11 @@ namespace DXBeauty.Data
 {
     public class ServicePackageRepository : DapperRepository
     {
-        public ServicePackageRepository(string connectionString)
-            : base(connectionString) { }
+        private readonly string _connectionString;
+        public ServicePackageRepository(string connectionString) : base(connectionString) 
+        {
+            _connectionString = connectionString;
+        }
 
 
         public  List<ServicePackage> GetAll()
@@ -60,14 +63,13 @@ namespace DXBeauty.Data
             Execute(sql, p);
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             // HARD DELETE yerine pasifleştiriyoruz (önerilen)
-            var sql = @"UPDATE service_packages 
-                        SET is_active = false
-                        WHERE service_package_id = @ServicePackageId";
+            var sql = @"DELETE FROM service_packages WHERE service_package_id = @ServicePackageId";
 
-            Execute(sql, new { ServicePackageId = id });
+           int affectedRows = Execute(sql, new { ServicePackageId = id });
+            return affectedRows == 1;
         }
     }
 }

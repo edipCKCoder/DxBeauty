@@ -48,6 +48,11 @@
             DevExpress.XtraEditors.TileItemElement tileItemElement13 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition1 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
             DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition2 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
             DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition3 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
@@ -87,6 +92,13 @@
             chartRevenue = new DevExpress.XtraCharts.ChartControl();
             gridAlerts = new DevExpress.XtraGrid.GridControl();
             gridViewAlerts = new DevExpress.XtraGrid.Views.Grid.GridView();
+            gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             gridTodayAppointments = new DevExpress.XtraGrid.GridControl();
             tileView1 = new DevExpress.XtraGrid.Views.Tile.TileView();
             tileViewColumn1 = new DevExpress.XtraGrid.Columns.TileViewColumn();
@@ -124,6 +136,7 @@
             ((System.ComponentModel.ISupportInitialize)series2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridAlerts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridViewAlerts).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemButtonEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridTodayAppointments).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tileView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
@@ -179,7 +192,7 @@
             // 
             chartPackages.BorderOptions.Visibility = DevExpress.Utils.DefaultBoolean.False;
             chartPackages.Legend.Visibility = DevExpress.Utils.DefaultBoolean.False;
-            chartPackages.Location = new System.Drawing.Point(485, 474);
+            chartPackages.Location = new System.Drawing.Point(745, 195);
             chartPackages.Name = "chartPackages";
             series1.Name = "Series 1";
             series1.SeriesID = 0;
@@ -190,17 +203,17 @@
     };
             sideBySideBarSeriesLabel1.TextPattern = "{A} :{V}";
             chartPackages.SeriesTemplate.Label = sideBySideBarSeriesLabel1;
-            chartPackages.Size = new System.Drawing.Size(470, 199);
+            chartPackages.Size = new System.Drawing.Size(200, 253);
             chartPackages.TabIndex = 9;
             // 
             // panelControl1
             // 
             panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             panelControl1.Controls.Add(dateNavDashboard);
-            panelControl1.Location = new System.Drawing.Point(12, 219);
+            panelControl1.Location = new System.Drawing.Point(22, 195);
             panelControl1.Name = "panelControl1";
             panelControl1.Padding = new System.Windows.Forms.Padding(5);
-            panelControl1.Size = new System.Drawing.Size(233, 251);
+            panelControl1.Size = new System.Drawing.Size(208, 253);
             panelControl1.TabIndex = 8;
             // 
             // dateNavDashboard
@@ -214,7 +227,7 @@
             dateNavDashboard.FirstDayOfWeek = System.DayOfWeek.Monday;
             dateNavDashboard.Location = new System.Drawing.Point(5, 5);
             dateNavDashboard.Name = "dateNavDashboard";
-            dateNavDashboard.Size = new System.Drawing.Size(223, 241);
+            dateNavDashboard.Size = new System.Drawing.Size(198, 243);
             dateNavDashboard.TabIndex = 3;
             dateNavDashboard.CustomDrawDayNumberCell += dateNavDashboard_CustomDrawDayNumberCell;
             dateNavDashboard.EditValueChanged += dateNavigator1_EditValueChanged;
@@ -223,12 +236,12 @@
             // 
             tileControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             tileControl1.Groups.Add(tileGroup2);
-            tileControl1.ItemSize = 105;
+            tileControl1.ItemSize = 108;
             tileControl1.Location = new System.Drawing.Point(12, 12);
             tileControl1.MaxId = 8;
             tileControl1.Name = "tileControl1";
             tileControl1.OptionsLayout.StoreAppearance = true;
-            tileControl1.Size = new System.Drawing.Size(943, 203);
+            tileControl1.Size = new System.Drawing.Size(943, 169);
             tileControl1.TabIndex = 0;
             tileControl1.Text = "tileControl1";
             // 
@@ -395,7 +408,7 @@
             xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
             xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
             chartRevenue.Diagram = xyDiagram1;
-            chartRevenue.Location = new System.Drawing.Point(485, 219);
+            chartRevenue.Location = new System.Drawing.Point(495, 195);
             chartRevenue.Name = "chartRevenue";
             chartRevenue.PaletteName = "Concourse";
             series2.Name = "Series 1";
@@ -404,31 +417,119 @@
     {
     series2
     };
-            chartRevenue.Size = new System.Drawing.Size(470, 251);
+            chartRevenue.Size = new System.Drawing.Size(226, 253);
             chartRevenue.TabIndex = 5;
             // 
             // gridAlerts
             // 
-            gridAlerts.Location = new System.Drawing.Point(12, 474);
+            gridAlerts.Location = new System.Drawing.Point(22, 472);
             gridAlerts.MainView = gridViewAlerts;
             gridAlerts.Name = "gridAlerts";
-            gridAlerts.Size = new System.Drawing.Size(469, 199);
+            gridAlerts.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemButtonEdit1 });
+            gridAlerts.Size = new System.Drawing.Size(923, 191);
             gridAlerts.TabIndex = 6;
             gridAlerts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewAlerts });
             // 
             // gridViewAlerts
             // 
+            gridViewAlerts.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { gridColumn1, gridColumn2, gridColumn3, gridColumn4, gridColumn5, gridColumn6 });
+            gridViewAlerts.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             gridViewAlerts.GridControl = gridAlerts;
             gridViewAlerts.Name = "gridViewAlerts";
+            gridViewAlerts.OptionsBehavior.Editable = false;
+            gridViewAlerts.OptionsSelection.EnableAppearanceFocusedCell = false;
+            gridViewAlerts.OptionsView.ShowColumnHeaders = false;
             gridViewAlerts.OptionsView.ShowGroupPanel = false;
+            gridViewAlerts.OptionsView.ShowHorizontalLines = DevExpress.Utils.DefaultBoolean.False;
+            gridViewAlerts.OptionsView.ShowIndicator = false;
+            gridViewAlerts.RowHeight = 45;
+            // 
+            // gridColumn1
+            // 
+            gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10F);
+            gridColumn1.AppearanceCell.Options.UseFont = true;
+            gridColumn1.AppearanceCell.Options.UseTextOptions = true;
+            gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            gridColumn1.Caption = "Alert Type";
+            gridColumn1.FieldName = "AlertType";
+            gridColumn1.Name = "gridColumn1";
+            gridColumn1.Visible = true;
+            gridColumn1.VisibleIndex = 1;
+            // 
+            // gridColumn2
+            // 
+            gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            gridColumn2.AppearanceCell.Options.UseFont = true;
+            gridColumn2.Caption = "Customer Name";
+            gridColumn2.FieldName = "CustomerName";
+            gridColumn2.Name = "gridColumn2";
+            gridColumn2.Visible = true;
+            gridColumn2.VisibleIndex = 2;
+            // 
+            // gridColumn3
+            // 
+            gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10F);
+            gridColumn3.AppearanceCell.Options.UseFont = true;
+            gridColumn3.AppearanceCell.Options.UseTextOptions = true;
+            gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            gridColumn3.Caption = "Description";
+            gridColumn3.FieldName = "Description";
+            gridColumn3.Name = "gridColumn3";
+            gridColumn3.Visible = true;
+            gridColumn3.VisibleIndex = 3;
+            // 
+            // gridColumn4
+            // 
+            gridColumn4.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10F);
+            gridColumn4.AppearanceCell.Options.UseFont = true;
+            gridColumn4.AppearanceCell.Options.UseTextOptions = true;
+            gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            gridColumn4.Caption = "Alert Date";
+            gridColumn4.FieldName = "AlertDate";
+            gridColumn4.Name = "gridColumn4";
+            gridColumn4.Visible = true;
+            gridColumn4.VisibleIndex = 4;
+            // 
+            // gridColumn5
+            // 
+            gridColumn5.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10F);
+            gridColumn5.AppearanceCell.Options.UseFont = true;
+            gridColumn5.AppearanceCell.Options.UseTextOptions = true;
+            gridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            gridColumn5.Caption = "Amount";
+            gridColumn5.DisplayFormat.FormatString = "c2";
+            gridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            gridColumn5.FieldName = "Amount";
+            gridColumn5.Name = "gridColumn5";
+            gridColumn5.Visible = true;
+            gridColumn5.VisibleIndex = 5;
+            // 
+            // gridColumn6
+            // 
+            gridColumn6.Caption = "iconColumn";
+            gridColumn6.ColumnEdit = repositoryItemButtonEdit1;
+            gridColumn6.Name = "gridColumn6";
+            gridColumn6.Visible = true;
+            gridColumn6.VisibleIndex = 0;
+            // 
+            // repositoryItemButtonEdit1
+            // 
+            repositoryItemButtonEdit1.AutoHeight = false;
+            editorButtonImageOptions1.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("editorButtonImageOptions1.SvgImage");
+            editorButtonImageOptions1.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
+            editorButtonImageOptions1.SvgImageSize = new System.Drawing.Size(32, 32);
+            repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
+            repositoryItemButtonEdit1.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
+            repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // gridTodayAppointments
             // 
-            gridTodayAppointments.Location = new System.Drawing.Point(249, 219);
+            gridTodayAppointments.Location = new System.Drawing.Point(254, 195);
             gridTodayAppointments.MainView = tileView1;
             gridTodayAppointments.Name = "gridTodayAppointments";
             gridTodayAppointments.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemImageComboBox1 });
-            gridTodayAppointments.Size = new System.Drawing.Size(232, 251);
+            gridTodayAppointments.Size = new System.Drawing.Size(217, 253);
             gridTodayAppointments.TabIndex = 4;
             gridTodayAppointments.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { tileView1 });
             // 
@@ -437,8 +538,15 @@
             tileView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { tileViewColumn1, tileViewColumn2, tileViewColumn3, tileViewColumn4, tileViewColumn6, tileViewColumn5, tileViewColumn7, tileViewColumn8 });
             tileView1.GridControl = gridTodayAppointments;
             tileView1.Name = "tileView1";
+            tileView1.OptionsTiles.GroupTextPadding = new System.Windows.Forms.Padding(12, 8, 12, 8);
+            tileView1.OptionsTiles.IndentBetweenGroups = 0;
+            tileView1.OptionsTiles.IndentBetweenItems = 0;
             tileView1.OptionsTiles.ItemPadding = new System.Windows.Forms.Padding(8);
+            tileView1.OptionsTiles.LayoutMode = DevExpress.XtraGrid.Views.Tile.TileViewLayoutMode.List;
+            tileView1.OptionsTiles.Orientation = System.Windows.Forms.Orientation.Vertical;
+            tileView1.OptionsTiles.Padding = new System.Windows.Forms.Padding(0);
             tileView1.OptionsTiles.RowCount = 0;
+            tileView1.OptionsView.BackgroundColorMode = DevExpress.XtraGrid.Views.Tile.BackgroundColorMode.Skin;
             tableColumnDefinition1.Length.Value = 82D;
             tableColumnDefinition2.Length.Value = 13D;
             tableColumnDefinition3.Length.Value = 109D;
@@ -548,25 +656,28 @@
             // layoutControlItem5
             // 
             layoutControlItem5.Control = gridTodayAppointments;
-            layoutControlItem5.Location = new System.Drawing.Point(237, 207);
+            layoutControlItem5.Location = new System.Drawing.Point(232, 173);
             layoutControlItem5.Name = "layoutControlItem5";
-            layoutControlItem5.Size = new System.Drawing.Size(236, 255);
+            layoutControlItem5.Size = new System.Drawing.Size(241, 277);
+            layoutControlItem5.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem6
             // 
             layoutControlItem6.Control = gridAlerts;
-            layoutControlItem6.Location = new System.Drawing.Point(0, 462);
+            layoutControlItem6.Location = new System.Drawing.Point(0, 450);
             layoutControlItem6.Name = "layoutControlItem6";
-            layoutControlItem6.Size = new System.Drawing.Size(473, 203);
+            layoutControlItem6.Size = new System.Drawing.Size(947, 215);
+            layoutControlItem6.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             layoutControlItem6.TextVisible = false;
             // 
             // layoutControlItem7
             // 
             layoutControlItem7.Control = chartRevenue;
-            layoutControlItem7.Location = new System.Drawing.Point(473, 207);
+            layoutControlItem7.Location = new System.Drawing.Point(473, 173);
             layoutControlItem7.Name = "layoutControlItem7";
-            layoutControlItem7.Size = new System.Drawing.Size(474, 255);
+            layoutControlItem7.Size = new System.Drawing.Size(250, 277);
+            layoutControlItem7.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem1
@@ -574,28 +685,31 @@
             layoutControlItem1.Control = tileControl1;
             layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(947, 207);
+            layoutControlItem1.Size = new System.Drawing.Size(947, 173);
             layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             layoutControlItem2.Control = panelControl1;
-            layoutControlItem2.Location = new System.Drawing.Point(0, 207);
+            layoutControlItem2.Location = new System.Drawing.Point(0, 173);
             layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new System.Drawing.Size(237, 255);
+            layoutControlItem2.Size = new System.Drawing.Size(232, 277);
+            layoutControlItem2.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             layoutControlItem3.Control = chartPackages;
-            layoutControlItem3.Location = new System.Drawing.Point(473, 462);
+            layoutControlItem3.Location = new System.Drawing.Point(723, 173);
             layoutControlItem3.Name = "layoutControlItem3";
-            layoutControlItem3.Size = new System.Drawing.Size(474, 203);
+            layoutControlItem3.Size = new System.Drawing.Size(224, 277);
+            layoutControlItem3.Spacing = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             layoutControlItem3.TextVisible = false;
             // 
             // svgImageCollection1
             // 
             svgImageCollection1.Add("clockIcon", "image://svgimages/business objects/bo_scheduler.svg");
+            svgImageCollection1.Add("action_optimisticlock_ignorecollision", "image://fluentimages/xaf/action_optimisticlock_ignorecollision.svg");
             // 
             // layoutControlGroup2
             // 
@@ -732,6 +846,7 @@
             ((System.ComponentModel.ISupportInitialize)chartRevenue).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridAlerts).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridViewAlerts).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemButtonEdit1).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridTodayAppointments).EndInit();
             ((System.ComponentModel.ISupportInitialize)tileView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)Root).EndInit();
@@ -785,5 +900,12 @@
         private DevExpress.Utils.SvgImageCollection svgImageCollection1;
         private DevExpress.XtraCharts.ChartControl chartPackages;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
     }
 }

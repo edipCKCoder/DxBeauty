@@ -62,14 +62,15 @@ namespace DXBeauty.UI
                 // 1. Ana Popup Menüsünü oluştur (Kapsayıcı) 
                 DevExpress.Utils.Menu.DXPopupMenu anaMenu = new DevExpress.Utils.Menu.DXPopupMenu();
 
-                DevExpress.Utils.Menu.DXSubMenuItem ozelMesajMenu = new DevExpress.Utils.Menu.DXSubMenuItem("💬 Özel Mesaj Gönder");
+                DevExpress.Utils.Menu.DXSubMenuItem ozelMesajMenu = new DevExpress.Utils.Menu.DXSubMenuItem("Özel Mesaj Gönder");
+                ozelMesajMenu.ImageOptions.SvgImage = Properties.Resources.bo_contact;
                 ozelMesajMenu.BeginGroup = true; // Üstüne şık bir ayraç çizgisi koy
 
                 // Hafızadaki özel şablonları tek tek alt menüye buton olarak ekle
                 foreach (var sablon in _ozelSablonlar)
                 {
-                    DevExpress.Utils.Menu.DXMenuItem sablonButonu = new DevExpress.Utils.Menu.DXMenuItem("✨ " + sablon.TemplateName);
-
+                    DevExpress.Utils.Menu.DXMenuItem sablonButonu = new DevExpress.Utils.Menu.DXMenuItem(sablon.TemplateName);
+                    sablonButonu.ImageOptions.SvgImage = svgImageCollection1[0];
                     // Butona tıklandığında WhatsApp fırlatıcıyı çağır
                     sablonButonu.Click += async (s, args) =>
                     {
