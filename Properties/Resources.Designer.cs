@@ -483,6 +483,16 @@ namespace DXBeauty.Properties {
         /// <summary>
         ///   DevExpress.Utils.Svg.SvgImage türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage newdatasource {
+            get {
+                object obj = ResourceManager.GetObject("newdatasource", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static DevExpress.Utils.Svg.SvgImage next {
             get {
                 object obj = ResourceManager.GetObject("next", resourceCulture);
@@ -596,6 +606,16 @@ namespace DXBeauty.Properties {
         internal static DevExpress.Utils.Svg.SvgImage sparklinewinloss {
             get {
                 object obj = ResourceManager.GetObject("sparklinewinloss", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage state_itemvisibility_hide {
+            get {
+                object obj = ResourceManager.GetObject("state_itemvisibility_hide", resourceCulture);
                 return ((DevExpress.Utils.Svg.SvgImage)(obj));
             }
         }

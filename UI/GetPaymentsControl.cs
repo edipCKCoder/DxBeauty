@@ -49,6 +49,12 @@ namespace DXBeauty.UI
             slueCustomer.Properties.DisplayMember = "FullName"; // Müşteri adının olduğu kolonun adı
             slueCustomer.Properties.ValueMember = "CustomerId";
 
+            slueCustomer.Properties.PopulateViewColumns();
+
+            slueCustomer.Properties.View.Columns["CustomerId"].Visible = false; // ID kolonunu gizle
+            slueCustomer.Properties.View.Columns["FirstName"].Visible = false;
+            slueCustomer.Properties.View.Columns["LastName"].Visible = false;
+
             // 2. Akıllı Yönlendirme: TAKVİMDEN Mİ GELDİK, MENÜDEN Mİ?
             if (_customerId.HasValue)
             {
@@ -76,14 +82,40 @@ namespace DXBeauty.UI
 
             gridControl1.DataSource = unpaidDebts;
 
-            // CheckBox seçimi vb. ayarlar
-            gridView1.OptionsSelection.MultiSelect = true;
-            gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            //// CheckBox seçimi vb. ayarlar
+            //gridView1.OptionsSelection.MultiSelect = true;
+            //gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
 
+            // 1. GridControl'e Windows odaklanması ver (Zorunludur)
+            gridControl1.Focus();
+
+            // 2. Düzenlemek istediğiniz satırı seçin
+            gridView1.FocusedRowHandle = 0;
+
+            // 3. Düzenlemek istediğiniz sütunu seçin
+            gridView1.FocusedColumn = gridView1.Columns["DevExpress.XtraGrid.Views.Grid.GridControl.CheckboxSelectorColumnName"];
+
+            // 4. Editörü aktif hale getirin (İçine imleci atar)
+            gridView1.ShowEditor();
 
             if (gridView1.Columns["PaymentPlanId"] != null) gridView1.Columns["PaymentPlanId"].Visible = false;
             if (gridView1.Columns["CustomerServiceId"] != null) gridView1.Columns["CustomerServiceId"].Visible = false;
             if (gridView1.Columns["AppointmentId"] != null) gridView1.Columns["AppointmentId"].Visible = false;
+
+            gridView1.Columns["DueDate"].OptionsColumn.AllowEdit = false; // Vade Tarihi düzenlenemez
+            gridView1.Columns["Amount"].OptionsColumn.AllowEdit = false; // Tutar duzenlenemez
+
+            gridView1.Columns["DueDate"].OptionsColumn.AllowFocus = false; // Vade Tarihi düzenlenemez
+            gridView1.Columns["Amount"].OptionsColumn.AllowFocus = false; // Tutar duzenlenemez
+
+            gridView1.Columns["DebtType"].OptionsColumn.AllowEdit = false; // Vade Tarihi düzenlenemez
+            gridView1.Columns["Description"].OptionsColumn.AllowEdit = false; // Tutar duzenlenemez
+
+            gridView1.Columns["DebtType"].OptionsColumn.AllowFocus = false; // Vade Tarihi düzenlenemez
+            gridView1.Columns["Description"].OptionsColumn.AllowFocus = false; // Tutar duzenlenemez
+
+
+
 
 
             // Eğer takvimden geldiysek ve belirli bir randevuyla açıldıysa onu otomatik seç

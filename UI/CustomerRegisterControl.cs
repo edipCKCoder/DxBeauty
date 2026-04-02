@@ -84,6 +84,7 @@ namespace DXBeauty.UI
                 Email = emailBox.Text,
                 Address = addressBox.Text,
                 Birthday = birthdayBox.DateTime,
+                CreatedDate = DateTime.Now
             };
 
             CustomerSaved?.Invoke(customer);

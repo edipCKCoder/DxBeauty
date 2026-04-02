@@ -36,7 +36,6 @@ namespace DXBeauty.UI
                 {
                     ServiceName = serviceName.Text,
                     Description = serviceDescription.Text,
-                    DefaultPrice = calcDefaultPrice.Value,
                     IsActive = isActive.Checked,
                 };
 
@@ -58,7 +57,7 @@ namespace DXBeauty.UI
             // Hangi kutucuklar "Boş Bırakılamaz" olacaksa onlara bu kuralı atıyoruz:
             dxValidationProvider.SetValidationRule(serviceName, notEmptyRule); // Ad zorunlu
             dxValidationProvider.SetValidationRule(serviceDescription, notEmptyRule); // Soyad zorunlu
-            dxValidationProvider.SetValidationRule(calcDefaultPrice, notEmptyRule); // Telefon zorunlu
+            
 
             
         }

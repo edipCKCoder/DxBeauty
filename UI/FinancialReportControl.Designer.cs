@@ -86,7 +86,8 @@
             gridViewFinancialReport.GridControl = gridFinancialReport;
             gridViewFinancialReport.Name = "gridViewFinancialReport";
             gridViewFinancialReport.OptionsFind.AlwaysVisible = true;
-            gridViewFinancialReport.PopupMenuShowing += gridViewFinancialReport_PopupMenuShowing;
+            gridViewFinancialReport.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways;
+            gridViewFinancialReport.OptionsView.ShowFooter = true;
             // 
             // gridColumn10
             // 
@@ -113,6 +114,8 @@
             gridColumn9.Caption = "Paket Adı";
             gridColumn9.FieldName = "PackageName";
             gridColumn9.Name = "gridColumn9";
+            gridColumn9.OptionsColumn.AllowEdit = false;
+            gridColumn9.OptionsColumn.AllowFocus = false;
             gridColumn9.Visible = true;
             gridColumn9.VisibleIndex = 8;
             // 
@@ -121,6 +124,8 @@
             gridColumn1.Caption = "İsim Soyisim";
             gridColumn1.FieldName = "FullName";
             gridColumn1.Name = "gridColumn1";
+            gridColumn1.OptionsColumn.AllowEdit = false;
+            gridColumn1.OptionsColumn.AllowFocus = false;
             gridColumn1.Visible = true;
             gridColumn1.VisibleIndex = 0;
             // 
@@ -129,6 +134,8 @@
             gridColumn2.Caption = "Telefon";
             gridColumn2.FieldName = "Phone";
             gridColumn2.Name = "gridColumn2";
+            gridColumn2.OptionsColumn.AllowEdit = false;
+            gridColumn2.OptionsColumn.AllowFocus = false;
             gridColumn2.Visible = true;
             gridColumn2.VisibleIndex = 1;
             // 
@@ -137,6 +144,8 @@
             gridColumn3.Caption = "Plan Açıklaması";
             gridColumn3.FieldName = "PlanDescription";
             gridColumn3.Name = "gridColumn3";
+            gridColumn3.OptionsColumn.AllowEdit = false;
+            gridColumn3.OptionsColumn.AllowFocus = false;
             gridColumn3.Visible = true;
             gridColumn3.VisibleIndex = 2;
             // 
@@ -145,6 +154,8 @@
             gridColumn4.Caption = "Vade Tarihi";
             gridColumn4.FieldName = "DueDate";
             gridColumn4.Name = "gridColumn4";
+            gridColumn4.OptionsColumn.AllowEdit = false;
+            gridColumn4.OptionsColumn.AllowFocus = false;
             gridColumn4.Visible = true;
             gridColumn4.VisibleIndex = 3;
             // 
@@ -153,6 +164,9 @@
             gridColumn5.Caption = "Toplam Tutar";
             gridColumn5.FieldName = "TotalAmount";
             gridColumn5.Name = "gridColumn5";
+            gridColumn5.OptionsColumn.AllowEdit = false;
+            gridColumn5.OptionsColumn.AllowFocus = false;
+            gridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] { new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "TotalAmount", "{0}") });
             gridColumn5.Visible = true;
             gridColumn5.VisibleIndex = 4;
             // 
@@ -161,6 +175,8 @@
             gridColumn6.Caption = "Ödenen Tutar";
             gridColumn6.FieldName = "PaidAmount";
             gridColumn6.Name = "gridColumn6";
+            gridColumn6.OptionsColumn.AllowEdit = false;
+            gridColumn6.OptionsColumn.AllowFocus = false;
             gridColumn6.Visible = true;
             gridColumn6.VisibleIndex = 5;
             // 
@@ -169,6 +185,8 @@
             gridColumn7.Caption = "Kalan Borç";
             gridColumn7.FieldName = "RemainingDebt";
             gridColumn7.Name = "gridColumn7";
+            gridColumn7.OptionsColumn.AllowEdit = false;
+            gridColumn7.OptionsColumn.AllowFocus = false;
             gridColumn7.Visible = true;
             gridColumn7.VisibleIndex = 6;
             // 
@@ -177,6 +195,8 @@
             gridColumn8.Caption = "Ödendi mi?";
             gridColumn8.FieldName = "IsPaid";
             gridColumn8.Name = "gridColumn8";
+            gridColumn8.OptionsColumn.AllowEdit = false;
+            gridColumn8.OptionsColumn.AllowFocus = false;
             gridColumn8.Visible = true;
             gridColumn8.VisibleIndex = 7;
             // 

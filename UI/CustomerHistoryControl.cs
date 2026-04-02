@@ -48,6 +48,12 @@ namespace DXBeauty.UI
             slueCustomer.Properties.DataSource = _customerRepo.GetAll();
             slueCustomer.Properties.DisplayMember = "FullName";
             slueCustomer.Properties.ValueMember = "CustomerId";
+            slueCustomer.Properties.PopulateViewColumns();
+
+            // İçteki GridView'a erişip sütunu gizliyoruz
+            slueCustomer.Properties.View.Columns["CustomerId"].Visible = false;
+            slueCustomer.Properties.View.Columns["FirstName"].Visible = false;
+            slueCustomer.Properties.View.Columns["LastName"].Visible = false;
         }
 
         private async void slueCustomer_EditValueChanged(object sender, EventArgs e)
@@ -73,9 +79,3 @@ namespace DXBeauty.UI
         }
     }
 }
-/*
- 
-
- 
- 
- */

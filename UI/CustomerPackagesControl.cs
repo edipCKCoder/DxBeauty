@@ -1,4 +1,5 @@
-﻿using DevExpress.Utils;
+﻿using DevExpress.DataAccess.UI.Native.Sql.DataConnectionControls;
+using DevExpress.Utils;
 using DevExpress.Utils.DragDrop;
 using DevExpress.Utils.Extensions;
 using DevExpress.XtraCharts;
@@ -7,6 +8,7 @@ using DevExpress.XtraGrid.Views.Tile;
 using DevExpress.XtraGrid.Views.Tile.ViewInfo;
 using DXBeauty.Data;
 using DXBeauty.Entities;
+using DXBeauty.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,8 +19,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DXBeauty.Enums;
-
 using static DXBeauty.Entities.CustomerService;
 namespace DXBeauty.UI
 {
@@ -40,16 +40,16 @@ namespace DXBeauty.UI
             Instance = this;
 
             LoadData();
-            
+
             // 2. Kaynak View'unuza (paketlerin olduğu TileView) sürükleme özelliği ekliyoruz
             _dragDropManager.Attach<DevExpress.Utils.DragDrop.DragDropBehavior>(tileView1, sourceBehavior =>
             {
-              
+
                 sourceBehavior.Properties.AllowDrop = true;
                 sourceBehavior.Properties.InsertIndicatorVisible = true;
                 sourceBehavior.Properties.PreviewVisible = true;
 
-                sourceBehavior.DragOver +=sourceBehavior_DragOver;
+                sourceBehavior.DragOver += sourceBehavior_DragOver;
 
             });
 
@@ -59,7 +59,7 @@ namespace DXBeauty.UI
 
             _dragDropManager.Attach<DevExpress.Utils.DragDrop.DragDropBehavior>(targetView, targetBehavior =>
             {
-                
+
                 targetBehavior.Properties.AllowDrag = true;
                 targetBehavior.Properties.AllowDrop = true;
                 targetBehavior.Properties.InsertIndicatorVisible = true;
@@ -78,7 +78,7 @@ namespace DXBeauty.UI
                 e.Handled = true;
                 return;
             }
-            
+
             int[] draggedPackage = e.Data as int[];
 
             var droppedPackage = tileView1.GetRow(draggedPackage[0]) as ServicePackage;
@@ -96,21 +96,24 @@ namespace DXBeauty.UI
                 int customerId = (int)sluCustomerEdit.EditValue;
 
                 // 1. AYNI PAKET KONTROLÜ
-                var currentlyCustomerServices = _customerServiceRepository.GetByCustomer(customerId);
-                foreach (var item in currentlyCustomerServices)
+                // ESKİ KODU SİLİN: (var currentlyCustomerServices = ... foreach(...) kısmı)
+                // YERİNE BUNU YAZIN:
+
+                if (!CanCustomerBuyPackage(customerId, droppedPackage.ServicePackageId))
                 {
-                    // Eğer müşteri bu paketi önceden aldıysa ve statüsü Active ise uyar
-                    if (item.ServicePackageId == droppedPackage.ServicePackageId)
-                    {
-                        XtraMessageBox.Show("Bu müşterinin zaten devam eden aynı paketi var!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
+                    DevExpress.XtraEditors.XtraMessageBox.Show(
+                        "Bu müşterinin zaten devam eden (seansı veya borcu bitmemiş) aynı paketi var!\n\n" +
+                        "Önceki paketin seansları bitmeden ve hesabı kapanmadan yenisi tanımlanamaz.",
+                        "İşlem Reddedildi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    e.Handled = true;
+                    return;
                 }
 
                 // 5. TAKSİTLERİ (BORÇ PLANI) OLUŞTUR VE KAYDET
                 XtraForm popup = new XtraForm();
                 PaymentPlanWizardControl paymentPlanWizardControl = new PaymentPlanWizardControl(customerId, droppedPackage);
-                
+
                 popup.ClientSize = paymentPlanWizardControl.Size;
                 paymentPlanWizardControl.Dock = DockStyle.Fill;
                 popup.AddControl(paymentPlanWizardControl);
@@ -119,7 +122,7 @@ namespace DXBeauty.UI
 
                 // 6. EKRANI YENİLE VE BAŞARI MESAJI VER
                 LoadCustomerServices(customerId);
-                //XtraMessageBox.Show($"Paket müşteriye başarıyla tanımlandı!\nToplam: {newCustomerService.TotalPrice} TL\nTaksit Sayısı: {installmentCount}", "Satış Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
 
             e.Handled = true; // CRITICAL
@@ -130,7 +133,7 @@ namespace DXBeauty.UI
         {
             TileView masterView = e.Source as TileView;
 
-            var servicePackage =  masterView.FocusedRowObject as ServicePackage;
+            var servicePackage = masterView.FocusedRowObject as ServicePackage;
 
             if (servicePackage != null && servicePackage.IsActive)
             {
@@ -151,8 +154,9 @@ namespace DXBeauty.UI
             _customerServiceRepository = new CustomerServiceRepository(_connectionString);
 
 
-            
-            packageGridControl.DataSource = _servicePackageRepository.GetAll();
+
+            var activePackages = _servicePackageRepository.GetAll().Where(u => u.IsActive == true).ToList();
+            packageGridControl.DataSource = activePackages;
 
 
             var costumerList = _customerRepository.GetAll();
@@ -236,7 +240,7 @@ namespace DXBeauty.UI
                 if (sluCustomerEdit.EditValue == null)
                 {
                     DevExpress.XtraEditors.XtraMessageBox.Show("Lütfen önce bir müşteri seçin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                   
+
                     return;
                 }
 
@@ -245,23 +249,22 @@ namespace DXBeauty.UI
                     // Eger aktif paketse ekledra)
                     if (servicePackage.IsActive == false)
                     {
-                        DevExpress.XtraEditors.XtraMessageBox.Show("Paket kullanım dışı lütfen aktif bir paket seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);  
+                        DevExpress.XtraEditors.XtraMessageBox.Show("Paket kullanım dışı lütfen aktif bir paket seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                 }
 
                 int customerId = (int)sluCustomerEdit.EditValue;
 
-                // 1. AYNI PAKET KONTROLÜ
-                var currentlyCustomerServices = _customerServiceRepository.GetByCustomer(customerId);
-                foreach (var item in currentlyCustomerServices)
+                // 4. AYNI PAKET KONTROLÜ
+
+                if (!CanCustomerBuyPackage(customerId, servicePackage.ServicePackageId))
                 {
-                    // Eğer müşteri bu paketi önceden aldıysa ve statüsü Active ise uyar
-                    if (item.ServicePackageId == servicePackage.ServicePackageId)
-                    {
-                        XtraMessageBox.Show("Bu müşterinin zaten devam eden aynı paketi var!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
+                    DevExpress.XtraEditors.XtraMessageBox.Show(
+                        "Bu müşterinin zaten devam eden (seansı veya borcu bitmemiş) aynı paketi var!\n\n" +
+                        "Önceki paketin seansları bitmeden ve hesabı kapanmadan yenisi tanımlanamaz.",
+                        "İşlem Reddedildi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
                 // 5. TAKSİTLERİ (BORÇ PLANI) OLUŞTUR VE KAYDET
                 XtraForm popup = new XtraForm();
@@ -278,11 +281,7 @@ namespace DXBeauty.UI
                 //XtraMessageBox.Show($"Paket müşteriye başarıyla tanımlandı!\nToplam: {newCustomerService.TotalPrice} TL\nTaksit Sayısı: {installmentCount}", "Satış Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
-
-
         }
-
-
 
         // --
         private void tileView2_ItemCustomize(object sender, TileViewItemCustomizeEventArgs e)
@@ -328,6 +327,141 @@ namespace DXBeauty.UI
             else
             {
                 e.Allow = false;
+            }
+        }
+
+        public void RefreshScreenState()
+        {
+            // =========================================================
+            // 1. TILEVIEW 1 YENİLEMESİ (SOL TARAF - AKTİF PAKETLER)
+            // =========================================================
+            var activePackages = _servicePackageRepository.GetAll().Where(u => u.IsActive == true).ToList();
+            packageGridControl.DataSource = activePackages;
+            tileView1.RefreshData();
+
+            // =========================================================
+            // 2. MÜŞTERİ LİSTESİ YENİLEMESİ (COMBOBOX)
+            // Eğer başka sekmede yeni müşteri eklendiyse buraya da düşsün
+            // =========================================================
+
+            // Önce o an ekranda seçili olan müşterinin ID'sini hafızaya alalım (Kullanıcının seçimi kaybolmasın)
+            object currentSelectedCustomerId = sluCustomerEdit.EditValue;
+
+            // Veritabanından güncel müşteri listesini çek ve kutuyu güncelle
+            var updatedCustomerList = _customerRepository.GetAll();
+            sluCustomerEdit.Properties.DataSource = updatedCustomerList;
+
+            // Hafızaya aldığımız seçimi geri yükle
+            if (currentSelectedCustomerId != null && currentSelectedCustomerId != DBNull.Value)
+            {
+                sluCustomerEdit.EditValue = currentSelectedCustomerId;
+            }
+
+            // =========================================================
+            // 3. TILEVIEW 2 YENİLEMESİ (SAĞ TARAF - MÜŞTERİNİN PAKETLERİ)
+            // =========================================================
+
+            // UI'daki kutuda (sluCustomerEdit) gerçekten bir müşteri seçiliyse
+            if (sluCustomerEdit.EditValue != null && sluCustomerEdit.EditValue != DBNull.Value)
+            {
+                // ID'yi direkt arayüzden okuyoruz! (Sınıf değişkenine gerek kalmadı)
+                int customerId = (int)sluCustomerEdit.EditValue;
+
+                // O müşterinin güncel paket/tahsilat durumunu veritabanından çek
+                var customerServices = _customerServiceRepository.GetByCustomer(customerId);
+
+                // TileView2'nin bağlı olduğu Grid'e yeni veriyi bas
+                customerPackageGridControl.DataSource = customerServices;
+
+                // (Sizin kodunuzda tileView2 kullanılıyor varsayıyorum)
+                // tileView2.RefreshData(); 
+            }
+        }
+
+        // Müşterinin bu paketi almaya uygun olup olmadığını kontrol eden metot
+        private bool CanCustomerBuyPackage(int customerId, int packageId)
+        {
+            var existingServices = _customerServiceRepository.GetByCustomer(customerId);
+
+            foreach (var service in existingServices)
+            {
+                if (service.ServicePackageId == packageId)
+                {
+                    // EĞER AYNI PAKET BULUNURSA:
+                    // Seansı bitmemişse (0'dan büyükse) VEYA Kalan Borcu varsa (0'dan büyükse) ALAMAZ!
+                    if (service.RemainingSessions > 0 || service.RemainingDebt > 0)
+                    {
+                        return false; // Alımı Engelle
+                    }
+                }
+            }
+
+            return true; // Hiç aktif/bitmemiş paket yok, Alıma İzin Ver
+        }
+
+        private void tileView2_ContextButtonClick(object sender, ContextItemClickEventArgs e)
+        {
+            // Tıklanan kartın (tile) RowHandle değerini al
+
+            TileViewItem controlItem = e.DataItem as TileViewItem;
+            if (e.Item.Name == "contextButton1")
+            {
+                CustomerService customerPackage = (CustomerService)tileView2.GetRow(controlItem.RowHandle);
+                customerPackage.IsVisible = !customerPackage.IsVisible;
+                // ❗ KRİTİK EKLENTİ: Değişikliği veritabanına kaydet
+                // Kendi repository veya ORM mimarine göre aşağıdaki satırı uyarla
+                _customerServiceRepository.Update(customerPackage);
+            }
+            tileView2.RefreshData();
+        }
+
+        private void tileView2_CustomRowFilter(object sender, DevExpress.XtraGrid.Views.Base.RowFilterEventArgs e)
+        {
+            // Veri kaynağına erişim
+            var row = tileView2.GetRow(tileView1.GetRowHandle(e.ListSourceRow)) as CustomerService;
+
+            if (row != null && !row.IsVisible && !chkShowHidden.Checked)
+            {
+                e.Visible = false; // ❗ Gizleme işlemi burada gerçekleşir
+                e.Handled = true;
+            }
+        }
+
+        private void chkShowHidden_CheckedChanged(object sender, EventArgs e)
+        {
+            //  Sadece ekranı tazelemeye zorlar. Filtre motoru (CustomRowFilter) yeniden çalışır.
+            tileView2.RefreshData();
+        }
+
+        private void tileView2_ContextButtonCustomize(object sender, TileViewContextButtonCustomizeEventArgs e)
+        {
+            // Sadece hedeflediğimiz butona müdahale ediyoruz
+            if (e.Item.Name == "contextButton1")
+            {
+                // 1. Arka plandaki veriyi (CustomerService) okuyoruz
+                var row = tileView2.GetRow(e.RowHandle) as CustomerService;
+
+                // 2. e.Item nesnesini ContextButton tipine dönüştürüyoruz (Cast)
+                var btn = e.Item as DevExpress.Utils.ContextButton;
+
+                if (row != null && btn != null)
+                {
+                    // 🧠 KRİTİK MANTIK: Duruma göre ikonu dinamik olarak ata
+                    if (row.IsVisible)
+                    {
+                        // IsVisible true ise açık göz ikonunu bas
+                        btn.ImageOptions.SvgImage = svgImageCollection1[2];
+
+                        // İsteğe bağlı: Butonun ipucu (tooltip) metnini de değiştirebilirsiniz
+                        btn.ToolTip = "Gizle";
+                    }
+                    else
+                    {
+                        // IsVisible false ise kapalı göz ikonunu bas
+                        btn.ImageOptions.SvgImage = svgImageCollection1[3];
+                        btn.ToolTip = "Göster";
+                    }
+                }
             }
         }
     }

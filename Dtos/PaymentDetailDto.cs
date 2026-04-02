@@ -21,7 +21,6 @@ namespace DXBeauty.Dtos
         public string PaymentPlanInfo { get; set; }  // payment_plans.plan_type ve sequence_number birleşimi (Örn: "2. Taksit", "Peşinat", "Açık Hesap Tahsilatı")
         [DisplayName("İlişkili Paket")]
         public string RelatedPackage { get; set; }   // Eğer pakete aitse paket adı
-        [DisplayName("İlişkili Randevu")]
-        public string RelatedAppointment { get; set; } // Eğer tek seans randevusuna aitse randevu tarihi/hizmeti
+        
     }
 }

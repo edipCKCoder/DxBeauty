@@ -25,8 +25,8 @@ namespace DXBeauty.Data
 
         public void Insert(Service service)
         {
-            var sql = @"INSERT INTO services (service_name, description, is_active, default_price )
-                        VALUES (@ServiceName, @Description, @IsActive , @DefaultPrice)";
+            var sql = @"INSERT INTO services (service_name, description, is_active )
+                        VALUES (@ServiceName, @Description, @IsActive )";
             Execute(sql, service);
         }
 
@@ -35,8 +35,7 @@ namespace DXBeauty.Data
             var sql = @"UPDATE services 
                         SET service_name = @ServiceName, 
                             description = @Description, 
-                            is_active = @IsActive,
-                            default_price = @DefaultPrice
+                            is_active = @IsActive
                         WHERE service_id = @ServiceId";
             Execute(sql, service);
         }

@@ -211,7 +211,6 @@
             gridViewMusteriler.GridControl = customerGridControl;
             gridViewMusteriler.Name = "gridViewMusteriler";
             gridViewMusteriler.OptionsView.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
-            gridViewMusteriler.PopupMenuShowing += gridViewMusteriler_PopupMenuShowing;
             // 
             // gridColumn1
             // 
@@ -241,6 +240,8 @@
             gridColumn2.Caption = "İsim Soyisim";
             gridColumn2.FieldName = "FullName";
             gridColumn2.Name = "gridColumn2";
+            gridColumn2.OptionsColumn.AllowEdit = false;
+            gridColumn2.OptionsColumn.AllowFocus = false;
             gridColumn2.Visible = true;
             gridColumn2.VisibleIndex = 1;
             gridColumn2.Width = 126;
@@ -250,6 +251,8 @@
             gridColumn3.Caption = "Adres";
             gridColumn3.FieldName = "Address";
             gridColumn3.Name = "gridColumn3";
+            gridColumn3.OptionsColumn.AllowEdit = false;
+            gridColumn3.OptionsColumn.AllowFocus = false;
             gridColumn3.Visible = true;
             gridColumn3.VisibleIndex = 2;
             gridColumn3.Width = 126;
@@ -259,6 +262,8 @@
             gridColumn4.Caption = "Telefon Numarası";
             gridColumn4.FieldName = "PhoneNumber";
             gridColumn4.Name = "gridColumn4";
+            gridColumn4.OptionsColumn.AllowEdit = false;
+            gridColumn4.OptionsColumn.AllowFocus = false;
             gridColumn4.Visible = true;
             gridColumn4.VisibleIndex = 3;
             gridColumn4.Width = 126;
@@ -268,6 +273,8 @@
             gridColumn5.Caption = "Doğum Tarihi";
             gridColumn5.FieldName = "Birthday";
             gridColumn5.Name = "gridColumn5";
+            gridColumn5.OptionsColumn.AllowEdit = false;
+            gridColumn5.OptionsColumn.AllowFocus = false;
             gridColumn5.Visible = true;
             gridColumn5.VisibleIndex = 4;
             gridColumn5.Width = 126;
@@ -277,6 +284,8 @@
             gridColumn6.Caption = "E-Posta";
             gridColumn6.FieldName = "Email";
             gridColumn6.Name = "gridColumn6";
+            gridColumn6.OptionsColumn.AllowEdit = false;
+            gridColumn6.OptionsColumn.AllowFocus = false;
             gridColumn6.Visible = true;
             gridColumn6.VisibleIndex = 5;
             gridColumn6.Width = 126;
@@ -286,6 +295,8 @@
             gridColumn7.Caption = "Oluşturulma Tarihi";
             gridColumn7.FieldName = "CreatedDate";
             gridColumn7.Name = "gridColumn7";
+            gridColumn7.OptionsColumn.AllowEdit = false;
+            gridColumn7.OptionsColumn.AllowFocus = false;
             gridColumn7.Visible = true;
             gridColumn7.VisibleIndex = 6;
             gridColumn7.Width = 141;

@@ -81,7 +81,7 @@ namespace DXBeauty.Entities
         public DateTime CreatedDate
         {
             get => _createdDate;
-            set => _createdDate = DateTime.Now; // Oluşturulma tarihi otomatik atanır
+            set => _createdDate = value; // Oluşturulma tarihi otomatik atanır
         }
     }
 

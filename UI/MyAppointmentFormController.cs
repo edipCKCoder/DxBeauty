@@ -19,12 +19,6 @@ namespace DXBeauty.UI
             set { EditedAppointmentCopy.CustomFields["CS_ID"] = value; }
         }
 
-        public int? ServiceId
-        {
-            get { return (int?)EditedAppointmentCopy.CustomFields["ServiceId"]; }
-            set { EditedAppointmentCopy.CustomFields["ServiceId"] = value; }
-        }
-        
         public int? CustomerId
         {
             get { return (int?)EditedAppointmentCopy.CustomFields["CustomerId"]; }

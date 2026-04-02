@@ -54,41 +54,21 @@ namespace DXBeauty.UI
 
                 anaMenu.ShowPopup(gridFinancialReport, gridFinancialReport.PointToClient(Control.MousePosition));
             }
+            else { 
+                DevExpress.XtraEditors.XtraMessageBox.Show("Borcu Yok!", "Uyarı", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning); 
+            }
         }
 
         private async void FinancialReportControl_Load(object sender, EventArgs e)
         {
             var reportList = (await _paymentPlanRepository.GetFinancialReportAsync()).ToList();
             gridFinancialReport.DataSource = reportList;
+           
+            gridViewFinancialReport.Columns["FullName"].Group();
         }
 
 
-        private void gridViewFinancialReport_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
-        {
-            // Sadece bir veri satırına (Row) sağ tıklandıysa menüyü göster
-            if (e.HitInfo.InRow)
-            {
-                // Sağ tıklanan satırın DTO'sunu yakalıyoruz
-                var seciliSatir = gridViewFinancialReport.GetRow(e.HitInfo.RowHandle) as FinancialReportDto;
-
-                if (seciliSatir == null) return;
-
-                // EĞER BU SATIRIN BORCU VARSA WHATSAPP BUTONUNU EKLE!
-                if (seciliSatir.RemainingDebt > 0 && !seciliSatir.IsPaid)
-                {
-                    DevExpress.Utils.Menu.DXMenuItem btnWhatsapp = new DevExpress.Utils.Menu.DXMenuItem("📱 WhatsApp Borç Hatırlatması Gönder");
-                    btnWhatsapp.BeginGroup = true;
-
-                    // Butona Tıklandığında Çalışacak Kod
-                    btnWhatsapp.Click += async (s, args) =>
-                    {
-                        await SendDebtReminderAsync(seciliSatir);
-                    };
-
-                    e.Menu.Items.Add(btnWhatsapp);
-                }
-            }
-        }
+        
 
         private async Task SendDebtReminderAsync(FinancialReportDto veri)
         {

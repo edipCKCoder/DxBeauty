@@ -55,6 +55,9 @@
             gridControlServices = new DevExpress.XtraGrid.GridControl();
             gridViewServices = new DevExpress.XtraGrid.Views.Grid.GridView();
             gridColumnServiceName = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             CreateService = new DevExpress.XtraEditors.SimpleButton();
             addPackageButton = new DevExpress.XtraEditors.SimpleButton();
             Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -74,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)separatorControl1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridControlServices).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridViewServices).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemCheckEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
@@ -156,6 +160,7 @@
             checkContextButton1.Id = new System.Guid("06c7b850-f15b-4cc0-af85-1adb5d7d7d2f");
             checkContextButton1.ImageOptionsCollection.ItemChecked.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage1");
             checkContextButton1.ImageOptionsCollection.ItemNormal.SvgImage = Properties.Resources.closeheaderandfooter;
+            checkContextButton1.ImageOptionsCollection.ItemNormal.SvgImageSize = new System.Drawing.Size(24, 24);
             checkContextButton1.Name = "chkActiveStatus";
             checkContextButton1.Visibility = DevExpress.Utils.ContextItemVisibility.Visible;
             tileViewPackages.ContextButtons.Add(contextButton1);
@@ -228,27 +233,60 @@
             gridControlServices.Location = new System.Drawing.Point(24, 139);
             gridControlServices.MainView = gridViewServices;
             gridControlServices.Name = "gridControlServices";
+            gridControlServices.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemCheckEdit1 });
             gridControlServices.Size = new System.Drawing.Size(327, 359);
             gridControlServices.TabIndex = 4;
             gridControlServices.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewServices });
             // 
             // gridViewServices
             // 
-            gridViewServices.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { gridColumnServiceName });
+            gridViewServices.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { gridColumnServiceName, gridColumn1, gridColumn2 });
             gridViewServices.GridControl = gridControlServices;
             gridViewServices.Name = "gridViewServices";
-            gridViewServices.OptionsBehavior.Editable = false;
             gridViewServices.FocusedRowChanged += gridViewServices_FocusedRowChanged;
+            gridViewServices.CellValueChanged += gridViewServices_CellValueChanged;
             // 
             // gridColumnServiceName
             // 
             gridColumnServiceName.AppearanceHeader.Options.UseTextOptions = true;
             gridColumnServiceName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            gridColumnServiceName.Caption = "Hizmet Menüsü";
+            gridColumnServiceName.Caption = "Hizmet Adı";
             gridColumnServiceName.FieldName = "ServiceName";
             gridColumnServiceName.Name = "gridColumnServiceName";
+            gridColumnServiceName.OptionsColumn.AllowEdit = false;
+            gridColumnServiceName.OptionsColumn.AllowFocus = false;
+            gridColumnServiceName.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             gridColumnServiceName.Visible = true;
             gridColumnServiceName.VisibleIndex = 0;
+            // 
+            // gridColumn1
+            // 
+            gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
+            gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            gridColumn1.Caption = "Açıklama";
+            gridColumn1.FieldName = "Description";
+            gridColumn1.Name = "gridColumn1";
+            gridColumn1.OptionsColumn.AllowEdit = false;
+            gridColumn1.OptionsColumn.AllowFocus = false;
+            gridColumn1.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            gridColumn1.Visible = true;
+            gridColumn1.VisibleIndex = 1;
+            // 
+            // gridColumn2
+            // 
+            gridColumn2.ColumnEdit = repositoryItemCheckEdit1;
+            gridColumn2.FieldName = "IsActive";
+            gridColumn2.Name = "gridColumn2";
+            gridColumn2.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True;
+            gridColumn2.OptionsColumn.ShowCaption = false;
+            gridColumn2.Visible = true;
+            gridColumn2.VisibleIndex = 2;
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            repositoryItemCheckEdit1.AutoHeight = false;
+            repositoryItemCheckEdit1.Caption = "";
+            repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
             // 
             // CreateService
             // 
@@ -397,6 +435,7 @@
             ((System.ComponentModel.ISupportInitialize)separatorControl1).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridControlServices).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridViewServices).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemCheckEdit1).EndInit();
             ((System.ComponentModel.ISupportInitialize)Root).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
@@ -436,5 +475,8 @@
         private DevExpress.XtraGrid.Columns.TileViewColumn isActiveColumn;
         private DevExpress.XtraEditors.SimpleButton addPackageButton;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
     }
 }

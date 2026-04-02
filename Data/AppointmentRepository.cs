@@ -62,12 +62,12 @@ namespace DXBeauty.Data
                     INSERT INTO appointments (
                         customer_id, customer_service_id, appointment_start_date, created_at, 
                         appointment_end_date, type, subject, location, description, status, 
-                        reminder_info, recurrence_info, label, resource_id, all_day, service_id
+                        reminder_info, recurrence_info, label, resource_id, all_day
                     ) 
                     VALUES (
                         @CustomerId, @CustomerServiceId, @AppointmentStartDate, @CreatedAt, 
                         @AppointmentEndDate, @Type, @Subject, @Location, @Description, @Status, 
-                        @ReminderInfo, @RecurrenceInfo, @Label, @ResourceId, @AllDay, @ServiceId
+                        @ReminderInfo, @RecurrenceInfo, @Label, @ResourceId, @AllDay
                     ) 
                     RETURNING appointment_id;";
 
@@ -118,8 +118,8 @@ namespace DXBeauty.Data
                     recurrence_info = @RecurrenceInfo, 
                     label = @Label, 
                     resource_id = @ResourceId, 
-                    all_day = @AllDay,
-                    service_id = @ServiceId
+                    all_day = @AllDay
+                    
                 WHERE appointment_id = @AppointmentId;";
 
                 var affectedRows = await db.ExecuteAsync(sql, appointment);

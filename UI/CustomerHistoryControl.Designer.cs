@@ -90,8 +90,10 @@
             // 
             // gridView1
             // 
+            gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             gridView1.GridControl = gridControlHistory;
             gridView1.Name = "gridView1";
+            gridView1.OptionsBehavior.Editable = false;
             // 
             // Root
             // 

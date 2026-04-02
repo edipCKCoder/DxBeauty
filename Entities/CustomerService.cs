@@ -20,7 +20,7 @@ namespace DXBeauty.Entities
         private CastumerPackageStatusType _status; // Active, Inactive
         private string _packageName;
         private decimal _totalPrice;
-       
+        private bool _isVisible = true;
         public int CustomerServiceId
         {
             get => _customerServiceId;
@@ -79,6 +79,12 @@ namespace DXBeauty.Entities
         {
             get => _totalPrice;
             set => _totalPrice = value;
+        }
+
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set => _isVisible = value;
         }
       
     }

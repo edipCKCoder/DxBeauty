@@ -50,14 +50,14 @@ namespace DXBeauty.Data
         SELECT 
             a.appointment_id AS AppointmentId,
             c.first_name || ' ' || c.last_name AS CustomerName,
-            COALESCE(s.service_name, sp.name, 'Genel İşlem') AS ServiceName,
+            COALESCE(sp.name, 'Genel İşlem') AS ServiceName,
             a.appointment_start_date AS StartTime,
             a.appointment_end_date AS EndTime, 
             c.phone_number AS PhoneNumber,
             a.status AS Status
         FROM appointments a
         INNER JOIN customers c ON a.customer_id = c.customer_id
-        LEFT JOIN services s ON a.service_id = s.service_id
+       
         LEFT JOIN customer_services cs ON a.customer_service_id = cs.customer_service_id
         LEFT JOIN service_packages sp ON cs.service_package_id = sp.service_package_id
         

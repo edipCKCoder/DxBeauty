@@ -266,6 +266,13 @@ namespace DXBeauty.UI
                 return;
             }
 
+            if (selectedService.IsActive == false)
+            {
+                XtraMessageBox.Show("Lütfen aktif bir hizmet seçiniz. Aktif hizmetlerde paket ekleyebilirsiniz.",
+                    "Hizmet Seçilmedi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             AddPackageControl addPackageControl = new AddPackageControl(selectedService);
             addPackageControl.Dock = DockStyle.Fill;
 
@@ -307,6 +314,27 @@ namespace DXBeauty.UI
                         chkItem.ToolTip = package.IsActive ? "Katalogda GÖRÜNÜYOR (Aktif)" : "Katalogdan GİZLENDİ (Pasif)";
                     }
                 }
+            }
+        }
+
+        private void gridViewServices_CellValueChanged(object sender, CellValueChangedEventArgs e)
+        {
+            Service selectedService = gridViewServices.GetFocusedRow() as Service;
+            if (selectedService != null) 
+            {
+                selectedService.IsActive = (bool)gridViewServices.GetRowCellValue(e.RowHandle, "IsActive");
+                try
+                {
+                    serviceRepo.Update(selectedService);
+                }
+                catch (Exception)
+                {
+
+                    XtraMessageBox.Show("Hizmet Güncellenirken Hata oluştu.",
+                    "Hizmet Güncellenemedi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
             }
         }
     }

@@ -105,28 +105,13 @@ namespace DXBeauty.Data
         {
             var sql = @"UPDATE customer_services SET
                         remaining_sessions = @RemainingSessions,
-                        status = @Status
+                        status = @Status,
+                        is_visible = @IsVisible
                         WHERE customer_service_id = @CustomerServiceId";
 
             Execute(sql, cs);
         }
 
-        public void Complete(int id)
-        {
-            var sql = @"UPDATE customer_services
-                        SET status = 'completed'
-                        WHERE customer_service_id = @CustomerServiceId";
-
-            Execute(sql, new { CustomerServiceId = id });
-        }
-
-        public void Cancel(int id)
-        {
-            var sql = @"UPDATE customer_services
-                        SET status = 'cancelled'
-                        WHERE customer_service_id = @CustomerServiceId";
-
-            Execute(sql, new { CustomerServiceId = id });
-        }
+        
     }
 }

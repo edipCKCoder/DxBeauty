@@ -25,7 +25,7 @@ namespace DXBeauty.Entities
         private int? _label;
         private int? _resourceId;
         private bool? _allDay;
-        private int? _serviceId;
+       
         // --- DAPPER İÇİN PARAMETRESİZ CONSTRUCTOR ---
         // Dapper'ın veritabanından okurken nesneyi oluşturabilmesi için gereklidir.
         public Appointment() 
@@ -34,7 +34,7 @@ namespace DXBeauty.Entities
         }
 
         
-        public Appointment(int appointmentId, int? customerId, int? customerServiceId, DateTime appointmentStartDate, DateTime? createdAt, DateTime? appointmentEndDate, int type, string subject, string location, string description, int? status, string reminderInfo, string recurrenceInfo, int? label, int? resourceId, bool? allDay, int? serviceId)
+        public Appointment(int appointmentId, int? customerId, int? customerServiceId, DateTime appointmentStartDate, DateTime? createdAt, DateTime? appointmentEndDate, int type, string subject, string location, string description, int? status, string reminderInfo, string recurrenceInfo, int? label, int? resourceId, bool? allDay)
         {
             AppointmentId = appointmentId;
             CustomerId = customerId;
@@ -52,7 +52,7 @@ namespace DXBeauty.Entities
             Label = label;
             ResourceId = resourceId;
             AllDay = allDay;
-            ServiceId = serviceId;
+           
         }
 
 
@@ -169,17 +169,6 @@ namespace DXBeauty.Entities
         {
             get => _allDay;
             private set => _allDay = value;
-        }
-
-        public int? ServiceId
-        {
-            get => _serviceId;
-            private set
-            {
-                if (value <= 0)
-                    throw new ArgumentException("Hizmet ID'si sıfır veya negatif olamaz.");
-                _serviceId = value;
-            }
         }
 
     }

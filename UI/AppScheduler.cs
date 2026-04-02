@@ -76,8 +76,8 @@ namespace DXBeauty.UI
             // --- özel atıf eşleşmesi ---
             storage.Appointments.CustomFieldMappings.Clear(); // Mükerrer eklemeyi önle
 
-            // YENİ EKLENEN SATIR: service_id için DevExpress hafızasında yer açıyoruz
-            storage.Appointments.CustomFieldMappings.Add(new AppointmentCustomFieldMapping("ServiceId", "ServiceId"));
+          
+           
             storage.Appointments.CustomFieldMappings.Add(new AppointmentCustomFieldMapping("CS_ID", "CustomerServiceId"));
             storage.Appointments.CustomFieldMappings.Add(new AppointmentCustomFieldMapping("CustomerId", "CustomerId"));
 
@@ -469,10 +469,9 @@ namespace DXBeauty.UI
                     apt.ResourceId != null && apt.ResourceId != ResourceEmpty.Id ? Convert.ToInt32(apt.ResourceId) : (int?)null,
 
                     // 15. allDay (Tüm gün mü?)
-                    apt.AllDay = false,
+                    apt.AllDay = false
 
-                    // 16. serviceId (Artık formdan taşıdığımız Custom Field üzerinden okuyoruz!)
-                    apt.CustomFields["ServiceId"] != null ? Convert.ToInt32(apt.CustomFields["ServiceId"]) : (int?)null
+                    
                 );
 
                 // 2. Repository üzerinden veritabanına kaydet
@@ -534,8 +533,8 @@ namespace DXBeauty.UI
                     sourceObj.RecurrenceInfo,
                     apt.LabelKey != null ? Convert.ToInt32(apt.LabelKey) : (int?)null,
                     apt.ResourceId != null && apt.ResourceId != ResourceEmpty.Id ? Convert.ToInt32(apt.ResourceId) : (int?)null,
-                    apt.AllDay = false,
-                    apt.CustomFields["ServiceId"] != null ? Convert.ToInt32(apt.CustomFields["ServiceId"]) : (int?)null
+                    apt.AllDay = false
+                    
                 );
 
                 // 3. Repository üzerinden veritabanında UPDATE işlemini yap
@@ -601,6 +600,26 @@ namespace DXBeauty.UI
                     return "Yeni Randevu Oluştur";
                 }
 
+                if(id == SchedulerStringId.MenuCmd_NewAllDayEvent)
+                {
+                    return "Yeni Tüm gün etkinliği Oluştur";
+                }
+
+                if (id == SchedulerStringId.MenuCmd_NewRecurringAppointment)
+                {
+                    return "Yeni Tekrarlı Randevu Oluştur";
+                }
+
+                if (id == SchedulerStringId.MenuCmd_NewRecurringEvent)
+                {
+                    return "Yeni Tekrarlı Etkinlik Oluştur";
+                }
+
+                if (id == SchedulerStringId.MenuCmd_GotoDate)
+                {
+                    return "Tarihe Git";
+                }
+ 
                 return base.GetLocalizedString(id);
             }
         }

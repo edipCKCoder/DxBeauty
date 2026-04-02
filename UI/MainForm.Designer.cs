@@ -82,17 +82,11 @@
             ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            popupControlContainer2 = new DevExpress.XtraBars.PopupControlContainer(components);
-            buttonEdit = new DevExpress.XtraEditors.ButtonEdit();
-            popupControlContainer1 = new DevExpress.XtraBars.PopupControlContainer(components);
-            someLabelControl2 = new DevExpress.XtraEditors.LabelControl();
-            someLabelControl1 = new DevExpress.XtraEditors.LabelControl();
             navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             barButtonItem12 = new DevExpress.XtraBars.BarButtonItem();
@@ -100,12 +94,9 @@
             barButtonItem14 = new DevExpress.XtraBars.BarButtonItem();
             documentManager1 = new DevExpress.XtraBars.Docking2010.DocumentManager(components);
             tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(components);
+            ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            btnYedekAl = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)ribbonControl1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)popupControlContainer2).BeginInit();
-            popupControlContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)buttonEdit.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)popupControlContainer1).BeginInit();
-            popupControlContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)documentManager1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tabbedView1).BeginInit();
             SuspendLayout();
@@ -199,12 +190,12 @@
             ribbonControl1.CaptionBarItemLinks.Add(skinDropDownButtonItem1);
             ribbonControl1.CaptionBarItemLinks.Add(skinPaletteRibbonGalleryBarItem1);
             ribbonControl1.ExpandCollapseItem.Id = 0;
-            ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinDropDownButtonItem1, skinPaletteRibbonGalleryBarItem1, ribbonControl1.ExpandCollapseItem, skinRibbonGalleryBarItem1, barButtonItem1, barButtonItem2, barButtonItem4, barButtonItem5, CustomerHistorybarButtonItem, customerPackagesbarButtonItem, schedulerBarButtonItem, dashboardBarButtonItem6, servicesPackagesBarButtonItem, reminderMessagebarButtonItem, barButtonItem6, btnRibbonDashboard, barButtonItem11, btnRibbonPayment, btnRibbonScheduler, btnRibbonCustomerRegister, btnRibbonCustomerList, btnRibbonCustomerHistory, barButtonItem21, btnRibbonCustomerPackages, btnRibbonDefinePackage, barButtonItem24, btnRibbonfinancialReport, btnRibbonServicePackages, btnRibbonCreateService, btnRibbonMessageTemplate, skinDropDownButtonItem2, skinPaletteRibbonGalleryBarItem2 });
+            ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinDropDownButtonItem1, skinPaletteRibbonGalleryBarItem1, ribbonControl1.ExpandCollapseItem, skinRibbonGalleryBarItem1, barButtonItem1, barButtonItem2, barButtonItem4, barButtonItem5, CustomerHistorybarButtonItem, customerPackagesbarButtonItem, schedulerBarButtonItem, dashboardBarButtonItem6, servicesPackagesBarButtonItem, reminderMessagebarButtonItem, barButtonItem6, btnRibbonDashboard, barButtonItem11, btnRibbonPayment, btnRibbonScheduler, btnRibbonCustomerRegister, btnRibbonCustomerList, btnRibbonCustomerHistory, barButtonItem21, btnRibbonCustomerPackages, btnRibbonDefinePackage, barButtonItem24, btnRibbonfinancialReport, btnRibbonServicePackages, btnRibbonCreateService, btnRibbonMessageTemplate, skinDropDownButtonItem2, skinPaletteRibbonGalleryBarItem2, btnYedekAl });
             ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            ribbonControl1.MaxItemId = 55;
+            ribbonControl1.MaxItemId = 56;
             ribbonControl1.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Never;
             ribbonControl1.Name = "ribbonControl1";
-            ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage3, ribbonPage1, ribbonPage2, ribbonPage4 });
+            ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage3, ribbonPage1, ribbonPage4 });
             ribbonControl1.Size = new System.Drawing.Size(1194, 187);
             ribbonControl1.StatusBar = ribbonStatusBar;
             // 
@@ -212,12 +203,14 @@
             // 
             skinDropDownButtonItem1.Id = 1;
             skinDropDownButtonItem1.Name = "skinDropDownButtonItem1";
+            skinDropDownButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // skinPaletteRibbonGalleryBarItem1
             // 
             skinPaletteRibbonGalleryBarItem1.Caption = "skinPaletteRibbonGalleryBarItem1";
             skinPaletteRibbonGalleryBarItem1.Id = 3;
             skinPaletteRibbonGalleryBarItem1.Name = "skinPaletteRibbonGalleryBarItem1";
+            skinPaletteRibbonGalleryBarItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // skinRibbonGalleryBarItem1
             // 
@@ -362,7 +355,7 @@
             // 
             // btnRibbonDefinePackage
             // 
-            btnRibbonDefinePackage.Caption = "Hızlı Paket Tanımla";
+            btnRibbonDefinePackage.Caption = "Yeni Paket Tanımla";
             btnRibbonDefinePackage.Id = 41;
             btnRibbonDefinePackage.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btnRibbonDefinePackage.ImageOptions.SvgImage");
             btnRibbonDefinePackage.LargeWidth = 100;
@@ -388,7 +381,7 @@
             // 
             // btnRibbonServicePackages
             // 
-            btnRibbonServicePackages.Caption = "Hizmetler ve Tarifeler";
+            btnRibbonServicePackages.Caption = "Hizmetler ve Paketler";
             btnRibbonServicePackages.Id = 44;
             btnRibbonServicePackages.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btnRibbonServicePackages.ImageOptions.SvgImage");
             btnRibbonServicePackages.LargeWidth = 100;
@@ -463,26 +456,13 @@
             // ribbonPageGroup4
             // 
             ribbonPageGroup4.ItemLinks.Add(btnRibbonCustomerHistory);
-            ribbonPageGroup4.ItemLinks.Add(btnRibbonDefinePackage);
+            ribbonPageGroup4.ItemLinks.Add(btnRibbonfinancialReport);
             ribbonPageGroup4.Name = "ribbonPageGroup4";
-            ribbonPageGroup4.Text = "Detaylar ve Paketler";
-            // 
-            // ribbonPage2
-            // 
-            ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup6 });
-            ribbonPage2.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("ribbonPage2.ImageOptions.SvgImage");
-            ribbonPage2.Name = "ribbonPage2";
-            ribbonPage2.Text = "KASA VE FİNANS";
-            // 
-            // ribbonPageGroup6
-            // 
-            ribbonPageGroup6.ItemLinks.Add(btnRibbonfinancialReport);
-            ribbonPageGroup6.Name = "ribbonPageGroup6";
-            ribbonPageGroup6.Text = "Müşteri Ödeme Analizi";
+            ribbonPageGroup4.Text = "Müşteri Raporları";
             // 
             // ribbonPage4
             // 
-            ribbonPage4.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup8, ribbonPageGroup9, ribbonPageGroup10 });
+            ribbonPage4.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup8, ribbonPageGroup5, ribbonPageGroup9, ribbonPageGroup11, ribbonPageGroup10 });
             ribbonPage4.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("ribbonPage4.ImageOptions.SvgImage");
             ribbonPage4.Name = "ribbonPage4";
             ribbonPage4.Text = "SİSTEM VE TANIMLAMALAR";
@@ -490,15 +470,21 @@
             // ribbonPageGroup8
             // 
             ribbonPageGroup8.ItemLinks.Add(btnRibbonServicePackages);
-            ribbonPageGroup8.ItemLinks.Add(btnRibbonCreateService);
             ribbonPageGroup8.Name = "ribbonPageGroup8";
             ribbonPageGroup8.Text = "İşletme Ayarları";
+            // 
+            // ribbonPageGroup5
+            // 
+            ribbonPageGroup5.ItemLinks.Add(btnRibbonCreateService);
+            ribbonPageGroup5.ItemLinks.Add(btnRibbonDefinePackage);
+            ribbonPageGroup5.Name = "ribbonPageGroup5";
+            ribbonPageGroup5.Text = "Hızlı Tanımlamalar";
             // 
             // ribbonPageGroup9
             // 
             ribbonPageGroup9.ItemLinks.Add(btnRibbonMessageTemplate);
             ribbonPageGroup9.Name = "ribbonPageGroup9";
-            ribbonPageGroup9.Text = "İletişim";
+            ribbonPageGroup9.Text = "Mesaj Şablonları Oluştur";
             // 
             // ribbonPageGroup10
             // 
@@ -506,58 +492,6 @@
             ribbonPageGroup10.ItemLinks.Add(skinPaletteRibbonGalleryBarItem2);
             ribbonPageGroup10.Name = "ribbonPageGroup10";
             ribbonPageGroup10.Text = "Görünüm";
-            // 
-            // popupControlContainer2
-            // 
-            popupControlContainer2.Appearance.BackColor = System.Drawing.Color.Transparent;
-            popupControlContainer2.Appearance.Options.UseBackColor = true;
-            popupControlContainer2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            popupControlContainer2.Controls.Add(buttonEdit);
-            popupControlContainer2.Location = new System.Drawing.Point(238, 289);
-            popupControlContainer2.Name = "popupControlContainer2";
-            popupControlContainer2.Ribbon = ribbonControl1;
-            popupControlContainer2.Size = new System.Drawing.Size(118, 28);
-            popupControlContainer2.TabIndex = 3;
-            popupControlContainer2.Visible = false;
-            // 
-            // buttonEdit
-            // 
-            buttonEdit.EditValue = "Some Text";
-            buttonEdit.Location = new System.Drawing.Point(3, 5);
-            buttonEdit.Name = "buttonEdit";
-            buttonEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton() });
-            buttonEdit.Size = new System.Drawing.Size(100, 22);
-            buttonEdit.TabIndex = 0;
-            // 
-            // popupControlContainer1
-            // 
-            popupControlContainer1.Appearance.BackColor = System.Drawing.Color.Transparent;
-            popupControlContainer1.Appearance.Options.UseBackColor = true;
-            popupControlContainer1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            popupControlContainer1.Controls.Add(someLabelControl2);
-            popupControlContainer1.Controls.Add(someLabelControl1);
-            popupControlContainer1.Location = new System.Drawing.Point(111, 197);
-            popupControlContainer1.Name = "popupControlContainer1";
-            popupControlContainer1.Ribbon = ribbonControl1;
-            popupControlContainer1.Size = new System.Drawing.Size(76, 70);
-            popupControlContainer1.TabIndex = 2;
-            popupControlContainer1.Visible = false;
-            // 
-            // someLabelControl2
-            // 
-            someLabelControl2.Location = new System.Drawing.Point(3, 57);
-            someLabelControl2.Name = "someLabelControl2";
-            someLabelControl2.Size = new System.Drawing.Size(49, 13);
-            someLabelControl2.TabIndex = 0;
-            someLabelControl2.Text = "Some Info";
-            // 
-            // someLabelControl1
-            // 
-            someLabelControl1.Location = new System.Drawing.Point(3, 3);
-            someLabelControl1.Name = "someLabelControl1";
-            someLabelControl1.Size = new System.Drawing.Size(49, 13);
-            someLabelControl1.TabIndex = 0;
-            someLabelControl1.Text = "Some Info";
             // 
             // navBarGroup1
             // 
@@ -602,6 +536,22 @@
             documentManager1.MenuManager = ribbonControl1;
             documentManager1.View = tabbedView1;
             documentManager1.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] { tabbedView1 });
+            documentManager1.DocumentActivate += documentManager1_DocumentActivate;
+            // 
+            // ribbonPageGroup11
+            // 
+            ribbonPageGroup11.ItemLinks.Add(btnYedekAl);
+            ribbonPageGroup11.Name = "ribbonPageGroup11";
+            ribbonPageGroup11.Text = "Veri Yönetimi";
+            // 
+            // btnYedekAl
+            // 
+            btnYedekAl.Caption = "Yedek Al (backup)";
+            btnYedekAl.Id = 55;
+            btnYedekAl.ImageOptions.SvgImage = Properties.Resources.newdatasource;
+            btnYedekAl.LargeWidth = 100;
+            btnYedekAl.Name = "btnYedekAl";
+            btnYedekAl.ItemClick += btnYedekAl_ItemClick;
             // 
             // MainForm
             // 
@@ -609,8 +559,6 @@
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1194, 806);
-            Controls.Add(popupControlContainer1);
-            Controls.Add(popupControlContainer2);
             Controls.Add(ribbonStatusBar);
             Controls.Add(ribbonControl1);
             Name = "MainForm";
@@ -619,12 +567,6 @@
             StatusBar = ribbonStatusBar;
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)ribbonControl1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)popupControlContainer2).EndInit();
-            popupControlContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)buttonEdit.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)popupControlContainer1).EndInit();
-            popupControlContainer1.ResumeLayout(false);
-            popupControlContainer1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)documentManager1).EndInit();
             ((System.ComponentModel.ISupportInitialize)tabbedView1).EndInit();
             ResumeLayout(false);
@@ -633,11 +575,6 @@
         }
 
         #endregion
-        private DevExpress.XtraBars.PopupControlContainer popupControlContainer1;
-        private DevExpress.XtraEditors.LabelControl someLabelControl2;
-        private DevExpress.XtraEditors.LabelControl someLabelControl1;
-        private DevExpress.XtraBars.PopupControlContainer popupControlContainer2;
-        private DevExpress.XtraEditors.ButtonEdit buttonEdit;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
         private DevExpress.XtraNavBar.NavBarGroup customerGroup;
         private DevExpress.XtraNavBar.NavBarGroup organizerGroup;
@@ -698,8 +635,6 @@
         private DevExpress.XtraBars.BarButtonItem btnRibbonDefinePackage;
         private DevExpress.XtraBars.BarButtonItem barButtonItem24;
         private DevExpress.XtraBars.BarButtonItem btnRibbonfinancialReport;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
         private DevExpress.XtraBars.BarButtonItem btnRibbonServicePackages;
         private DevExpress.XtraBars.BarButtonItem btnRibbonCreateService;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage4;
@@ -711,5 +646,8 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
         private DevExpress.XtraBars.Docking2010.DocumentManager documentManager1;
         private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView tabbedView1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
+        private DevExpress.XtraBars.BarButtonItem btnYedekAl;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup11;
     }
 }

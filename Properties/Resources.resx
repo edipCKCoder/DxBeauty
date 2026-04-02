@@ -307,4 +307,10 @@
   <data name="GoToMessage1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GoToMessage1.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
+  <data name="state_itemvisibility_hide" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\state_itemvisibility_hide.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="newdatasource" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newdatasource.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
 </root>

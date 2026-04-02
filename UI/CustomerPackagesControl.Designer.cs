@@ -54,6 +54,7 @@
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement3 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement4 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement5 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
+            DevExpress.Utils.ContextButton contextButton4 = new DevExpress.Utils.ContextButton();
             DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition3 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
             DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition4 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
             DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition5 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
@@ -87,6 +88,7 @@
             layoutViewColumn4 = new DevExpress.XtraGrid.Columns.TileViewColumn();
             layoutViewColumn5 = new DevExpress.XtraGrid.Columns.TileViewColumn();
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            chkShowHidden = new DevExpress.XtraEditors.CheckEdit();
             packageGridControl = new DevExpress.XtraGrid.GridControl();
             tileView1 = new DevExpress.XtraGrid.Views.Tile.TileView();
             tileViewColumn3 = new DevExpress.XtraGrid.Columns.TileViewColumn();
@@ -95,11 +97,13 @@
             customerPackageGridControl = new DevExpress.XtraGrid.GridControl();
             tileView2 = new DevExpress.XtraGrid.Views.Tile.TileView();
             layoutViewColumn10 = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            tileViewColumn5 = new DevExpress.XtraGrid.Columns.TileViewColumn();
             sluCustomerEdit = new DevExpress.XtraEditors.SearchLookUpEdit();
             searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             Root = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -110,6 +114,7 @@
             dragDropEvents4 = new DevExpress.Utils.DragDrop.DragDropEvents(components);
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chkShowHidden.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)packageGridControl).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tileView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)svgImageCollection1).BeginInit();
@@ -120,6 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem5).BeginInit();
@@ -209,6 +215,7 @@
             // 
             // layoutControl1
             // 
+            layoutControl1.Controls.Add(chkShowHidden);
             layoutControl1.Controls.Add(packageGridControl);
             layoutControl1.Controls.Add(customerPackageGridControl);
             layoutControl1.Controls.Add(sluCustomerEdit);
@@ -220,6 +227,16 @@
             layoutControl1.Size = new System.Drawing.Size(828, 725);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
+            // 
+            // chkShowHidden
+            // 
+            chkShowHidden.Location = new System.Drawing.Point(406, 66);
+            chkShowHidden.Name = "chkShowHidden";
+            chkShowHidden.Properties.Caption = "Gizleneleri Göster";
+            chkShowHidden.Size = new System.Drawing.Size(398, 20);
+            chkShowHidden.StyleController = layoutControl1;
+            chkShowHidden.TabIndex = 4;
+            chkShowHidden.CheckedChanged += chkShowHidden_CheckedChanged;
             // 
             // packageGridControl
             // 
@@ -369,19 +386,27 @@
             // 
             svgImageCollection1.Add("checkbox", "image://svgimages/content/checkbox.svg");
             svgImageCollection1.Add("actions_removecircled", "image://svgimages/icon builder/actions_removecircled.svg");
+            svgImageCollection1.Add("state_show", "image://fluentimages/xaf/state_itemvisibility_show.svg");
+            svgImageCollection1.Add("state_hide", "image://fluentimages/xaf/state_itemvisibility_hide.svg");
             // 
             // customerPackageGridControl
             // 
-            customerPackageGridControl.Location = new System.Drawing.Point(406, 66);
+            customerPackageGridControl.Location = new System.Drawing.Point(406, 90);
             customerPackageGridControl.MainView = tileView2;
             customerPackageGridControl.Name = "customerPackageGridControl";
-            customerPackageGridControl.Size = new System.Drawing.Size(398, 635);
+            customerPackageGridControl.Size = new System.Drawing.Size(398, 611);
             customerPackageGridControl.TabIndex = 3;
             customerPackageGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { tileView2 });
             // 
             // tileView2
             // 
-            tileView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { layoutViewColumn6, layoutViewColumn7, layoutViewColumn10, tileViewColumn1, tileViewColumn2 });
+            tileView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { layoutViewColumn6, layoutViewColumn7, layoutViewColumn10, tileViewColumn1, tileViewColumn2, tileViewColumn5 });
+            contextButton4.Id = new System.Guid("1d24674a-cafb-4989-bbb8-36432246eb71");
+            contextButton4.ImageOptionsCollection.ItemNormal.SvgImage = Properties.Resources.state_itemvisibility_hide;
+            contextButton4.ImageOptionsCollection.ItemNormal.SvgImageSize = new System.Drawing.Size(20, 20);
+            contextButton4.Name = "contextButton1";
+            contextButton4.ToolTip = "Gizle";
+            tileView2.ContextButtons.Add(contextButton4);
             tileView2.GridControl = customerPackageGridControl;
             tileView2.Name = "tileView2";
             tileView2.OptionsEditForm.EditFormColumnCount = 1;
@@ -446,7 +471,10 @@
             tileView2.TileTemplate.Add(tileViewItemElement8);
             tileView2.TileTemplate.Add(tileViewItemElement9);
             tileView2.TileTemplate.Add(tileViewItemElement10);
+            tileView2.ContextButtonClick += tileView2_ContextButtonClick;
+            tileView2.ContextButtonCustomize += tileView2_ContextButtonCustomize;
             tileView2.ItemCustomize += tileView2_ItemCustomize;
+            tileView2.CustomRowFilter += tileView2_CustomRowFilter;
             // 
             // layoutViewColumn10
             // 
@@ -457,6 +485,14 @@
             layoutViewColumn10.OptionsEditForm.Caption = "Durum:";
             layoutViewColumn10.Visible = true;
             layoutViewColumn10.VisibleIndex = 2;
+            // 
+            // tileViewColumn5
+            // 
+            tileViewColumn5.Caption = "tileViewColumn5";
+            tileViewColumn5.FieldName = "IsVisible";
+            tileViewColumn5.Name = "tileViewColumn5";
+            tileViewColumn5.Visible = true;
+            tileViewColumn5.VisibleIndex = 5;
             // 
             // sluCustomerEdit
             // 
@@ -491,7 +527,7 @@
             // layoutControlGroup1
             // 
             layoutControlGroup1.GroupStyle = DevExpress.Utils.GroupStyle.Light;
-            layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem3 });
+            layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem3, layoutControlItem1 });
             layoutControlGroup1.Location = new System.Drawing.Point(382, 27);
             layoutControlGroup1.Name = "layoutControlGroup1";
             layoutControlGroup1.Size = new System.Drawing.Size(426, 678);
@@ -501,11 +537,19 @@
             // 
             layoutControlItem3.Control = customerPackageGridControl;
             layoutControlItem3.CustomizationFormText = "layout Control Item3";
-            layoutControlItem3.Location = new System.Drawing.Point(0, 0);
+            layoutControlItem3.Location = new System.Drawing.Point(0, 24);
             layoutControlItem3.Name = "layoutControlItem3";
-            layoutControlItem3.Size = new System.Drawing.Size(402, 639);
+            layoutControlItem3.Size = new System.Drawing.Size(402, 615);
             layoutControlItem3.Text = "layout Control Item3";
             layoutControlItem3.TextVisible = false;
+            // 
+            // layoutControlItem1
+            // 
+            layoutControlItem1.Control = chkShowHidden;
+            layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            layoutControlItem1.Name = "layoutControlItem1";
+            layoutControlItem1.Size = new System.Drawing.Size(402, 24);
+            layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
@@ -548,6 +592,7 @@
             Size = new System.Drawing.Size(828, 725);
             ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
             layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)chkShowHidden.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)packageGridControl).EndInit();
             ((System.ComponentModel.ISupportInitialize)tileView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)svgImageCollection1).EndInit();
@@ -558,6 +603,7 @@
             ((System.ComponentModel.ISupportInitialize)Root).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem5).EndInit();
@@ -597,5 +643,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.SimpleSeparator simpleSeparator1;
+        private DevExpress.XtraGrid.Columns.TileViewColumn tileViewColumn5;
+        private DevExpress.XtraEditors.CheckEdit chkShowHidden;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
     }
 }

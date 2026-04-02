@@ -45,25 +45,6 @@ namespace DXBeauty.Data
         INNER JOIN service_packages sp ON cs.service_package_id = sp.service_package_id
         WHERE cs.customer_id = @CustomerId AND pp.is_paid = false
                                            AND (pp.amount - COALESCE(pp.paid_amount, 0)) > 0 -- EMNİYET KEMERİ: Kalan tutar 0 ise ekrana getirme!
-
-        UNION ALL
-
-        -- 2. BÖLÜM: ÖDENMEMİŞ TEK SEANS RANDEVULARI (Eskisiyle aynı)
-        SELECT 
-            'Tek Seans' AS DebtType,
-            COALESCE(s.service_name, 'Genel İşlem') || ' Randevusu' AS Description,
-            CAST(a.appointment_start_date AS DATE) AS DueDate,
-            default_price AS Amount,
-            NULL::int AS PaymentPlanId,
-            NULL::int AS CustomerServiceId,
-            a.appointment_id AS AppointmentId
-        FROM appointments a
-        LEFT JOIN services s ON a.service_id = s.service_id
-        WHERE a.customer_id = @CustomerId 
-          AND a.customer_service_id IS NULL 
-          AND a.status != 3 
-          AND NOT EXISTS (SELECT 1 FROM payments p WHERE p.appointment_id = a.appointment_id)
-        
         ORDER BY DueDate ASC;";
 
             using (var connection = new NpgsqlConnection(_connectionString)) // Kendi bağlantı nesneni kullan

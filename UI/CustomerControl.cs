@@ -87,7 +87,10 @@ namespace DXBeauty.UI
                 // PointToClient: Ekran koordinatını Grid üzerindeki koordinata çevirir.
                 anaMenu.ShowPopup(customerGridControl, customerGridControl.PointToClient(Control.MousePosition));
             }
-
+            else
+            {
+               XtraMessageBox.Show("Gönderebileceğiniz özel bir mesaj şablonu bulunmamaktadır. Lütfen önce bir şablon oluşturun.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         
 
@@ -166,40 +169,7 @@ namespace DXBeauty.UI
             popup.ShowDialog();
         }
 
-        private void gridViewMusteriler_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
-        {
-            if (e.HitInfo.InRow)
-            {
-                // Sağ tıklanan müşteriyi yakala (DTO adın neyse ona göre değiştir, örn: CustomerDto)
-                var seciliMusteri = gridViewMusteriler.GetRow(e.HitInfo.RowHandle) as Customer;
 
-                if (seciliMusteri == null) return;
-
-                // EĞER SİSTEMDE HİÇ ÖZEL ŞABLON VARSA, ALT MENÜYÜ OLUŞTUR
-                if (_ozelSablonlar != null && _ozelSablonlar.Count > 0)
-                {
-                    DevExpress.Utils.Menu.DXSubMenuItem ozelMesajMenu = new DevExpress.Utils.Menu.DXSubMenuItem("💬 Özel Mesaj Gönder");
-                    ozelMesajMenu.BeginGroup = true; // Üstüne şık bir ayraç çizgisi koy
-
-                    // Hafızadaki özel şablonları tek tek alt menüye buton olarak ekle
-                    foreach (var sablon in _ozelSablonlar)
-                    {
-                        DevExpress.Utils.Menu.DXMenuItem sablonButonu = new DevExpress.Utils.Menu.DXMenuItem("✨ " + sablon.TemplateName);
-
-                        // Butona tıklandığında WhatsApp fırlatıcıyı çağır
-                        sablonButonu.Click += async (s, args) =>
-                        {
-                            await SendCustomWhatsAppAsync(seciliMusteri, sablon.TemplateContent);
-                        };
-
-                        ozelMesajMenu.Items.Add(sablonButonu);
-                    }
-
-                    // Oluşturulan Alt Menüyü Ana Menüye Ekle
-                    e.Menu.Items.Add(ozelMesajMenu);
-                }
-            }
-        }
 
         private async Task SendCustomWhatsAppAsync(Customer musteri, string sablonIcerik)
         {

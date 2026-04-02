@@ -35,7 +35,11 @@ namespace DXBeauty {
 
 
             Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
-
+            if (string.IsNullOrEmpty(Properties.Settings.Default.SkinName))
+            {
+                Properties.Settings.Default.SkinName = "CompactSkin/WXI";
+                Properties.Settings.Default.Save();
+            }
             DevExpress.UserSkins.BonusSkins.Register();
             DevExpress.Skins.SkinManager.EnableFormSkins();
             // 1. Kaydedilmiş tema ve palet isimlerini Settings'ten oku

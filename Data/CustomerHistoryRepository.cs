@@ -29,7 +29,7 @@ namespace DXBeauty.Data
                     COALESCE(s.service_name, 'Genel İşlem') || ' Randevusu' as Summary,
                     a.appointment_start_date as StartDate,
                     a.appointment_end_date as EndDate,
-                    s.service_name as ServiceName,
+     
                     p.full_name as PersonnelName,
                     a.status as Status,
                     a.subject as Subject,
@@ -38,10 +38,10 @@ namespace DXBeauty.Data
                     a.all_day as IsAllDay,
                     sp.name as RelatedPackageName
                 FROM appointments a
-                LEFT JOIN services s ON a.service_id = s.service_id
                 LEFT JOIN personnels p ON a.resource_id = p.personnel_id
                 LEFT JOIN customer_services cs ON a.customer_service_id = cs.customer_service_id
                 LEFT JOIN service_packages sp ON cs.service_package_id = sp.service_package_id
+                LEFT JOIN services s ON sp.service_id = s.service_id
                 WHERE a.customer_id = @CustomerId;
 
                 -- SORGU 2: TAHSİLATLAR (ÖDEMELER)
@@ -57,14 +57,14 @@ namespace DXBeauty.Data
                         WHEN pp.plan_type = 3 THEN 'Açık Hesap Tahsilatı'
                         ELSE pp.sequence_number || '. Taksit' 
                     END as PaymentPlanInfo,
-                    sp.name as RelatedPackage,
-                    s.service_name as RelatedAppointment
+                    sp.name as RelatedPackage
+                    
                 FROM payments p
                 LEFT JOIN payment_plans pp ON p.payment_plan_id = pp.payment_plan_id
                 LEFT JOIN customer_services cs ON p.customer_service_id = cs.customer_service_id
                 LEFT JOIN service_packages sp ON cs.service_package_id = sp.service_package_id
                 LEFT JOIN appointments a ON p.appointment_id = a.appointment_id
-                LEFT JOIN services s ON a.service_id = s.service_id
+                
                 WHERE p.customer_id = @CustomerId;
 
                 -- SORGU 3: PAKET SATIŞLARI (Müşteri Servisleri)
@@ -139,7 +139,7 @@ namespace DXBeauty.Data
                                     PaymentMethod = p.paymentmethod,
                                     PaymentPlanInfo = p.paymentplaninfo,
                                     RelatedPackage = p.relatedpackage,
-                                    RelatedAppointment = p.relatedappointment
+                                    
                                 }
                             }
                         };

@@ -17,6 +17,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -30,7 +31,7 @@ namespace DXBeauty
         public MainForm()
         {
             InitializeComponent();
-
+            this.Text = "DXBeauty - " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             DevExpress.LookAndFeel.UserLookAndFeel.Default.StyleChanged += UserLookAndFeel_StyleChanged;
             ShowControlInPanel(new UI.DashboardControl(), "Gösterge Panosu");
         }
@@ -46,7 +47,7 @@ namespace DXBeauty
         }
 
 
-        private void ShowControlInPanel(XtraUserControl control,string sekmeBasligi)
+        private void ShowControlInPanel(XtraUserControl control, string sekmeBasligi)
         {
             // Açık sekmeleri tarar, varsa öne getirir, yoksa yeni sekme açar
             foreach (DevExpress.XtraBars.Docking2010.Views.BaseDocument doc in documentManager1.View.Documents)
@@ -77,21 +78,12 @@ namespace DXBeauty
 
         private void btnRibbonfinancialReport_ItemClick(object sender, ItemClickEventArgs e)
         {
-            FinancialReportControl financialReportControl = new UI.FinancialReportControl();
-            financialReportControl.Dock = DockStyle.Fill;
-            XtraForm popUp = new XtraForm();
-
-
-            popUp.ClientSize = financialReportControl.Size;
-            popUp.Controls.Add(financialReportControl); // (PopUp.AddControl yerine PopUp.Controls.Add kullanmalısınız)
-            popUp.StartPosition = FormStartPosition.CenterScreen;
-
-            popUp.ShowDialog();
+            ShowControlInPanel(new UI.FinancialReportControl(), "Müşteri Ödeme Planı");
         }
 
         private void btnRibbonCustomerHistory_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ShowControlInPanel(new UI.CustomerHistoryControl(),"Müşteri Geçmişi");
+            ShowControlInPanel(new UI.CustomerHistoryControl(), "Müşteri Geçmişi");
         }
 
         private void btnRibbonCustomerRegister_ItemClick(object sender, ItemClickEventArgs e)
@@ -116,7 +108,7 @@ namespace DXBeauty
                     {
                         CustomerPackagesControl.Instance.LoadData();
                     }
-                    
+
 
                     // 2. İşlem başarılıysa mesaj ver
                     DevExpress.XtraEditors.XtraMessageBox.Show("Müşteri başarıyla kaydedildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -133,7 +125,7 @@ namespace DXBeauty
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
-              
+
             };
 
             popUp.ClientSize = customerRegisterControl.Size;
@@ -207,7 +199,7 @@ namespace DXBeauty
 
         private void btnRibbonDashboard_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ShowControlInPanel(new UI.DashboardControl(),"Gösterge Panosu");
+            ShowControlInPanel(new UI.DashboardControl(), "Gösterge Panosu");
         }
 
         private void btnRibbonCustomerList_ItemClick(object sender, ItemClickEventArgs e)
@@ -228,6 +220,67 @@ namespace DXBeauty
         private void btnRibbonMessageTemplate_ItemClick(object sender, ItemClickEventArgs e)
         {
             ShowControlInPanel(new UI.MessageTemplateControl(), "Mesaj Şablonları");
+        }
+
+        private void documentManager1_DocumentActivate(object sender, DevExpress.XtraBars.Docking2010.Views.DocumentEventArgs e)
+        {
+            // Soru işareti (?.) e.Document null ise kodun çökmesini engeller ve direkt atlar.
+            if (e.Document?.Control is CustomerPackagesControl packagesControl)
+            {
+                packagesControl.RefreshScreenState();
+
+            }
+
+            // Eğer başka sayfalar için de yenileme yapacaksanız buraya ekleyebilirsiniz:
+            /*
+            else if (e.Document?.Control is DashboardControl dashboard)
+            {
+                // dashboard.RefreshDashboardData();
+            }
+            */
+
+        }
+
+        private async void btnYedekAl_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Backup Files (*.backup)|*.backup";
+            sfd.FileName = $"DXBeauty_Yedek_{DateTime.Now:yyyyMMdd_HHmm}";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                await TakeDatabaseBackupAsync(sfd.FileName);
+                XtraMessageBox.Show("Yedekleme başarıyla tamamlandı!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private Task TakeDatabaseBackupAsync(string filePath)
+        {
+            return Task.Run(() =>
+            {
+                // PostgreSQL'in pg_dump aracının yolu (Müşteri bilgisayarına göre ayarlanmalıdır)
+                string pgDumpPath = @"C:\Program Files\PostgreSQL\17\bin\pg_dump.exe";
+
+                // Şifreyi çevre değişkeni olarak ayarlıyoruz (pg_dump şifre sormasın diye)
+                Environment.SetEnvironmentVariable("PGPASSWORD", "123456");
+
+                string arguments = $"-h localhost -p 5432 -U postgres -F c -b -v -f \"{filePath}\" dxbeauty";
+
+                System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = pgDumpPath,
+                    Arguments = arguments,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true // Siyah konsol ekranı görünmesin
+                };
+
+                using (System.Diagnostics.Process process = System.Diagnostics.Process.Start(psi))
+                {
+                    process.WaitForExit();
+                }
+            });
         }
     }
 }
